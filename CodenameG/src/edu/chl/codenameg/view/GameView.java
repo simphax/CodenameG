@@ -22,10 +22,12 @@ public class GameView {
 		JFrame jf = new JFrame();
 		jf.setSize(new Dimension(400,400));
 		jf.setVisible(true);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.panel = new JPanel(){
 			@Override
 			public void paintComponent(Graphics g) {
 				for(Entity e : model.getWorld().getEntities()) {
+					//g.setClip((int)e.getPosition().getX(), (int)e.getPosition().getY(), Integer.MAX_VALUE, Integer.MAX_VALUE);
 					(new BasicEntityView()).render(e,g);
 				}
 			}

@@ -17,7 +17,11 @@ public class Block extends Entity{
 
 	@Override
 	public Hitbox getHitbox() {
-		return new Hitbox(20,20);
+		if(hb == null)
+			return new Hitbox(0,0);
+		else {
+			return new Hitbox(this.hb);
+		}
 	}
 
 	@Override

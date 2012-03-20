@@ -7,21 +7,15 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter extends Entity{
-	private Point position;
 	private Hitbox hitbox;
 	
 	public PlayerCharacter() {
-		position = new Point(0,0);
 		hitbox = new Hitbox(5, 10);
 	}
 	
 	public PlayerCharacter(Point position) {
 		this();
-		this.position = position;
-	}
-	
-	public Point getPosition() {
-		return new Point(position);
+		this.setPosition(position);
 	}
 	
 	public void jump() {
