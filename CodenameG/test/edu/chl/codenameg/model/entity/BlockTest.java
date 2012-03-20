@@ -30,4 +30,11 @@ public class BlockTest {
 		Vector2D v2d= new Vector2D(0,0);
 		assertTrue(block.getVector2D().equals(v2d));
 	}
+	@Test
+	public void testIsColliding(){
+		Block block = new Block();
+		Point p = new Point(10,20);
+		block.setPosition(p);
+		
+	}
 }
