@@ -36,7 +36,7 @@ public class PlayerCharacterTest {
 		PlayerCharacter pc = new PlayerCharacter();
 		Point pos = pc.getPosition();
 		pc.startMoving();
-		update();
+		pc.update();
 		Point secondPos = pc.getPosition();
 		assertTrue(!pos.equals(secondPos));
 	}
@@ -67,7 +67,7 @@ public class PlayerCharacterTest {
 		PlayerCharacter pc = new PlayerCharacter();
 		Double posY = pc.getPosition().getY();
 		pc.jump();
-		update();
+		pc.update();
 		Double secondPosY = pc.getPosition().getY();
 		assertTrue(posY < secondPosY);
 		
