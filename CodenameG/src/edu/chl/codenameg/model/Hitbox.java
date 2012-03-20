@@ -7,8 +7,8 @@ public class Hitbox {
 	private int height;
 	
 	public Hitbox(Hitbox hb) {
-		this.setWidth(hb.width);
-		this.setHeight(hb.height);
+		this.setWidth(hb.getWidth());
+		this.setHeight(hb.getHeight());
 	}
 	public Hitbox(int w, int h){
 		this.width = w;
