@@ -11,7 +11,7 @@ import edu.chl.codenameg.model.entity.Block;
 public class WorldTest {
 
 	@Test
-	public void testSetMap() {
+	public void testAdd() {
 		World world = new World();
 		Block block = new Block();
 		world.add(block);

@@ -21,7 +21,7 @@ public abstract class Entity {
 
 	public abstract void collide(Entity e);
 	
-	public void update() {
+	public void update(int elapsedTime) {
 		
 	}
 }

@@ -8,7 +8,7 @@ public class World {
 	List<Entity> entities;
 	
 	public World() {
-		
+		this.entities = new ArrayList<Entity>();
 	}
 	
 	public void add(Entity e) {
@@ -23,10 +23,18 @@ public class World {
 		return new Camera();
 	}
 	
-	public void update() {
+	public void update(int elapsedTime) {
 		for(Entity e : this.getEntities()) {
-			e.update();
+			e.update(elapsedTime);
+			/*if(this.getCollideList(e).size()) {
+				
+			}*/
 		}
+		
 	}
+	
+	/*private List<Entity> getCollideList(Entity e) {
+		for(Entity )
+	}*/
 	
 }
