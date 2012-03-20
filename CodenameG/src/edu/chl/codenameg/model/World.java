@@ -3,8 +3,6 @@ package edu.chl.codenameg.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.chl.codenameg.model.entity.Entity;
-
 public class World {
 	
 	public World() {
@@ -16,7 +14,7 @@ public class World {
 	}
 	
 	public List<Entity> getEntities() {
-		return new ArrayList();
+		return new ArrayList<Entity>();
 	}
 	
 	public Camera getCamera() {
