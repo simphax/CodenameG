@@ -19,9 +19,7 @@ public abstract class Entity {
 	
 	public abstract boolean isColliding();
 
-	public void collide(Entity e) {
-		
-	}
+	public abstract void collide(Entity e);
 	
 	public void update() {
 		

@@ -29,5 +29,11 @@ public class Block extends Entity{
 	public boolean isColliding() {
 		return colliding;
 	}
+
+	@Override
+	public void collide(Entity e) {
+		this.colliding = true;
+		
+	}
 	
 }

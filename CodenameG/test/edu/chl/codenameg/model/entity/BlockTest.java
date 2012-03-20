@@ -32,9 +32,13 @@ public class BlockTest {
 	}
 	@Test
 	public void testIsColliding(){
-		Block block = new Block();
+		Block block1 = new Block();
+		Block block2 = new Block();
 		Point p = new Point(10,20);
-		block.setPosition(p);
+		block1.setPosition(p);
+		block2.setPosition(p);
+		block1.collide(block2);
+		
 		
 	}
 }
