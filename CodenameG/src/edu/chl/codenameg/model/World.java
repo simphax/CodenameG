@@ -16,7 +16,8 @@ public class World {
 	}
 	
 	public List<Entity> getEntities() {
-		return new ArrayList<Entity>(this.entities);
+		//return new ArrayList<Entity>(this.entities);
+		return this.entities;
 	}
 	
 	public Camera getCamera() {

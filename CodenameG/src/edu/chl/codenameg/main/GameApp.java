@@ -28,6 +28,8 @@ public class GameApp {
 		
 		model.update(10);
 		view.repaint();
+		model.update(10);
+		view.repaint();
 		
 	}
 	

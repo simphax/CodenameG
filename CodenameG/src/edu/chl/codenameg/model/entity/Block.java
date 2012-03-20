@@ -17,7 +17,7 @@ public class Block extends Entity{
 
 	@Override
 	public Hitbox getHitbox() {
-		return new Hitbox(this.hb);
+		return new Hitbox(20,20);
 	}
 
 	@Override
