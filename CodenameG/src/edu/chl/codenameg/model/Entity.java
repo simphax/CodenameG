@@ -10,7 +10,7 @@ import java.awt.Point;
 public abstract class Entity {
 	private Point pt;
 	private Hitbox hb;
-	private Vector v;
+	private Vector2D v;
 	
 	//methods to be tested
 	public void setPosition(Point p){
@@ -22,7 +22,7 @@ public abstract class Entity {
 	public Hitbox getHitbox(){
 		return new Hitbox(this.hb);
 	}
-	public Vector getVector(){
+	public Vector2D getVector2D(){
 		return new 
 	}
 }
