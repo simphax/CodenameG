@@ -1,17 +1,19 @@
 package edu.chl.codenameg.model.entity;
 
-import edu.chl.codenameg.model.Position;
+import java.awt.Point;
+
+
 
 
 
 public abstract class Entity {
-	private Position pos;
+	private Point pt;
 	
 	//methods to be tested
-	public void setPosition(Position p){
-		this.pos =p;
+	public void setPosition(Point p){
+		this.pt =p;
 	}
-	public Position getPosition(){
-		return 
+	public Point getPosition(){
+		return this.pt;
 	}
 }
