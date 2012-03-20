@@ -2,14 +2,16 @@ package edu.chl.codenameg.model;
 
 import static org.junit.Assert.*;
 
+import java.awt.Point;
+
 import org.junit.Test;
 
-public class World {
+public class WorldTest {
 
 	@Test
 	public void testSetMap() {
 		World world = new World();
-		BlockTest block = new BlockTest();
+		Block block = new Block();
 		world.add(block);
 		assertTrue(world.getEntities().getLength() == 1);
 	}
@@ -17,9 +19,14 @@ public class World {
 	@Test
 	public void testEntityCollide() {
 		World world = new World();
-		BlockTest block = new BlockTest();
+		Block block = new Block();
+		Block block2 = new Block();
+		block.setPosition(new Point(10,10));
+		block2.setPosition(new Point(10,10));
 		world.add(block);
-		assertTrue(world.getEntities().getLength() == 1);
+		world.add(block2);
+		world.update();
+		assertTrue(block.isColliding() && block2.isColliding());
 	}	
 
 }
