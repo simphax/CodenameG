@@ -2,6 +2,8 @@ package edu.chl.codenameg.model;
 
 import java.awt.Point;
 
+import edu.chl.codenameg.model.entity.Entity;
+
 
 
 
@@ -11,6 +13,8 @@ public abstract class Entity {
 	private Point pt;
 	private Hitbox hb;
 	private Vector v;
+
+	private boolean colliding;
 	
 	//methods to be tested
 	public void setPosition(Point p){
@@ -24,5 +28,13 @@ public abstract class Entity {
 	}
 	public Vector getVector(){
 		return new 
+	}
+	
+	public boolean isColliding() {
+		return colliding;
+	}
+	
+	public void collide(Entity e) {
+		
 	}
 }
