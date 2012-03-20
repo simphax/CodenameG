@@ -29,6 +29,6 @@ public class WorldTest {
 		world.add(block2);
 		world.update();
 		assertTrue(block.isColliding() && block2.isColliding());
-	}	
+	}
 
 }

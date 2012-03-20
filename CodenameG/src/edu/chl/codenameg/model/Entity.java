@@ -22,5 +22,9 @@ public abstract class Entity {
 	public void collide(Entity e) {
 		
 	}
+	
+	public void update() {
+		
+	}
 }
 
