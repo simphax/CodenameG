@@ -1,12 +1,11 @@
-package edu.chl.codenameg.model;
+package edu.chl.codenameg.model.entity;
 
 import static org.junit.Assert.*;
-
 import java.awt.Point;
-
 import org.junit.Test;
 
-public class Block {
+
+public class BlockTest {
 
 	@Test
 	public void testSetPosition() {
@@ -15,5 +14,10 @@ public class Block {
 		block.setPosition(point);
 		assertTrue(block.getPosition().equals(point));
 	}
-
+	@Test
+	public void testGetHitbox(){
+		Block block = new Block();
+		Hitbox hb = new Hitbox(1,1);
+		block.setHitbox()
+	}
 }
