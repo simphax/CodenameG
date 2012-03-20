@@ -26,6 +26,7 @@ public class GameView {
 		this.panel = new JPanel(){
 			@Override
 			public void paintComponent(Graphics g) {
+				g.clearRect(0, 0, this.getWidth(), this.getHeight());
 				for(Entity e : model.getWorld().getEntities()) {
 					//g.setClip((int)e.getPosition().getX(), (int)e.getPosition().getY(), Integer.MAX_VALUE, Integer.MAX_VALUE);
 					(new BasicEntityView()).render(e,g);
@@ -38,8 +39,9 @@ public class GameView {
 	}
 	
 	public void repaint() {
-		this.panel.repaint();
+		
 		this.panel.revalidate();
+		this.panel.repaint();
 		
 		
 	}

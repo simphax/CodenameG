@@ -38,12 +38,8 @@ public class GameApp {
 		world.add(block);
 		world.add(pc);
 		
-		model.startGame(world);
-		
-		model.update(10);
-		view.repaint();
-		model.update(10);
-		view.repaint();
+		model.setWorld(world);
+		model.startGame();
 		
 	}
 	

@@ -46,6 +46,11 @@ public class PlayerCharacter extends Entity{
 	@Override
 	public void collide(Entity e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("PlayerCharacter collided with a "+e.getClass().getCanonicalName());
+	}
+	
+	@Override
+	public void update(int elapsedTime) {
+		this.setPosition(new Point(this.getPosition().x,this.getPosition().y+1));
 	}
 }
