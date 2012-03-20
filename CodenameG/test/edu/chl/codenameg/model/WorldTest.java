@@ -6,6 +6,8 @@ import java.awt.Point;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.entity.Block;
+
 public class WorldTest {
 
 	@Test
@@ -13,7 +15,7 @@ public class WorldTest {
 		World world = new World();
 		Block block = new Block();
 		world.add(block);
-		assertTrue(world.getEntities().getLength() == 1);
+		assertTrue(world.getEntities().size() == 1);
 	}
 	
 	@Test
