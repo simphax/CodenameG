@@ -89,7 +89,7 @@ public class PlayerCharacter implements Entity{
 	}
 	
 	public Vector2D getVector2D() {
-		return new Vector2D(1,0);
+		return new Vector2D(this.v2d);
 	}
 	
 	public boolean isColliding() {
