@@ -61,8 +61,8 @@ public class PlayerCharacter implements Entity{
 
 	public void collide(Entity e) {
 		this.colliding = true;
-		Rectangle thisRect = new Rectangle(this.getPosition(),new Dimension(this.getHitbox().getWidth(), this.getHitbox().getHeight()));
-		Rectangle collidingRect = new Rectangle(e.getPosition(),new Dimension(e.getHitbox().getWidth(), e.getHitbox().getHeight()));
+		Rectangle thisRect = new Rectangle((int)(this.getPosition().getX()+0.5), (int)(this.getPosition().getY()+0.5), this.getHitbox().getWidth(), this.getHitbox().getHeight());
+		Rectangle collidingRect = new Rectangle((int)(e.getPosition().getX()+0.5), (int)(e.getPosition().getY()+0.5), e.getHitbox().getWidth(), e.getHitbox().getHeight());
 		Rectangle intersection = thisRect.intersection(collidingRect);
 		if(intersection.y == collidingRect.y) {
 			this.onGround  = true;

@@ -23,8 +23,8 @@ public class WorldTest {
 		World world = new World();
 		Block block = new Block();
 		Block block2 = new Block();
-		block.setPosition(new Point(10,10));
-		block2.setPosition(new Point(10,10));
+		block.setPosition(new Position(10,10));
+		block2.setPosition(new Position(10,10));
 		world.add(block);
 		world.add(block2);
 		world.update(10);
@@ -46,8 +46,8 @@ public class WorldTest {
 				return new Vector2D(3,3);
 			}
 		};
-		block.setPosition(new Point(10,10));
-		block2.setPosition(new Point(10,10));
+		block.setPosition(new Position(10,10));
+		block2.setPosition(new Position(10,10));
 		world.add(block);
 		world.add(block2);
 		world.update(10);
@@ -71,8 +71,8 @@ public class WorldTest {
 				return new Vector2D(3,3);
 			}
 		};
-		block.setPosition(new Point(10,10));
-		block2.setPosition(new Point(10,10));
+		block.setPosition(new Position(10,10));
+		block2.setPosition(new Position(10,10));
 		world.add(block);
 		world.add(block2);
 		world.update(10);

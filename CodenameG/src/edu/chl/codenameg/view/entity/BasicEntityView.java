@@ -11,7 +11,7 @@ public class BasicEntityView implements EntityView {
 	@Override
 	public void render(Entity ent, Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(ent.getPosition().x, ent.getPosition().y, ent.getHitbox().getWidth(), ent.getHitbox().getHeight());
+		g.fillRect((int)ent.getPosition().getX(), (int)ent.getPosition().getY(), ent.getHitbox().getWidth(), ent.getHitbox().getHeight());
 	}
 	
 }

@@ -8,6 +8,7 @@ import edu.chl.codenameg.controller.GameController;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.World;
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
@@ -29,11 +30,11 @@ public class GameApp {
 		World world = new World();
 		
 		Block block = new Block();
-		block.setPosition(new Point(100,200));
+		block.setPosition(new Position(100,200));
 		block.setHitbox(new Hitbox(200,20));
 		
 		PlayerCharacter pc = new PlayerCharacter();
-		pc.setPosition(new Point(200,50));
+		pc.setPosition(new Position(200,50));
 		
 		world.add(block);
 		world.add(pc);
