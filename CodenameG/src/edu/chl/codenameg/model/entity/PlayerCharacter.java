@@ -96,7 +96,9 @@ public class PlayerCharacter implements Entity{
 	public Hitbox getHitbox() {
 		return new Hitbox(hitbox);
 	}
-	
+	public void setVector2D(Vector2D v2d){
+		this.v2d=v2d;
+	}
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);
 	}

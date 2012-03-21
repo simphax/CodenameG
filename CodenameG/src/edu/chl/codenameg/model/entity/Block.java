@@ -16,7 +16,7 @@ public class Block implements Entity{
 		this(new Hitbox(1,1), new Point(2,2));
 	}
 	
-	public Block(/*Graphic g,*/ Hitbox hb,Point position){
+	public Block(Hitbox hb,Point position){
 		this.setPosition(position);
 		this.hb = hb;
 		this.colliding = false;
