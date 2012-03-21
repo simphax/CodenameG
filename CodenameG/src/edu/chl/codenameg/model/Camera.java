@@ -37,4 +37,12 @@ public class Camera {
 		return size;
 	}
 	
+	public void update() {
+		int x = this.position.x;
+		int y = this.position.y;
+		int newX = x+1;
+		
+		this.position.move(newX, y);
+	}
+	
 }
