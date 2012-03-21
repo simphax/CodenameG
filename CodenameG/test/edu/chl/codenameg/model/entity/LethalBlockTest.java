@@ -3,13 +3,13 @@ package edu.chl.codenameg.model.entity;
 import static org.junit.Assert.*;
 
 import java.awt.Point;
+
 import org.junit.Test;
 
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
-
-public class BlockTest {
+public class LethalBlockTest {
 
 	@Test
 	public void testSetPosition() {
@@ -41,5 +41,16 @@ public class BlockTest {
 		block1.collide(block2);
 		block2.collide(block1);
 		assertTrue(block1.isColliding() && block2.isColliding());
+	}
+	
+	@Test
+	public void testPlayerDies(){
+		Point pos = new Point(0,0);
+		Hitbox hb = new Hitbox(5,5);
+		Block block = new Block(hb, pos);
+		PlayerCharacter pc = new PlayerCharacter(pos);
+		block.collide(pc);
+		pc.collide(block);
+		assertTrue(!pc.isAlive());
 	}
 }
