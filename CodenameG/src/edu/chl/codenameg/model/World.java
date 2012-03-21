@@ -29,10 +29,16 @@ public class World {
 
 	public void update(int elapsedTime) {
 		for (Entity e : this.getEntities()) {
-			e.update(elapsedTime);
+			Point temp = e.getPosition();
+			if(e.getVector2D() != null) {
+				e.setPosition(new Point((int)e.getPosition().getX()+e.getVector2D().getX(),(int)e.getPosition().getY()+e.getVector2D().getY()));
+			}
 			this.checkCollision(e);
+			if(e.isColliding()) {
+				e.setPosition(temp);
+			}
+			e.update(elapsedTime);
 		}
-
 	}
 
 	private void checkCollision(Entity e) {
