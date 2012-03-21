@@ -1,10 +1,13 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Position;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter implements Entity{
@@ -17,6 +20,7 @@ public class PlayerCharacter implements Entity{
 	private Direction direction;
 	private boolean moving;
 	private int acc;
+	private boolean onGround = false;
 	
 	public PlayerCharacter() {
 		this(new Position(0,0));
@@ -57,6 +61,12 @@ public class PlayerCharacter implements Entity{
 
 	public void collide(Entity e) {
 		this.colliding = true;
+		Rectangle thisRect = new Rectangle(this.getPosition(),new Dimension(this.getHitbox().getWidth(), this.getHitbox().getHeight()));
+		Rectangle collidingRect = new Rectangle(e.getPosition(),new Dimension(e.getHitbox().getWidth(), e.getHitbox().getHeight()));
+		Rectangle intersection = thisRect.intersection(collidingRect);
+		if(intersection.y == collidingRect.y) {
+			this.onGround  = true;
+		}
 	}
 	
 	public void update() {
@@ -69,9 +79,14 @@ public class PlayerCharacter implements Entity{
 		} else if(this.direction == Direction.LEFT && this.moving == true) {
 			this.v2d = new Vector2D(1,0);
 		}
-		this.v2d.add(new Vector2D(0,1));
 		
-		//Not colliding now
+		if(onGround) {
+			this.v2d = new Vector2D(0,0);
+		} else {
+			this.v2d = new Vector2D(0,1);
+		}
+		
+		this.onGround = false;
 		this.colliding = false;
 	}
 	
@@ -86,7 +101,6 @@ public class PlayerCharacter implements Entity{
 	//getters & setters
 	public void setPosition(Position p) {
 		this.pt=p;
-		
 	}
 	
 	public Position getPosition() {
@@ -96,9 +110,11 @@ public class PlayerCharacter implements Entity{
 	public Hitbox getHitbox() {
 		return new Hitbox(hitbox);
 	}
+	
 	public void setVector2D(Vector2D v2d){
 		this.v2d=v2d;
 	}
+	
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);
 	}
