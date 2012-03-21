@@ -1,5 +1,8 @@
 package edu.chl.codenameg.model;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +39,11 @@ public class World {
 		for (Entity target : this.getEntities()) {
 			if (target != e) {
 				boolean collision = false;
-				if (e.getPosition() == target.getPosition()) {
+				
+				Rectangle thisRectangle = new Rectangle(e.getPosition(),new Dimension(e.getHitbox().getWidth(),e.getHitbox().getHeight()));
+				Rectangle targetRectangle = new Rectangle(target.getPosition(),new Dimension(target.getHitbox().getWidth(),target.getHitbox().getHeight()));
+				
+				if (thisRectangle.intersects(targetRectangle)) {
 					collision = true;
 				}
 				if (collision) {
