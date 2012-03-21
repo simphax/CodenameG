@@ -1,6 +1,6 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Point;
+import java.awt.Position;
 
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
@@ -10,7 +10,7 @@ import edu.chl.codenameg.model.Vector2D;
 public class PlayerCharacter implements Entity{
 	private final Hitbox hitbox = new Hitbox(10,15);
 	private boolean gameWon;
-	private Point pt;
+	private Position pt;
 	private Vector2D v2d;
 	private boolean colliding;
 	private boolean alive;
@@ -19,10 +19,10 @@ public class PlayerCharacter implements Entity{
 	private int acc;
 	
 	public PlayerCharacter() {
-		this(new Point(0,0));
+		this(new Position(0,0));
 	}
 	
-	public PlayerCharacter(Point position) {
+	public PlayerCharacter(Position position) {
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
@@ -84,13 +84,13 @@ public class PlayerCharacter implements Entity{
 	}
 
 	//getters & setters
-	public void setPosition(Point p) {
+	public void setPosition(Position p) {
 		this.pt=p;
 		
 	}
 	
-	public Point getPosition() {
-		return new Point(this.pt);
+	public Position getPosition() {
+		return new Position(this.pt);
 	}
 
 	public Hitbox getHitbox() {

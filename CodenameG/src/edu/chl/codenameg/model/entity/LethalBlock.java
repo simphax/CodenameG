@@ -1,6 +1,5 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Point;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 
@@ -15,8 +14,8 @@ public class LethalBlock extends Block{
 			deadPlayer.die();
 		}
 	}
-	public LethalBlock(Hitbox hb, Point pt){
-		super(hb,pt);
+	public LethalBlock(Hitbox hb, Position ps){
+		super(hb,ps);
 	}
 	
 	public LethalBlock() {

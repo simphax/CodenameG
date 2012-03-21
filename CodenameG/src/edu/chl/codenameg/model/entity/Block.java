@@ -1,6 +1,6 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Point;
+import java.awt.Position;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
@@ -10,13 +10,13 @@ public class Block implements Entity{
 	private Hitbox hb;
 	private final Vector2D v = new Vector2D(0,0);
 	private boolean colliding;
-	private Point pt;
+	private Position ps;
 	
 	public Block(){
-		this(new Hitbox(1,1), new Point(2,2));
+		this(new Hitbox(1,1), new Position(2,2));
 	}
 	
-	public Block(Hitbox hb,Point position){
+	public Block(Hitbox hb,Position position){
 		this.setPosition(position);
 		this.hb = hb;
 		this.colliding = false;
@@ -48,13 +48,13 @@ public class Block implements Entity{
 		
 	}
 	
-	public void setPosition(Point p) {
-		this.pt=p;
+	public void setPosition(Position p) {
+		this.ps=p;
 		
 	}
 
-	public Point getPosition() {
-		return new Point(this.pt);
+	public Position getPosition() {
+		return new Position(this.ps);
 	}
 
 	public void update(int elapsedTime) {

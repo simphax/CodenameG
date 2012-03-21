@@ -1,6 +1,5 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Point;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
@@ -18,8 +17,8 @@ public class MovingBlock extends Block{
 			landedPlayer.getVector2D().add(this.v2d);
 		}
 	}
-	public MovingBlock(Hitbox hb,Point pt, Vector2D v2d){
-		super(hb,pt);
+	public MovingBlock(Hitbox hb,Position ps, Vector2D v2d){
+		super(hb,ps);
 		this.v2d=v2d;
 		moving=true;
 	}
