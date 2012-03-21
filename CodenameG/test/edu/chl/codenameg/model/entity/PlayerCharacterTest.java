@@ -6,6 +6,7 @@ import java.awt.Point;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 
 public class PlayerCharacterTest {

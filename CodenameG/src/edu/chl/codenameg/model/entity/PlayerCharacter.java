@@ -51,7 +51,8 @@ public class PlayerCharacter implements Entity{
 	}
 	
 	public Direction getDirection() {
-		return this.direction;
+		Direction temp = this.direction;
+		return temp;
 	}
 
 	public void collide(Entity e) {
@@ -65,6 +66,9 @@ public class PlayerCharacter implements Entity{
 			this.v2d = new Vector2D(1,0);
 		}
 		this.v2d.add(new Vector2D(0,1));
+		
+		//Not colliding now
+		this.colliding = false;
 	}
 	
 	public void die(){
@@ -113,7 +117,7 @@ public class PlayerCharacter implements Entity{
 	}
 	
 	public int getAcceleration(){
-		int temp =this.acc;
+		int temp = this.acc;
 		return temp;
 	}
 }
