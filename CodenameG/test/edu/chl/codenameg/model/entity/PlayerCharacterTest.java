@@ -13,7 +13,7 @@ public class PlayerCharacterTest {
 	@Test
 	public void testGetHitbox() {
 		PlayerCharacter pc = new PlayerCharacter();
-		Hitbox hb = pc.getHitBox();
+		Hitbox hb = pc.getHitbox();
 		assertTrue(hb.equals(new Hitbox(5,10)));
 	}
 	
@@ -76,5 +76,11 @@ public class PlayerCharacterTest {
 	@Test
 	public void testDeceleration() {
 		//TODO incomplete test
+	}
+	@Test
+	public void testWinGame(){
+		PlayerCharacter anders = new PlayerCharacter();
+		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Point(4,4));
+		anders.collide
 	}
 }

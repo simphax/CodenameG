@@ -7,10 +7,11 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter extends Entity{
-	private Hitbox hitbox;
+	private final Hitbox hitbox = new Hitbox(5,10);
+	private boolean gameWon;
 	
 	public PlayerCharacter() {
-		hitbox = new Hitbox(5, 10);
+		gameWon = false;
 	}
 	
 	public PlayerCharacter(Point position) {
@@ -52,5 +53,9 @@ public class PlayerCharacter extends Entity{
 	@Override
 	public void update(int elapsedTime) {
 		this.setPosition(new Point(this.getPosition().x,this.getPosition().y+1));
+	}
+	public boolean winGame(){
+		this.gameWon=true;
+		return this.gameWon;
 	}
 }

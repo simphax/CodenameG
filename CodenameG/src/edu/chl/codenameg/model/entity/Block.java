@@ -39,5 +39,10 @@ public class Block extends Entity{
 		this.colliding = true;
 		
 	}
-	
+	public Block(/*Graphic g,*/ Hitbox hb,Point position){
+		super.setPosition(position);
+		this.hb = hb;
+		this.colliding = false;
+		
+	}
 }
