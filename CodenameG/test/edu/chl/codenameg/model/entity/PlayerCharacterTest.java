@@ -43,7 +43,7 @@ public class PlayerCharacterTest {
 	public void testAcceleration() {
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.move();
-		pc.setAccelerating();
+		pc.setAcceleration(5);
 		Point[] pos = new Point[2];
 		for (int i = 0; i<2; i++) {
 			pc.update(10);
