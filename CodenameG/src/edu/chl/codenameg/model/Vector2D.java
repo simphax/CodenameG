@@ -20,6 +20,14 @@ public class Vector2D {
 	public void setY(int y) {
 		this.y = y;
 	}
+	public void add(Vector2D v2d){
+		this.x=this.getX()+v2d.getX();
+		this.y=this.getY()+v2d.getX();
+	}
+	public void subtract(Vector2D v2d){
+		this.x=this.getX()-v2d.getX();
+		this.y=this.getY()-v2d.getX();
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

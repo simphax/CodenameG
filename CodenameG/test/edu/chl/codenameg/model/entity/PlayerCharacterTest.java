@@ -30,22 +30,12 @@ public class PlayerCharacterTest {
 		Point pos = pc.getPosition();
 		assertTrue(pos.equals(new Point(25,25)));
 	}
-	
-	@Test
-	public void testStartMoving() {
-		PlayerCharacter pc = new PlayerCharacter();
-		Point pos = pc.getPosition();
-		pc.startMoving();
-		pc.update(10);
-		Point secondPos = pc.getPosition();
-		assertTrue(!pos.equals(secondPos));
-	}
-	
+		
 	@Test
 	public void testChangeDirection() {
 		PlayerCharacter pc = new PlayerCharacter();
 		Direction direction = pc.getDirection();
-		pc.changeDirection();
+		pc.move();
 		Direction secondDirection = pc.getDirection();
 		assertTrue(!direction.equals(secondDirection));
 	}
@@ -56,7 +46,7 @@ public class PlayerCharacterTest {
 		pc.setAccelerating();
 		Point[] pos = new Point[2];
 		for (int i = 0; i<2; i++) {
-			update(10);
+			pc.update(10);
 			pos[i] = pc.getPosition();
 		}
 		assertTrue((pos[1].getX()-pos[0].getX()) < (pos[2].getX()-pos[1].getX()));
