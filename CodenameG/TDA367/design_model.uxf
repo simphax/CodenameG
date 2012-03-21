@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.4">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>280</x>
+      <y>70</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
++update():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>40</x>
+      <y>140</y>
+      <w>70</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+
+r1=has</panel_attributes>
+    <additional_attributes>30;110;30;30;50;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>90</x>
+      <y>140</y>
+      <w>150</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>GameModel
+--
++startGame(lvl):void
++update():void
++getWorld():World
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>290</x>
+      <y>0</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>CodenameG
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>280</x>
+      <y>250</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Camera</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>400</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Block</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>10</x>
+      <y>350</y>
+      <w>200</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>/Entity/
+--
++getPosition(): Position
++setPosition(Position):void
++getHitbox(): Hitbox
++getVector():Vector
++collide(Entity):void
++update(ms):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>490</x>
+      <y>140</y>
+      <w>130</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>GameView
+--
+update():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>100</x>
+      <y>60</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+r1=has</panel_attributes>
+    <additional_attributes>30;80;30;30;180;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>370</x>
+      <y>60</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+r1=has</panel_attributes>
+    <additional_attributes>170;80;170;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>10</x>
+      <y>250</y>
+      <w>200</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>World
+--
++getEntities():List&lt;Entity&gt;
++getCamera():Camera</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>250</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+r1=has</panel_attributes>
+    <additional_attributes>100;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>310</x>
+      <y>10</y>
+      <w>50</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>30;60;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>40</x>
+      <y>250</y>
+      <w>50</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>20;100;20;100</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>80</x>
+      <y>280</y>
+      <w>50</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>30;70;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>350</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>LethalBlock</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>460</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>PlayerCharacter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>340</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>390</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>440</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>210</x>
+      <y>140</y>
+      <w>300</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30;30;280;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>510</x>
+      <y>460</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>PlayerCharacterView</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>430</x>
+      <y>260</y>
+      <w>100</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+</panel_attributes>
+    <additional_attributes>80;210;30;210;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>440</x>
+      <y>240</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/EntityView/
+--
++render(Entity,Graphic):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>520</x>
+      <y>160</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30;80;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>510</x>
+      <y>400</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>BlockView</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>460</x>
+      <y>260</y>
+      <w>70</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+</panel_attributes>
+    <additional_attributes>50;160;30;160;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>510</x>
+      <y>350</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>LethalBlockView</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>550</x>
+      <y>260</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+</panel_attributes>
+    <additional_attributes>30;90;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>380</x>
+      <y>530</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>GoalBlock</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>390</y>
+      <w>90</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+</panel_attributes>
+    <additional_attributes>70;140;70;30;30;30</additional_attributes>
+  </element>
+</diagram>
