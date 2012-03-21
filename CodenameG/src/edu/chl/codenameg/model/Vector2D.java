@@ -22,11 +22,11 @@ public class Vector2D {
 	}
 	public void add(Vector2D v2d){
 		this.setX(this.getX()+v2d.getX());
-		this.setY(this.getY()+v2d.getX());
+		this.setY(this.getY()+v2d.getY());
 	}
 	public void subtract(Vector2D v2d){
 		this.x=this.getX()-v2d.getX();
-		this.y=this.getY()-v2d.getX();
+		this.y=this.getY()-v2d.getY();
 	}
 	@Override
 	public boolean equals(Object obj) {
