@@ -108,7 +108,7 @@ public class PlayerCharacter implements Entity{
 		return temp;
 	}
 	
-	public boolean isGameWon(){
+	public boolean hasWonGame(){
 		boolean temp = this.gameWon;
 		return temp;
 	}

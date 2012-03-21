@@ -85,7 +85,7 @@ public class PlayerCharacterTest {
 		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Point(4,4));
 		anders.collide(gb);
 		gb.collide(anders);
-		assertTrue(anders.isGameWon());
+		assertTrue(anders.hasWonGame());
 	}
 	
 	@Test

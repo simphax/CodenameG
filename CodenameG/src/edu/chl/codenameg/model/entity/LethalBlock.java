@@ -18,4 +18,8 @@ public class LethalBlock extends Block{
 	public LethalBlock(Hitbox hb, Point pt){
 		super(hb,pt);
 	}
+	
+	public LethalBlock() {
+		super();
+	}
 }
