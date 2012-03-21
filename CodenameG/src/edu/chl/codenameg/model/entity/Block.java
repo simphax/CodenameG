@@ -12,11 +12,21 @@ public class Block implements Entity{
 	private boolean colliding;
 	private Point pt;
 	
+	public Block(){
+		this(new Hitbox(1,1), new Point(2,2));
+	}
+	
+	public Block(/*Graphic g,*/ Hitbox hb,Point position){
+		this.setPosition(position);
+		this.hb = hb;
+		this.colliding = false;
+		
+	}
+	
 	public void setHitbox(Hitbox hb){
 		this.hb = hb;
 	}
 
-	@Override
 	public Hitbox getHitbox() {
 		if(hb == null)
 			return new Hitbox(0,0);
@@ -25,43 +35,28 @@ public class Block implements Entity{
 		}
 	}
 
-	@Override
 	public Vector2D getVector2D() {
 		return v;
 	}
 
-	@Override
 	public boolean isColliding() {
 		return colliding;
 	}
 
-	@Override
 	public void collide(Entity e) {
 		this.colliding = true;
 		
 	}
-	public Block(){
-		this(new Hitbox(1,1), new Point(2,2));
-	}
-	public Block(/*Graphic g,*/ Hitbox hb,Point position){
-		this.setPosition(position);
-		this.hb = hb;
-		this.colliding = false;
-		
-	}
-
-	@Override
+	
 	public void setPosition(Point p) {
 		this.pt=p;
 		
 	}
 
-	@Override
 	public Point getPosition() {
 		return new Point(this.pt);
 	}
 
-	@Override
 	public void update(int elapsedTime) {
 		// TODO Auto-generated method stub
 		
