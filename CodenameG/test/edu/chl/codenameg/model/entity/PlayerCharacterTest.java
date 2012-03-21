@@ -85,4 +85,12 @@ public class PlayerCharacterTest {
 		gb.collide(anders);
 		assertTrue(anders.isGameWon());
 	}
+	@Test
+	public void testDie(){
+		PlayerCharacter berit = new PlayerCharacter();
+		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Point(4,4));
+		berit.collide(lb);
+		lb.collide(berit);
+		assertTrue(!berit.isAlive());
+	}
 }

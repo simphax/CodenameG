@@ -15,4 +15,7 @@ public class LethalBlock extends Block{
 			deadPlayer.die();
 		}
 	}
+	public LethalBlock(/*Graphic ,*/Hitbox hb, Point pt){
+		super(/*g,*/hb,pt);
+	}
 }
