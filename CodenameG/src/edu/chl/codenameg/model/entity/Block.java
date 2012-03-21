@@ -10,6 +10,7 @@ public class Block implements Entity{
 	private Hitbox hb;
 	private final Vector2D v = new Vector2D(0,0);
 	private boolean colliding;
+	private Point pt;
 	
 	public void setHitbox(Hitbox hb){
 		this.hb = hb;
@@ -39,6 +40,9 @@ public class Block implements Entity{
 		this.colliding = true;
 		
 	}
+	public Block(){
+		this(new Hitbox(1,1), new Point(2,2));
+	}
 	public Block(/*Graphic g,*/ Hitbox hb,Point position){
 		this.setPosition(position);
 		this.hb = hb;
@@ -48,14 +52,13 @@ public class Block implements Entity{
 
 	@Override
 	public void setPosition(Point p) {
-		// TODO Auto-generated method stub
+		this.pt=p;
 		
 	}
 
 	@Override
 	public Point getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Point(this.pt);
 	}
 
 	@Override

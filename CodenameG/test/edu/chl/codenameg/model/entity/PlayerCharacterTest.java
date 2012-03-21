@@ -36,7 +36,7 @@ public class PlayerCharacterTest {
 		PlayerCharacter pc = new PlayerCharacter();
 		Point pos = pc.getPosition();
 		pc.startMoving();
-		pc.update();
+		pc.update(10);
 		Point secondPos = pc.getPosition();
 		assertTrue(!pos.equals(secondPos));
 	}
@@ -56,7 +56,7 @@ public class PlayerCharacterTest {
 		pc.setAccelerating();
 		Point[] pos = new Point[2];
 		for (int i = 0; i<2; i++) {
-			update();
+			update(10);
 			pos[i] = pc.getPosition();
 		}
 		assertTrue((pos[1].getX()-pos[0].getX()) < (pos[2].getX()-pos[1].getX()));
@@ -67,7 +67,7 @@ public class PlayerCharacterTest {
 		PlayerCharacter pc = new PlayerCharacter();
 		Double posY = pc.getPosition().getY();
 		pc.jump();
-		pc.update();
+		pc.update(10);
 		Double secondPosY = pc.getPosition().getY();
 		assertTrue(posY < secondPosY);
 		
@@ -81,6 +81,7 @@ public class PlayerCharacterTest {
 	public void testWinGame(){
 		PlayerCharacter anders = new PlayerCharacter();
 		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Point(4,4));
-		anders.collide
+		anders.collide(gb);
+		gb.collide(anders);
 	}
 }

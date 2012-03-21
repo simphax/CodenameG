@@ -47,7 +47,6 @@ public class PlayerCharacter implements Entity{
 
 	@Override
 	public void collide(Entity e) {
-		// TODO Auto-generated method stub
 		System.out.println("PlayerCharacter collided with a "+e.getClass().getCanonicalName());
 	}
 	
