@@ -30,7 +30,8 @@ public class World {
 	public void update(int elapsedTime) {
 		for (Entity e : this.getEntities()) {
 			Point temp = e.getPosition();
-			if(e.getVector2D() != null) {
+			Vector2D vector = e.getVector2D();
+			if(vector != null) {
 				e.setPosition(new Point((int)e.getPosition().getX()+e.getVector2D().getX(),(int)e.getPosition().getY()+e.getVector2D().getY()));
 			}
 			this.checkCollision(e);
