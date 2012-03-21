@@ -59,6 +59,10 @@ public class PlayerCharacter implements Entity{
 		this.colliding = true;
 	}
 	
+	public void update() {
+		this.update(10);
+	}
+	
 	public void update(int elapsedTime) {
 		if(this.direction == Direction.RIGHT && this.moving == true) {
 			this.v2d = new Vector2D(1,0);

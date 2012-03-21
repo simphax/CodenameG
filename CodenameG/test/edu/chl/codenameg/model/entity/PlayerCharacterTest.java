@@ -31,6 +31,16 @@ public class PlayerCharacterTest {
 		Point pos = pc.getPosition();
 		assertTrue(pos.equals(new Point(25,25)));
 	}
+	
+	@Test
+	public void testMove() {
+		PlayerCharacter pc = new PlayerCharacter();
+		Point pos = pc.getPosition();
+		pc.move();
+		pc.update(10);
+		Point newPos = pc.getPosition();
+		assertTrue(pos.equals(newPos));
+	}
 		
 	@Test
 	public void testChangeDirection() {
@@ -68,6 +78,7 @@ public class PlayerCharacterTest {
 	public void testDeceleration() {
 		//TODO incomplete test
 	}
+	
 	@Test
 	public void testWinGame(){
 		PlayerCharacter anders = new PlayerCharacter();
@@ -76,6 +87,7 @@ public class PlayerCharacterTest {
 		gb.collide(anders);
 		assertTrue(anders.isGameWon());
 	}
+	
 	@Test
 	public void testDie(){
 		PlayerCharacter berit = new PlayerCharacter();
