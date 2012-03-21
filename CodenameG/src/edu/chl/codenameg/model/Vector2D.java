@@ -37,7 +37,7 @@ public class Vector2D {
 	}
 
 	public Vector2D(Vector2D v2d){
-		
+		this(v2d.getX(),v2d.getY());
 	}
 
 }
