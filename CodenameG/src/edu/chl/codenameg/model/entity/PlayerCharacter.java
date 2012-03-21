@@ -2,6 +2,7 @@ package edu.chl.codenameg.model.entity;
 
 import java.awt.Point;
 
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
@@ -12,37 +13,61 @@ public class PlayerCharacter implements Entity{
 	private Point pt;
 	private Vector2D v2d;
 	private boolean colliding;
-	private boolean Alive;
+	private boolean alive;
+	private Direction direction;
+	private boolean moving;
 	
 	public PlayerCharacter() {
-		gameWon = false;
-		this.setPosition(new Point(0,0));
-		this.Alive = true;
+		this(new Point(0,0));
 	}
+	
 	public PlayerCharacter(Point position) {
-		this();
+		gameWon = false;
+		this.alive = true;
 		this.setPosition(position);
+		this.v2d = new Vector2D(0,0);
+		this.direction = Direction.RIGHT;
 	}
 	
 	public void jump() {
 		//TODO Complete this method
 	}
 	
-/*	public void move(new Direction d) {
-		this.v2d = d;
-	}*/
-
+	public void move() {
+		this.moving = true;
+	}
+	public void move(Direction d) {
+		this.setDirection(d);
+		this.move();
+	}
+	
+	public void setDirection(Direction d) {
+		this.direction = d;
+	}
+	
+	public void stopMove() {
+		this.moving = false;
+	}
+	
+	public Direction getDirection() {
+		return this.direction;
+	}
 
 	public void collide(Entity e) {
 		System.out.println("PlayerCharacter collided with a "+e.getClass().getCanonicalName());
 	}
 	
 	public void update(int elapsedTime) {
-		this.setPosition(new Point(this.getPosition().x,this.getPosition().y+1));
+		if(this.direction == Direction.RIGHT && this.moving == true) {
+			this.v2d = new Vector2D(1,0);
+		} else if(this.direction == Direction.LEFT && this.moving == true) {
+			this.v2d = new Vector2D(1,0);
+		}
+		this.v2d.add(new Vector2D(0,1));
 	}
 	
 	public void die(){
-		this.Alive=false;
+		this.alive=false;
 	}
 	
 	public void winGame(){
@@ -64,7 +89,7 @@ public class PlayerCharacter implements Entity{
 	}
 	
 	public Vector2D getVector2D() {
-		return new Vector2D(this.v2d);
+		return new Vector2D(1,0);
 	}
 	
 	public boolean isColliding() {
@@ -78,7 +103,7 @@ public class PlayerCharacter implements Entity{
 	}
 	
 	public boolean isAlive(){
-		boolean temp = this.Alive;
+		boolean temp = this.alive;
 		return temp;
 	}
 }
