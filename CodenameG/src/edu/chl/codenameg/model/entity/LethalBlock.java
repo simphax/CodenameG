@@ -2,6 +2,7 @@ package edu.chl.codenameg.model.entity;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 
 
 public class LethalBlock extends Block{

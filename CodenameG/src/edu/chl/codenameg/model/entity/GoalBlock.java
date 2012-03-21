@@ -1,9 +1,9 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Point;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 
 public class GoalBlock extends Block{
 	
@@ -15,7 +15,7 @@ public class GoalBlock extends Block{
 			skilledPlayer.winGame();
 		}
 	}
-	public GoalBlock(Hitbox hb, Point pt){
+	public GoalBlock(Hitbox hb, Position pt){
 		super(hb,pt);
 	}
 	

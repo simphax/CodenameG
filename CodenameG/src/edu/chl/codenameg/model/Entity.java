@@ -6,8 +6,8 @@ import java.awt.Point;
 public interface Entity {
 	
 	//methods to be tested
-	public void setPosition(Point p);
-	public Point getPosition();
+	public void setPosition(Position p);
+	public Position getPosition();
 	
 	public Hitbox getHitbox();
 	
@@ -18,6 +18,7 @@ public interface Entity {
 	public void collide(Entity e);
 	
 	public void update(int elapsedTime);
+
 	
 }
 

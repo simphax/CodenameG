@@ -1,8 +1,8 @@
 package edu.chl.codenameg.model.entity;
 
-import java.awt.Position;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 
@@ -48,10 +48,6 @@ public class Block implements Entity{
 		
 	}
 	
-	public void setPosition(Position p) {
-		this.ps=p;
-		
-	}
 
 	public Position getPosition() {
 		return new Position(this.ps);
@@ -59,6 +55,12 @@ public class Block implements Entity{
 
 	public void update(int elapsedTime) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPosition(Position p) {
+		this.ps=p;
 		
 	}
 }

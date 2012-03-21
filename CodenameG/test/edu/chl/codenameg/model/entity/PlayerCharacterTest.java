@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 
 public class PlayerCharacterTest {
 
@@ -23,7 +24,7 @@ public class PlayerCharacterTest {
 	
 	@Test
 	public void testSpawnAtPosition() {
-		PlayerCharacter pc = new PlayerCharacter(new Position(25,25));
+		PlayerCharacter pc = new PlayerCharacter(new Position(25.0,25.0));
 		Position pos = pc.getPosition();
 		assertTrue(pos.equals(new Position(25,25)));
 	}
@@ -78,7 +79,7 @@ public class PlayerCharacterTest {
 	@Test
 	public void testWinGame(){
 		PlayerCharacter anders = new PlayerCharacter();
-		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Position(4,4));
+		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Position(4.0,4.0));
 		anders.collide(gb);
 		gb.collide(anders);
 		assertTrue(anders.hasWonGame());
@@ -91,5 +92,9 @@ public class PlayerCharacterTest {
 		berit.collide(lb);
 		lb.collide(berit);
 		assertTrue(!berit.isAlive());
+	}
+	@Test
+	public void testMovingBlock(){
+		MovingBlock mb = new MovingBlock(new Hitbox())
 	}
 }
