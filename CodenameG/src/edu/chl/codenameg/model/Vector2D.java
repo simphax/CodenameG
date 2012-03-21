@@ -21,8 +21,8 @@ public class Vector2D {
 		this.y = y;
 	}
 	public void add(Vector2D v2d){
-		this.x=this.getX()+v2d.getX();
-		this.y=this.getY()+v2d.getX();
+		this.setX(this.getX()+v2d.getX());
+		this.setY(this.getY()+v2d.getX());
 	}
 	public void subtract(Vector2D v2d){
 		this.x=this.getX()-v2d.getX();
