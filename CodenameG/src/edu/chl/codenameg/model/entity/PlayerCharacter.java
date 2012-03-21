@@ -8,7 +8,7 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter implements Entity{
-	private final Hitbox hitbox = new Hitbox(5,10);
+	private final Hitbox hitbox = new Hitbox(10,15);
 	private boolean gameWon;
 	private Point pt;
 	private Vector2D v2d;
@@ -55,7 +55,7 @@ public class PlayerCharacter implements Entity{
 	}
 
 	public void collide(Entity e) {
-		System.out.println("PlayerCharacter collided with a "+e.getClass().getCanonicalName());
+		this.colliding = true;
 	}
 	
 	public void update(int elapsedTime) {
