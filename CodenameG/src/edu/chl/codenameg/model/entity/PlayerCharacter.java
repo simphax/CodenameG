@@ -12,12 +12,13 @@ public class PlayerCharacter implements Entity{
 	private Point pt;
 	private Vector2D v2d;
 	private boolean colliding;
+	private boolean Alive;
 	
 	public PlayerCharacter() {
 		gameWon = false;
 		this.setPosition(new Point(0,0));
+		this.Alive = true;
 	}
-	
 	public PlayerCharacter(Point position) {
 		this();
 		this.setPosition(position);
@@ -35,12 +36,17 @@ public class PlayerCharacter implements Entity{
 	public void collide(Entity e) {
 		System.out.println("PlayerCharacter collided with a "+e.getClass().getCanonicalName());
 	}
+	
 	public void update(int elapsedTime) {
 		this.setPosition(new Point(this.getPosition().x,this.getPosition().y+1));
 	}
-	public boolean winGame(){
+	
+	public void die(){
+		this.Alive=false;
+	}
+	
+	public void winGame(){
 		this.gameWon=true;
-		return this.gameWon;
 	}
 
 	//getters & setters
@@ -48,6 +54,7 @@ public class PlayerCharacter implements Entity{
 		this.pt=p;
 		
 	}
+	
 	public Point getPosition() {
 		return new Point(this.pt);
 	}
@@ -55,15 +62,23 @@ public class PlayerCharacter implements Entity{
 	public Hitbox getHitbox() {
 		return new Hitbox(hitbox);
 	}
+	
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);
 	}
+	
 	public boolean isColliding() {
 		boolean temp = this.colliding;
 		return temp;
 	}
+	
 	public boolean isGameWon(){
 		boolean temp = this.gameWon;
+		return temp;
+	}
+	
+	public boolean isAlive(){
+		boolean temp = this.Alive;
 		return temp;
 	}
 }
