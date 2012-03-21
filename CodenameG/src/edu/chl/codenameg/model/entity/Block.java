@@ -6,7 +6,7 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
 
-public class Block extends Entity{
+public class Block implements Entity{
 	private Hitbox hb;
 	private final Vector2D v = new Vector2D(0,0);
 	private boolean colliding;
@@ -40,9 +40,27 @@ public class Block extends Entity{
 		
 	}
 	public Block(/*Graphic g,*/ Hitbox hb,Point position){
-		super.setPosition(position);
+		this.setPosition(position);
 		this.hb = hb;
 		this.colliding = false;
+		
+	}
+
+	@Override
+	public void setPosition(Point p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(int elapsedTime) {
+		// TODO Auto-generated method stub
 		
 	}
 }

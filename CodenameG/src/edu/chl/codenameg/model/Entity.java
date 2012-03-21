@@ -3,26 +3,21 @@ package edu.chl.codenameg.model;
 import java.awt.Point;
 
 
-public abstract class Entity {
-	private Point pt;
+public interface Entity {
 	
 	//methods to be tested
-	public void setPosition(Point p){
-		this.pt =p;
-	}
-	public Point getPosition(){
-		return this.pt;
-	}
-	public abstract Hitbox getHitbox();
+	public void setPosition(Point p);
+	public Point getPosition();
 	
-	public abstract Vector2D getVector2D();
+	public Hitbox getHitbox();
 	
-	public abstract boolean isColliding();
+	public Vector2D getVector2D();
+	
+	public boolean isColliding();
 
-	public abstract void collide(Entity e);
+	public void collide(Entity e);
 	
-	public void update(int elapsedTime) {
-		
-	}
+	public void update(int elapsedTime);
+	
 }
 

@@ -6,9 +6,10 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Vector2D;
 
-public class PlayerCharacter extends Entity{
+public class PlayerCharacter implements Entity{
 	private final Hitbox hitbox = new Hitbox(5,10);
 	private boolean gameWon;
+	private Point pt;
 	
 	public PlayerCharacter() {
 		gameWon = false;
@@ -57,5 +58,16 @@ public class PlayerCharacter extends Entity{
 	public boolean winGame(){
 		this.gameWon=true;
 		return this.gameWon;
+	}
+
+	@Override
+	public void setPosition(Point p) {
+		this.pt=p;
+		
+	}
+
+	@Override
+	public Point getPosition() {
+		return new Point(this.pt);
 	}
 }
