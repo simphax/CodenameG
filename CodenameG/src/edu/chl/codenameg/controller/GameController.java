@@ -17,6 +17,8 @@ public class GameController implements KeyListener, Runnable{
 	private GameView view;
 	private List<PlayerCharacter> listOfPC;
 	
+	private boolean leftKeyPressed, rightKeyPressed;
+	
 	
 	private boolean isRunning = true;
 	
@@ -31,6 +33,7 @@ public class GameController implements KeyListener, Runnable{
 		
 		gameThread.start();
 		
+		leftKeyPressed = false; rightKeyPressed = false;
 	}
 
 	@Override
@@ -41,19 +44,23 @@ public class GameController implements KeyListener, Runnable{
 		}
 		else if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
 			listOfPC.get(0).move(Direction.LEFT);
+			leftKeyPressed = true;
 		}
 		else if(evt.getKeyCode() == KeyEvent.VK_RIGHT) {
 			listOfPC.get(0).move(Direction.RIGHT);
+			rightKeyPressed = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent evt) {
-		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (evt.getKeyCode() == KeyEvent.VK_LEFT && !rightKeyPressed) {
 			listOfPC.get(0).stopMove();
+			leftKeyPressed = false;
 		}
-		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT && !leftKeyPressed) {
 			listOfPC.get(0).stopMove();
+			rightKeyPressed = false;
 		}
 	}
 
