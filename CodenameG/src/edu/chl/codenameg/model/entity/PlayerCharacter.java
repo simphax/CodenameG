@@ -23,7 +23,7 @@ public class PlayerCharacter implements Entity{
 	private boolean onGround = false;
 	
 	public PlayerCharacter() {
-		this(new Position(0,0));
+		this(new Position(0.0,0.0));
 	}
 	
 	public PlayerCharacter(Position position) {

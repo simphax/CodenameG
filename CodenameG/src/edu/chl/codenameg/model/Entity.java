@@ -1,8 +1,5 @@
 package edu.chl.codenameg.model;
 
-import java.awt.Point;
-
-
 public interface Entity {
 	
 	//methods to be tested

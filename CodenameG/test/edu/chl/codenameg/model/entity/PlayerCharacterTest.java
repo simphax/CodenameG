@@ -5,6 +5,7 @@ import org.junit.Test;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
+import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacterTest {
 
@@ -12,21 +13,21 @@ public class PlayerCharacterTest {
 	public void testGetHitbox() {
 		PlayerCharacter pc = new PlayerCharacter();
 		Hitbox hb = pc.getHitbox();
-		assertTrue(hb.equals(new Hitbox(5,10)));
+		assertTrue(hb.equals(new Hitbox(10,15)));
 	}
 	
 	@Test
 	public void testGetPosition() {
 		PlayerCharacter pc = new PlayerCharacter();
 		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(0,0)));
+		assertTrue(pos.equals(new Position(0.0,0.0)));
 	}
 	
 	@Test
 	public void testSpawnAtPosition() {
 		PlayerCharacter pc = new PlayerCharacter(new Position(25.0,25.0));
 		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(25,25)));
+		assertTrue(pos.equals(new Position(25.0,25.0)));
 	}
 	
 	@Test
@@ -95,6 +96,11 @@ public class PlayerCharacterTest {
 	}
 	@Test
 	public void testMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox())
+		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0), new Vector2D(1,0));
+		PlayerCharacter chewbaka = new PlayerCharacter();
+		chewbaka.collide(mb);
+		mb.collide(chewbaka);
+		chewbaka.setVector2D(new Vector2D(1,1));
+		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2,0))));
 	}
 }
