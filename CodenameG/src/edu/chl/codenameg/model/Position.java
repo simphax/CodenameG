@@ -1,19 +1,31 @@
 package edu.chl.codenameg.model;
 
 public class Position {
-	private	double x;
-	private double y;
+	private	float x;
+	private float y;
 	
 	public Position(){
-		this(0.0,0.0);
+		this(0,0);
 	}
-	public Position(double x, double y){
+	public Position(float x, float y){
 		this.setX(x);
 		this.setY(y);
 	}
 	public Position(Position ps){
 		this.setX(ps.getX());
 		this.setY(ps.getY());
+	}
+	public float getX() {
+		return x;
+	}
+	public void setX(float x) {
+		this.x = x;
+	}
+	public float getY() {
+		return y;
+	}
+	public void setY(float y) {
+		this.y = y;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -24,23 +36,11 @@ public class Position {
 		if (getClass() != obj.getClass())
 			return false;
 		Position other = (Position) obj;
-		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+		if (Float.floatToIntBits(x) != Float.floatToIntBits(other.x))
 			return false;
-		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+		if (Float.floatToIntBits(y) != Float.floatToIntBits(other.y))
 			return false;
 		return true;
-	}
-	public double getX() {
-		return x;
-	}
-	public void setX(double x) {
-		this.x = x;
-	}
-	public double getY() {
-		return y;
-	}
-	public void setY(double y) {
-		this.y = y;
 	}
 	
 	

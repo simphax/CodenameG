@@ -1,11 +1,10 @@
 package edu.chl.codenameg.model.entity;
 
 import static org.junit.Assert.*;
-
-import java.awt.Point;
 import org.junit.Test;
 
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 
@@ -14,9 +13,9 @@ public class BlockTest {
 	@Test
 	public void testSetPosition() {
 		Block block = new Block();
-		Point point = new Point(10,20);
-		block.setPosition(point);
-		assertTrue(block.getPosition().equals(point));
+		Position Position = new Position(10,20);
+		block.setPosition(Position);
+		assertTrue(block.getPosition().equals(Position));
 	}
 	@Test
 	public void testSetHitbox(){
@@ -35,7 +34,7 @@ public class BlockTest {
 	public void testIsColliding(){
 		Block block1 = new Block();
 		Block block2 = new Block();
-		Point p = new Point(10,20);
+		Position p = new Position(10,20);
 		block1.setPosition(p);
 		block2.setPosition(p);
 		block1.collide(block2);

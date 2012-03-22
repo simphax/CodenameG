@@ -20,14 +20,14 @@ public class PlayerCharacterTest {
 	public void testGetPosition() {
 		PlayerCharacter pc = new PlayerCharacter();
 		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(0.0,0.0)));
+		assertTrue(pos.equals(new Position(0,0)));
 	}
 	
 	@Test
 	public void testSpawnAtPosition() {
-		PlayerCharacter pc = new PlayerCharacter(new Position(25.0,25.0));
+		PlayerCharacter pc = new PlayerCharacter(new Position(25,25));
 		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(25.0,25.0)));
+		assertTrue(pos.equals(new Position(25,25)));
 	}
 	
 	@Test
@@ -64,10 +64,10 @@ public class PlayerCharacterTest {
 	@Test
 	public void testJump() {
 		PlayerCharacter pc = new PlayerCharacter();
-		Double posY = pc.getPosition().getY();
+		float posY = pc.getPosition().getY();
 		pc.jump();
 		pc.update(10);
-		Double secondPosY = pc.getPosition().getY();
+		float secondPosY = pc.getPosition().getY();
 		assertTrue(posY < secondPosY);
 		
 	}
@@ -80,7 +80,7 @@ public class PlayerCharacterTest {
 	@Test
 	public void testWinGame(){
 		PlayerCharacter anders = new PlayerCharacter();
-		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Position(4.0,4.0));
+		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Position(4,4));
 		anders.collide(gb);
 		gb.collide(anders);
 		assertTrue(anders.hasWonGame());
@@ -89,18 +89,18 @@ public class PlayerCharacterTest {
 	@Test
 	public void testDie(){
 		PlayerCharacter berit = new PlayerCharacter();
-		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Position(4.0,4.0));
+		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Position(4,4));
 		berit.collide(lb);
 		lb.collide(berit);
 		assertTrue(!berit.isAlive());
 	}
 	@Test
 	public void testMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0));
+		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2,2));
 		PlayerCharacter chewbaka = new PlayerCharacter();
 		chewbaka.collide(mb);
 		mb.collide(chewbaka);
-		chewbaka.setVector2D(new Vector2D(1.0,1.0));
-		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2.0,0.0))));
+		chewbaka.setVector2D(new Vector2D(1,1));
+		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2,0))));
 	}
 }

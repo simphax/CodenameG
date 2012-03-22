@@ -4,23 +4,20 @@ import aurelienribon.tweenengine.TweenAccessor;
 
 public class EntityAccessor implements TweenAccessor<Entity> {
 
-	    // The following lines define the different possible tween types.
-	    // It's up to you to define what you need :-)
 
 	    public static final int POSITION_X = 1;
 	    public static final int POSITION_Y = 2;
 	    public static final int POSITION_XY = 3;
 
-	    // TweenAccessor implementation
 
 	    @Override
 	    public int getValues(Entity target, int tweenType, float[] returnValues) {
 	        switch (tweenType) {
-	            case POSITION_X: returnValues[0] = target.getX(); return 1;
-	            case POSITION_Y: returnValues[0] = target.getY(); return 1;
+	            case POSITION_X: returnValues[0] = target.getPosition().getX(); return 1;
+	            case POSITION_Y: returnValues[0] = target.getPosition().getY(); return 1;
 	            case POSITION_XY:
-	                returnValues[0] = target.getX();
-	                returnValues[1] = target.getY();
+	                returnValues[0] = target.getPosition().getX();
+	                returnValues[1] = target.getPosition().getY();
 	                return 2;
 	            default: assert false; return -1;
 	        }

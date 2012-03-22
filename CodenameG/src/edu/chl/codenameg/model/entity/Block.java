@@ -13,7 +13,7 @@ public class Block implements Entity{
 	private Position ps;
 	
 	public Block(){
-		this(new Hitbox(1,1), new Position(2.0,2.0));
+		this(new Hitbox(1,1), new Position(2,2));
 	}
 	
 	public Block(Hitbox hb,Position position){
