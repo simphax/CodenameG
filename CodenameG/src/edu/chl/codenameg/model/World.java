@@ -1,10 +1,10 @@
 package edu.chl.codenameg.model;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class World {
 
@@ -47,8 +47,8 @@ public class World {
 				
 				//TODO Collision detection using rounded doubles!!
 				
-				Rectangle thisRectangle = new Rectangle(new Point((int)(e.getPosition().getX()+0.5), (int)(e.getPosition().getY()+0.5)), new Dimension(e.getHitbox().getWidth(), e.getHitbox().getHeight()));
-				Rectangle targetRectangle = new Rectangle(new Point((int)(target.getPosition().getX()+0.5), (int)(target.getPosition().getY()+0.5)), new Dimension(target.getHitbox().getWidth(), target.getHitbox().getHeight()));
+				Rectangle thisRectangle = new Rectangle(new Position((int)(e.getPosition().getX()+0.5), (int)(e.getPosition().getY()+0.5)), new Dimension(e.getHitbox().getWidth(), e.getHitbox().getHeight()));
+				Rectangle targetRectangle = new Rectangle(new Position((int)(target.getPosition().getX()+0.5), (int)(target.getPosition().getY()+0.5)), new Dimension(target.getHitbox().getWidth(), target.getHitbox().getHeight()));
 				if (thisRectangle.intersects(targetRectangle)) {
 					collision = true;
 
