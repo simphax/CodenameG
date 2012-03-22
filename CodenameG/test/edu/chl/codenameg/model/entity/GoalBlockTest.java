@@ -1,10 +1,8 @@
 package edu.chl.codenameg.model.entity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
-
-import javax.swing.text.Position;
 
 import org.junit.Test;
 
@@ -53,7 +51,7 @@ public class GoalBlockTest {
 		GoalBlock gb = new GoalBlock(hb, pos);
 		pc.collide(gb);
 		gb.collide(pc);
-		pc.hasWonGame();
+		assertTrue(pc.hasWonGame());
 	}
 
 }
