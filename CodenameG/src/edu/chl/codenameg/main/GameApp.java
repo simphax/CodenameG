@@ -21,26 +21,26 @@ public class GameApp {
 	 */
 	public static void main(String[] args) {
 		
-		GameModel model = new GameModel();
+//		GameModel model = new GameModel();
 
-		GameView view = new GameView(model);
+//		GameView view = new GameView(model);
 
-		GameController controller = new GameController(model,view);
+		GameController controller = new GameController();
 		
-		World world = new World();
+//		World world = new World();
 		
-		Block block = new Block();
-		block.setPosition(new Position(100,200));
-		block.setHitbox(new Hitbox(200,20));
-		
-		PlayerCharacter pc = new PlayerCharacter();
-		pc.setPosition(new Position(200,50));
-		
-		world.add(block);
-		world.add(pc);
-		
-		model.setWorld(world);
-		model.startGame();
+//		Block block = new Block();
+//		block.setPosition(new Position(100,200));
+//		block.setHitbox(new Hitbox(200,20));
+//		
+//		PlayerCharacter pc = new PlayerCharacter();
+//		pc.setPosition(new Position(200,50));
+//		
+//		world.add(block);
+//		world.add(pc);
+//		
+//		model.setWorld(world);
+//		model.startGame();
 		
 	}
 	

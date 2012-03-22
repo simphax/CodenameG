@@ -2,11 +2,11 @@ package edu.chl.codenameg.model;
 
 public class GameModel {
 	
-	World world;
-	boolean running;
+	private World world;
+	private boolean running;
 	
 	public GameModel() {
-		
+		this.world = new World();
 	}
 	
 	public void setWorld(World w) {
