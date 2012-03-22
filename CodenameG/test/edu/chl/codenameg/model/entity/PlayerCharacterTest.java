@@ -48,7 +48,7 @@ public class PlayerCharacterTest {
 		Direction secondDirection = pc.getDirection();
 		assertTrue(!direction.equals(secondDirection));
 	}
-	
+	@Test
 	public void testAcceleration() {
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.move();
@@ -89,18 +89,18 @@ public class PlayerCharacterTest {
 	@Test
 	public void testDie(){
 		PlayerCharacter berit = new PlayerCharacter();
-		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Position(4,4));
+		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Position(4.0,4.0));
 		berit.collide(lb);
 		lb.collide(berit);
 		assertTrue(!berit.isAlive());
 	}
 	@Test
 	public void testMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0), new Vector2D(1,0));
+		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0), new Vector2D(1.0,0.0));
 		PlayerCharacter chewbaka = new PlayerCharacter();
 		chewbaka.collide(mb);
 		mb.collide(chewbaka);
-		chewbaka.setVector2D(new Vector2D(1,1));
-		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2,0))));
+		chewbaka.setVector2D(new Vector2D(1.0,1.0));
+		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2.0,0.0))));
 	}
 }

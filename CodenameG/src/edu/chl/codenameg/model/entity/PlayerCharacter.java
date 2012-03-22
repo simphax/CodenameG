@@ -30,7 +30,7 @@ public class PlayerCharacter implements Entity{
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
-		this.v2d = new Vector2D(0,0);
+		this.v2d = new Vector2D(0.0,0.0);
 		this.direction = Direction.RIGHT;
 	}
 	
@@ -75,15 +75,15 @@ public class PlayerCharacter implements Entity{
 	
 	public void update(int elapsedTime) {
 		if(this.direction == Direction.RIGHT && this.moving == true) {
-			this.v2d = new Vector2D(1,0);
+			this.v2d = new Vector2D(1.0,0.0);
 		} else if(this.direction == Direction.LEFT && this.moving == true) {
 			this.v2d = new Vector2D(1,0);
 		}
 		
 		if(onGround) {
-			this.v2d = new Vector2D(0,0);
+			this.v2d = new Vector2D(0.0,0.0);
 		} else {
-			this.v2d = new Vector2D(0,1);
+			this.v2d = new Vector2D(0.0,1.0);
 		}
 		
 		this.onGround = false;

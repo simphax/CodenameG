@@ -27,6 +27,6 @@ public class MovingBlock extends Block{
 		return new Vector2D(this.v2d);
 	}
 	public void travel(){
-		
+		this.moving = true;
 	}
 }
