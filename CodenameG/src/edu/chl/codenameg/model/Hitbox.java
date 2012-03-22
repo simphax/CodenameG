@@ -1,5 +1,7 @@
 package edu.chl.codenameg.model;
 
+import java.awt.Dimension;
+
 public class Hitbox {
 	
 	private int width;
@@ -30,7 +32,9 @@ public class Hitbox {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+	public Dimension getDimension(){
+		return new Dimension(this.width,this.height);
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

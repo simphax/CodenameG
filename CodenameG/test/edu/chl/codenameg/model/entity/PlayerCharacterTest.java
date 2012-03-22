@@ -96,7 +96,7 @@ public class PlayerCharacterTest {
 	}
 	@Test
 	public void testMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0), new Vector2D(1.0,0.0));
+		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2.0,2.0));
 		PlayerCharacter chewbaka = new PlayerCharacter();
 		chewbaka.collide(mb);
 		mb.collide(chewbaka);
