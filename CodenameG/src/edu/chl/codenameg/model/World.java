@@ -13,6 +13,10 @@ public class World {
 	public World() {
 		this.entities = new ArrayList<Entity>();
 	}
+	
+	public World(World copy) {
+		this.entities = copy.getEntities();
+	}
 
 	public void add(Entity e) {
 		entities.add(e);

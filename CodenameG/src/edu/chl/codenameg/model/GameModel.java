@@ -1,37 +1,47 @@
 package edu.chl.codenameg.model;
 
 import edu.chl.codenameg.model.entity.Block;
+import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class GameModel {
 	
-	private World world;
+	private World activeWorld;
+	private World selectedWorld;
 	private boolean running;
 	
 	public GameModel() {
 		
 		//TODO Default world?
-		this.world = new World();
+		World tempWorld = new World();
 		
 		Block block = new Block();
 		block.setPosition(new Position(100,200));
 		block.setHitbox(new Hitbox(200,20));
 		
+//		MovingBlock movingblock = new MovingBlock(new Hitbox(20,20),new Position(50,50), new Position(100,100));
+		
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.setPosition(new Position(200,50));
 		
-		world.add(block);
-		world.add(pc);
+		tempWorld.add(block);
+		tempWorld.add(pc);
+//		world.add(movingblock);
 		
-		this.setWorld(world);
+		this.setWorld(tempWorld);
 	}
 	
 	public void setWorld(World w) {
-		this.world = w;
+		this.selectedWorld = w;
 	}
 	
 	public void startGame() {
 		this.running = true;
+		this.activeWorld = new World(this.selectedWorld);
+	}
+	
+	public void restartGame() {
+		this.activeWorld = new World(this.selectedWorld);
 	}
 	
 	public void pauseGame(World w) {
@@ -39,12 +49,12 @@ public class GameModel {
 	}
 	
 	public World getWorld() {
-		return world;
+		return activeWorld;
 	}
 	
 	public void update(int elapsedTime) {
-		if(world != null && running) {
-			world.update(elapsedTime);
+		if(activeWorld != null && running) {
+			activeWorld.update(elapsedTime);
 		}
 	}
 	

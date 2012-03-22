@@ -80,6 +80,9 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void update(int elapsedTime) {
+		
+		this.v2d = new Vector2D(0,0);
+		
 		if (this.direction == Direction.RIGHT && this.moving == true) {
 			this.v2d = new Vector2D(1, 0);
 		} else if (this.direction == Direction.LEFT && this.moving == true) {
