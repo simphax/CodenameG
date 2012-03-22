@@ -37,7 +37,7 @@ public class MovingBlock extends Block {
 	}
 
 	public void update(int elapsedTime) {
-
+		manager.update(elapsedTime);
 	}
 
 	// We can now create as many interpolations as we need !
