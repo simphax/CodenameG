@@ -24,7 +24,6 @@ public class GameModel {
 		world.add(pc);
 		
 		this.setWorld(world);
-		this.startGame();
 	}
 	
 	public void setWorld(World w) {
