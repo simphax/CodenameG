@@ -14,8 +14,8 @@ public class GoalBlockTest {
 	public void testSetPosition() {
 		GoalBlock block = new GoalBlock();
 		Position position = new Position(10,20);
-		block.setPosition(point);
-		assertTrue(block.getPosition().equals(point));
+		block.setPosition(position);
+		assertTrue(block.getPosition().equals(position));
 	}
 	@Test
 	public void testSetHitbox(){
