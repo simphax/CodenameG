@@ -2,7 +2,7 @@ package edu.chl.codenameg.model;
 
 import aurelienribon.tweenengine.TweenAccessor;
 
-public class EntityAccessor implements TweenAccessor<Entity> {
+public class EntityTweenAccessor implements TweenAccessor<Entity> {
 
 
 	    public static final int POSITION_X = 1;
