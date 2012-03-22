@@ -2,6 +2,7 @@ package edu.chl.codenameg.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.chl.codenameg.model.Direction;
@@ -23,6 +24,7 @@ public class GameController implements KeyListener, Runnable{
 		this.model = new GameModel();
 		this.view = new GameView(this.model);
 		
+		listOfPC = new ArrayList<PlayerCharacter>();		
 		getPlayerCharacters(this.model);
 		
 		Thread gameThread = new Thread(this);
