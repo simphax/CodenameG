@@ -83,13 +83,13 @@ public class PlayerCharacter implements Entity {
 		if (this.direction == Direction.RIGHT && this.moving == true) {
 			this.v2d = new Vector2D(1, 0);
 		} else if (this.direction == Direction.LEFT && this.moving == true) {
-			this.v2d = new Vector2D(1, 0);
+			this.v2d = new Vector2D(-1, 0);
 		}
 
 		if (onGround) {
-			this.v2d = new Vector2D(0, 0);
+			this.v2d.setY(0);
 		} else {
-			this.v2d = new Vector2D(0, 1);
+			this.v2d.add(new Vector2D(0, 1));
 		}
 
 		this.onGround = false;
