@@ -2,11 +2,10 @@ package edu.chl.codenameg.model.entity;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Point;
-
 import org.junit.Test;
 
 import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class GoalBlockTest {
@@ -14,7 +13,7 @@ public class GoalBlockTest {
 	@Test
 	public void testSetPosition() {
 		GoalBlock block = new GoalBlock();
-		Point point = new Point(10,20);
+		Position position = new Position(10,20);
 		block.setPosition(point);
 		assertTrue(block.getPosition().equals(point));
 	}
@@ -35,7 +34,7 @@ public class GoalBlockTest {
 	public void testIsColliding(){
 		GoalBlock block1 = new GoalBlock();
 		GoalBlock block2 = new GoalBlock();
-		Point p = new Point(10,20);
+		Position p = new Position(10,20);
 		block1.setPosition(p);
 		block2.setPosition(p);
 		block1.collide(block2);
@@ -45,7 +44,7 @@ public class GoalBlockTest {
 	
 	@Test
 	public void testPlayerWin(){
-		Point pos = new Point(0,0);
+		Position pos = new Position(0,0);
 		Hitbox hb = new Hitbox(2,2);
 		PlayerCharacter pc = new PlayerCharacter(pos);
 		GoalBlock gb = new GoalBlock(hb, pos);
