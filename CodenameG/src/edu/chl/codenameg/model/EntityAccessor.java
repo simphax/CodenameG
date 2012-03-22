@@ -26,11 +26,11 @@ public class EntityAccessor implements TweenAccessor<Entity> {
 	    @Override
 	    public void setValues(Entity target, int tweenType, float[] newValues) {
 	        switch (tweenType) {
-	            case POSITION_X: target.setX(newValues[0]); break;
-	            case POSITION_Y: target.setY(newValues[0]); break;
+	            case POSITION_X: target.setPosition(new Position(newValues[0],target.getPosition().getY())); break;
+	            case POSITION_Y: target.setPosition(new Position(target.getPosition().getX(),newValues[0])); break;
 	            case POSITION_XY:
-	                target.setX(newValues[0]);
-	                target.setY(newValues[1]);
+	                target.setPosition(new Position(newValues[0],target.getPosition().getY()));
+	                target.setPosition(new Position(target.getPosition().getX(),newValues[1]));
 	                break;
 	            default: assert false; break;
 	        }

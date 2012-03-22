@@ -41,16 +41,4 @@ public class GoalBlockTest {
 		block2.collide(block1);
 		assertTrue(block1.isColliding() && block2.isColliding());
 	}
-	
-	@Test
-	public void testPlayerWin(){
-		Position pos = new Position(0,0);
-		Hitbox hb = new Hitbox(2,2);
-		PlayerCharacter pc = new PlayerCharacter(pos);
-		GoalBlock gb = new GoalBlock(hb, pos);
-		pc.collide(gb);
-		gb.collide(pc);
-		assertTrue(pc.hasWonGame());
-	}
-
 }
