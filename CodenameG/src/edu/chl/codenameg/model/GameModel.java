@@ -49,7 +49,7 @@ public class GameModel {
 	}
 	
 	public World getWorld() {
-		return activeWorld;
+		return selectedWorld;
 	}
 	
 	public void update(int elapsedTime) {
