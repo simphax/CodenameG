@@ -49,8 +49,10 @@ public class GameController implements KeyListener, Runnable{
 
 	@Override
 	public void keyReleased(KeyEvent evt) {
-		if (evt.getKeyCode() == KeyEvent.VK_LEFT 
-				|| evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+			listOfPC.get(0).stopMove();
+		}
+		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
 			listOfPC.get(0).stopMove();
 		}
 	}
