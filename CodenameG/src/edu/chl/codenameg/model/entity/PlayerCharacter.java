@@ -20,6 +20,7 @@ public class PlayerCharacter implements Entity {
 	private boolean moving;
 	private int acc;
 	private boolean onGround = false;
+	private boolean jumping = false;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
@@ -34,7 +35,11 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void jump() {
-		// TODO Complete this method
+		this.jumping = true;
+	}
+	
+	public void stopJump() {
+		this.jumping = false;
 	}
 
 	public void move() {
@@ -81,19 +86,19 @@ public class PlayerCharacter implements Entity {
 
 	public void update(int elapsedTime) {
 		
-		if (!this.moving) {
-			this.v2d = new Vector2D(0,0);
-		}
+		this.v2d = new Vector2D(0,0);
 		
 		if (this.direction == Direction.RIGHT && this.moving) {
-			this.v2d = new Vector2D(1, 0);
+			this.v2d.add(new Vector2D(1, 0));
 		} else if (this.direction == Direction.LEFT && this.moving) {
-			this.v2d = new Vector2D(-1, 0);
+			this.v2d.add(new Vector2D(-1, 0));
+		}
+		
+		if(jumping) {
+			this.v2d.add(new Vector2D(0,-3));
 		}
 
-		if (onGround) {
-			this.v2d.setY(0);
-		} else {
+		if (!onGround) {
 			this.v2d.add(new Vector2D(0, 1));
 		}
 

@@ -36,7 +36,10 @@ public class World {
 
 			Position temp = e.getPosition();
 			Vector2D vector = e.getVector2D();
-			if (vector != null && (vector.getX() > 0 || vector.getY() > 0)) {
+			if (vector != null) {
+				
+				
+				
 				e.setPosition(new Position(e.getPosition().getX()
 						+ e.getVector2D().getX(), e.getPosition().getY()
 						+ e.getVector2D().getY()));

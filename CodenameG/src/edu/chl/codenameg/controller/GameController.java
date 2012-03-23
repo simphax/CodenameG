@@ -42,13 +42,18 @@ public class GameController implements KeyListener, Runnable{
 		if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
 			model.startGame();
 		}
-		else if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
+		
+		if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
 			listOfPC.get(0).move(Direction.LEFT);
 			leftKeyPressed = true;
 		}
 		else if(evt.getKeyCode() == KeyEvent.VK_RIGHT) {
 			listOfPC.get(0).move(Direction.RIGHT);
 			rightKeyPressed = true;
+		}
+		
+		if(evt.getKeyCode() == KeyEvent.VK_UP) {
+			listOfPC.get(0).jump();
 		}
 	}
 
@@ -61,6 +66,9 @@ public class GameController implements KeyListener, Runnable{
 		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT && !leftKeyPressed) {
 			listOfPC.get(0).stopMove();
 			rightKeyPressed = false;
+		}
+		if(evt.getKeyCode() == KeyEvent.VK_UP) {
+			listOfPC.get(0).stopJump();
 		}
 	}
 

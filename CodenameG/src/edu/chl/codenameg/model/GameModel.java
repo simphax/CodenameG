@@ -6,8 +6,7 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class GameModel {
 	
-	private World activeWorld;
-	private World selectedWorld;
+	private World world;
 	private boolean running;
 	
 	public GameModel() {
@@ -32,16 +31,15 @@ public class GameModel {
 	}
 	
 	public void setWorld(World w) {
-		this.selectedWorld = w;
+		this.world = w;
 	}
 	
 	public void startGame() {
 		this.running = true;
-		this.activeWorld = new World(this.selectedWorld);
 	}
 	
 	public void restartGame() {
-		this.activeWorld = new World(this.selectedWorld);
+		//TODO restart game
 	}
 	
 	public void pauseGame(World w) {
@@ -49,12 +47,12 @@ public class GameModel {
 	}
 	
 	public World getWorld() {
-		return selectedWorld;
+		return world;
 	}
 	
 	public void update(int elapsedTime) {
-		if(activeWorld != null && running) {
-			activeWorld.update(elapsedTime);
+		if(world != null && running) {
+			world.update(elapsedTime);
 		}
 	}
 	
