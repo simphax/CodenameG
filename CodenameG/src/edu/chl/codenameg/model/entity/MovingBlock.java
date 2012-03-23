@@ -29,7 +29,7 @@ public class MovingBlock extends Block {
 		super(hb, ps);
 		this.endPos=endPos;
 		this.travelTime=travelTime;
-		Tween.registerAccessor(Entity.class, new EntityTweenAccessor());
+		Tween.registerAccessor(MovingBlock.class, new EntityTweenAccessor());
 		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
 				.target(endPos.getX(), endPos.getY()).start(manager);
 	}
