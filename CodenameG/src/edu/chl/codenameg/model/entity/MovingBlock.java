@@ -9,6 +9,7 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class MovingBlock extends Block {
+	private Vector2D v2d = new Vector2D(0, 0);
 	boolean moving = false;
 	private int travelTime;
 	private Position endPos;
@@ -20,20 +21,28 @@ public class MovingBlock extends Block {
 		super.collide(e);
 		if (e instanceof PlayerCharacter) {
 			PlayerCharacter landedPlayer = (PlayerCharacter) e;
-			landedPlayer.getVector2D().add(this.getVector2D());
+			landedPlayer.getVector2D().add(this.v2d);
 		}
 	}
 
-	public MovingBlock(Hitbox hb, Position ps,Position endPos, int travelTime) {
+	public MovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime) {
 		super(hb, ps);
-		this.endPos=endPos;
-		this.travelTime=travelTime;
+		this.endPos = endPos;
+		this.travelTime = travelTime;
 		Tween.registerAccessor(MovingBlock.class, new EntityTweenAccessor());
 		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
 				.target(endPos.getX(), endPos.getY()).start(manager);
+		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
+				.target(startPos.getX(), startPos.getY()).start(manager);
 	}
-	public MovingBlock(){
-		this(new Hitbox(20,10),new Position(2.5f,2.5f),new Position(7.5f,7.5f), 100);
+
+	public MovingBlock() {
+		this(new Hitbox(20, 10), new Position(2.5f, 2.5f), new Position(7.5f,
+				7.5f), 100);
+	}
+
+	public Vector2D getVector2D() {
+		return new Vector2D(this.v2d);
 	}
 
 	public void update(int elapsedTime) {
