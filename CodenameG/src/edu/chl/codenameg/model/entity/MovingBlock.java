@@ -6,10 +6,8 @@ import edu.chl.codenameg.model.EntityTweenAccessor;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
-import edu.chl.codenameg.model.Vector2D;
 
 public class MovingBlock extends Block {
-	private Vector2D v2d = new Vector2D(0, 0);
 	boolean moving = false;
 	private int travelTime;
 	private Position endPos;
@@ -21,12 +19,13 @@ public class MovingBlock extends Block {
 		super.collide(e);
 		if (e instanceof PlayerCharacter) {
 			PlayerCharacter landedPlayer = (PlayerCharacter) e;
-			landedPlayer.getVector2D().add(this.v2d);
+			landedPlayer.getVector2D().add(this.getVector2D());
 		}
 	}
 
 	public MovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime) {
 		super(hb, ps);
+		this.startPos=ps;
 		this.endPos = endPos;
 		this.travelTime = travelTime;
 		Tween.registerAccessor(MovingBlock.class, new EntityTweenAccessor());
@@ -39,10 +38,6 @@ public class MovingBlock extends Block {
 	public MovingBlock() {
 		this(new Hitbox(20, 10), new Position(2.5f, 2.5f), new Position(7.5f,
 				7.5f), 100);
-	}
-
-	public Vector2D getVector2D() {
-		return new Vector2D(this.v2d);
 	}
 
 	public void update(int elapsedTime) {
