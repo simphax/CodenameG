@@ -2,6 +2,8 @@ package edu.chl.codenameg.model.entity;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
@@ -14,6 +16,7 @@ public class PlayerCharacter implements Entity {
 	private boolean gameWon;
 	private Position pt;
 	private Vector2D v2d;
+	private Vector2D addVector;
 	private boolean colliding;
 	private boolean alive;
 	private Direction direction;
@@ -31,6 +34,7 @@ public class PlayerCharacter implements Entity {
 		this.alive = true;
 		this.setPosition(position);
 		this.v2d = new Vector2D(0, 0);
+		this.addVector = new Vector2D(0, 0);
 		this.direction = Direction.RIGHT;
 	}
 
@@ -86,7 +90,8 @@ public class PlayerCharacter implements Entity {
 
 	public void update(int elapsedTime) {
 		
-		this.v2d = new Vector2D(0,0);
+		this.v2d = new Vector2D(addVector);
+		this.addVector = new Vector2D(0,0);
 		
 		if (this.direction == Direction.RIGHT && this.moving) {
 			this.v2d.add(new Vector2D(1, 0));
@@ -98,9 +103,9 @@ public class PlayerCharacter implements Entity {
 			this.v2d.add(new Vector2D(0,-3));
 		}
 
-		if (!onGround) {
+//		if (!onGround) {
 			this.v2d.add(new Vector2D(0, 1));
-		}
+//		}
 
 		this.onGround = false;
 		this.colliding = false;
@@ -128,7 +133,11 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void setVector2D(Vector2D v2d) {
-		this.v2d = v2d;
+		this.v2d = new Vector2D(v2d);
+	}
+	
+	public void addVector2D(Vector2D v2d) {
+		this.addVector = new Vector2D(v2d);
 	}
 
 	public Vector2D getVector2D() {
@@ -157,5 +166,17 @@ public class PlayerCharacter implements Entity {
 	public int getAcceleration() {
 		int temp = this.acc;
 		return temp;
+	}
+
+	@Override
+	public List<String> getCollideTypes() {
+		List<String> list = new ArrayList<String>();
+		list.add("Block");
+		return list;
+	}
+
+	@Override
+	public String getType() {
+		return "PlayerCharacter";
 	}
 }

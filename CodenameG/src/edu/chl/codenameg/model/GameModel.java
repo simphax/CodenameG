@@ -17,15 +17,27 @@ public class GameModel {
 		Block block = new Block();
 		block.setPosition(new Position(100,200));
 		block.setHitbox(new Hitbox(200,20));
+		Block block2 = new Block();
+		block2.setPosition(new Position(200,140));
+		block2.setHitbox(new Hitbox(20,20));
+		Block block3 = new Block();
+		block3.setPosition(new Position(250,180));
+		block3.setHitbox(new Hitbox(20,20));
 		
 		MovingBlock movingblock = new MovingBlock(new Hitbox(20,20),new Position(50,50), new Position(100,100), 1000);
+		MovingBlock movingblock2 = new MovingBlock(new Hitbox(20,20),new Position(50,100), new Position(50,200), 1000);
+		MovingBlock movingblock3 = new MovingBlock(new Hitbox(20,20),new Position(100,50), new Position(200,50), 1000);
 		
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.setPosition(new Position(200,50));
 		
 		tempWorld.add(block);
+		tempWorld.add(block2);
+		tempWorld.add(block3);
 		tempWorld.add(pc);
 		tempWorld.add(movingblock);
+		tempWorld.add(movingblock2);
+		tempWorld.add(movingblock3);
 		
 		this.setWorld(tempWorld);
 	}

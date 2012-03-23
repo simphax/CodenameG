@@ -6,6 +6,7 @@ import edu.chl.codenameg.model.EntityTweenAccessor;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
+import edu.chl.codenameg.model.Vector2D;
 
 public class MovingBlock extends Block {
 	boolean moving = false;
@@ -17,10 +18,12 @@ public class MovingBlock extends Block {
 	@Override
 	public void collide(Entity e) {
 		super.collide(e);
-		if (e instanceof PlayerCharacter) {
-			PlayerCharacter landedPlayer = (PlayerCharacter) e;
-			landedPlayer.getVector2D().add(this.getVector2D());
-		}
+		
+		//TODO send friction to playercharacter
+//		if (e instanceof PlayerCharacter) {
+//			PlayerCharacter landedPlayer = (PlayerCharacter) e;
+//			landedPlayer.addVector2D(new Vector2D(landedPlayer.getVector2D().getX()+this.getVector2D().getX(),0));
+//		}
 	}
 
 	public MovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime) {

@@ -1,5 +1,8 @@
 package edu.chl.codenameg.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
@@ -67,5 +70,21 @@ public class Block implements Entity{
 	@Override
 	public void setVector2D(Vector2D v2d) {
 		this.v2d=v2d;
+	}
+
+	@Override
+	public List<String> getCollideTypes() {
+		// TODO Auto-generated method stub
+		return new ArrayList<String>();
+	}
+
+	@Override
+	public String getType() {
+		return "Block";
+	}
+
+	@Override
+	public void addVector2D(Vector2D v2d) {
+		this.v2d.add(v2d);
 	}
 }
