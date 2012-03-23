@@ -19,14 +19,14 @@ public class GameModel {
 		block.setPosition(new Position(100,200));
 		block.setHitbox(new Hitbox(200,20));
 		
-//		MovingBlock movingblock = new MovingBlock(new Hitbox(20,20),new Position(50,50), new Position(100,100));
+		MovingBlock movingblock = new MovingBlock(new Hitbox(20,20),new Position(50,50), new Position(100,100), 1000);
 		
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.setPosition(new Position(200,50));
 		
 		tempWorld.add(block);
 		tempWorld.add(pc);
-//		world.add(movingblock);
+		tempWorld.add(movingblock);
 		
 		this.setWorld(tempWorld);
 	}

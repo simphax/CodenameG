@@ -20,7 +20,7 @@ public class Block implements Entity{
 		this.setPosition(position);
 		this.hb = hb;
 		this.colliding = false;
-		
+		this.v2d = new Vector2D(0,0);
 	}
 	
 	public void setHitbox(Hitbox hb){
