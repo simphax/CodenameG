@@ -33,6 +33,9 @@ public class MovingBlock extends Block {
 		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
 				.target(endPos.getX(), endPos.getY()).start(manager);
 	}
+	public MovingBlock(){
+		this(new Hitbox(20,10),new Position(2.5f,2.5f),new Position(7.5f,7.5f), 100);
+	}
 
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);

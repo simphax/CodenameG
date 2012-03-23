@@ -8,7 +8,7 @@ import edu.chl.codenameg.model.Vector2D;
 
 public class Block implements Entity{
 	private Hitbox hb;
-	private final Vector2D v = new Vector2D(0,0);
+	private Vector2D v2d;
 	private boolean colliding;
 	private Position ps;
 	
@@ -36,7 +36,7 @@ public class Block implements Entity{
 	}
 
 	public Vector2D getVector2D() {
-		return v;
+		return new Vector2D(this.v2d);
 	}
 
 	public boolean isColliding() {
@@ -62,5 +62,10 @@ public class Block implements Entity{
 	public void setPosition(Position p) {
 		this.ps=p;
 		
+	}
+
+	@Override
+	public void setVector2D(Vector2D v2d) {
+		this.v2d=v2d;
 	}
 }

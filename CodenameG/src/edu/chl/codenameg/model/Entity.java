@@ -10,11 +10,14 @@ public interface Entity {
 	
 	public Vector2D getVector2D();
 	
+	public void setVector2D(Vector2D v2d);
+	
 	public boolean isColliding();
 
 	public void collide(Entity e);
 	
 	public void update(int elapsedTime);
+
 
 	
 }

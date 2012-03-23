@@ -95,8 +95,8 @@ public class PlayerCharacterTest {
 		assertTrue(!berit.isAlive());
 	}
 	@Test
-	public void testMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2,2));
+	public void testMoveAlongMovingBlock(){
+		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2,2),new Position(10,2),2000);
 		PlayerCharacter chewbaka = new PlayerCharacter();
 		chewbaka.collide(mb);
 		mb.collide(chewbaka);
