@@ -33,19 +33,8 @@ public class World {
 
 	public void update(int elapsedTime) {
 		for (Entity e : this.getEntities()) {
-
-			/*
-			 * Position temp = e.getPosition(); Vector2D vector =
-			 * e.getVector2D(); if (vector != null) {
-			 * 
-			 * e.setPosition(new Position(e.getPosition().getX() +
-			 * e.getVector2D().getX(), e.getPosition().getY() +
-			 * e.getVector2D().getY())); } this.checkCollision(e);
-			 * e.update(elapsedTime);
-			 */
-			e.update(elapsedTime);
 			move(e);
-			//checkCollision(e);
+			e.update(elapsedTime);
 		}
 	}
 
@@ -68,17 +57,17 @@ public class World {
 					+ addx, Math.round(e.getPosition().getY()), e.getHitbox()
 					.getWidth(), e.getHitbox().getHeight()))) {
 				if(colliding != e) {
+					if (!collided.contains(colliding)) {// Collide method calls is always sent
+						colliding.collide(e);
+						e.collide(colliding);
+					}
+					
 					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
 						return false;
 					} else if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
 						motionx(colliding, Math.signum(preferredx));
 					} 
 					//Otherwise just pass through the entity
-					
-					if (!collided.contains(colliding)) {// Collide method calls is always sent
-						colliding.collide(e);
-						e.collide(colliding);
-					}
 				}
 			}
 			e.setPosition(new Position(e.getPosition().getX()
@@ -101,15 +90,17 @@ public class World {
 							+ addy, e.getHitbox().getWidth(), e.getHitbox()
 							.getHeight()))) {
 				if(colliding != e) {
+
+					if (!collided.contains(colliding)) { 
+						colliding.collide(e);
+						e.collide(colliding);
+					}
+					
 					if (e.getCollideTypes().contains(colliding.getType())) { 
 						return false;
 					} else if(colliding.getCollideTypes().contains(e.getType())) { 
 						motiony(colliding, Math.signum(preferredy));
 					} 
-					if (!collided.contains(colliding)) { 
-						colliding.collide(e);
-						e.collide(colliding);
-					}
 				}
 			}
 			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()

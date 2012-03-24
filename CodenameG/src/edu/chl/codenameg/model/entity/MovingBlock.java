@@ -18,12 +18,13 @@ public class MovingBlock extends Block {
 	@Override
 	public void collide(Entity e) {
 		super.collide(e);
-		
 		//TODO send friction to playercharacter
-//		if (e instanceof PlayerCharacter) {
-//			PlayerCharacter landedPlayer = (PlayerCharacter) e;
-//			landedPlayer.addVector2D(new Vector2D(landedPlayer.getVector2D().getX()+this.getVector2D().getX(),0));
-//		}
+		if (e instanceof PlayerCharacter) {
+			PlayerCharacter landedPlayer = (PlayerCharacter) e;
+			if(landedPlayer.getPosition().getY() + landedPlayer.getHitbox().getHeight() == this.getPosition().getY()) { //If player is on top.
+				landedPlayer.addVector2D(new Vector2D(this.getVector2D().getX(),0));
+			}
+		}
 	}
 
 	public MovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime) {
