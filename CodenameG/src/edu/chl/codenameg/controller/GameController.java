@@ -59,14 +59,23 @@ public class GameController implements KeyListener, Runnable{
 
 	@Override
 	public void keyReleased(KeyEvent evt) {
-		if (evt.getKeyCode() == KeyEvent.VK_LEFT && !rightKeyPressed) {
-			listOfPC.get(0).stopMove();
+		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
 			leftKeyPressed = false;
+			if(rightKeyPressed) {
+				listOfPC.get(0).move(Direction.RIGHT);
+			}
 		}
-		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT && !leftKeyPressed) {
-			listOfPC.get(0).stopMove();
+		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
 			rightKeyPressed = false;
+			if(leftKeyPressed) {
+				listOfPC.get(0).move(Direction.LEFT);
+			}
 		}
+		
+		if(!leftKeyPressed && !rightKeyPressed) {
+			listOfPC.get(0).stopMove();
+		}
+		
 		if(evt.getKeyCode() == KeyEvent.VK_UP) {
 			listOfPC.get(0).stopJump();
 		}
