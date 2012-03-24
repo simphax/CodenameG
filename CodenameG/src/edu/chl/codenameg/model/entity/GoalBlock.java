@@ -22,4 +22,9 @@ public class GoalBlock extends Block{
 	public GoalBlock() {
 		super();
 	}
+	
+	@Override
+	public String getType() {
+		return "GoalBlock";
+	}
 }

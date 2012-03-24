@@ -45,7 +45,7 @@ public class World {
 			 */
 			e.update(elapsedTime);
 			move(e);
-			checkCollision(e);
+			//checkCollision(e);
 		}
 	}
 
@@ -67,12 +67,18 @@ public class World {
 							+ (x * Math.signum(preferredx)))
 					+ addx, Math.round(e.getPosition().getY()), e.getHitbox()
 					.getWidth(), e.getHitbox().getHeight()))) {
-				if (e.getCollideTypes().contains(colliding.getType())) {
-					return false;
-				}
-				if (!collided.contains(colliding)) {
-					colliding.collide(e);
-					e.collide(colliding);
+				if(colliding != e) {
+					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
+						return false;
+					} else if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
+						motionx(colliding, Math.signum(preferredx));
+					} 
+					//Otherwise just pass through the entity
+					
+					if (!collided.contains(colliding)) {// Collide method calls is always sent
+						colliding.collide(e);
+						e.collide(colliding);
+					}
 				}
 			}
 			e.setPosition(new Position(e.getPosition().getX()
@@ -94,12 +100,16 @@ public class World {
 							+ (y * Math.signum(preferredy)))
 							+ addy, e.getHitbox().getWidth(), e.getHitbox()
 							.getHeight()))) {
-				if (e.getCollideTypes().contains(colliding.getType())) {
-					return false;
-				}
-				if (!collided.contains(colliding)) {
-					colliding.collide(e);
-					e.collide(colliding);
+				if(colliding != e) {
+					if (e.getCollideTypes().contains(colliding.getType())) { 
+						return false;
+					} else if(colliding.getCollideTypes().contains(e.getType())) { 
+						motiony(colliding, Math.signum(preferredy));
+					} 
+					if (!collided.contains(colliding)) { 
+						colliding.collide(e);
+						e.collide(colliding);
+					}
 				}
 			}
 			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()
@@ -113,11 +123,11 @@ public class World {
 		for (Entity e : this.getEntities()) {
 			// TODO float->int :(((
 			Rectangle rect = new Rectangle(
-					(int) (e.getPosition().getX() + 0.5), (int) (e
-							.getPosition().getY() + 0.5), e.getHitbox()
+					Math.round(e.getPosition().getX()), Math.round(e
+							.getPosition().getY()), e.getHitbox()
 							.getWidth(), e.getHitbox().getHeight());
-			if (rect.contains(new Point((int) (p.getX() + 0.5),
-					(int) (p.getY() + 0.5)))) {
+			if (rect.contains(new Point(Math.round(p.getX()),
+					Math.round(p.getY())))) {
 				list.add(e);
 			}
 		}
@@ -138,6 +148,7 @@ public class World {
 		return list;
 	}
 
+	@Deprecated
 	private void checkCollision(Entity e) {
 		for (Entity target : this.getEntities()) {
 			if (target != e) {
