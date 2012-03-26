@@ -8,7 +8,7 @@ import java.util.List;
 
 public class World {
 
-	List<Entity> entities;
+	private List<Entity> entities;
 
 	public World() {
 		this.entities = new ArrayList<Entity>();

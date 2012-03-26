@@ -2,6 +2,7 @@ package edu.chl.codenameg.model;
 
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
+import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
@@ -29,6 +30,9 @@ public class GameModel {
 		Block block3 = new Block();
 		block3.setPosition(new Position(250, 180));
 		block3.setHitbox(new Hitbox(20, 20));
+		LethalBlock lblock = new LethalBlock();
+		lblock.setPosition(new Position(250, 150));
+		lblock.setHitbox(new Hitbox(20, 20));
 
 		MovingBlock movingblock = new MovingBlock(new Hitbox(20, 20), new Position(50, 50), new Position(100, 100), 1000);
 		MovingBlock movingblock2 = new MovingBlock(new Hitbox(20, 20), new Position(50, 100), new Position(50, 200), 1000);
@@ -49,6 +53,7 @@ public class GameModel {
 		testWorld.add(movingblock3);
 		testWorld.add(movingblock4);
 		testWorld.add(goalblock);
+		testWorld.add(lblock);
 		
 		return testWorld;
 	}
@@ -62,7 +67,10 @@ public class GameModel {
 	}
 
 	public void restartGame() {
-		// TODO restart game
+		this.endGame();
+		//******************************
+		World testWorld = this.createTestWorld();
+		this.setWorld(testWorld);
 	}
 
 	public void pauseGame(World w) {
@@ -72,11 +80,19 @@ public class GameModel {
 	public World getWorld() {
 		return world;
 	}
+	
+	public void endGame() {
+		if (world != null && running) {
+			this.running = false;
+			this.world = null;
+		}
+	}
 
 	public void update(int elapsedTime) {
 		if (world != null && running) {
 			world.update(elapsedTime);
 		}
 	}
+	
 
 }

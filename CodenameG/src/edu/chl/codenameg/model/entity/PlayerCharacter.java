@@ -91,9 +91,11 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void update(int elapsedTime) {
-
 		this.checkCollisionDeath();
-
+		if (!alive) {
+			
+		}
+		
 		this.v2d = new Vector2D(addVector);
 		this.addVector = new Vector2D(0, 0);
 
@@ -108,6 +110,7 @@ public class PlayerCharacter implements Entity {
 		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0,-2));
 		}
+		
 
 		if (!onGround) {
 			this.gravity.add(new Vector2D(0,0.1f));
