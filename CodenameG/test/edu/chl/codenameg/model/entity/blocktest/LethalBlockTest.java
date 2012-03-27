@@ -1,4 +1,4 @@
-package edu.chl.codenameg.model.entity;
+package edu.chl.codenameg.model.entity.blocktest;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.junit.Test;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
+import edu.chl.codenameg.model.entity.LethalBlock;
 
 public class LethalBlockTest {
 
