@@ -1,5 +1,8 @@
 package edu.chl.codenameg.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
@@ -10,9 +13,10 @@ public class GameModel {
 
 	private World world;
 	private boolean running;
+	private List<PlayerCharacter> listOfPC;
 
 	public GameModel() {
-
+		listOfPC = new ArrayList<PlayerCharacter>();
 		World testWorld = this.createTestWorld();
 
 		this.setWorld(testWorld);
@@ -54,6 +58,7 @@ public class GameModel {
 		testWorld.add(movingblock4);
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
+		listOfPC.add(pc);
 		
 		return testWorld;
 	}
@@ -67,6 +72,7 @@ public class GameModel {
 	}
 
 	public void restartGame() {
+		// This should be done using the controller instead...
 		this.endGame();
 		//******************************
 		World testWorld = this.createTestWorld();
@@ -87,12 +93,48 @@ public class GameModel {
 			this.world = null;
 		}
 	}
+	
+	public void performAction(Action action) {
+		switch (action) {
+		case PLAYER_1_MOVE_LEFT:
+			getPlayer(1).move(Direction.LEFT);
+			break;
+		case PLAYER_1_MOVE_RIGHT:
+			getPlayer(1).move(Direction.RIGHT);
+			break;
+		case PLAYER_1_JUMP:
+			getPlayer(1).jump();
+			break;
+		case START_GAME:
+			this.startGame();
+			break;
+		}
+	}
+	
+	private void listPlayerCharacters() {
+		List<Entity> list = world.getEntities();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) instanceof PlayerCharacter) {
+				listOfPC.add((PlayerCharacter) list.get(i));
+			}
+		}
+	}
+	
+	public PlayerCharacter getPlayer(int num) {
+		return listOfPC.get(num-1);
+	}
 
 	public void update(int elapsedTime) {
 		if (world != null && running) {
 			world.update(elapsedTime);
 		}
+		for (Entity entity : world.getEntities()) {
+			if (entity instanceof PlayerCharacter) {
+				PlayerCharacter pc = (PlayerCharacter)entity;
+				if (!(pc.isAlive())) {
+					this.restartGame(); // TODO Skriv klart
+				}
+			}
+		}
 	}
-	
-
 }

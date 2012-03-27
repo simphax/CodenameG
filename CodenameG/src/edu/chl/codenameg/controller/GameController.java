@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.chl.codenameg.model.Direction;
-import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.GameView;
@@ -27,7 +26,6 @@ public class GameController implements KeyListener, Runnable{
 		this.view = new GameView(this.model, this);
 		
 		listOfPC = new ArrayList<PlayerCharacter>();		
-		getPlayerCharacters(this.model);
 		
 		Thread gameThread = new Thread(this);
 		
@@ -38,23 +36,26 @@ public class GameController implements KeyListener, Runnable{
 
 	@Override
 	public void keyPressed(KeyEvent evt) {
-		// TODO Auto-generated method stub
-		if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-			model.startGame();
-		}
+		model.performAction(KeyBindings.getAction(evt.getKeyCode()));
 		
-		if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
-			listOfPC.get(0).move(Direction.LEFT);
-			leftKeyPressed = true;
-		}
-		else if(evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-			listOfPC.get(0).move(Direction.RIGHT);
-			rightKeyPressed = true;
-		}
 		
-		if(evt.getKeyCode() == KeyEvent.VK_UP) {
-			listOfPC.get(0).jump();
-		}
+//		if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//			model.startGame();
+//		}
+//		
+//		if(evt.getKeyCode() == KeyEvent.VK_LEFT) {
+//			listOfPC.get(0).move(Direction.LEFT);
+//			leftKeyPressed = true;
+//		}
+//		
+//		else if(evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+//			listOfPC.get(0).move(Direction.RIGHT);
+//			rightKeyPressed = true;
+//		}
+//		
+//		if(evt.getKeyCode() == KeyEvent.VK_UP) {
+//			listOfPC.get(0).jump();
+//		}
 	}
 
 	@Override
@@ -99,15 +100,6 @@ public class GameController implements KeyListener, Runnable{
 					// if we get this exception, we're asked to terminate ourselves
 					this.isRunning = false;
 				}
-		}
-	}
-	
-	private void getPlayerCharacters(GameModel model) {
-		List<Entity> list = model.getWorld().getEntities();
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) instanceof PlayerCharacter) {
-				listOfPC.add((PlayerCharacter) list.get(i));
-			}
 		}
 	}
 }
