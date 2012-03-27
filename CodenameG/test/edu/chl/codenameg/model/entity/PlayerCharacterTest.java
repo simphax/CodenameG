@@ -31,7 +31,7 @@ public class PlayerCharacterTest {
 	}
 	
 	@Test
-	public void testMove() {
+	public void testMove() {//TODO: correct implementation
 		PlayerCharacter pc = new PlayerCharacter();
 		Position pos = pc.getPosition();
 		pc.move();
