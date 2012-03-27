@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.codenameg.model.entity.PlayerCharacter;
+
 public class World {
 
 	private List<Entity> entities;
@@ -33,6 +35,12 @@ public class World {
 
 	public void update(int elapsedTime) {
 		for (Entity e : this.getEntities()) {
+			if(e instanceof PlayerCharacter) {
+				PlayerCharacter pc = (PlayerCharacter)e;
+				if(!pc.isAlive()) {
+					this.gameOver();
+				}
+			}
 			move(e);
 			e.update(elapsedTime);
 		}
@@ -42,6 +50,10 @@ public class World {
 		Vector2D vector = e.getVector2D();
 		motionx(e, vector.getX());
 		motiony(e, vector.getY());
+	}
+	
+	public void gameOver() {
+		//TODO implement
 	}
 
 	private boolean motionx(Entity e, float movex) {
