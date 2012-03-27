@@ -17,7 +17,7 @@ public class KeyBindings {
 			case KeyEvent.VK_UP:
 				return Action.PLAYER_1_JUMP;
 			default:
-				return null;
+				return Action.NO_ACTION;
 		}
 	}
 	

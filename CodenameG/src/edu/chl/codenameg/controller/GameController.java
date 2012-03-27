@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
@@ -16,7 +17,8 @@ public class GameController implements KeyListener, Runnable{
 	private GameView view;
 	private List<PlayerCharacter> listOfPC;
 	
-	private boolean leftKeyPressed, rightKeyPressed;
+	private boolean player1LeftKeyPressed, player1RightKeyPressed;
+	private boolean player2LeftKeyPressed, player2RightKeyPressed;
 	
 	
 	private boolean isRunning = true;
@@ -31,12 +33,31 @@ public class GameController implements KeyListener, Runnable{
 		
 		gameThread.start();
 		
-		leftKeyPressed = false; rightKeyPressed = false;
+		player1LeftKeyPressed = false; player1RightKeyPressed = false;
+		player2LeftKeyPressed = false; player2RightKeyPressed = false;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent evt) {
-		model.performAction(KeyBindings.getAction(evt.getKeyCode()));
+		Action action = KeyBindings.getAction(evt.getKeyCode());
+		switch (action) {
+		case PLAYER_1_MOVE_LEFT:
+			player1LeftKeyPressed = true;
+			break;
+		case PLAYER_1_MOVE_RIGHT:
+			player1RightKeyPressed = true;
+			break;
+		case PLAYER_2_MOVE_LEFT:
+			player2LeftKeyPressed = true;
+			break;
+		case PLAYER_2_MOVE_RIGHT:
+			player2RightKeyPressed = true;
+			break;
+		default:
+			break;
+		}
+		
+		model.performAction(action);
 		
 		
 //		if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -60,26 +81,69 @@ public class GameController implements KeyListener, Runnable{
 
 	@Override
 	public void keyReleased(KeyEvent evt) {
-		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
-			leftKeyPressed = false;
-			if(rightKeyPressed) {
-				listOfPC.get(0).move(Direction.RIGHT);
+		Action action = KeyBindings.getAction(evt.getKeyCode());
+		switch (action) {
+		case PLAYER_1_MOVE_LEFT:
+			player1LeftKeyPressed = false;
+			if (player1RightKeyPressed) {
+				model.performAction(Action.PLAYER_1_MOVE_RIGHT);
 			}
-		}
-		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rightKeyPressed = false;
-			if(leftKeyPressed) {
-				listOfPC.get(0).move(Direction.LEFT);
+			model.stopAction(action);
+			break;
+		case PLAYER_1_MOVE_RIGHT:
+			player1RightKeyPressed = false;
+			if (player1LeftKeyPressed) {
+				model.performAction(Action.PLAYER_1_MOVE_LEFT);
 			}
+			model.stopAction(action);
+			break;
+		case PLAYER_2_MOVE_LEFT:
+			player2LeftKeyPressed = false;
+			if (player2RightKeyPressed) {
+				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+			}
+			model.stopAction(action);
+			break;
+		case PLAYER_2_MOVE_RIGHT:
+			player2RightKeyPressed = false;
+			if (player2RightKeyPressed) {
+				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+			}
+			model.stopAction(action);
+			break;
+		default:
+			model.stopAction(action);
+			break;
 		}
 		
-		if(!leftKeyPressed && !rightKeyPressed) {
-			listOfPC.get(0).stopMove();
+		// Doesn't matter if I send both stopActions or not
+		if (!player1LeftKeyPressed && !player1RightKeyPressed) {
+			model.stopAction(Action.PLAYER_1_MOVE_LEFT);
+		} else if (!player2LeftKeyPressed && !player2RightKeyPressed) {
+			model.stopAction(Action.PLAYER_2_MOVE_LEFT);
 		}
 		
-		if(evt.getKeyCode() == KeyEvent.VK_UP) {
-			listOfPC.get(0).stopJump();
-		}
+		
+//		if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+//			leftKeyPressed = false;
+//			if(rightKeyPressed) {
+//				listOfPC.get(0).move(Direction.RIGHT);
+//			}
+//		}
+//		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+//			rightKeyPressed = false;
+//			if(leftKeyPressed) {
+//				listOfPC.get(0).move(Direction.LEFT);
+//			}
+//		}
+//		
+//		if(!leftKeyPressed && !rightKeyPressed) {
+//			listOfPC.get(0).stopMove();
+//		}
+//		
+//		if(evt.getKeyCode() == KeyEvent.VK_UP) {
+//			listOfPC.get(0).stopJump();
+//		}
 	}
 
 	@Override

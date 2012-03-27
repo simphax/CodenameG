@@ -24,7 +24,7 @@ public class GameModel {
 
 	private World createTestWorld() {
 		World testWorld = new World();
-
+ 
 		Block block = new Block();
 		block.setPosition(new Position(100, 200));
 		block.setHitbox(new Hitbox(200, 20));
@@ -58,6 +58,7 @@ public class GameModel {
 		testWorld.add(movingblock4);
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
+		listOfPC.removeAll(listOfPC);
 		listOfPC.add(pc);
 		
 		return testWorld;
@@ -108,15 +109,27 @@ public class GameModel {
 		case START_GAME:
 			this.startGame();
 			break;
+		default:
+			break;
 		}
 	}
 	
-	private void listPlayerCharacters() {
-		List<Entity> list = world.getEntities();
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i) instanceof PlayerCharacter) {
-				listOfPC.add((PlayerCharacter) list.get(i));
-			}
+	public void stopAction(Action action) {
+		switch (action) {
+		case PLAYER_1_MOVE_LEFT:
+			getPlayer(1).stopMove();
+			break;
+		case PLAYER_1_MOVE_RIGHT:
+			getPlayer(1).stopMove();
+			break;
+		case PLAYER_1_JUMP:
+			getPlayer(1).stopJump();
+			break;
+		case START_GAME:
+			this.startGame();
+			break;
+		default:
+			break;
 		}
 	}
 	
