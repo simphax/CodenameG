@@ -98,39 +98,6 @@ public class PlayerCharacter implements Entity {
 		this.collidingList.add(evt);
 	}
 
-	public void update() {
-		this.update(10);
-	}
-
-	public void update(int elapsedTime) {
-		this.checkCollisionDeath();
-		
-		this.v2d = new Vector2D(addVector);
-		this.addVector = new Vector2D(0, 0);
-
-		if (this.direction == Direction.RIGHT && this.moving) {
-			this.v2d.add(new Vector2D(1, 0));
-		} else if (this.direction == Direction.LEFT && this.moving) {
-			this.v2d.add(new Vector2D(-1, 0));
-		}
-
-		if (jumping && !justJumped) {
-			this.v2d.add(new Vector2D(0,-4));
-		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
-			this.v2d.add(new Vector2D(0,-2));
-		}
-		
-
-		if (!onGround) {
-			this.gravity.add(new Vector2D(0,0.1f));
-		} else {
-			this.gravity = new Vector2D(0,0.98f);
-		}
-		this.v2d.add(this.gravity);
-
-		this.onGround = false;
-		this.colliding = false;
-	}
 
 	private void checkCollisionDeath() {
 		//TODO Check collision from both sides.
@@ -252,5 +219,39 @@ public class PlayerCharacter implements Entity {
 	@Override
 	public String getType() {
 		return "PlayerCharacter";
+	}
+
+	public void update() {
+		this.update(10);
+	}
+	
+	public void update(int elapsedTime) {
+		this.checkCollisionDeath();
+		
+		this.v2d = new Vector2D(addVector);
+		this.addVector = new Vector2D(0, 0);
+
+		if (this.direction == Direction.RIGHT && this.moving) {
+			this.v2d.add(new Vector2D(1, 0));
+		} else if (this.direction == Direction.LEFT && this.moving) {
+			this.v2d.add(new Vector2D(-1, 0));
+		}
+
+		if (jumping && !justJumped) {
+			this.v2d.add(new Vector2D(0,-4));
+		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
+			this.v2d.add(new Vector2D(0,-2));
+		}
+		
+
+		if (!onGround) {
+			this.gravity.add(new Vector2D(0,0.1f));
+		} else {
+			this.gravity = new Vector2D(0,0.98f);
+		}
+		this.v2d.add(this.gravity);
+
+		this.onGround = false;
+		this.colliding = false;
 	}
 }
