@@ -25,7 +25,8 @@ public class GameController implements KeyListener, Runnable{
 	
 	public GameController() {
 		this.model = new GameModel();
-		this.view = new GameView(this.model, this);
+		this.view = new GameView(this.model);
+		this.view.addKeyListener(this);
 		
 		listOfPC = new ArrayList<PlayerCharacter>();		
 		
