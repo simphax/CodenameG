@@ -68,11 +68,13 @@ public class World {
 					+ addx, Math.round(e.getPosition().getY()), e.getHitbox()
 					.getWidth(), e.getHitbox().getHeight()))) {
 				if(colliding != e) {
-					Direction d = Math.signum(preferredx) > 0 ? Direction.LEFT : Direction.RIGHT;
+					
+					Direction d1 = Math.signum(preferredx) > 0 ? Direction.LEFT : Direction.RIGHT;
+					Direction d2 = Math.signum(preferredx) > 0 ? Direction.RIGHT : Direction.LEFT;
 
 					if (!collided.contains(colliding)) { 
-						colliding.collide(new CollisionEvent(e,d));
-						e.collide(new CollisionEvent(colliding,d));
+						colliding.collide(new CollisionEvent(e,d1));
+						e.collide(new CollisionEvent(colliding,d2));
 					}
 					
 					if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
@@ -106,11 +108,12 @@ public class World {
 							.getHeight()))) {
 				if(colliding != e) {
 					
-					Direction d = Math.signum(preferredy) > 0 ? Direction.TOP : Direction.BOTTOM;
+					Direction d1 = Math.signum(preferredy) > 0 ? Direction.TOP : Direction.BOTTOM;
+					Direction d2 = Math.signum(preferredy) > 0 ? Direction.BOTTOM : Direction.TOP;
 
 					if (!collided.contains(colliding)) { 
-						colliding.collide(new CollisionEvent(e,d));
-						e.collide(new CollisionEvent(colliding,d));
+						colliding.collide(new CollisionEvent(e,d1));
+						e.collide(new CollisionEvent(colliding,d2));
 					}
 					
 					if (e.getCollideTypes().contains(colliding.getType())) { 
