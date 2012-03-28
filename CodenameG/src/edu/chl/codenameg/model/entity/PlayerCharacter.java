@@ -182,12 +182,10 @@ public class PlayerCharacter implements Entity {
 
 	public void die() {
 		this.alive = false;
-		System.out.println("Auuuuuugh!");
 	}
 
 	public void winGame() {
 		this.gameWon = true;
-		System.out.println("I won, I won, I won ! :D");
 	}
 
 	// getters & setters

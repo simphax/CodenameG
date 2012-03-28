@@ -144,7 +144,10 @@ public class GameModel {
 		for (Entity entity : world.getEntities()) {
 			if (entity instanceof PlayerCharacter) {
 				PlayerCharacter pc = (PlayerCharacter)entity;
-				if (!(pc.isAlive())) {
+				if (pc.hasWonGame()) {
+					this.restartGame();
+					System.out.println("Congratulations for winning the game!");
+				} else if (!(pc.isAlive())) {
 					this.restartGame(); // TODO Skriv klart
 				}
 			}
