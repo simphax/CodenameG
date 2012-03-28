@@ -11,7 +11,7 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter implements Entity {
-	private Hitbox hitbox = new Hitbox(10, 15);
+	private Hitbox hitbox;
 	private boolean gameWon;
 	private Position pt;
 	private Vector2D v2d;
@@ -27,13 +27,13 @@ public class PlayerCharacter implements Entity {
 	private boolean justJumped = false;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
-	private boolean crouching;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
 	}
 
 	public PlayerCharacter(Position position) {
+		this.hitbox= new Hitbox(10, 15);
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
@@ -42,21 +42,19 @@ public class PlayerCharacter implements Entity {
 		this.direction = Direction.RIGHT;
 		this.collidingList = new ArrayList<CollisionEvent>();
 		this.gravity = new Vector2D(0,1);
-		this.hbCopy = this.hitbox;
-		this.crouching = false;
 	}
 
 	public void jump() {
 		this.jumping = true;
 	}
 	public void toggleCrouch(){
-		if(!crouching){
+			this.hbCopy=this.hitbox;
 			this.hitbox=new Hitbox(10,10);
-			this.crouching = true;
-		}else{
-			this.hitbox=this.hbCopy;
-			this.crouching=false;
-		}
+			this.pt=new Position(this.pt.getX(),this.pt.getY()+5.0f);
+	}
+	public void unToggleCrouch(){
+			this.pt=new Position(this.pt.getX(),this.pt.getY()-5.0f);
+			this.hitbox =this.hbCopy;
 	}
 
 	public void stopJump() {
@@ -205,6 +203,7 @@ public class PlayerCharacter implements Entity {
 		List<String> list = new ArrayList<String>();
 		list.add("Block");
 		list.add("MovableBlock");
+		list.add("PlayerCharacter");
 		return list;
 	}
 

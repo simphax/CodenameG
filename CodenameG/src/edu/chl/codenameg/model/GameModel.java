@@ -154,7 +154,7 @@ public class GameModel {
 			this.startGame();
 			break;
 		case PLAYER_1_TOGGLE_CROUCH:
-			getPlayer(1).toggleCrouch();
+			getPlayer(1).unToggleCrouch();
 			break;
 		case PLAYER_2_MOVE_LEFT:
 			getPlayer(2).stopMove();
@@ -166,7 +166,7 @@ public class GameModel {
 			getPlayer(2).stopJump();
 			break;
 		case PLAYER_2_TOGGLE_CROUCH:
-			getPlayer(2).toggleCrouch();
+			getPlayer(2).unToggleCrouch();
 			break;
 		default:
 			break;
