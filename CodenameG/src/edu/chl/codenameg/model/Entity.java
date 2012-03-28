@@ -22,7 +22,7 @@ public interface Entity {
 	
 	public boolean isColliding();
 
-	public void collide(Entity e);
+	public void collide(CollisionEvent evt);
 	
 	public void update(int elapsedTime);
 

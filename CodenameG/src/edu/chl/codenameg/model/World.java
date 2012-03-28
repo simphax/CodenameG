@@ -68,9 +68,11 @@ public class World {
 					+ addx, Math.round(e.getPosition().getY()), e.getHitbox()
 					.getWidth(), e.getHitbox().getHeight()))) {
 				if(colliding != e) {
-					if (!collided.contains(colliding)) {// Collide method calls is always sent
-						colliding.collide(e);
-						e.collide(colliding);
+					Direction d = Math.signum(preferredx) > 0 ? Direction.LEFT : Direction.RIGHT;
+
+					if (!collided.contains(colliding)) { 
+						colliding.collide(new CollisionEvent(e,d));
+						e.collide(new CollisionEvent(colliding,d));
 					}
 					
 					if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
@@ -92,7 +94,7 @@ public class World {
 	private boolean motiony(Entity e, float movey) {
 		// TODO float->int conversion!!!
 		int preferredy = Math.round(movey);
-		List<Entity> collided = new ArrayList<Entity>();
+		List<Entity> collided = new ArrayList<Entity>();//TODO
 
 		int addy = Math.signum(preferredy) > 0 ? 1 : -1;
 		for (int y = 0; y < Math.abs(preferredy); y++) {
@@ -103,10 +105,12 @@ public class World {
 							+ addy, e.getHitbox().getWidth(), e.getHitbox()
 							.getHeight()))) {
 				if(colliding != e) {
+					
+					Direction d = Math.signum(preferredy) > 0 ? Direction.TOP : Direction.BOTTOM;
 
 					if (!collided.contains(colliding)) { 
-						colliding.collide(e);
-						e.collide(colliding);
+						colliding.collide(new CollisionEvent(e,d));
+						e.collide(new CollisionEvent(colliding,d));
 					}
 					
 					if (e.getCollideTypes().contains(colliding.getType())) { 
@@ -207,8 +211,8 @@ public class World {
 					}
 				}
 				if (collision) {
-					e.collide(target);
-					target.collide(e);
+					/*e.collide(target);
+					target.collide(e);*/
 				}
 			}
 

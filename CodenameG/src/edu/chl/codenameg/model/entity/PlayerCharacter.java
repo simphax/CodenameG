@@ -3,6 +3,7 @@ package edu.chl.codenameg.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
@@ -24,7 +25,7 @@ public class PlayerCharacter implements Entity {
 	private boolean onGround = false;
 	private boolean jumping = false;
 	private boolean justJumped = false;
-	private List<Entity> collidingList;
+	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
 	private boolean crouching;
 
@@ -39,7 +40,7 @@ public class PlayerCharacter implements Entity {
 		this.v2d = new Vector2D(0, 0);
 		this.addVector = new Vector2D(0, 0);
 		this.direction = Direction.RIGHT;
-		this.collidingList = new ArrayList<Entity>();
+		this.collidingList = new ArrayList<CollisionEvent>();
 		this.gravity = new Vector2D(0,1);
 		this.hbCopy = this.hitbox;
 		this.crouching = false;
@@ -87,14 +88,14 @@ public class PlayerCharacter implements Entity {
 		return temp;
 	}
 
-	public void collide(Entity e) {
+	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		if (this.getPosition().getY() + this.getHitbox().getHeight() == e.getPosition().getY() && this.getCollideTypes().contains(e.getType())) {
+		if (this.getPosition().getY() + this.getHitbox().getHeight() == evt.getEntity().getPosition().getY() && this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.onGround = true;
 			this.justJumped = false;
 		}
 
-		this.collidingList.add(e);
+		this.collidingList.add(evt);
 	}
 
 	public void update() {

@@ -3,6 +3,7 @@ package edu.chl.codenameg.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
@@ -46,7 +47,7 @@ public class Block implements Entity{
 		return colliding;
 	}
 
-	public void collide(Entity e) {
+	public void collide(CollisionEvent evt) {
 		this.colliding = true;
 		
 	}

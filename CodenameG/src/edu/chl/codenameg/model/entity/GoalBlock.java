@@ -1,6 +1,7 @@
 package edu.chl.codenameg.model.entity;
 
 
+import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
@@ -8,10 +9,10 @@ import edu.chl.codenameg.model.Position;
 public class GoalBlock extends Block{
 	
 	@Override
-	public void collide(Entity e){
-		super.collide(e);
-		if(e instanceof PlayerCharacter){
-			PlayerCharacter skilledPlayer = (PlayerCharacter)e;
+	public void collide(CollisionEvent evt){
+		super.collide(evt);
+		if(evt.getEntity() instanceof PlayerCharacter){
+			PlayerCharacter skilledPlayer = (PlayerCharacter)evt.getEntity();
 			skilledPlayer.winGame();
 		}
 	}

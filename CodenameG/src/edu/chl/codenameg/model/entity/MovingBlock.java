@@ -2,6 +2,7 @@ package edu.chl.codenameg.model.entity;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.EntityTweenAccessor;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
@@ -16,11 +17,11 @@ public class MovingBlock extends Block {
 	private TweenManager manager = new TweenManager();
 
 	@Override
-	public void collide(Entity e) {
-		super.collide(e);
+	public void collide(CollisionEvent evt) {
+		super.collide(evt);
 		//TODO send friction to playercharacter
-		if (e instanceof PlayerCharacter) {
-			PlayerCharacter landedPlayer = (PlayerCharacter) e;
+		if (evt.getEntity() instanceof PlayerCharacter) {
+			PlayerCharacter landedPlayer = (PlayerCharacter) evt.getEntity();
 			if(landedPlayer.getPosition().getY() + landedPlayer.getHitbox().getHeight() == this.getPosition().getY()) { //If player is on top.
 				landedPlayer.addVector2D(new Vector2D(this.getVector2D().getX(),0));
 			}
