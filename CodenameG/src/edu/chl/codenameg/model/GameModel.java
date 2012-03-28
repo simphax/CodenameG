@@ -44,14 +44,16 @@ public class GameModel {
 		MovingBlock movingblock4 = new MovingBlock(new Hitbox(20, 20), new Position(150, 180), new Position(225, 180), 1000);
 
 		GoalBlock goalblock = new GoalBlock(new Hitbox(10, 25), new Position(130, 175));
-
-		PlayerCharacter pc = new PlayerCharacter();
-		pc.setPosition(new Position(200, 50));
+		PlayerCharacter pc2 = new PlayerCharacter();
+		PlayerCharacter pc1 = new PlayerCharacter();
+		pc1.setPosition(new Position(200, 50));
+		pc2.setPosition(new Position(180,50));
 
 		testWorld.add(block);
 		testWorld.add(block2);
 		testWorld.add(block3);
-		testWorld.add(pc);
+		testWorld.add(pc1);
+		testWorld.add(pc2);
 		testWorld.add(movingblock);
 		testWorld.add(movingblock2);
 		testWorld.add(movingblock3);
@@ -59,7 +61,9 @@ public class GameModel {
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
 		listOfPC.removeAll(listOfPC);
-		listOfPC.add(pc);
+		listOfPC.add(pc1);
+		
+		listOfPC.add(pc2);
 		
 		return testWorld;
 	}
@@ -97,6 +101,15 @@ public class GameModel {
 	
 	public void performAction(Action action) {
 		switch (action) {
+		case START_GAME:
+			this.startGame();
+			break;
+		case PAUSE_GAME:
+			this.pauseGame(this.getWorld());
+			break;
+		case RESTART_GAME:
+			this.restartGame();
+			break;
 		case PLAYER_1_MOVE_LEFT:
 			getPlayer(1).move(Direction.LEFT);
 			break;
@@ -106,8 +119,20 @@ public class GameModel {
 		case PLAYER_1_JUMP:
 			getPlayer(1).jump();
 			break;
-		case START_GAME:
-			this.startGame();
+		case PLAYER_1_TOGGLE_CROUCH:
+			getPlayer(1).toggleCrouch();
+			break;
+		case PLAYER_2_MOVE_LEFT:
+			getPlayer(2).move(Direction.LEFT);
+			break;
+		case PLAYER_2_MOVE_RIGHT:
+			getPlayer(2).move(Direction.RIGHT);
+			break;
+		case PLAYER_2_JUMP:
+			getPlayer(2).jump();
+			break;
+		case PLAYER_2_TOGGLE_CROUCH:
+			getPlayer(2).toggleCrouch();
 			break;
 		default:
 			break;
@@ -127,6 +152,21 @@ public class GameModel {
 			break;
 		case START_GAME:
 			this.startGame();
+			break;
+		case PLAYER_1_TOGGLE_CROUCH:
+			getPlayer(1).toggleCrouch();
+			break;
+		case PLAYER_2_MOVE_LEFT:
+			getPlayer(2).stopMove();
+			break;
+		case PLAYER_2_MOVE_RIGHT:
+			getPlayer(2).stopMove();
+			break;
+		case PLAYER_2_JUMP:
+			getPlayer(2).stopJump();
+			break;
+		case PLAYER_2_TOGGLE_CROUCH:
+			getPlayer(2).toggleCrouch();
 			break;
 		default:
 			break;

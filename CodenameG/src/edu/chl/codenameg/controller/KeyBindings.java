@@ -3,6 +3,7 @@ package edu.chl.codenameg.controller;
 import java.awt.event.KeyEvent;
 
 import edu.chl.codenameg.model.Action;
+import edu.chl.codenameg.model.Direction;
 
 public class KeyBindings {
 	
@@ -28,6 +29,8 @@ public class KeyBindings {
 				return Action.PLAYER_2_JUMP;
 			case KeyEvent.VK_C:
 				return Action.PLAYER_2_TOGGLE_CROUCH;
+			case KeyEvent.VK_P:
+				return Action.PAUSE_GAME;
 			default:
 				return Action.NO_ACTION;
 		}
