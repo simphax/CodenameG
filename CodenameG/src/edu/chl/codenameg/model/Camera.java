@@ -4,33 +4,23 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 public class Camera {
-	private Point position;
+	
+	private Position position;
 	private Dimension size;
-
 	
 	public Camera() {
-		position = new Point(0,0);
-		size = new Dimension(1024, 768);
+		this.position = new Position(0,0);
+		this.size = new Dimension(1024, 768);
 	}
 	
 	public Camera(Dimension size) {
 		this();
-		this.size = size;
+		this.size = size; 
 	}
 	
-//	public Camera(Point position) {
-//		this();
-//		this.position = position;
-//	}
-//	
-//	public Camera(Point position, Dimension size) {
-//		this();
-//		this.position = position;
-//		this.size = size;
-//	}
-	
-	public Point getPosition() {
-		return position;
+	public Position getPosition() {
+		Position p = new Position(this.position);
+		return p;
 	}
 	
 	public Dimension getSize() {
@@ -38,11 +28,15 @@ public class Camera {
 	}
 	
 	public void update() {
-		int x = this.position.x;
-		int y = this.position.y;
-		int newX = x+1;
-		
-		this.position.move(newX, y);
+		this.update(10);
+	}
+	
+	public void update(int elapsedTime) {
+		float x = this.position.getX();
+		float y = this.position.getY();
+		float newX = (float)(x+1)/*(x + (10 / elapsedTime))*/;
+		this.position.setX(newX);
+		this.position.setY(y);
 	}
 	
 }
