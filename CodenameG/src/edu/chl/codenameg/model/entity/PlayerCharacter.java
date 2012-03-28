@@ -236,6 +236,7 @@ public class PlayerCharacter implements Entity {
 	public List<String> getCollideTypes() {
 		List<String> list = new ArrayList<String>();
 		list.add("Block");
+		list.add("MovableBlock");
 		return list;
 	}
 

@@ -73,10 +73,12 @@ public class World {
 						e.collide(colliding);
 					}
 					
+					if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
+						motionx(colliding, Math.signum(preferredx));
+					}
+					
 					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
 						return false;
-					} else if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
-						motionx(colliding, Math.signum(preferredx));
 					} 
 					//Otherwise just pass through the entity
 				}
