@@ -8,6 +8,8 @@ public class KeyBindings {
 	
 	public static Action getAction(int key) {
 		switch (key) {
+			case KeyEvent.VK_R:
+				return Action.RESTART_GAME;
 			case KeyEvent.VK_ENTER:
 				return Action.START_GAME;
 			case KeyEvent.VK_LEFT:
@@ -16,6 +18,26 @@ public class KeyBindings {
 				return Action.PLAYER_1_MOVE_RIGHT;
 			case KeyEvent.VK_UP:
 				return Action.PLAYER_1_JUMP;
+			case KeyEvent.VK_M:
+				return Action.PLAYER_1_TOGGLE_CROUCH;
+			default:
+				return Action.NO_ACTION;
+		}
+	}
+	public static Action getAction2(int key) {
+		switch (key) {
+			case KeyEvent.VK_R:
+				return Action.RESTART_GAME;
+			case KeyEvent.VK_ENTER:
+				return Action.START_GAME;
+			case KeyEvent.VK_A:
+				return Action.PLAYER_2_MOVE_LEFT;
+			case KeyEvent.VK_D:
+				return Action.PLAYER_2_MOVE_RIGHT;
+			case KeyEvent.VK_W:
+				return Action.PLAYER_2_JUMP;
+			case KeyEvent.VK_C:
+				return Action.PLAYER_2_TOGGLE_CROUCH;
 			default:
 				return Action.NO_ACTION;
 		}

@@ -49,7 +49,7 @@ public class PlayerCharacter implements Entity {
 	public void jump() {
 		this.jumping = true;
 	}
-	public void crouch(){
+	public void toggleCrouch(){
 		if(!crouching){
 			this.hitbox=new Hitbox(10,10);
 			this.crouching = true;
