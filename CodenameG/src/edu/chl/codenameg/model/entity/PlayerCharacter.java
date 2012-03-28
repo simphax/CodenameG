@@ -54,6 +54,7 @@ public class PlayerCharacter implements Entity {
 			this.crouching = true;
 		}else{
 			this.hitbox=this.hbCopy;
+			this.crouching=false;
 		}
 	}
 
