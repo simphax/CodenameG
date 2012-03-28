@@ -9,14 +9,20 @@ import java.util.List;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class World {
+	
+	private boolean gameOver;
+	private boolean hasWonGame;
 
 	private List<Entity> entities;
 
 	public World() {
+		this.gameOver = false;
+		this.hasWonGame = false;
 		this.entities = new ArrayList<Entity>();
 	}
 
 	public World(World copy) {
+		this();
 		this.entities = copy.getEntities();
 	}
 
@@ -36,7 +42,10 @@ public class World {
 		for (Entity e : this.getEntities()) {
 			if(e instanceof PlayerCharacter) {
 				PlayerCharacter pc = (PlayerCharacter)e;
-				if(!pc.isAlive()) {
+				if (pc.hasWonGame()) {
+					this.hasWonGame = true;
+					this.gameOver();
+				} else if(!pc.isAlive()) {
 					this.gameOver();
 				}
 			}
@@ -52,7 +61,15 @@ public class World {
 	}
 	
 	public void gameOver() {
-		//TODO implement
+		this.gameOver = true;
+	}
+	
+	public boolean isGameOver() {
+		return this.gameOver;
+	}
+	
+	public boolean isGameWon() {
+		return this.hasWonGame;
 	}
 
 	private boolean motionx(Entity e, float movex) {

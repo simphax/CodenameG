@@ -141,16 +141,22 @@ public class GameModel {
 		if (world != null && running) {
 			world.update(elapsedTime);
 		}
-		for (Entity entity : world.getEntities()) {
-			if (entity instanceof PlayerCharacter) {
-				PlayerCharacter pc = (PlayerCharacter)entity;
-				if (pc.hasWonGame()) {
-					this.restartGame();
-					System.out.println("Congratulations for winning the game!");
-				} else if (!(pc.isAlive())) {
-					this.restartGame(); // TODO Skriv klart
-				}
+		if (world.isGameOver()) {
+			if (world.isGameWon()) {
+				System.out.println("Congratulations!");
 			}
+			this.restartGame();
 		}
+//		for (Entity entity : world.getEntities()) {
+//			if (entity instanceof PlayerCharacter) {
+//				PlayerCharacter pc = (PlayerCharacter)entity;
+//				if (pc.hasWonGame()) {
+//					this.restartGame();
+//					System.out.println("Congratulations for winning the game!");
+//				} else if (!(pc.isAlive())) {
+//					this.restartGame(); // TODO Skriv klart
+//				}
+//			}
+//		}
 	}
 }
