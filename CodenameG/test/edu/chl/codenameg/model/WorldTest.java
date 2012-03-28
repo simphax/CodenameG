@@ -1,8 +1,6 @@
 package edu.chl.codenameg.model;
 
-import static org.junit.Assert.*;
-
-import java.awt.Point;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
