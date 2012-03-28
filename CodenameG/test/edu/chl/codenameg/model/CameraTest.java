@@ -3,7 +3,6 @@ package edu.chl.codenameg.model;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Dimension;
-import java.awt.Point;
 
 import org.junit.Test;
 
