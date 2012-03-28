@@ -90,7 +90,7 @@ public class PlayerCharacter implements Entity {
 
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		if (this.getPosition().getY() + this.getHitbox().getHeight() == evt.getEntity().getPosition().getY() && this.getCollideTypes().contains(evt.getEntity().getType())) {
+		if (this.getCollideTypes().contains(evt.getEntity().getType()) && (evt.getDirection() == Direction.BOTTOM)) {
 			this.onGround = true;
 			this.justJumped = false;
 		}
@@ -100,47 +100,39 @@ public class PlayerCharacter implements Entity {
 
 
 	private void checkCollisionDeath() {
+		
 		//TODO Check collision from both sides.
 		if (collidingList.size() > 0) {
 			int collideLeftCount = 0;
 			int collideRightCount = 0;
 			int collideTopCount = 0;
 			int collideBottomCount = 0;
-//			for (Entity colliding : collidingList) {
-//				if (colliding.getPosition().getX() + colliding.getHitbox().getWidth() >= this.getPosition().getX() && colliding.getPosition().getX() + colliding.getHitbox().getWidth() <= this.getPosition().getX() + this.getHitbox().getWidth()) {
-//					collideLeftCount++;
-//				}
-//				if (colliding.getPosition().getX() <= this.getPosition().getX() + this.getHitbox().getWidth() && colliding.getPosition().getX() >= this.getPosition().getX()) {
-//					collideRightCount++;
-//				}
-//				if (colliding.getPosition().getY() + colliding.getHitbox().getHeight() >= this.getPosition().getY() && colliding.getPosition().getY() + colliding.getHitbox().getHeight() <= this.getPosition().getY() + this.getHitbox().getHeight()) {
-//					collideTopCount++;
-//				}
-//				if (colliding.getPosition().getY() <= this.getPosition().getY() + this.getHitbox().getHeight() && colliding.getPosition().getY() >= this.getPosition().getY()) {
-//					collideBottomCount++;
-//				}
-//			}
-//			Rectangle thisRectangle = new Rectangle(Math.round(this.getPosition().getX()), Math.round(this.getPosition().getY()), this.getHitbox().getWidth(), this.getHitbox().getHeight());
-//			for (Entity colliding : collidingList) {
-//				Rectangle collidingRectangle = new Rectangle(Math.round(colliding.getPosition().getX()), Math.round(colliding.getPosition().getY()), colliding.getHitbox().getWidth(), colliding.getHitbox().getHeight());
-//				Rectangle intersection = thisRectangle.intersection(collidingRectangle);
-//				if(intersection.getX() == this.getPosition().getX()) {
-//					collideLeftCount++;
-//				}
-//				if(intersection.getX() + intersection.getWidth() == this.getPosition().getX() + this.getHitbox().getWidth()) {
-//					collideRightCount++;
-//				}
-//				if(intersection.getY() == this.getPosition().getY()) {
-//					collideTopCount++;
-//				}
-//				if(intersection.getY() + intersection.getHeight() == this.getPosition().getY() + this.getHitbox().getHeight()) {
-//					collideBottomCount++;
-//				}
-//			}
 			
-			if (collideLeftCount > 0 && collideRightCount > 0) {
+			System.out.println("CollidingList!!!---------");
+			for(CollisionEvent evt : collidingList) {
+				System.out.println(evt.getDirection());
+			}
+			
+			for(CollisionEvent evt : collidingList) {
+				switch(evt.getDirection()) {
+				case LEFT:
+					collideLeftCount++;
+					break;
+				case RIGHT:
+					collideRightCount++;
+					break;
+				case TOP:
+					collideTopCount++;
+					break;
+				case BOTTOM:
+					collideBottomCount++;
+					break;
+				}
+			}
+			
+			if ((collideLeftCount > 0) && (collideRightCount > 0)) {
 				this.die();
-			} else if (collideTopCount > 0 && collideBottomCount > 0) {
+			} else if ((collideTopCount > 0 ) && (collideBottomCount > 0)) {
 				this.die();
 			}
 			this.collidingList.clear();

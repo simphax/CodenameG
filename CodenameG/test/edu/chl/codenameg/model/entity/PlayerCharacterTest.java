@@ -2,6 +2,8 @@ package edu.chl.codenameg.model.entity;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+
+import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
@@ -102,5 +104,13 @@ public class PlayerCharacterTest {
 		mb.collide(chewbaka);
 		chewbaka.setVector2D(new Vector2D(1,1));
 		assertTrue((chewbaka.getVector2D().equals(new Vector2D(2,0))));
+	}
+	@Test
+	public void testDieOnTwoCollides(){
+		PlayerCharacter rocky = new PlayerCharacter();
+		rocky.collide(new CollisionEvent(new Block(), Direction.LEFT));
+		rocky.collide(new CollisionEvent(new Block(), Direction.RIGHT));
+		rocky.update(10);
+		assertTrue(!rocky.isAlive());
 	}
 }
