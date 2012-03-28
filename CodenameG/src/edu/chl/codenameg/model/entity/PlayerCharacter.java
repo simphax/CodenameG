@@ -10,7 +10,7 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class PlayerCharacter implements Entity {
-	private final Hitbox hitbox = new Hitbox(10, 15);
+	private Hitbox hitbox = new Hitbox(10, 15);
 	private boolean gameWon;
 	private Position pt;
 	private Vector2D v2d;
@@ -25,6 +25,8 @@ public class PlayerCharacter implements Entity {
 	private boolean jumping = false;
 	private boolean justJumped = false;
 	private List<Entity> collidingList;
+	private Hitbox hbCopy;
+	private boolean crouching;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
@@ -39,10 +41,20 @@ public class PlayerCharacter implements Entity {
 		this.direction = Direction.RIGHT;
 		this.collidingList = new ArrayList<Entity>();
 		this.gravity = new Vector2D(0,1);
+		this.hbCopy = this.hitbox;
+		this.crouching = false;
 	}
 
 	public void jump() {
 		this.jumping = true;
+	}
+	public void crouch(){
+		if(!crouching){
+			this.hitbox=new Hitbox(10,10);
+			this.crouching = true;
+		}else{
+			this.hitbox=this.hbCopy;
+		}
 	}
 
 	public void stopJump() {
@@ -90,9 +102,6 @@ public class PlayerCharacter implements Entity {
 
 	public void update(int elapsedTime) {
 		this.checkCollisionDeath();
-		if (!alive) {
-			
-		}
 		
 		this.v2d = new Vector2D(addVector);
 		this.addVector = new Vector2D(0, 0);
