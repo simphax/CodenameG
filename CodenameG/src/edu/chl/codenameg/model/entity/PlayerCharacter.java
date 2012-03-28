@@ -106,11 +106,6 @@ public class PlayerCharacter implements Entity {
 			int collideTopCount = 0;
 			int collideBottomCount = 0;
 			
-			System.out.println("CollidingList!!!---------");
-			for(CollisionEvent evt : collidingList) {
-				System.out.println(evt.getDirection());
-			}
-			
 			for(CollisionEvent evt : collidingList) {
 				switch(evt.getDirection()) {
 				case LEFT:
