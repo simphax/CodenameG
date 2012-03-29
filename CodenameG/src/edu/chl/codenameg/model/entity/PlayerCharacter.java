@@ -21,7 +21,6 @@ public class PlayerCharacter implements Entity {
 	private boolean alive;
 	private Direction direction;
 	private boolean moving;
-	private int acc;
 	private boolean onGround = false;
 	private boolean jumping = false;
 	private boolean justJumped = false;
@@ -60,8 +59,7 @@ public class PlayerCharacter implements Entity {
 	public void stopJump() {
 		if(jumping)
 			this.justJumped = true;
-		this.jumping = false;
-		
+		this.jumping = false;	
 	}
 
 	public void move() {
@@ -177,15 +175,6 @@ public class PlayerCharacter implements Entity {
 
 	public boolean isAlive() {
 		boolean temp = this.alive;
-		return temp;
-	}
-
-	public void setAcceleration(int a) {
-		this.acc = a;
-	}
-
-	public int getAcceleration() {
-		int temp = this.acc;
 		return temp;
 	}
 

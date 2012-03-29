@@ -4,10 +4,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
+import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
+import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class GoalBlockTest {
 
@@ -32,6 +36,14 @@ public class GoalBlockTest {
 		assertTrue(block.getVector2D().equals(v2d));
 	}
 	@Test
+	public void testPlayerCollide(){ // this is the distinction between other block implementations
+		GoalBlock gb = new GoalBlock();
+		PlayerCharacter pc = new PlayerCharacter();
+		gb.collide(new CollisionEvent(pc,Direction.TOP));
+		pc.collide(new CollisionEvent(gb,Direction.BOTTOM));
+		assertTrue(gb.isColliding() && pc.isColliding() && pc.hasWonGame());
+	}	
+	/*@Test
 	public void testIsColliding(){
 		GoalBlock block1 = new GoalBlock();
 		GoalBlock block2 = new GoalBlock();
@@ -41,5 +53,5 @@ public class GoalBlockTest {
 		block1.collide(block2);
 		block2.collide(block1);
 		assertTrue(block1.isColliding() && block2.isColliding());
-	}
+	}*/
 }
