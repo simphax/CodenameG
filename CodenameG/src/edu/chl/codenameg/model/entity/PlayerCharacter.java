@@ -44,7 +44,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void jump() {
-		this.jumping = true;
+			this.jumping = true;
 	}
 	public void toggleCrouch(){
 			this.hbCopy=this.hitbox;
@@ -105,19 +105,21 @@ public class PlayerCharacter implements Entity {
 			int collideBottomCount = 0;
 			
 			for(CollisionEvent evt : collidingList) {
-				switch(evt.getDirection()) {
-				case LEFT:
-					collideLeftCount++;
-					break;
-				case RIGHT:
-					collideRightCount++;
-					break;
-				case TOP:
-					collideTopCount++;
-					break;
-				case BOTTOM:
-					collideBottomCount++;
-					break;
+				if(!(evt.getEntity() instanceof PlayerCharacter)){
+					switch(evt.getDirection()) {
+					case LEFT:
+						collideLeftCount++;
+						break;
+					case RIGHT:
+						collideRightCount++;
+						break;
+					case TOP:
+						collideTopCount++;
+						break;
+					case BOTTOM:
+						collideBottomCount++;
+						break;
+					}
 				}
 			}
 			
@@ -215,7 +217,7 @@ public class PlayerCharacter implements Entity {
 			this.v2d.add(new Vector2D(-1, 0));
 		}
 
-		if (jumping && !justJumped) {
+		if (jumping && !justJumped ) {
 			this.v2d.add(new Vector2D(0,-4));
 		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0,-2));
