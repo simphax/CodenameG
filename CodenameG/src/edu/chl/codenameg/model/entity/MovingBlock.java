@@ -1,8 +1,12 @@
 package edu.chl.codenameg.model.entity;
 
 import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenEquation;
+import aurelienribon.tweenengine.TweenEquations;
 import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.Quad;
 import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.EntityTweenAccessor;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
@@ -15,30 +19,23 @@ public class MovingBlock extends Block {
 	private Position endPos;
 	private Position startPos;
 	private TweenManager manager = new TweenManager();
-
-	@Override
-	public void collide(CollisionEvent evt) {
-		super.collide(evt);
-		//TODO send friction to playercharacter
-		if (evt.getEntity() instanceof PlayerCharacter) {
-			PlayerCharacter landedPlayer = (PlayerCharacter) evt.getEntity();
-			if(landedPlayer.getPosition().getY() + landedPlayer.getHitbox().getHeight() == this.getPosition().getY()) { //If player is on top.
-				landedPlayer.addVector2D(new Vector2D(this.getVector2D().getX(),0));
-			}
-		}
-	}
+	private int currentTime = 0;
+	private TweenEquation easing;
 
 	public MovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime) {
 		super(hb, ps);
-		this.startPos=ps;
+		this.startPos = ps;
 		this.endPos = endPos;
 		this.travelTime = travelTime;
-		Tween.registerAccessor(MovingBlock.class, new EntityTweenAccessor());
-		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
-				.target(endPos.getX(), endPos.getY()).repeat(-1, this.travelTime).start(manager);
-		Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
-		.target(ps.getX(), ps.getY()).repeat(-1, this.travelTime).delay(this.travelTime).start(manager);
-		
+		this.easing = Quad.INOUT;
+		// Tween.registerAccessor(MovingBlock.class, new EntityTweenAccessor());
+		// Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
+		// .target(endPos.getX(), endPos.getY()).repeat(-1,
+		// this.travelTime).start(manager);
+		// Tween.to(this, EntityTweenAccessor.POSITION_XY, this.travelTime)
+		// .target(ps.getX(), ps.getY()).repeat(-1,
+		// this.travelTime).delay(this.travelTime).start(manager);
+
 	}
 
 	public MovingBlock() {
@@ -46,10 +43,42 @@ public class MovingBlock extends Block {
 				7.5f), 100);
 	}
 
-	public void update(int elapsedTime) {
-		manager.update(elapsedTime);
+	@Override
+	public void collide(CollisionEvent evt) {
+		super.collide(evt);
+		// TODO send friction to playercharacter
+		if (evt.getEntity() instanceof PlayerCharacter) {
+			PlayerCharacter landedPlayer = (PlayerCharacter) evt.getEntity();
+			if (evt.getDirection() == Direction.TOP) { // If player is on top.
+				landedPlayer.addVector2D(new Vector2D(this.calculateNextVector(10).getX(), 0));				
+			}
+		}
 	}
 
-	// We can now create as many interpolations as we need !
+	public Vector2D calculateNextVector(int elapsedTime) {
+
+		int time = this.currentTime + elapsedTime;
+		int rounds = 0;
+
+		while (time > this.travelTime) {
+			time -= this.travelTime;
+			rounds++;
+		}
+		
+		time = rounds % 2 == 0 ? time : this.travelTime-time;
+
+		float x = this.easing.compute(time, this.startPos.getX(),
+				this.endPos.getX() - this.startPos.getX(), this.travelTime);
+		float y = this.easing.compute(time, this.startPos.getY(),
+				this.endPos.getY() - this.startPos.getY(), this.travelTime);
+		return new Vector2D(x - this.getPosition().getX(), y
+				- this.getPosition().getY());
+	}
+
+	public void update(int elapsedTime) {
+		// manager.update(elapsedTime);
+		this.setVector2D(this.calculateNextVector(elapsedTime));
+		currentTime += elapsedTime;
+	}
 
 }
