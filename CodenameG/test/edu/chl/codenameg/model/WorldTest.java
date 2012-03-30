@@ -2,6 +2,9 @@ package edu.chl.codenameg.model;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import edu.chl.codenameg.model.entity.Block;
@@ -52,19 +55,67 @@ public class WorldTest {
 	@Test
 	public void testEntityMoveAndCollide() {
 		World world = new World();
-		Block block = new Block();
-		Block block2 = new Block();
+		Block block = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		Block block2 = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
 		
-		block.setVector2D(new Vector2D(2,2));
-		block2.setVector2D(new Vector2D(3,3));
-		block.setPosition(new Position(10,10));
-		block2.setPosition(new Position(10,10));
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setVector2D(new Vector2D(10,0));
+		block2.setVector2D(new Vector2D(-10,0));
+		block.setPosition(new Position(0,0));
+		block2.setPosition(new Position(20,0));
 		world.add(block);
 		world.add(block2);
 		world.update(10);
+		assertTrue(block.isColliding() && block2.isColliding() && block.getPosition().getX() == 5 && block2.getPosition().getX() == 15);
+	}
+	
+	@Test
+	public void testEntityMoveAndPush() {
+		World world = new World();
+		Block block = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				
+				return list;
+			}
+		};
+		Block block2 = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setVector2D(new Vector2D(10,0));
+		block2.setVector2D(new Vector2D(-10,0));
+		block.setPosition(new Position(0,0));
+		block2.setPosition(new Position(20,0));
+		world.add(block);
+		world.add(block2);
 		world.update(10);
-		world.update(10);
-		assertTrue(block.getPosition().getY() < block2.getPosition().getY() && block.getPosition().getX() < block2.getPosition().getX());
+		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
+		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
+		assertTrue(block.getPosition().getX() == 10f && block2.getPosition().getX() == 20f);
 	}
 	
 	
