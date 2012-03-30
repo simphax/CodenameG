@@ -26,6 +26,7 @@ public class PlayerCharacter implements Entity {
 	private boolean justJumped = false;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
+	private Position startPos;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
@@ -36,6 +37,7 @@ public class PlayerCharacter implements Entity {
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
+		this.startPos = position;
 		this.v2d = new Vector2D(0, 0);
 		this.addVector = new Vector2D(0, 0);
 		this.direction = Direction.RIGHT;
@@ -144,7 +146,9 @@ public class PlayerCharacter implements Entity {
 	public void setPosition(Position p) {
 		this.pt = p;
 	}
-
+	public Position getStartPosition(){
+		return new Position(this.startPos);
+	}
 	public Position getPosition() {
 		return new Position(this.pt);
 	}

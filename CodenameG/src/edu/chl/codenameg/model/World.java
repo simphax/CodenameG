@@ -14,6 +14,7 @@ public class World {
 	private boolean hasWonGame;
 
 	private List<Entity> entities;
+	private int amountOfPlayers;
 
 	public World() {
 		this.gameOver = false;
@@ -27,9 +28,14 @@ public class World {
 	}
 
 	public void add(Entity e) {
-		entities.add(e);
+		if(e instanceof PlayerCharacter){
+			entities.add(e);
+			this.amountOfPlayers++;
+		}else{
+			entities.add(e);
+		}
 	}
-
+	
 	public List<Entity> getEntities() {
 		return new ArrayList<Entity>(this.entities);
 	}
@@ -42,12 +48,18 @@ public class World {
 		for (Entity e : this.getEntities()) {
 			if(e instanceof PlayerCharacter) {
 				PlayerCharacter pc = (PlayerCharacter)e;
-				if (pc.hasWonGame()) {
+				if (pc.hasWonGame() && this.getAmountOfPlayers() < 2) {
 					this.hasWonGame = true;
 					this.gameOver();
-				} else if(!pc.isAlive()) {
+				} else if(!pc.isAlive() && this.getAmountOfPlayers() < 2) {
 					this.gameOver();
-				}
+				} /*else if(pc.hasWonGame() && this.getAmountOfPlayers() > 2){
+					entities.remove(pc);
+					this.amountOfPlayers--;
+				} else if(!pc.isAlive() && this.getAmountOfPlayers() > 2){
+					entities.remove(pc);
+					entities.add(new PlayerCharacter(pc.getStartPosition()));
+				}*/
 			}
 			move(e);
 			e.update(elapsedTime);
@@ -70,6 +82,9 @@ public class World {
 	
 	public boolean isGameWon() {
 		return this.hasWonGame;
+	}
+	public int getAmountOfPlayers(){
+		return this.amountOfPlayers;
 	}
 
 	private boolean motionx(Entity e, float movex) {
