@@ -33,13 +33,13 @@ public class PlayerCharacterTest {
 	}
 	
 	@Test
-	public void testMove() {//TODO: correct implementation
+	public void testMove() {
 		PlayerCharacter pc = new PlayerCharacter();
-		Position pos = pc.getPosition();
-		pc.move();
+		Vector2D v2d1 = pc.getVector2D();
+		pc.move(Direction.LEFT);
 		pc.update(10);
-		Position newPos = pc.getPosition();
-		assertTrue(pos.equals(newPos));
+		Vector2D v2d2 = pc.getVector2D();
+		assertTrue(!v2d1.equals(v2d2));
 	}
 		
 	@Test
@@ -58,12 +58,16 @@ public class PlayerCharacterTest {
 		pc.jump();
 		pc.update();
 		assertTrue(pc.getVector2D().getY() < 0 );
-		
 	}
-	
 	@Test
-	public void testDeceleration() {
-		//TODO incomplete test
+	public void testStopJump(){
+		PlayerCharacter pc = new PlayerCharacter();
+		pc.jump();
+		pc.update();
+		boolean jumped = pc.isJumping();
+		pc.stopJump();
+		pc.update();
+		assertTrue(!jumped && pc.isJumping());
 	}
 	
 	@Test
@@ -73,6 +77,30 @@ public class PlayerCharacterTest {
 		anders.collide(new CollisionEvent(gb,Direction.BOTTOM));
 		gb.collide(new CollisionEvent(anders,Direction.TOP));
 		assertTrue(anders.hasWonGame());
+	}
+	@Test
+	public void testToggleCrouch(){
+		PlayerCharacter gimli = new PlayerCharacter();
+		float h1 = gimli.getHitbox().getHeight();
+		float p1 = gimli.getPosition().getY();
+		gimli.toggleCrouch();
+		gimli.update();
+		float h2 = gimli.getHitbox().getHeight();
+		float p2 = gimli.getPosition().getY();
+		assertTrue(h1 > h2 && p1 < p2);
+	}
+	@Test
+	public void testUnToggleCrouch(){
+		PlayerCharacter hulk = new PlayerCharacter();
+		hulk.toggleCrouch();
+		hulk.update();
+		float h1 = hulk.getHitbox().getHeight();
+		float p1 = hulk.getPosition().getY();
+		hulk.unToggleCrouch();
+		hulk.update();
+		float h2 = hulk.getHitbox().getHeight();
+		float p2 = hulk.getPosition().getY();
+		assertTrue(h2 > h1 && p2 < p1);
 	}
 	
 	@Test
@@ -90,11 +118,14 @@ public class PlayerCharacterTest {
 		chewbaka.setVector2D(new Vector2D(1,1));
 		chewbaka.collide(new CollisionEvent(mb,Direction.BOTTOM));
 		mb.collide(new CollisionEvent(chewbaka,Direction.TOP));
-		mb.update(1000);
-		chewbaka.update(500);
-		chewbaka.update(500);
-		System.out.println(chewbaka.getVector2D().getX() + " " + chewbaka.getVector2D().getY());
-		assertTrue((chewbaka.getVector2D().equals(new Vector2D(5.0f,0.98f))));
+		mb.update(1500);
+		chewbaka.update();
+		chewbaka.update();
+		float cx = chewbaka.getVector2D().getX() + mb.getVector2D().getX();
+		float cy = chewbaka.getVector2D().getY() + mb.getVector2D().getY();
+		
+		System.out.println(chewbaka.getVector2D().getX() + "    " + chewbaka.getVector2D().getY());
+		assertTrue((chewbaka.getVector2D().equals(new Vector2D(cx,cy))));
 	}
 	@Test
 	public void testDieOnTwoCollides(){

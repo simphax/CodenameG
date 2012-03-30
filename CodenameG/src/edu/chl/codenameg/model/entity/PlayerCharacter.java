@@ -181,6 +181,9 @@ public class PlayerCharacter implements Entity {
 	public boolean isOnGround() {
 		return this.onGround;
 	}
+	public boolean isJumping(){
+		return this.jumping;
+	}
 
 	@Override
 	public List<String> getCollideTypes() {

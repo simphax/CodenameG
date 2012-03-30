@@ -43,15 +43,4 @@ public class GoalBlockTest {
 		pc.collide(new CollisionEvent(gb,Direction.BOTTOM));
 		assertTrue(gb.isColliding() && pc.isColliding() && pc.hasWonGame());
 	}	
-	/*@Test
-	public void testIsColliding(){
-		GoalBlock block1 = new GoalBlock();
-		GoalBlock block2 = new GoalBlock();
-		Position p = new Position(10,20);
-		block1.setPosition(p);
-		block2.setPosition(p);
-		block1.collide(block2);
-		block2.collide(block1);
-		assertTrue(block1.isColliding() && block2.isColliding());
-	}*/
 }

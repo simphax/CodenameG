@@ -44,16 +44,4 @@ public class LethalBlockTest {
 		pc.collide(new CollisionEvent(lb,Direction.BOTTOM));
 		assertTrue(lb.isColliding() && pc.isColliding() && !pc.isAlive());
 	}	
-	
-	/*@Test
-	public void testIsColliding(){
-		LethalBlock block1 = new LethalBlock();
-		LethalBlock block2 = new LethalBlock();
-		Position p = new Position(10,20);
-		block1.setPosition(p);
-		block2.setPosition(p);
-		block1.collide(block2);
-		block2.collide(block1);
-		assertTrue(block1.isColliding() && block2.isColliding());
-	}*/
 }
