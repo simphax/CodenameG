@@ -142,7 +142,9 @@ public class World {
 					// allow it to move
 					if (e.getCollideTypes().contains(colliding.getType())) {
 						if(e.getType() == colliding.getType()) {
-							motionx(colliding, Math.signum(preferredx));
+							if(!motionx(colliding, Math.signum(preferredx))) {
+								return false;
+							}
 						} else {
 							return false;
 						}
