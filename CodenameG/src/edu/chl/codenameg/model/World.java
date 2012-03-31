@@ -8,6 +8,14 @@ import java.util.List;
 
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
+/*
+ * World model object
+ * 
+ * Contains all entities and the camera for a level in the game.
+ * 
+ * On update: moves all entities according to its vectors and collide types.
+ * 
+ */
 public class World {
 
 	private boolean gameOver;
@@ -35,6 +43,7 @@ public class World {
 			entities.add(e);
 		}
 	}
+
 	public void remove(Entity e) {
 		if (e instanceof PlayerCharacter) {
 			entities.remove(e);
@@ -63,7 +72,7 @@ public class World {
 				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
 					this.gameOver();
 				}
-				if(!pc.isAlive()) {
+				if (!pc.isAlive()) {
 					this.remove(pc);
 				}
 				/*
@@ -81,8 +90,8 @@ public class World {
 
 	private void move(Entity e) {
 		Vector2D vector = e.getVector2D();
-		motionx(e, vector.getX());
-		motiony(e, vector.getY());
+		stepPositionX(e, vector.getX());
+		stepPositionY(e, vector.getY());
 	}
 
 	public void gameOver() {
@@ -101,25 +110,25 @@ public class World {
 		return this.amountOfPlayers;
 	}
 
-	private boolean motionx(Entity e, float movex) {
+	private boolean stepPositionX(Entity e, float movex) {
 		// TODO float->int conversion!!!
 		int preferredx = Math.round(movex);
 		List<Entity> collided = new ArrayList<Entity>();
 		// System.out.println("NEW MOTIONX");
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
 		for (int x = 0; x < Math.abs(preferredx); x++) {
-			
+
 			// Send friction to objects on top
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
-					.round(e.getPosition().getX()), Math.round(e
-					.getPosition().getY())-1, e.getHitbox().getWidth(), 1))) {
+					.round(e.getPosition().getX()), Math.round(e.getPosition()
+					.getY()) - 1, e.getHitbox().getWidth(), 1))) {
 				if (colliding != e) {
 					if (colliding.getCollideTypes().contains(e.getType())) {
-						this.motionx(colliding, Math.signum(preferredx));
+						this.stepPositionX(colliding, Math.signum(preferredx));
 					}
 				}
 			}
-			
+
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
 					.round(e.getPosition().getX()
 							+ (x * Math.signum(preferredx)))
@@ -138,11 +147,12 @@ public class World {
 						collided.add(colliding);
 					}
 
-					// If the entity is set to collide with this entity, do not
-					// allow it to move
+					// If the entity is set to collide with this entity, check
+					// if the other has this in its list, in that case try to move that
+					// away and continue.
 					if (e.getCollideTypes().contains(colliding.getType())) {
-						if(colliding.getCollideTypes().contains(e.getType())) {
-							if(!motionx(colliding, Math.signum(preferredx))) {
+						if (colliding.getCollideTypes().contains(e.getType())) {
+							if (!stepPositionX(colliding, Math.signum(preferredx))) {
 								return false;
 							}
 						} else {
@@ -153,7 +163,7 @@ public class World {
 					// Else if the collided entity has this entity in his list,
 					// move it out of the way
 					else if (colliding.getCollideTypes().contains(e.getType())) {
-						motionx(colliding, Math.signum(preferredx));
+						stepPositionX(colliding, Math.signum(preferredx));
 					}
 
 					// Otherwise just pass through the entity
@@ -166,7 +176,7 @@ public class World {
 		return true;
 	}
 
-	private boolean motiony(Entity e, float movey) {
+	private boolean stepPositionY(Entity e, float movey) {
 		// TODO float->int conversion!!!
 		int preferredy = Math.round(movey);
 		List<Entity> collided = new ArrayList<Entity>();// TODO
@@ -193,8 +203,8 @@ public class World {
 					}
 
 					if (e.getCollideTypes().contains(colliding.getType())) {
-						if(colliding.getCollideTypes().contains(e.getType())) {
-							if(!motiony(colliding, Math.signum(preferredy))) {
+						if (colliding.getCollideTypes().contains(e.getType())) {
+							if (!stepPositionY(colliding, Math.signum(preferredy))) {
 								return false;
 							}
 						} else {
@@ -202,7 +212,7 @@ public class World {
 						}
 					} else if (colliding.getCollideTypes()
 							.contains(e.getType())) {
-						motiony(colliding, Math.signum(preferredy));
+						stepPositionY(colliding, Math.signum(preferredy));
 					}
 				}
 			}
