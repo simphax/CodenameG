@@ -108,7 +108,7 @@ public class PlayerCharacter implements Entity {
 			int collideBottomCount = 0;
 			
 			for(CollisionEvent evt : collidingList) {
-				if(!(evt.getEntity() instanceof PlayerCharacter)){
+//				if(!(evt.getEntity() instanceof PlayerCharacter)){
 					switch(evt.getDirection()) {
 					case LEFT:
 						collideLeftCount++;
@@ -123,7 +123,7 @@ public class PlayerCharacter implements Entity {
 						collideBottomCount++;
 						break;
 					}
-				}
+//				}
 			}
 			
 			if ((collideLeftCount > 0) && (collideRightCount > 0)) {
