@@ -141,7 +141,7 @@ public class World {
 					// If the entity is set to collide with this entity, do not
 					// allow it to move
 					if (e.getCollideTypes().contains(colliding.getType())) {
-						if(e.getType() == colliding.getType()) {
+						if(colliding.getCollideTypes().contains(e.getType())) {
 							if(!motionx(colliding, Math.signum(preferredx))) {
 								return false;
 							}
@@ -152,7 +152,7 @@ public class World {
 
 					// Else if the collided entity has this entity in his list,
 					// move it out of the way
-					if (colliding.getCollideTypes().contains(e.getType())) {
+					else if (colliding.getCollideTypes().contains(e.getType())) {
 						motionx(colliding, Math.signum(preferredx));
 					}
 
@@ -193,7 +193,13 @@ public class World {
 					}
 
 					if (e.getCollideTypes().contains(colliding.getType())) {
-						return false;
+						if(colliding.getCollideTypes().contains(e.getType())) {
+							if(!motiony(colliding, Math.signum(preferredy))) {
+								return false;
+							}
+						} else {
+							return false;
+						}
 					} else if (colliding.getCollideTypes()
 							.contains(e.getType())) {
 						motiony(colliding, Math.signum(preferredy));
