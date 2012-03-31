@@ -92,8 +92,9 @@ public class PlayerCharacter implements Entity {
 			this.onGround = true;
 			this.justJumped = false;
 		}
-
-		this.collidingList.add(evt);
+		if(evt.getEntity().getType() != this.getType() && this.getCollideTypes().contains(evt.getEntity().getType())) {
+			this.collidingList.add(evt);
+		}
 	}
 
 

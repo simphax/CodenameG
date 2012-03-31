@@ -35,6 +35,14 @@ public class World {
 			entities.add(e);
 		}
 	}
+	public void remove(Entity e) {
+		if (e instanceof PlayerCharacter) {
+			entities.remove(e);
+			this.amountOfPlayers--;
+		} else {
+			entities.remove(e);
+		}
+	}
 
 	public List<Entity> getEntities() {
 		return new ArrayList<Entity>(this.entities);
@@ -54,7 +62,11 @@ public class World {
 					this.gameOver();
 				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
 					this.gameOver();
-				} /*
+				}
+				if(!pc.isAlive()) {
+					this.remove(pc);
+				}
+				/*
 				 * else if(pc.hasWonGame() && this.getAmountOfPlayers() > 2){
 				 * entities.remove(pc); this.amountOfPlayers--; } else
 				 * if(!pc.isAlive() && this.getAmountOfPlayers() > 2){
@@ -96,6 +108,7 @@ public class World {
 		// System.out.println("NEW MOTIONX");
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
 		for (int x = 0; x < Math.abs(preferredx); x++) {
+			
 			// Send friction to objects on top
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
 					.round(e.getPosition().getX()), Math.round(e
@@ -106,6 +119,7 @@ public class World {
 					}
 				}
 			}
+			
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
 					.round(e.getPosition().getX()
 							+ (x * Math.signum(preferredx)))
@@ -127,7 +141,11 @@ public class World {
 					// If the entity is set to collide with this entity, do not
 					// allow it to move
 					if (e.getCollideTypes().contains(colliding.getType())) {
-						return false;
+						if(e.getType() == colliding.getType()) {
+							motionx(colliding, Math.signum(preferredx));
+						} else {
+							return false;
+						}
 					}
 
 					// Else if the collided entity has this entity in his list,
