@@ -117,18 +117,6 @@ public class World {
 		// System.out.println("NEW MOTIONX");
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
 		for (int x = 0; x < Math.abs(preferredx); x++) {
-
-			// Send friction to objects on top
-			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
-					.round(e.getPosition().getX()), Math.round(e.getPosition()
-					.getY()) - 1, e.getHitbox().getWidth(), 1))) {
-				if (colliding != e) {
-					if (colliding.getCollideTypes().contains(e.getType())) {
-						this.stepPositionX(colliding, Math.signum(preferredx));
-					}
-				}
-			}
-
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
 					.round(e.getPosition().getX()
 							+ (x * Math.signum(preferredx)))
@@ -172,6 +160,17 @@ public class World {
 			// System.out.println(Math.signum(preferredx));
 			e.setPosition(new Position(e.getPosition().getX()
 					+ Math.signum(preferredx), e.getPosition().getY()));
+			
+			// Send friction to objects on top
+			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
+					.round(e.getPosition().getX()), Math.round(e.getPosition()
+					.getY()) - 1, e.getHitbox().getWidth(), 1))) {
+				if (colliding != e) {
+					if (colliding.getCollideTypes().contains(e.getType())) {
+						this.stepPositionX(colliding, Math.signum(preferredx));
+					}
+				}
+			}
 		}
 		return true;
 	}
