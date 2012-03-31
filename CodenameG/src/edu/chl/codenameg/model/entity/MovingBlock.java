@@ -47,37 +47,43 @@ public class MovingBlock extends Block {
 	public void collide(CollisionEvent evt) {
 		super.collide(evt);
 		// TODO send friction to playercharacter
-		if (evt.getEntity() instanceof PlayerCharacter) {
-			PlayerCharacter landedPlayer = (PlayerCharacter) evt.getEntity();
-			if (evt.getDirection() == Direction.TOP) { // If player is on top.
-				landedPlayer.addVector2D(new Vector2D(this.calculateNextVector(10).getX(), 0));				
-			}
-		}
+//		if (evt.getEntity() instanceof PlayerCharacter) {
+//			PlayerCharacter landedPlayer = (PlayerCharacter) evt.getEntity();
+//			if (evt.getDirection() == Direction.TOP) { // If player is on top.
+//				landedPlayer.addVector2D(new Vector2D(this.calculateNextVector(
+//						this.getPosition(), this.currentTime, 1).getX(), 0));
+//			}
+//		}
 	}
 
-	public Vector2D calculateNextVector(int elapsedTime) {
+	public Vector2D calculateNextVector(Position pos, int currentTime, int steps) {
 
-		int time = this.currentTime + elapsedTime;
+		int time = currentTime + 10;
 		int rounds = 0;
 
 		while (time > this.travelTime) {
 			time -= this.travelTime;
 			rounds++;
 		}
-		
-		time = rounds % 2 == 0 ? time : this.travelTime-time;
+
+		time = rounds % 2 == 0 ? time : this.travelTime - time;
 
 		float x = this.easing.compute(time, this.startPos.getX(),
 				this.endPos.getX() - this.startPos.getX(), this.travelTime);
 		float y = this.easing.compute(time, this.startPos.getY(),
 				this.endPos.getY() - this.startPos.getY(), this.travelTime);
-		return new Vector2D(x - this.getPosition().getX(), y
-				- this.getPosition().getY());
+
+		if (steps == 0) {
+			return new Vector2D(x - pos.getX(), y - pos.getY());
+		} else {
+			Position temp = new Position(x, y);
+			return calculateNextVector(temp, steps - 1, currentTime + 10);
+		}
 	}
 
 	public void update(int elapsedTime) {
 		// manager.update(elapsedTime);
-		this.setVector2D(this.calculateNextVector(elapsedTime));
+		this.setVector2D(this.calculateNextVector(this.getPosition(), this.currentTime, 0));
 		currentTime += elapsedTime;
 	}
 

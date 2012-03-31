@@ -9,7 +9,7 @@ import java.util.List;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class World {
-	
+
 	private boolean gameOver;
 	private boolean hasWonGame;
 
@@ -28,14 +28,14 @@ public class World {
 	}
 
 	public void add(Entity e) {
-		if(e instanceof PlayerCharacter){
+		if (e instanceof PlayerCharacter) {
 			entities.add(e);
 			this.amountOfPlayers++;
-		}else{
+		} else {
 			entities.add(e);
 		}
 	}
-	
+
 	public List<Entity> getEntities() {
 		return new ArrayList<Entity>(this.entities);
 	}
@@ -45,22 +45,22 @@ public class World {
 	}
 
 	public void update(int elapsedTime) {
-		System.out.println("World update()!!!!!!!!");
+		// System.out.println("World update()!!!!!!!!");
 		for (Entity e : this.getEntities()) {
-			if(e instanceof PlayerCharacter) {
-				PlayerCharacter pc = (PlayerCharacter)e;
+			if (e instanceof PlayerCharacter) {
+				PlayerCharacter pc = (PlayerCharacter) e;
 				if (pc.hasWonGame() && this.getAmountOfPlayers() < 2) {
 					this.hasWonGame = true;
 					this.gameOver();
-				} else if(!pc.isAlive() && this.getAmountOfPlayers() < 2) {
+				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
 					this.gameOver();
-				} /*else if(pc.hasWonGame() && this.getAmountOfPlayers() > 2){
-					entities.remove(pc);
-					this.amountOfPlayers--;
-				} else if(!pc.isAlive() && this.getAmountOfPlayers() > 2){
-					entities.remove(pc);
-					entities.add(new PlayerCharacter(pc.getStartPosition()));
-				}*/
+				} /*
+				 * else if(pc.hasWonGame() && this.getAmountOfPlayers() > 2){
+				 * entities.remove(pc); this.amountOfPlayers--; } else
+				 * if(!pc.isAlive() && this.getAmountOfPlayers() > 2){
+				 * entities.remove(pc); entities.add(new
+				 * PlayerCharacter(pc.getStartPosition())); }
+				 */
 			}
 			move(e);
 			e.update(elapsedTime);
@@ -72,19 +72,20 @@ public class World {
 		motionx(e, vector.getX());
 		motiony(e, vector.getY());
 	}
-	
+
 	public void gameOver() {
 		this.gameOver = true;
 	}
-	
+
 	public boolean isGameOver() {
 		return this.gameOver;
 	}
-	
+
 	public boolean isGameWon() {
 		return this.hasWonGame;
 	}
-	public int getAmountOfPlayers(){
+
+	public int getAmountOfPlayers() {
 		return this.amountOfPlayers;
 	}
 
@@ -92,37 +93,53 @@ public class World {
 		// TODO float->int conversion!!!
 		int preferredx = Math.round(movex);
 		List<Entity> collided = new ArrayList<Entity>();
-		System.out.println("NEW MOTIONX");
+		// System.out.println("NEW MOTIONX");
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
 		for (int x = 0; x < Math.abs(preferredx); x++) {
+			// Send friction to objects on top
+			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
+					.round(e.getPosition().getX()), Math.round(e
+					.getPosition().getY())-1, e.getHitbox().getWidth(), 1))) {
+				if (colliding != e) {
+					if (colliding.getCollideTypes().contains(e.getType())) {
+						this.motionx(colliding, Math.signum(preferredx));
+					}
+				}
+			}
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
 					.round(e.getPosition().getX()
 							+ (x * Math.signum(preferredx)))
 					+ addx, Math.round(e.getPosition().getY()), e.getHitbox()
 					.getWidth(), e.getHitbox().getHeight()))) {
-				if(colliding != e) {
-					
-					Direction d1 = Math.signum(preferredx) > 0 ? Direction.LEFT : Direction.RIGHT;
-					Direction d2 = Math.signum(preferredx) > 0 ? Direction.RIGHT : Direction.LEFT;
+				if (colliding != e) {
 
-					if (!collided.contains(colliding)) { 
-						colliding.collide(new CollisionEvent(e,d1));
-						e.collide(new CollisionEvent(colliding,d2));
+					Direction d1 = Math.signum(preferredx) > 0 ? Direction.LEFT
+							: Direction.RIGHT;
+					Direction d2 = Math.signum(preferredx) > 0 ? Direction.RIGHT
+							: Direction.LEFT;
+
+					if (!collided.contains(colliding)) {
+						colliding.collide(new CollisionEvent(e, d1));
+						e.collide(new CollisionEvent(colliding, d2));
 						collided.add(colliding);
 					}
 
-					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
+					// If the entity is set to collide with this entity, do not
+					// allow it to move
+					if (e.getCollideTypes().contains(colliding.getType())) {
 						return false;
 					}
-					
-					if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
+
+					// Else if the collided entity has this entity in his list,
+					// move it out of the way
+					if (colliding.getCollideTypes().contains(e.getType())) {
 						motionx(colliding, Math.signum(preferredx));
 					}
-					
-					//Otherwise just pass through the entity
+
+					// Otherwise just pass through the entity
 				}
 			}
-			System.out.println(Math.signum(preferredx));
+			// System.out.println(Math.signum(preferredx));
 			e.setPosition(new Position(e.getPosition().getX()
 					+ Math.signum(preferredx), e.getPosition().getY()));
 		}
@@ -132,7 +149,7 @@ public class World {
 	private boolean motiony(Entity e, float movey) {
 		// TODO float->int conversion!!!
 		int preferredy = Math.round(movey);
-		List<Entity> collided = new ArrayList<Entity>();//TODO
+		List<Entity> collided = new ArrayList<Entity>();// TODO
 
 		int addy = Math.signum(preferredy) > 0 ? 1 : -1;
 		for (int y = 0; y < Math.abs(preferredy); y++) {
@@ -142,22 +159,25 @@ public class World {
 							+ (y * Math.signum(preferredy)))
 							+ addy, e.getHitbox().getWidth(), e.getHitbox()
 							.getHeight()))) {
-				if(colliding != e) {
-					
-					Direction d1 = Math.signum(preferredy) > 0 ? Direction.TOP : Direction.BOTTOM;
-					Direction d2 = Math.signum(preferredy) > 0 ? Direction.BOTTOM : Direction.TOP;
+				if (colliding != e) {
 
-					if (!collided.contains(colliding)) { 
-						colliding.collide(new CollisionEvent(e,d1));
-						e.collide(new CollisionEvent(colliding,d2));
+					Direction d1 = Math.signum(preferredy) > 0 ? Direction.TOP
+							: Direction.BOTTOM;
+					Direction d2 = Math.signum(preferredy) > 0 ? Direction.BOTTOM
+							: Direction.TOP;
+
+					if (!collided.contains(colliding)) {
+						colliding.collide(new CollisionEvent(e, d1));
+						e.collide(new CollisionEvent(colliding, d2));
 						collided.add(colliding);
 					}
-					
-					if (e.getCollideTypes().contains(colliding.getType())) { 
+
+					if (e.getCollideTypes().contains(colliding.getType())) {
 						return false;
-					} else if(colliding.getCollideTypes().contains(e.getType())) { 
+					} else if (colliding.getCollideTypes()
+							.contains(e.getType())) {
 						motiony(colliding, Math.signum(preferredy));
-					} 
+					}
 				}
 			}
 			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()
@@ -170,12 +190,11 @@ public class World {
 		List<Entity> list = new ArrayList<Entity>();
 		for (Entity e : this.getEntities()) {
 			// TODO float->int :(((
-			Rectangle rect = new Rectangle(
-					Math.round(e.getPosition().getX()), Math.round(e
-							.getPosition().getY()), e.getHitbox()
+			Rectangle rect = new Rectangle(Math.round(e.getPosition().getX()),
+					Math.round(e.getPosition().getY()), e.getHitbox()
 							.getWidth(), e.getHitbox().getHeight());
-			if (rect.contains(new Point(Math.round(p.getX()),
-					Math.round(p.getY())))) {
+			if (rect.contains(new Point(Math.round(p.getX()), Math.round(p
+					.getY())))) {
 				list.add(e);
 			}
 		}
@@ -206,8 +225,8 @@ public class World {
 
 				Rectangle thisRectangle = new Rectangle(new Point(Math.round(e
 						.getPosition().getX()), Math.round(e.getPosition()
-						.getY())), new Dimension(
-						e.getHitbox().getWidth(), e.getHitbox().getHeight()));
+						.getY())), new Dimension(e.getHitbox().getWidth(), e
+						.getHitbox().getHeight()));
 
 				Rectangle targetRectangle = new Rectangle(new Point(
 						Math.round(target.getPosition().getX()),
@@ -229,8 +248,10 @@ public class World {
 											- intersection.height));
 						}
 						// Collision on top
-						if (intersection.y + intersection.height == targetRectangle.y+targetRectangle.height) {
-							System.out.println(e.getType() + " collided on top");
+						if (intersection.y + intersection.height == targetRectangle.y
+								+ targetRectangle.height) {
+							System.out
+									.println(e.getType() + " collided on top");
 							e.setPosition(new Position(e.getPosition().getX(),
 									e.getPosition().getY()
 											+ intersection.height));
@@ -242,8 +263,10 @@ public class World {
 									.getY()));
 						}
 						// Collision on left
-						if (intersection.x + intersection.width == targetRectangle.x + targetRectangle.width) {
-							System.out.println(e.getType() + " collided on left");
+						if (intersection.x + intersection.width == targetRectangle.x
+								+ targetRectangle.width) {
+							System.out.println(e.getType()
+									+ " collided on left");
 							e.setPosition(new Position(e.getPosition().getX()
 									+ intersection.width, e.getPosition()
 									.getY()));
@@ -251,8 +274,9 @@ public class World {
 					}
 				}
 				if (collision) {
-					/*e.collide(target);
-					target.collide(e);*/
+					/*
+					 * e.collide(target); target.collide(e);
+					 */
 				}
 			}
 

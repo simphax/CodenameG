@@ -143,7 +143,7 @@ public class WorldTest {
 		
 		block.setHitbox(new Hitbox(10,10));
 		block2.setHitbox(new Hitbox(10,10));
-		block.setVector2D(new Vector2D(10,0));
+		block.setVector2D(new Vector2D(20,0));
 		block2.setVector2D(new Vector2D(-10,0));
 		block.setPosition(new Position(0,0));
 		block2.setPosition(new Position(20,0));
@@ -152,7 +152,7 @@ public class WorldTest {
 		world.update(10);
 		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
 		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
-		assertTrue(block.getPosition().getX() == 10f && block2.getPosition().getX() == 20f);
+		assertTrue(block.getPosition().getX() == 10f && block2.getPosition().getX() == 30f);
 	}
 	
 	@Test
@@ -177,7 +177,7 @@ public class WorldTest {
 		
 		block.setHitbox(new Hitbox(10,10));
 		block2.setHitbox(new Hitbox(10,10));
-		block.setVector2D(new Vector2D(0,10));
+		block.setVector2D(new Vector2D(0,20));
 		block2.setVector2D(new Vector2D(0,-10));
 		block.setPosition(new Position(0,0));
 		block2.setPosition(new Position(0,20));
@@ -186,7 +186,7 @@ public class WorldTest {
 		world.update(10);
 		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
 		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
-		assertTrue(block.getPosition().getY() == 10f && block2.getPosition().getY() == 20f);
+		assertTrue(block.getPosition().getY() == 10f && block2.getPosition().getY() == 30f);
 	}
 	
 	@Test
