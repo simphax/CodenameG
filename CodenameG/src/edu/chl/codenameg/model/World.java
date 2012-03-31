@@ -45,6 +45,7 @@ public class World {
 	}
 
 	public void update(int elapsedTime) {
+		System.out.println("World update()!!!!!!!!");
 		for (Entity e : this.getEntities()) {
 			if(e instanceof PlayerCharacter) {
 				PlayerCharacter pc = (PlayerCharacter)e;
@@ -91,7 +92,7 @@ public class World {
 		// TODO float->int conversion!!!
 		int preferredx = Math.round(movex);
 		List<Entity> collided = new ArrayList<Entity>();
-
+		System.out.println("NEW MOTIONX");
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
 		for (int x = 0; x < Math.abs(preferredx); x++) {
 			for (Entity colliding : this.getEntitiesAt(new Rectangle(Math
@@ -107,18 +108,21 @@ public class World {
 					if (!collided.contains(colliding)) { 
 						colliding.collide(new CollisionEvent(e,d1));
 						e.collide(new CollisionEvent(colliding,d2));
+						collided.add(colliding);
+					}
+
+					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
+						return false;
 					}
 					
 					if(colliding.getCollideTypes().contains(e.getType())) {// Else if the collided entity has this entity in his list, move it out of the way
 						motionx(colliding, Math.signum(preferredx));
 					}
 					
-					if (e.getCollideTypes().contains(colliding.getType())) {// If the entity is set to collide with this entity, do not allow it to move
-						return false;
-					} 
 					//Otherwise just pass through the entity
 				}
 			}
+			System.out.println(Math.signum(preferredx));
 			e.setPosition(new Position(e.getPosition().getX()
 					+ Math.signum(preferredx), e.getPosition().getY()));
 		}
@@ -146,6 +150,7 @@ public class World {
 					if (!collided.contains(colliding)) { 
 						colliding.collide(new CollisionEvent(e,d1));
 						e.collide(new CollisionEvent(colliding,d2));
+						collided.add(colliding);
 					}
 					
 					if (e.getCollideTypes().contains(colliding.getType())) { 
@@ -177,7 +182,7 @@ public class World {
 		return list;
 	}
 
-	private List<Entity> getEntitiesAt(Rectangle target) {
+	public List<Entity> getEntitiesAt(Rectangle target) {
 		List<Entity> list = new ArrayList<Entity>();
 		for (Entity e : this.getEntities()) {
 			// TODO float->int :(((

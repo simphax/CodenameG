@@ -2,6 +2,7 @@ package edu.chl.codenameg.model;
 
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class WorldTest {
 	}
 	
 	@Test
-	public void testEntityMoveAndCollide() {
+	public void testEntityMoveAndCollideX() {
 		World world = new World();
 		Block block = new Block() {
 			@Override
@@ -81,11 +82,47 @@ public class WorldTest {
 		world.add(block);
 		world.add(block2);
 		world.update(10);
+		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
+		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
 		assertTrue(block.isColliding() && block2.isColliding() && block.getPosition().getX() == 5 && block2.getPosition().getX() == 15);
 	}
 	
 	@Test
-	public void testEntityMoveAndPush() {
+	public void testEntityMoveAndCollideY() {
+		World world = new World();
+		Block block = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		Block block2 = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setVector2D(new Vector2D(0,10));
+		block2.setVector2D(new Vector2D(0,-10));
+		block.setPosition(new Position(0,0));
+		block2.setPosition(new Position(0,20));
+		world.add(block);
+		world.add(block2);
+		world.update(10);
+		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
+		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
+		assertTrue(block.isColliding() && block2.isColliding() && block.getPosition().getY() == 5 && block2.getPosition().getY() == 15);
+	}
+	
+	@Test
+	public void testEntityMoveAndPushX() {
 		World world = new World();
 		Block block = new Block() {
 			@Override
@@ -116,6 +153,61 @@ public class WorldTest {
 		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
 		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
 		assertTrue(block.getPosition().getX() == 10f && block2.getPosition().getX() == 20f);
+	}
+	
+	@Test
+	public void testEntityMoveAndPushY() {
+		World world = new World();
+		Block block = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				
+				return list;
+			}
+		};
+		Block block2 = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setVector2D(new Vector2D(0,10));
+		block2.setVector2D(new Vector2D(0,-10));
+		block.setPosition(new Position(0,0));
+		block2.setPosition(new Position(0,20));
+		world.add(block);
+		world.add(block2);
+		world.update(10);
+		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
+		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
+		assertTrue(block.getPosition().getY() == 10f && block2.getPosition().getY() == 20f);
+	}
+	
+	@Test
+	public void testGetEntitiesAtRectangle() {
+		World world = new World();
+		
+		Block block = new Block();
+		Block block2 = new Block();
+		
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setPosition(new Position(0,0));
+		block2.setPosition(new Position(5,0));
+		
+		world.add(block);
+		world.add(block2);
+		
+		Rectangle testrect = new Rectangle(2,2,10,10);
+		Rectangle testrect2 = new Rectangle(15,0,20,20);
+		
+		assertTrue(world.getEntitiesAt(testrect).contains(block) && world.getEntitiesAt(testrect).contains(block2) && world.getEntitiesAt(testrect2).size() == 0);
 	}
 	
 	
