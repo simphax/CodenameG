@@ -23,6 +23,7 @@ public class PlayerCharacter implements Entity {
 	private boolean moving;
 	private boolean onGround = false;
 	private boolean jumping = false;
+	private boolean lifting = false;
 	private boolean justJumped = false;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
@@ -56,6 +57,16 @@ public class PlayerCharacter implements Entity {
 	public void unToggleCrouch(){
 			this.pt=new Position(this.pt.getX(),this.pt.getY()-5.0f);
 			this.hitbox =this.hbCopy;
+	}
+	
+	public void Togglelift() {
+		System.out.println("Lyfter");
+		this.lifting = true;
+	}
+
+	public void unToggleLift() {
+		System.out.println("Släpper");
+		this.lifting = false;
 	}
 
 	public void stopJump() {
@@ -227,7 +238,7 @@ public class PlayerCharacter implements Entity {
 		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0,-2));
 		}
-		
+
 
 		if (!onGround) {
 			this.gravity.add(new Vector2D(0,0.1f));
@@ -235,8 +246,9 @@ public class PlayerCharacter implements Entity {
 			this.gravity = new Vector2D(0,0.98f);
 		}
 		this.v2d.add(this.gravity);
-
 		this.onGround = false;
 		this.colliding = false;
 	}
+
+	
 }
