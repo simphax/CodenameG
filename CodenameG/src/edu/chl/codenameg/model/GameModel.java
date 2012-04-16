@@ -1,4 +1,4 @@
-package edu.chl.codenameg.model;
+  package edu.chl.codenameg.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,8 +132,10 @@ public class GameModel {
 			getPlayer(2).jump();
 			break;
 		case PLAYER_2_TOGGLE_CROUCH:
-			getPlayer(2).toggleCrouch();
-			break;
+			if(this.running){
+				getPlayer(2).toggleCrouch();
+				break;
+			}
 		case PLAYER_1_TOGGLE_LIFT:
 			getPlayer(1).Togglelift();
 			break;
@@ -169,8 +171,10 @@ public class GameModel {
 			getPlayer(2).stopJump();
 			break;
 		case PLAYER_2_TOGGLE_CROUCH:
-			getPlayer(2).unToggleCrouch();
-			break;
+			if(this.running){
+				getPlayer(2).unToggleCrouch();
+				break;
+			}
 		case PLAYER_1_TOGGLE_LIFT:
 			getPlayer(1).unToggleLift();
 		default:
