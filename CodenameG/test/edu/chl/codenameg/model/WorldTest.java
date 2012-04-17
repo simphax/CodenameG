@@ -188,6 +188,40 @@ public class WorldTest {
 		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
 		assertTrue(block.getPosition().getY() == 10f && block2.getPosition().getY() == 30f);
 	}
+
+	@Test
+	public void testEntityFrictionX() {
+		World world = new World();
+		Block block = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				
+				return list;
+			}
+		};
+		Block block2 = new Block() {
+			@Override
+			public List<String> getCollideTypes() {
+				List<String> list = new ArrayList<String>();
+				list.add("Block");
+				return list;
+			}
+		};
+		
+		block.setHitbox(new Hitbox(10,10));
+		block2.setHitbox(new Hitbox(10,10));
+		block.setVector2D(new Vector2D(20,0));
+		block2.setVector2D(new Vector2D(0,10));
+		block.setPosition(new Position(0,11));
+		block2.setPosition(new Position(0,0));
+		world.add(block);
+		world.add(block2);
+		world.update(10);
+		System.out.println(block.getPosition().getX() + " " + block.getPosition().getY());
+		System.out.println(block2.getPosition().getX() + " " + block2.getPosition().getY());
+		assertTrue(block2.getPosition().getX() == block2.getPosition().getX());
+	}
 	
 	@Test
 	public void testGetEntitiesAtRectangle() {
