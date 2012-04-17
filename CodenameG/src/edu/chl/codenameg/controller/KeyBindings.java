@@ -33,6 +33,8 @@ public class KeyBindings {
 				return Action.PAUSE_GAME;
 			case KeyEvent.VK_L:
 				return Action.PLAYER_1_TOGGLE_LIFT;
+			case KeyEvent.VK_T:
+				return Action.PLAYER_2_TOGGLE_LIFT;
 			default:
 				return Action.NO_ACTION;
 		}
