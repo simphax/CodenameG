@@ -21,10 +21,12 @@ public class PlayerCharacter implements Entity {
 	private boolean alive;
 	private Direction direction;
 	private boolean moving;
-	private boolean onGround = false;
-	private boolean jumping = false;
-	private boolean lifting = false;
-	private boolean justJumped = false;
+	private boolean onGround;
+	private boolean isBelowObject;
+	private boolean jumping;
+	private boolean lifting;
+	private boolean justJumped;
+	private LiftableBlock lb;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
 	private Position startPos;
@@ -60,13 +62,21 @@ public class PlayerCharacter implements Entity {
 	}
 	
 	public void Togglelift() {
-		System.out.println("Lyfter");
+		//System.out.println("Lyfter");
 		this.lifting = true;
 	}
 
 	public void unToggleLift() {
-		System.out.println("Släpper");
-		this.lifting = false;
+		//System.out.println("Släpper");
+		this.lifting=false;
+		if (lb!=null){
+			lb.drop(this);
+			lb = null;
+		}
+	}
+	
+	public boolean isLifting(){
+		return this.lifting;
 	}
 
 	public void stopJump() {
@@ -102,6 +112,15 @@ public class PlayerCharacter implements Entity {
 		if (this.getCollideTypes().contains(evt.getEntity().getType()) && (evt.getDirection() == Direction.BOTTOM)) {
 			this.onGround = true;
 			this.justJumped = false;
+		}
+		if (evt.getDirection()==Direction.TOP){
+			this.jumping=false;
+		}
+		if ((evt.getEntity()instanceof LiftableBlock)&&(evt.getDirection()== Direction.LEFT || evt.getDirection()== Direction.RIGHT)){
+			lb = (LiftableBlock)evt.getEntity();
+			if (lifting){
+			lb.lift(this);
+			}
 		}
 		if(evt.getEntity().getType() != this.getType() && this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
@@ -209,6 +228,7 @@ public class PlayerCharacter implements Entity {
 		list.add("Block");
 		list.add("MovableBlock");
 		list.add("PlayerCharacter");
+		list.add("LiftableBlock");
 		return list;
 	}
 
@@ -233,7 +253,7 @@ public class PlayerCharacter implements Entity {
 			this.v2d.add(new Vector2D(-1, 0));
 		}
 
-		if (jumping && !justJumped ) {
+		if (jumping && !justJumped) {
 			this.v2d.add(new Vector2D(0,-4));
 		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0,-2));
@@ -248,6 +268,7 @@ public class PlayerCharacter implements Entity {
 		this.v2d.add(this.gravity);
 		this.onGround = false;
 		this.colliding = false;
+		this.isBelowObject=false;
 	}
 
 	
