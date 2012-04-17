@@ -139,6 +139,9 @@ public class GameModel {
 		case PLAYER_1_TOGGLE_LIFT:
 			getPlayer(1).Togglelift();
 			break;
+		case PLAYER_2_TOGGLE_LIFT:
+			getPlayer(2).Togglelift();
+			break;
 		default:
 			break;
 		}
@@ -177,6 +180,10 @@ public class GameModel {
 			}
 		case PLAYER_1_TOGGLE_LIFT:
 			getPlayer(1).unToggleLift();
+			break;
+		case PLAYER_2_TOGGLE_LIFT:
+			getPlayer(2).unToggleLift();
+			break;
 		default:
 			break;
 		}
