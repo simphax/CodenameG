@@ -63,11 +63,9 @@ public class PlayerCharacterTest {
 	public void testStopJump(){
 		PlayerCharacter pc = new PlayerCharacter();
 		pc.jump();
-		pc.update();
 		boolean jumped = pc.isJumping();
 		pc.stopJump();
-		pc.update();
-		assertTrue(!jumped && pc.isJumping());
+		assertTrue(jumped && !pc.isJumping());
 	}
 	
 	@Test
@@ -102,6 +100,19 @@ public class PlayerCharacterTest {
 		float p2 = hulk.getPosition().getY();
 		assertTrue(h2 > h1 && p2 < p1);
 	}
+	@Test
+	public void testToggleLift(){
+		PlayerCharacter mario= new PlayerCharacter();
+		mario.Togglelift();
+		assertTrue(mario.isLifting());
+	}
+	public void testUntoggleLift(){
+		PlayerCharacter monalisa= new PlayerCharacter();
+		monalisa.Togglelift();
+		boolean lift=monalisa.isLifting();
+		monalisa.unToggleLift();
+		assertTrue(!monalisa.isLifting() && lift);
+	}
 	
 	@Test
 	public void testDie(){
@@ -110,22 +121,6 @@ public class PlayerCharacterTest {
 		berit.collide(new CollisionEvent(lb,Direction.LEFT));
 		lb.collide(new CollisionEvent(berit,Direction.RIGHT));
 		assertTrue(!berit.isAlive());
-	}
-	@Test
-	public void testMoveAlongMovingBlock(){
-		MovingBlock mb = new MovingBlock(new Hitbox(70,10), new Position(2,2),new Position(10,2),2000);
-		PlayerCharacter chewbaka = new PlayerCharacter();
-		chewbaka.setVector2D(new Vector2D(1,1));
-		chewbaka.collide(new CollisionEvent(mb,Direction.BOTTOM));
-		mb.collide(new CollisionEvent(chewbaka,Direction.TOP));
-		mb.update(1500);
-		chewbaka.update();
-		chewbaka.update();
-		float cx = chewbaka.getVector2D().getX() + mb.getVector2D().getX();
-		float cy = chewbaka.getVector2D().getY() + mb.getVector2D().getY();
-		
-		System.out.println(chewbaka.getVector2D().getX() + "    " + chewbaka.getVector2D().getY());
-		assertTrue((chewbaka.getVector2D().equals(new Vector2D(cx,cy))));
 	}
 	@Test
 	public void testDieOnTwoCollides(){
