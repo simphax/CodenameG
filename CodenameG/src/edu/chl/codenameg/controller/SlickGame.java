@@ -28,7 +28,7 @@ public class SlickGame extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int elapsedTime) throws SlickException {
 		// TODO Auto-generated method stub
-		controller.update(elapsedTime);
+		controller.update(elapsedTime, gc.getInput());
 	}
 
 }

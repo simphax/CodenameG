@@ -9,28 +9,17 @@ import edu.chl.codenameg.view.entity.BasicEntityView;
 
 public class MainView {
 	
-	GameView gv;
+	GameView currentView;
 	MenuView mv;
 	LevelMenuView lmv;
 	PauseMenuView pmv;
 	
 	public MainView(final GameModel model) {
-		
-		
-		/*
-		jf = new JFrame();
-		jf.setSize(new Dimension(400,400));
-		jf.setVisible(true);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		jf.add(new Gameview(model));
-		*/
+		currentView = new GameView(model);
 	}
 	
 	public void repaint(Graphics g) {
-		g.setColor(Color.blue);
-		g.drawRect(100, 100, 100, 100);
-		
+		currentView.repaint(g);
 		
 	}
 	

@@ -30,6 +30,7 @@ public class GameController implements KeyListener{
 		try {
 			agc = new AppGameContainer(new SlickGame("CodenameG", this),800,600,false);
 			agc.start();
+			agc.getInput().addKeyListener(this);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,6 +44,9 @@ public class GameController implements KeyListener{
 
 	@Override
 	public void keyPressed(int key, char c) {
+		
+		System.out.println(key);
+		
 		Action action = KeyBindings.getAction(key);
 		switch (action) {
 		case PLAYER_1_MOVE_LEFT:
@@ -115,8 +119,7 @@ public class GameController implements KeyListener{
 		view.repaint(g);
 	}
 	
-	public void update(int elapsedTime) {
-		agc.getInput().addKeyListener(this);
+	public void update(int elapsedTime, Input inp) {
 		model.update(elapsedTime);
 	}
 /*
@@ -149,12 +152,12 @@ public class GameController implements KeyListener{
 	@Override
 	public boolean isAcceptingInput() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public void setInput(Input arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("setInput");
 	}
 }

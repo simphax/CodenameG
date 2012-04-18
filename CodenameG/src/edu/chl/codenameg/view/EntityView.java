@@ -1,6 +1,7 @@
 package edu.chl.codenameg.view;
 
-import java.awt.Graphics;
+
+import org.newdawn.slick.Graphics;
 
 import edu.chl.codenameg.model.Entity;
 
