@@ -6,11 +6,12 @@ import java.awt.event.KeyListener;
 import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.GameView;
+import edu.chl.codenameg.view.TestView;
 
 public class GameController implements KeyListener, Runnable{
 	
 	private GameModel model;
-	private GameView view;
+	private TestView view;
 	
 	private boolean player1LeftKeyPressed, player1RightKeyPressed;
 	private boolean player2LeftKeyPressed, player2RightKeyPressed;
@@ -20,7 +21,7 @@ public class GameController implements KeyListener, Runnable{
 	
 	public GameController() {
 		this.model = new GameModel();
-		this.view = new GameView(this.model);
+		this.view = new TestView(this.model);
 		this.view.addKeyListener(this);		
 		
 		Thread gameThread = new Thread(this);

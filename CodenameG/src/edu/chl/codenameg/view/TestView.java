@@ -9,19 +9,32 @@ import javax.swing.JPanel;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tests.AnimationTest;
+import org.newdawn.slick.tests.ParticleTest;
 
 import edu.chl.codenameg.controller.GameController;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.entity.BasicEntityView;
 
-public class GameView {
+public class TestView {
 	
 	private GameModel model;
 	private JPanel panel;
 	private JFrame jf;
 	
-	public GameView(final GameModel model) {
+	public TestView(final GameModel model) {
+		AppGameContainer agc = null;
+		try {
+			agc = new AppGameContainer(new ParticleTest(),1280,800,true);
+			agc.start();
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		if(agc != null) {
+			
+		}
 		
 		jf = new JFrame();
 		jf.setSize(new Dimension(400,400));
