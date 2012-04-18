@@ -12,6 +12,7 @@ import org.newdawn.slick.tests.AnimationTest;
 import org.newdawn.slick.tests.ParticleTest;
 
 import edu.chl.codenameg.controller.GameController;
+import edu.chl.codenameg.controller.SlickGame;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.entity.BasicEntityView;
@@ -25,7 +26,7 @@ public class TestView {
 	public TestView(final GameModel model) {
 		AppGameContainer agc = null;
 		try {
-			agc = new AppGameContainer(new ParticleTest(),1280,800,true);
+			agc = new AppGameContainer(new SlickGame("TEST"),1280,800,true);
 			agc.start();
 		} catch (SlickException e1) {
 			// TODO Auto-generated catch block
