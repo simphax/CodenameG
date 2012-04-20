@@ -4,6 +4,9 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
+
 import edu.chl.codenameg.controller.GameController;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
@@ -13,6 +16,8 @@ import edu.chl.codenameg.model.World;
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.GameView;
+import edu.chl.codenameg.view.LevelView;
+import edu.chl.codenameg.view.MainView;
 
 public class GameApp {
 
@@ -21,27 +26,19 @@ public class GameApp {
 	 */
 	public static void main(String[] args) {
 		
-//		GameModel model = new GameModel();
-
-//		GameView view = new GameView(model);
-
-		GameController controller = new GameController();
+		GameModel model = new GameModel();
+		GameView view = new MainView(model);
+		AppGameContainer agc = null;
+		GameController controller = new GameController(model,view);
 		
-//		World world = new World();
-		
-//		Block block = new Block();
-//		block.setPosition(new Position(100,200));
-//		block.setHitbox(new Hitbox(200,20));
-//		
-//		PlayerCharacter pc = new PlayerCharacter();
-//		pc.setPosition(new Position(200,50));
-//		
-//		world.add(block);
-//		world.add(pc);
-//		
-//		model.setWorld(world);
-//		model.startGame();
-		
+		try {
+			agc = new AppGameContainer(controller,800,600,false);
+			agc.setTargetFrameRate(60);
+			agc.start();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

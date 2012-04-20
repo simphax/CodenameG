@@ -6,13 +6,14 @@ import org.newdawn.slick.*;
 import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.GameView;
+import edu.chl.codenameg.view.LevelView;
 import edu.chl.codenameg.view.MainView;
 import edu.chl.codenameg.view.TestView;
 
-public class GameController implements KeyListener{
+public class GameController implements Game, KeyListener, InputListener{
 	
 	private GameModel model;
-	private MainView view;
+	private GameView view;
 	private AppGameContainer agc;
 	
 	private boolean player1LeftKeyPressed, player1RightKeyPressed;
@@ -21,22 +22,9 @@ public class GameController implements KeyListener{
 	
 	private boolean isRunning = true;
 	
-	public GameController() {
-		this.model = new GameModel();
-		this.view = new MainView(this.model);
-		
-		//Thread gameThread = new Thread(this);
-		
-		try {
-			agc = new AppGameContainer(new SlickGame("CodenameG", this),800,600,false);
-			agc.start();
-			agc.getInput().addKeyListener(this);
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//gameThread.start();
+	public GameController( GameModel model, GameView view) {
+		this.model = model;
+		this.view = view;
 		
 		player1LeftKeyPressed = false; player1RightKeyPressed = false;
 		player2LeftKeyPressed = false; player2RightKeyPressed = false;
@@ -115,12 +103,20 @@ public class GameController implements KeyListener{
 		
 	}
 	
-	public void render(Graphics g) {
+	@Override
+	public void render(GameContainer gc, Graphics g) throws SlickException {
 		view.repaint(g);
 	}
-	
-	public void update(int elapsedTime, Input inp) {
+
+	@Override
+	public void init(GameContainer gc) throws SlickException {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void update(GameContainer gc, int elapsedTime) throws SlickException {
 		model.update(elapsedTime);
+		
 	}
 /*
 	@Override
@@ -160,4 +156,113 @@ public class GameController implements KeyListener{
 		// TODO Auto-generated method stub
 		System.out.println("setInput");
 	}
+
+	@Override
+	public boolean closeRequested() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public String getTitle() {
+		return "CodenameG";
+	}
+
+	@Override
+	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseWheelMoved(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerButtonPressed(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerButtonReleased(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerDownPressed(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerDownReleased(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerLeftPressed(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerLeftReleased(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerRightPressed(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerRightReleased(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerUpPressed(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void controllerUpReleased(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

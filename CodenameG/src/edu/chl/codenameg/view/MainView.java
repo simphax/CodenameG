@@ -7,15 +7,15 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.entity.BasicEntityView;
 
-public class MainView {
+public class MainView implements GameView {
 	
-	GameView currentView;
+	LevelView currentView;
 	MenuView mv;
 	LevelMenuView lmv;
 	PauseMenuView pmv;
 	
 	public MainView(final GameModel model) {
-		currentView = new GameView(model);
+		currentView = new LevelView(model);
 	}
 	
 	public void repaint(Graphics g) {
