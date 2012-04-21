@@ -36,7 +36,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public PlayerCharacter(Position position) {
-		this.hitbox= new Hitbox(10, 15);
+		this.hitbox= new Hitbox(64, 64);
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
@@ -139,6 +139,9 @@ public class PlayerCharacter implements Entity {
 			
 			for(CollisionEvent evt : collidingList) {
 //				if(!(evt.getEntity() instanceof PlayerCharacter)){
+				if(!(evt.getEntity() instanceof LiftableBlock)){
+					
+				
 					switch(evt.getDirection()) {
 					case LEFT:
 						collideLeftCount++;
@@ -153,6 +156,7 @@ public class PlayerCharacter implements Entity {
 						collideBottomCount++;
 						break;
 					}
+				}
 //				}
 			}
 			

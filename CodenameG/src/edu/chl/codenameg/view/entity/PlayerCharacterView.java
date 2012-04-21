@@ -30,14 +30,14 @@ public class PlayerCharacterView implements EntityView {
 			anm.addFrame( spriteSheet.getSprite(i, 1), 150);
 		}
 		anm.setLooping(true);
+		anm.start();
 	}
 	
 		
 
 	@Override
 	public void render(Entity ent, Graphics g) {
-		g.drawImage(anm.getCurrentFrame(),ent.getPosition().getX(),ent.getPosition().getY());
-		
+		anm.draw(ent.getPosition().getX(), ent.getPosition().getY());
 	}
 		
 	
