@@ -1,6 +1,5 @@
 package edu.chl.codenameg.view;
 
-
 import org.newdawn.slick.*;
 
 import edu.chl.codenameg.model.Entity;
