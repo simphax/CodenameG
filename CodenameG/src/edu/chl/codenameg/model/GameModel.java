@@ -6,6 +6,7 @@ import java.util.List;
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
+import edu.chl.codenameg.model.entity.LiftableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
@@ -41,13 +42,13 @@ public class GameModel {
 		MovingBlock movingblock = new MovingBlock(new Hitbox(20, 20), new Position(50, 50), new Position(100, 100), 1000);
 		MovingBlock movingblock2 = new MovingBlock(new Hitbox(20, 20), new Position(50, 100), new Position(50, 200), 1000);
 		MovingBlock movingblock3 = new MovingBlock(new Hitbox(20, 20), new Position(100, 50), new Position(200, 50), 1000);
-		MovingBlock movingblock4 = new MovingBlock(new Hitbox(20, 20), new Position(150, 180), new Position(225, 180), 1000);
+		LiftableBlock movingblock4 = new LiftableBlock(new Hitbox(20, 20), new Position(150, 180));
 
 		GoalBlock goalblock = new GoalBlock(new Hitbox(10, 25), new Position(130, 175));
 		PlayerCharacter pc2 = new PlayerCharacter();
 		PlayerCharacter pc1 = new PlayerCharacter();
 		pc1.setPosition(new Position(200, 50));
-		pc2.setPosition(new Position(180,50));
+		pc2.setPosition(new Position(100,50));
 
 		testWorld.add(block);
 		testWorld.add(block2);
