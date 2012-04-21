@@ -1,6 +1,4 @@
 package edu.chl.codenameg.view.entity;
-
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -17,7 +15,7 @@ public class PlayerCharacterView implements EntityView {
 	private Animation walk = null;
 	private Image jump = null;
 	private Image crouch = null;
-	
+	private Animation stand = null;
 	public PlayerCharacterView(){
 		
 		try {
@@ -33,8 +31,14 @@ public class PlayerCharacterView implements EntityView {
 		}
 		
 		crouch = spriteSheet.getSprite(4, 4);
+		jump = spriteSheet.getSprite(11, 4);
+		
+		stand = new Animation();
+		for (int i=0; i<9; i++){
+			stand.addFrame( spriteSheet.getSprite(i, 0), 150);
+		}
 		walk = new Animation();
-		for (int i=1; i<5; i++){
+		for (int i=0; i<10; i++){
 			walk.addFrame( spriteSheet.getSprite(i, 1), 150);
 		}
 		walk.setLooping(true);
@@ -46,8 +50,12 @@ public class PlayerCharacterView implements EntityView {
 			PlayerCharacter pc = (PlayerCharacter)ent;
 			if (pc.isCrouching()){
 				crouch.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
-			}else{
+			}else if (pc.isJumping()){
+				jump.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+			}else if (pc.isMoving()){
 				walk.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+			}else{
+				stand.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
 			}
 		}
 	}

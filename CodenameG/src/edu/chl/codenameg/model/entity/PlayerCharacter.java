@@ -80,6 +80,9 @@ public class PlayerCharacter implements Entity {
 	public boolean isLifting(){
 		return this.lifting;
 	}
+	public boolean isMoving(){
+		return this.moving;
+	}
 	public boolean isCrouching(){
 		return this.crouching;
 	}

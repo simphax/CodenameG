@@ -1,13 +1,8 @@
 package edu.chl.codenameg.view;
-
-import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.tests.AnimationTest;
-
-import edu.chl.codenameg.controller.GameController;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
