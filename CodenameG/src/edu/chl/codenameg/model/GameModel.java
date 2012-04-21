@@ -101,7 +101,6 @@ public class GameModel {
 	}
 	
 	public void performAction(Action action) {
-		System.out.println("PERFORM");
 		switch (action) {
 		case START_GAME:
 			this.startGame();

@@ -12,6 +12,7 @@ import edu.chl.codenameg.view.MenuView;
 public class MainMenuState extends BasicGameState {
 	
 	MenuView view;
+	int selectedId = 0;
 	
 	public MainMenuState() {
 		this.view = new MenuView();
@@ -27,6 +28,7 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		view.setSelected(selectedId);
 		view.repaint(g);
 	}
 
@@ -34,7 +36,15 @@ public class MainMenuState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame game, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		if(gc.getInput().isKeyPressed(Input.KEY_ENTER) ){
+
+		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
+			selectedId=(selectedId-1)%3;
+		}
+		if(gc.getInput().isKeyPressed(Input.KEY_DOWN)) {
+			selectedId=(selectedId+1)%3;
+		}
+		
+		if(gc.getInput().isKeyPressed(Input.KEY_ENTER) && selectedId==0){
 			game.enterState(2);
 		}
 	}
