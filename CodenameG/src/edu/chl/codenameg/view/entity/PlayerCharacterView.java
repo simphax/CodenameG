@@ -9,13 +9,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import edu.chl.codenameg.model.Entity;
+import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.EntityView;
 
 public class PlayerCharacterView implements EntityView {
-		
-	private Image img = null;
 	private SpriteSheet spriteSheet = null;
-	private Animation anm = null;
+	private Animation walk = null;
+	private Image jump = null;
+	private Image crouch = null;
 	
 	public PlayerCharacterView(){
 		
@@ -26,19 +27,29 @@ public class PlayerCharacterView implements EntityView {
 			e.printStackTrace();
 		}	
 		
-		anm = new Animation();
+		walk = new Animation();
 		for (int i=1; i<5; i++){
-			anm.addFrame( spriteSheet.getSprite(i, 1), 150);
+			walk.addFrame( spriteSheet.getSprite(i, 1), 150);
 		}
-		anm.setLooping(true);
-		anm.start();
-	}
-	
 		
+		crouch = spriteSheet.getSprite(4, 4);
+		walk = new Animation();
+		for (int i=1; i<5; i++){
+			walk.addFrame( spriteSheet.getSprite(i, 1), 150);
+		}
+		walk.setLooping(true);
+	}
 
 	@Override
 	public void render(Entity ent, Graphics g) {
-		anm.draw(ent.getPosition().getX()+(ent.getHitbox().getWidth()/2)-64/2, ent.getPosition().getY());
+		if (ent instanceof PlayerCharacter){
+			PlayerCharacter pc = (PlayerCharacter)ent;
+			if (pc.isCrouching()){
+				crouch.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+			}else{
+				walk.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+			}
+		}
 	}
 		
 	

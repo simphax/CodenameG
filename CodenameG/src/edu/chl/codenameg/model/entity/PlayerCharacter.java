@@ -22,10 +22,10 @@ public class PlayerCharacter implements Entity {
 	private Direction direction;
 	private boolean moving;
 	private boolean onGround;
-	private boolean isBelowObject;
 	private boolean jumping;
 	private boolean lifting;
 	private boolean justJumped;
+	private boolean crouching;
 	private LiftableBlock lb;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
@@ -53,12 +53,14 @@ public class PlayerCharacter implements Entity {
 	}
 	public void toggleCrouch(){
 			this.hbCopy=this.hitbox;
-			this.hitbox=new Hitbox(10,10);
-			this.pt=new Position(this.pt.getX(),this.pt.getY()+5.0f);
+			this.hitbox=new Hitbox(this.getHitbox().getWidth(),this.getHitbox().getHeight()/2);
+			this.pt=new Position(this.pt.getX(),this.pt.getY()+(this.getHitbox().getHeight()));
+			this.crouching=true;
 	}
 	public void unToggleCrouch(){
-			this.pt=new Position(this.pt.getX(),this.pt.getY()-5.0f);
+			this.pt=new Position(this.pt.getX(),this.pt.getY()-this.getHitbox().getHeight());
 			this.hitbox =this.hbCopy;
+			this.crouching=false;
 	}
 	
 	public void Togglelift() {
@@ -77,6 +79,9 @@ public class PlayerCharacter implements Entity {
 	
 	public boolean isLifting(){
 		return this.lifting;
+	}
+	public boolean isCrouching(){
+		return this.crouching;
 	}
 
 	public void stopJump() {
@@ -272,7 +277,6 @@ public class PlayerCharacter implements Entity {
 		this.v2d.add(this.gravity);
 		this.onGround = false;
 		this.colliding = false;
-		this.isBelowObject=false;
 	}
 
 	
