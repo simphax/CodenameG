@@ -1,6 +1,8 @@
 package edu.chl.codenameg.view.entity;
 
+
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -16,14 +18,13 @@ public class PlayerCharacterView implements EntityView {
 	private Animation anm = null;
 	
 	public PlayerCharacterView(){
-			
+		
 		try {
-			img = new Image ("res/base_0.png");
+			spriteSheet = new SpriteSheet("res/base_0.png",64,64,Color.magenta);
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		spriteSheet = new SpriteSheet(img,64,64);	
+		}	
 		
 		anm = new Animation();
 		for (int i=1; i<5; i++){
@@ -37,7 +38,7 @@ public class PlayerCharacterView implements EntityView {
 
 	@Override
 	public void render(Entity ent, Graphics g) {
-		anm.draw(ent.getPosition().getX(), ent.getPosition().getY());
+		anm.draw(ent.getPosition().getX()+(ent.getHitbox().getWidth()/2)-64/2, ent.getPosition().getY());
 	}
 		
 	

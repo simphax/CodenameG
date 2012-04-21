@@ -36,7 +36,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public PlayerCharacter(Position position) {
-		this.hitbox= new Hitbox(64, 64);
+		this.hitbox= new Hitbox(25, 64);
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
