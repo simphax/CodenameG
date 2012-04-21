@@ -11,10 +11,14 @@ import edu.chl.codenameg.view.EntityView;
 
 public class PlayerCharacterView implements EntityView {
 	private SpriteSheet spriteSheet = null;
-	private Animation walk = null;
-	private Animation jump = null;
-	private Animation crouch = null;
-	private Animation stand = null;
+	private Animation walkLeft = null;
+	private Animation jumpLeft = null;
+	private Animation crouchLeft = null;
+	private Animation standLeft = null;
+	private Animation walkRight = null;
+	private Animation jumpRight = null;
+	private Animation crouchRight = null;
+	private Animation standRight = null;
 	
 	public PlayerCharacterView(){
 		try {
@@ -24,25 +28,44 @@ public class PlayerCharacterView implements EntityView {
 			e.printStackTrace();
 		}	
 		
-		crouch = new Animation();
-		for (int i=0; i<5; i++){
-			crouch.addFrame( spriteSheet.getSprite(i, 4), 150);
+		crouchLeft = new Animation();
+		for (int i=19; i>14; i--){
+			crouchLeft.addFrame( spriteSheet.getSprite(i, 10), 150);
 		}
-		jump = new Animation();
-		for (int i=8; i<12; i++){
-			jump.addFrame( spriteSheet.getSprite(i, 4), 150);
+		jumpLeft = new Animation();
+		for (int i=11; i>7; i--){
+			jumpLeft.addFrame( spriteSheet.getSprite(i, 10), 150);
 		}
-		stand = new Animation();
-		for (int i=0; i<9; i++){
-			stand.addFrame( spriteSheet.getSprite(i, 0), 150);
+		standLeft = new Animation();
+		for (int i=19; i>10; i--){
+			standLeft.addFrame( spriteSheet.getSprite(i, 6), 150);
 		}
-		walk = new Animation();
-		for (int i=0; i<10; i++){
-			walk.addFrame( spriteSheet.getSprite(i, 1), 150);
+		walkLeft = new Animation();
+		for (int i=19; i>9; i--){
+			walkLeft.addFrame( spriteSheet.getSprite(i, 7), 150);
 		}
-		jump.setLooping(false);
-		crouch.setLooping(false);
+		jumpLeft.setLooping(false);
+		crouchLeft.setLooping(false);
+	
+	crouchRight = new Animation();
+	for (int i=0; i<5; i++){
+		crouchRight.addFrame( spriteSheet.getSprite(i, 4), 150);
 	}
+	jumpRight = new Animation();
+	for (int i=8; i<12; i++){
+		jumpRight.addFrame( spriteSheet.getSprite(i, 4), 150);
+	}
+	standRight = new Animation();
+	for (int i=0; i<9; i++){
+		standRight.addFrame( spriteSheet.getSprite(i, 0), 150);
+	}
+	walkRight = new Animation();
+	for (int i=0; i<10; i++){
+		walkRight.addFrame( spriteSheet.getSprite(i, 1), 150);
+	}
+	jumpRight.setLooping(false);
+	crouchRight.setLooping(false);
+}
 
 	@Override
 	public void render(Entity ent, Graphics g) {
@@ -52,24 +75,24 @@ public class PlayerCharacterView implements EntityView {
 			switch(pc.getDirection()) {
 			case LEFT:
 				if (pc.isCrouching()){
-					crouch.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+					crouchLeft.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
 				}else if (pc.isJumping()){
-					jump.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+					jumpLeft.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
 				}else if (pc.isMoving()){
-					walk.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+					walkLeft.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
 				}else{
-					stand.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+					standLeft.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
 				}
 				break;
 			case RIGHT:
 				if (pc.isCrouching()){
-					crouch.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+					crouchRight.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
 				}else if (pc.isJumping()){
-					jump.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
+					jumpRight.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY()-64/2);
 				}else if (pc.isMoving()){
-					walk.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+					walkRight.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
 				}else{
-					stand.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
+					standRight.draw(pc.getPosition().getX()+(pc.getHitbox().getWidth()/2)-64/2, pc.getPosition().getY());
 				}
 				break;
 			}
