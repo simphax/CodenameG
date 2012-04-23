@@ -3,11 +3,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.chl.codenameg.model.entity.Block;
-import edu.chl.codenameg.model.entity.GoalBlock;
-import edu.chl.codenameg.model.entity.LethalBlock;
-import edu.chl.codenameg.model.entity.LiftableBlock;
-import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.*;
 
@@ -27,51 +22,13 @@ public class GameModel {
 	private World createTestWorld() {
 		World testWorld = new World();
 		
-		Level l1 = this.selectLevel(1);
+		Level l1 = this.selectLevel(2);
 		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
 		for(int i = 0;i<level.size();i++){
 			testWorld.add(level.get(i));
-			System.out.println("went into add method in testworld!");
 		}
 		PlayerCharacter pc1 = new PlayerCharacter();
 		pc1.setPosition(l1.getStartPosition());
-		/*
-		Block block = new Block();
-		block.setPosition(new Position(100, 200));
-		block.setHitbox(new Hitbox(200, 20));
-		Block block2 = new Block();
-		block2.setPosition(new Position(200, 140));
-		block2.setHitbox(new Hitbox(20, 20));
-		Block block3 = new Block();
-		block3.setPosition(new Position(250, 180));
-		block3.setHitbox(new Hitbox(20, 20));
-		LethalBlock lblock = new LethalBlock();
-		lblock.setPosition(new Position(250, 150));
-		lblock.setHitbox(new Hitbox(20, 20));
-
-		MovingBlock movingblock = new MovingBlock(new Hitbox(20, 20), new Position(50, 50), new Position(100, 100), 1000);
-		MovingBlock movingblock2 = new MovingBlock(new Hitbox(20, 20), new Position(50, 100), new Position(50, 200), 1000);
-		MovingBlock movingblock3 = new MovingBlock(new Hitbox(20, 20), new Position(100, 50), new Position(200, 50), 1000);
-		LiftableBlock movingblock4 = new LiftableBlock(new Hitbox(20, 20), new Position(150, 180));
-
-		GoalBlock goalblock = new GoalBlock(new Hitbox(10, 25), new Position(130, 175));
-		//PlayerCharacter pc2 = new PlayerCharacter();
-		PlayerCharacter pc1 = new PlayerCharacter();
-		pc1.setPosition(new Position(200, 50));
-		pc2.setPosition(new Position(100,50));
-
-		testWorld.add(block);
-		testWorld.add(block2);
-		testWorld.add(block3);
-		testWorld.add(pc1);
-		testWorld.add(pc2);
-		testWorld.add(movingblock);
-		testWorld.add(movingblock2);
-		testWorld.add(movingblock3);
-		testWorld.add(movingblock4);
-		testWorld.add(goalblock);
-		testWorld.add(lblock);
-		*/
 		testWorld.add(pc1);
 		listOfPC.removeAll(listOfPC);
 		listOfPC.add(pc1);
@@ -146,16 +103,22 @@ public class GameModel {
 			getPlayer(1).toggleCrouch();
 			break;
 		case PLAYER_2_MOVE_LEFT:
-			getPlayer(2).move(Direction.LEFT);
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).move(Direction.LEFT);
+				break;
+			}
 		case PLAYER_2_MOVE_RIGHT:
-			getPlayer(2).move(Direction.RIGHT);
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).move(Direction.RIGHT);
+				break;
+			}
 		case PLAYER_2_JUMP:
-			getPlayer(2).jump();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).jump();
+				break;
+			}
 		case PLAYER_2_TOGGLE_CROUCH:
-			if(this.running){
+			if(this.running && this.listOfPC.size()>1){
 				getPlayer(2).toggleCrouch();
 				break;
 			}
@@ -163,8 +126,10 @@ public class GameModel {
 			getPlayer(1).Togglelift();
 			break;
 		case PLAYER_2_TOGGLE_LIFT:
-			getPlayer(2).Togglelift();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).Togglelift();
+				break;
+			}
 		default:
 			break;
 		}
@@ -188,16 +153,22 @@ public class GameModel {
 			getPlayer(1).unToggleCrouch();
 			break;
 		case PLAYER_2_MOVE_LEFT:
-			getPlayer(2).stopMove();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).stopMove();
+				break;
+			}
 		case PLAYER_2_MOVE_RIGHT:
-			getPlayer(2).stopMove();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).stopMove();
+				break;
+			}
 		case PLAYER_2_JUMP:
-			getPlayer(2).stopJump();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).stopJump();
+				break;
+			}
 		case PLAYER_2_TOGGLE_CROUCH:
-			if(this.running){
+			if(this.running && this.listOfPC.size()>1){
 				getPlayer(2).unToggleCrouch();
 				break;
 			}
@@ -205,8 +176,10 @@ public class GameModel {
 			getPlayer(1).unToggleLift();
 			break;
 		case PLAYER_2_TOGGLE_LIFT:
-			getPlayer(2).unToggleLift();
-			break;
+			if(this.listOfPC.size()>1){
+				getPlayer(2).unToggleLift();
+				break;
+			}
 		default:
 			break;
 		}

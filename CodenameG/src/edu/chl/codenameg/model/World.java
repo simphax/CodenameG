@@ -72,7 +72,7 @@ public class World {
 				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
 					this.gameOver();
 				}
-				if (!pc.isAlive()) {
+				if (!pc.isAlive() && this.getAmountOfPlayers() ==2) {
 					this.remove(pc);
 				}
 				/*
