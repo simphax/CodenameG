@@ -94,5 +94,10 @@ public class LevelTwo implements Level{
 		public Position getStartPosition() {
 			return new Position(this.startPos);
 		}
+
+		@Override
+		public int getAmountOfPlayers() {
+			return this.amountOfPlayers;
+		}
 	}
 

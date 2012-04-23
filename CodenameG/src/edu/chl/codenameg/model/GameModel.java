@@ -33,7 +33,8 @@ public class GameModel {
 			testWorld.add(level.get(i));
 			System.out.println("went into add method in testworld!");
 		}
-		PlayerCharacter pc1 = new PlayerCharacter(l1.getStartPosition());
+		PlayerCharacter pc1 = new PlayerCharacter();
+		pc1.setPosition(l1.getStartPosition());
 		/*
 		Block block = new Block();
 		block.setPosition(new Position(100, 200));

@@ -12,5 +12,6 @@ public interface Level {
 	public List<Entity> getListOfEnteties();
 	public void setAmountOfPlayers(int aop) throws IllegalArgumentException;
 	public Position getStartPosition();
+	public int getAmountOfPlayers();
 		
 }

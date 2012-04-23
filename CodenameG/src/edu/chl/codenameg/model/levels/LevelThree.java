@@ -95,4 +95,9 @@ public class LevelThree implements Level{
 			return new Position(this.startPos);
 		}
 
+		@Override
+		public int getAmountOfPlayers() {
+			return this.amountOfPlayers;
+		}
+
 }
