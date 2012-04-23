@@ -51,7 +51,7 @@ public class LevelOne implements Level{
 		this.entityList2 = new ArrayList<Entity>(); // so far Unused.
 		// default playermode
 		this.setAmountOfPlayers(1);
-		this.startPos = new Position(100,100);
+		this.startPos = new Position(40,20);
 		
 
 		//adding to list entityList1 - singleplayer

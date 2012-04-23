@@ -72,7 +72,7 @@ public class GameModel {
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
 		*/
-		
+		testWorld.add(pc1);
 		listOfPC.removeAll(listOfPC);
 		listOfPC.add(pc1);
 		
