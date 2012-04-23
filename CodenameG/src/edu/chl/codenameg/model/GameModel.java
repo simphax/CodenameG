@@ -26,7 +26,7 @@ public class GameModel {
 
 	private World createTestWorld() {
 		World testWorld = new World();
-		/*
+		
 		Level l1 = this.selectLevel(1);
 		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
 		for(int i = 0;i<level.size();i++){
@@ -34,7 +34,7 @@ public class GameModel {
 			System.out.println("went into add method in testworld!");
 		}
 		PlayerCharacter pc1 = new PlayerCharacter(l1.getStartPosition());
-		*/
+		/*
 		Block block = new Block();
 		block.setPosition(new Position(100, 200));
 		block.setHitbox(new Hitbox(200, 20));
@@ -54,7 +54,7 @@ public class GameModel {
 		LiftableBlock movingblock4 = new LiftableBlock(new Hitbox(20, 20), new Position(150, 180));
 
 		GoalBlock goalblock = new GoalBlock(new Hitbox(10, 25), new Position(130, 175));
-		PlayerCharacter pc2 = new PlayerCharacter();
+		//PlayerCharacter pc2 = new PlayerCharacter();
 		PlayerCharacter pc1 = new PlayerCharacter();
 		pc1.setPosition(new Position(200, 50));
 		pc2.setPosition(new Position(100,50));
@@ -70,6 +70,7 @@ public class GameModel {
 		testWorld.add(movingblock4);
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
+		*/
 		
 		listOfPC.removeAll(listOfPC);
 		listOfPC.add(pc1);
