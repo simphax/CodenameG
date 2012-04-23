@@ -9,6 +9,7 @@ import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LiftableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
+import edu.chl.codenameg.model.levels.*;
 
 public class GameModel {
 
@@ -25,7 +26,15 @@ public class GameModel {
 
 	private World createTestWorld() {
 		World testWorld = new World();
- 
+		/*
+		Level l1 = this.selectLevel(1);
+		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
+		for(int i = 0;i<level.size();i++){
+			testWorld.add(level.get(i));
+			System.out.println("went into add method in testworld!");
+		}
+		PlayerCharacter pc1 = new PlayerCharacter(l1.getStartPosition());
+		*/
 		Block block = new Block();
 		block.setPosition(new Position(100, 200));
 		block.setHitbox(new Hitbox(200, 20));
@@ -61,10 +70,11 @@ public class GameModel {
 		testWorld.add(movingblock4);
 		testWorld.add(goalblock);
 		testWorld.add(lblock);
+		
 		listOfPC.removeAll(listOfPC);
 		listOfPC.add(pc1);
 		
-		listOfPC.add(pc2);
+		//listOfPC.add(pc2);
 		
 		return testWorld;
 	}
@@ -99,7 +109,17 @@ public class GameModel {
 			this.world = null;
 		}
 	}
-	
+	public Level selectLevel(int i)throws IllegalArgumentException{
+		if(i == 1){
+			return new LevelOne();
+		}else if (i == 2){
+			return new LevelTwo();
+		}else if (i == 3){
+			return new LevelThree();
+		}else{
+			throw new IllegalArgumentException();
+		}
+	}
 	public void performAction(Action action) {
 		switch (action) {
 		case START_GAME:
