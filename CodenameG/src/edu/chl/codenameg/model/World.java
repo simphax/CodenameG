@@ -151,7 +151,9 @@ public class World {
 					// Else if the collided entity has this entity in his list,
 					// move it out of the way
 					else if (colliding.getCollideTypes().contains(e.getType())) {
-						stepPositionX(colliding, Math.signum(preferredx));
+						if (!stepPositionX(colliding, Math.signum(preferredx))) {
+							return false;
+						}
 					}
 
 					// Otherwise just pass through the entity
@@ -242,7 +244,7 @@ public class World {
 			Rectangle rect = new Rectangle((e.getPosition().getX()),
 					(e.getPosition().getY()), e.getHitbox()
 							.getWidth(), e.getHitbox().getHeight());
-			if (target.intersects(rect)) {
+			if (target.intersects(rect) || target.contains(rect) || rect.contains(target)) {
 				list.add(e);
 			}
 		}

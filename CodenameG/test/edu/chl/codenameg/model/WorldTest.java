@@ -2,11 +2,11 @@ package edu.chl.codenameg.model;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.newdawn.slick.geom.Rectangle;
 
 import edu.chl.codenameg.model.entity.Block;
 
@@ -239,7 +239,10 @@ public class WorldTest {
 		world.add(block2);
 		
 		Rectangle testrect = new Rectangle(2,2,10,10);
-		Rectangle testrect2 = new Rectangle(15,0,20,20);
+		Rectangle testrect2 = new Rectangle(16,0,20,20);
+		
+		System.out.println(world.getEntitiesAt(testrect).toString());
+		System.out.println(world.getEntitiesAt(testrect2).toString());
 		
 		assertTrue(world.getEntitiesAt(testrect).contains(block) && world.getEntitiesAt(testrect).contains(block2) && world.getEntitiesAt(testrect2).size() == 0);
 	}

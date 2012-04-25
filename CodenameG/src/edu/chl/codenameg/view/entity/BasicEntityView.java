@@ -23,7 +23,7 @@ public class BasicEntityView implements EntityView {
 		}else{
 			g.setColor(Color.blue);
 		}
-		g.fillRect((int)(ent.getPosition().getX()+0.5), (int)(ent.getPosition().getY()+0.5), ent.getHitbox().getWidth(), ent.getHitbox().getHeight());
+		g.drawRect(ent.getPosition().getX(), ent.getPosition().getY(), ent.getHitbox().getWidth(), ent.getHitbox().getHeight());
 	}
 	
 }

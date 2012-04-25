@@ -44,7 +44,7 @@ public class LevelTwo implements Level{
 		//Moving blocks
 		private static MovingBlock mb1p1 = new MovingBlock(new Hitbox(50,25), new Position(455,212), new Position(615,212), 10000);
 		//Movable blocks
-		private static MovableBlock m1p1 = new MovableBlock(new Hitbox(35,25), new Position(135,187));
+		private static MovableBlock m1p1 = new MovableBlock(new Hitbox(33,25), new Position(135,186));
 		
 		//constructor
 		public LevelTwo(){
