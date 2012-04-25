@@ -3,13 +3,14 @@ package edu.chl.codenameg.view.entity;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.*;
 import edu.chl.codenameg.view.EntityView;
 
 public class BasicEntityView implements EntityView {
-
+	
 	@Override
 	public void render(Entity ent, Graphics g) {
 		
