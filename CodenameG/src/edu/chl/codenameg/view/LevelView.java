@@ -6,9 +6,11 @@ import org.newdawn.slick.*;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.Block;
+import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.entity.BasicEntityView;
 import edu.chl.codenameg.view.entity.BlockView;
+import edu.chl.codenameg.view.entity.LethalMovingBlockView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 
 public class LevelView {
@@ -31,6 +33,10 @@ public class LevelView {
 				
 				if(e instanceof PlayerCharacter) {
 					EntityView view = new PlayerCharacterView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				}  else if (e instanceof LethalMovingBlock){
+					EntityView view = new LethalMovingBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
 				} else if (e instanceof Block){
