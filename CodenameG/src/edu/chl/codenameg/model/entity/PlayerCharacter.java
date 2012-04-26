@@ -275,7 +275,15 @@ public class PlayerCharacter implements Entity {
 //			}
 			this.acceleration.add(new Vector2D(-0.1f,0));
 		} else {
-			this.acceleration.setX(0);
+			if(Math.abs(this.acceleration.getX())<0.2) {
+				this.acceleration.setX(0);
+			}
+			
+			if(this.acceleration.getX() > 0) {
+				this.acceleration.add(new Vector2D(-0.2f,0));
+			} else if(this.acceleration.getX() < 0) {
+				this.acceleration.add(new Vector2D(0.2f,0));
+			}
 		}
 		this.v2d.add(acceleration);
 
