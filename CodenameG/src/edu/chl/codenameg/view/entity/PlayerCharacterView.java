@@ -20,7 +20,7 @@ public class PlayerCharacterView implements EntityView {
 	private Animation jumpRight = null;
 	private Animation crouchRight = null;
 	private Animation standRight = null;
-
+	//private float speed;
 	public PlayerCharacterView() {
 		try {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
@@ -31,35 +31,35 @@ public class PlayerCharacterView implements EntityView {
 
 		crouchLeft = new Animation();
 		for (int i = 15; i > 1; i--) {
-			crouchLeft.addFrame(spriteSheet.getSprite(i, 23), 150);
+			crouchLeft.addFrame(spriteSheet.getSprite(i, 23), 80);
 		}
 		jumpLeft = new Animation();
 		for (int i = 15; i > 6; i--) {
-			jumpLeft.addFrame(spriteSheet.getSprite(i, 25), 150);
+			jumpLeft.addFrame(spriteSheet.getSprite(i, 25), 80);
 		}
 		standLeft = new Animation();
 		for (int i = 15; i >= 0; i--) {
-			standLeft.addFrame(spriteSheet.getSprite(i, 16), 150);
+			standLeft.addFrame(spriteSheet.getSprite(i, 16), 80);
 		}
 		walkLeft = new Animation();
 		for (int i = 15; i >= 0; i--) {
-			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 150);
+			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 50);
 		}
 		crouchRight = new Animation();
 		for (int i = 0; i < 15; i++) {
-			crouchRight.addFrame(spriteSheet.getSprite(i, 7), 150);
+			crouchRight.addFrame(spriteSheet.getSprite(i, 7), 80);
 		}
 		jumpRight = new Animation();
 		for (int i = 0; i <10; i++) {
-			jumpRight.addFrame(spriteSheet.getSprite(i, 9), 150);
+			jumpRight.addFrame(spriteSheet.getSprite(i, 9), 80);
 		}
 		standRight = new Animation();
 		for (int i = 0; i < 16; i++) {
-			standRight.addFrame(spriteSheet.getSprite(i, 0), 150);
+			standRight.addFrame(spriteSheet.getSprite(i, 0), 80);
 		}
 		walkRight = new Animation();
 		for (int i = 0; i < 16; i++) {
-			walkRight.addFrame(spriteSheet.getSprite(i, 1), 150);
+			walkRight.addFrame(spriteSheet.getSprite(i, 1), 50);
 		}
 		jumpRight.setLooping(false);
 		crouchRight.setLooping(false);
@@ -72,29 +72,32 @@ public class PlayerCharacterView implements EntityView {
 	public void render(Entity ent, Graphics g) {
 		if (ent instanceof PlayerCharacter) {
 			PlayerCharacter pc = (PlayerCharacter) ent;
+			//speed = ent.getVector2D().getX();
+			
 			
 			switch (pc.getDirection()) {
 			case LEFT:
 				if (pc.isCrouching()) {
 					crouchLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY() - 64 / 2 +7);
+							+ (pc.getHitbox().getWidth() / 2 +5) - 64 / 2, pc
+							.getPosition().getY() - 64 / 2);
 					jumpLeft.restart();
 				} else if (pc.isJumping()) {
 					jumpLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY()+7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					crouchLeft.restart();
 				} else if (pc.isMoving()) {
+					//walkLeft.setSpeed(Math.abs(5/speed));
 					walkLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY()+7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					jumpLeft.restart();
 					crouchLeft.restart();
 				} else {
 					standLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY()+7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					crouchLeft.restart();
 					jumpLeft.restart();
 				}
@@ -103,24 +106,25 @@ public class PlayerCharacterView implements EntityView {
 			case RIGHT:
 				if (pc.isCrouching()) {
 					crouchRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY() - 64 / 2 +7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY() - 64 / 2 );
 					jumpRight.restart();
 				} else if (pc.isJumping()) {
 					jumpRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY() +7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					crouchRight.restart();						//whats that smell??
 				} else if (pc.isMoving()) {
+					//walkRight.setSpeed(Math.abs(5/speed));
 					walkRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY()+7);
+							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					crouchRight.restart();
 					jumpRight.restart();
 				} else {
 					standRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY()+7);
+							+ (pc.getHitbox().getWidth() / 2 +5) - 64 / 2, pc
+							.getPosition().getY()-9);
 					crouchRight.restart();
 					jumpRight.restart();
 				}
