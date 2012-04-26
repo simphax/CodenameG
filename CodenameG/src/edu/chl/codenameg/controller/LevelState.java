@@ -86,29 +86,33 @@ public class LevelState extends BasicGameState {
 			player1LeftKeyPressed = false;
 			if (player1RightKeyPressed) {
 				model.performAction(Action.PLAYER_1_MOVE_RIGHT);
+			} else {
+				model.stopAction(action);
 			}
-			model.stopAction(action);
 			break;
 		case PLAYER_1_MOVE_RIGHT:
 			player1RightKeyPressed = false;
 			if (player1LeftKeyPressed) {
 				model.performAction(Action.PLAYER_1_MOVE_LEFT);
+			}else {
+				model.stopAction(action);
 			}
-			model.stopAction(action);
 			break;
 		case PLAYER_2_MOVE_LEFT:
 			player2LeftKeyPressed = false;
 			if (player2RightKeyPressed) {
 				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+			}else {
+				model.stopAction(action);
 			}
-			model.stopAction(action);
 			break;
 		case PLAYER_2_MOVE_RIGHT:
 			player2RightKeyPressed = false;
 			if (player2RightKeyPressed) {
 				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+			}else {
+				model.stopAction(action);
 			}
-			model.stopAction(action);
 			break;
 		default:
 			model.stopAction(action);
