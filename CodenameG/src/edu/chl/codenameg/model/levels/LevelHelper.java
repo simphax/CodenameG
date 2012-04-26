@@ -11,16 +11,16 @@ import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 
 public class LevelHelper {
-	private List<Entity> helpList;
 	
-	public List<Entity> generateBlock(Entity e, 
+	
+	public static List<Entity> generateBlock(Entity e, 
 			int amountOfBlocks, 
 			Direction d,
 			Position initPos,
 			Position endPos,
 			int travelTime){
-			
-			helpList = new ArrayList<Entity>();
+		
+			List<Entity> helpList = new ArrayList<Entity>();
 			if(d.equals(Direction.RIGHT)){
 				if(endPos ==null || travelTime == 0){
 					for(int i = 0; i<amountOfBlocks;i++){
@@ -122,7 +122,7 @@ public class LevelHelper {
 					}
 				}
 			}
-				return this.helpList;
+				return helpList;
 		
 	}
 

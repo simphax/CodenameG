@@ -22,7 +22,7 @@ public class GameModel {
 	private World createTestWorld() {
 		World testWorld = new World();
 		
-		Level l1 = this.selectLevel(1);
+		Level l1 = this.selectLevel(4);
 		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
 		for(int i = 0;i<level.size();i++){
 			testWorld.add(level.get(i));
@@ -75,6 +75,8 @@ public class GameModel {
 			return new LevelTwo();
 		}else if (i == 3){
 			return new LevelThree();
+		}else if (i == 4){
+			return new LevelFour();
 		}else{
 			throw new IllegalArgumentException();
 		}
