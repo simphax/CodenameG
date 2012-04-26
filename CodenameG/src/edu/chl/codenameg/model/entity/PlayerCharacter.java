@@ -262,29 +262,33 @@ public class PlayerCharacter implements Entity {
 		this.addVector = new Vector2D(0, 0);
 
 		if (this.direction == Direction.RIGHT && this.moving) {
-			this.v2d.add(new Vector2D(2, 0));
+			this.v2d.add(new Vector2D(2.8f, 0));
 //			if(this.acceleration.getX()<0) {
 //				this.acceleration.setX(0);
 //			}
-			
-			this.acceleration.add(new Vector2D(0.1f,0));
+			if(!this.jumping || this.acceleration.getX() < 0){
+				this.acceleration.add(new Vector2D(0.15f,0));
+			}
 		} else if (this.direction == Direction.LEFT && this.moving) {
-			this.v2d.add(new Vector2D(-2, 0));
+			this.v2d.add(new Vector2D(-2.8f, 0));
 //			if(this.acceleration.getX()>0) {
 //				this.acceleration.setX(0);
 //			}
-			this.acceleration.add(new Vector2D(-0.1f,0));
-		} else {
-			if(Math.abs(this.acceleration.getX())<0.2) {
+			if(!this.jumping || this.acceleration.getX() > 0){
+				this.acceleration.add(new Vector2D(-0.15f,0));
+			}
+		} 
+			if(Math.abs(this.acceleration.getX())<0.1) {
 				this.acceleration.setX(0);
 			}
 			
 			if(this.acceleration.getX() > 0) {
-				this.acceleration.add(new Vector2D(-0.2f,0));
+				this.acceleration.add(new Vector2D(-0.1f,0));
 			} else if(this.acceleration.getX() < 0) {
-				this.acceleration.add(new Vector2D(0.2f,0));
+				this.acceleration.add(new Vector2D(0.1f,0));
 			}
-		}
+		
+		
 		this.v2d.add(acceleration);
 
 		if (jumping && !justJumped) {
