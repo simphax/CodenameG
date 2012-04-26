@@ -17,6 +17,7 @@ public class PlayerCharacter implements Entity {
 	private Vector2D v2d;
 	private Vector2D addVector;
 	private Vector2D gravity;
+	private Vector2D acceleration;
 	private boolean colliding;
 	private boolean alive;
 	private Direction direction;
@@ -36,7 +37,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public PlayerCharacter(Position position) {
-		this.hitbox= new Hitbox(25, 64);
+		this.hitbox= new Hitbox(30, 52);
 		gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
@@ -46,6 +47,7 @@ public class PlayerCharacter implements Entity {
 		this.direction = Direction.RIGHT;
 		this.collidingList = new ArrayList<CollisionEvent>();
 		this.gravity = new Vector2D(0,1);
+		this.acceleration = new Vector2D(0,0);
 	}
 
 	public void jump() {
@@ -53,12 +55,12 @@ public class PlayerCharacter implements Entity {
 	}
 	public void toggleCrouch(){
 			this.hbCopy=this.hitbox;
-			this.hitbox=new Hitbox(this.getHitbox().getWidth(),this.getHitbox().getHeight()/2);
-			this.pt=new Position(this.pt.getX(),this.pt.getY()+(this.getHitbox().getHeight()));
+			this.hitbox=new Hitbox(this.getHitbox().getWidth(),this.getHitbox().getHeight()-25);
+			this.pt=new Position(this.pt.getX(),this.pt.getY()+25);
 			this.crouching=true;
 	}
 	public void unToggleCrouch(){
-			this.pt=new Position(this.pt.getX(),this.pt.getY()-this.getHitbox().getHeight());
+			this.pt=new Position(this.pt.getX(),this.pt.getY()-25);
 			this.hitbox =this.hbCopy;
 			this.crouching=false;
 	}
@@ -260,13 +262,25 @@ public class PlayerCharacter implements Entity {
 		this.addVector = new Vector2D(0, 0);
 
 		if (this.direction == Direction.RIGHT && this.moving) {
-			this.v2d.add(new Vector2D(1, 0));
+			this.v2d.add(new Vector2D(2, 0));
+//			if(this.acceleration.getX()<0) {
+//				this.acceleration.setX(0);
+//			}
+			
+			this.acceleration.add(new Vector2D(0.1f,0));
 		} else if (this.direction == Direction.LEFT && this.moving) {
-			this.v2d.add(new Vector2D(-1, 0));
+			this.v2d.add(new Vector2D(-2, 0));
+//			if(this.acceleration.getX()>0) {
+//				this.acceleration.setX(0);
+//			}
+			this.acceleration.add(new Vector2D(-0.1f,0));
+		} else {
+			this.acceleration.setX(0);
 		}
+		this.v2d.add(acceleration);
 
 		if (jumping && !justJumped) {
-			this.v2d.add(new Vector2D(0,-4));
+			this.v2d.add(new Vector2D(0,-5));
 		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0,-2));
 		}
