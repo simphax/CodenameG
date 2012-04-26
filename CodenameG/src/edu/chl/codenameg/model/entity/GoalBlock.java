@@ -15,8 +15,8 @@ public class GoalBlock extends Block{
 			skilledPlayer.winGame();
 		}
 	}
-	public GoalBlock(Hitbox hb, Position pt){
-		super(hb,pt);
+	public GoalBlock(Position pt){
+		super(pt);
 	}
 	
 	public GoalBlock() {

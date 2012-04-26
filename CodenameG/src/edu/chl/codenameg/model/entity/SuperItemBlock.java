@@ -23,8 +23,8 @@ public class SuperItemBlock extends Block {
 			}
 		}
 	}
-	public SuperItemBlock(Hitbox hb, Position ps){
-		super(hb,ps);
+	public SuperItemBlock(Position ps){
+		super(ps);
 	}
 	
 	public SuperItemBlock() {

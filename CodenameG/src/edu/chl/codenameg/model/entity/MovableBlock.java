@@ -11,8 +11,8 @@ import edu.chl.codenameg.model.Vector2D;
 
 public class MovableBlock extends Block{
 
-	public MovableBlock(Hitbox hb, Position ps){
-		super(hb,ps);
+	public MovableBlock(Position ps){
+		super(ps);
 	}
 	
 	public MovableBlock() {

@@ -15,8 +15,8 @@ public class LethalMovingBlock extends MovingBlock{
 			deadPlayer.die();
 		}
 	}
-	public LethalMovingBlock(Hitbox hb, Position ps, Position endPos, int travelTime){
-		super(hb,ps,endPos,travelTime);
+	public LethalMovingBlock(Position ps, Position endPos, int travelTime){
+		super(ps,endPos,travelTime);
 	}
 	
 	public LethalMovingBlock() {

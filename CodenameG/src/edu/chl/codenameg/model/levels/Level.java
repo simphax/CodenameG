@@ -13,5 +13,6 @@ public interface Level {
 	public void setAmountOfPlayers(int aop) throws IllegalArgumentException;
 	public Position getStartPosition();
 	public int getAmountOfPlayers();
+	
 		
 }

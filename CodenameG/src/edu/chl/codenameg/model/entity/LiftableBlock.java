@@ -10,7 +10,7 @@ import edu.chl.codenameg.model.Vector2D;
 
 public class LiftableBlock extends Block{
 	
-	private Hitbox hb;
+	private static final Hitbox hb = new Hitbox(32,32);
 	private PlayerCharacter pc;
 	private Vector2D gravity;
 	private Vector2D vector;
@@ -21,9 +21,8 @@ public class LiftableBlock extends Block{
 
 	}
 
-	public LiftableBlock(Hitbox hb, Position ps){
-		super(hb,ps);
-		this.hb = hb;
+	public LiftableBlock(Position ps){
+		super(ps);
 		this.gravity = new Vector2D(0,1);
 		this.vector = new Vector2D(0,0);
 	}
