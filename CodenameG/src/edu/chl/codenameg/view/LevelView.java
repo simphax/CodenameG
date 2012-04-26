@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
+
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.Block;
@@ -29,8 +31,9 @@ public class LevelView {
 	}
 
 	public void repaint(Graphics g) {
-		
-		g.translate(model.getWorld().getCamera().getX(), 0);
+		g.setBackground(Color.white);
+		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
+		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
 		for (Entity e : model.getWorld().getEntities()) {
 
 			if (entityMap.containsKey(e)) {

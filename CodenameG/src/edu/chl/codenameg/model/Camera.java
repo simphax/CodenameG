@@ -1,40 +1,47 @@
 package edu.chl.codenameg.model;
 
 import java.awt.Dimension;
+
+import edu.chl.codenameg.model.entity.PlayerCharacter;
 public class Camera {
-	
-	private Position position;
-	private Dimension size;
-	
-	public Camera() {
-		this.position = new Position(0,0);
-		this.size = new Dimension(1024, 768);
+	private int width = 500;
+	private int height = 600;
+	private float camerax = 0;
+	private float cameray;
+	private World world;
+	private PlayerCharacter pc;
+
+	public Camera(World world) {
+		this.world = world;
 	}
 	
-	public Camera(Dimension size) {
-		this();
-		this.size = size; 
+	public float getX(){
+		return camerax;
 	}
-	
-	public Position getPosition() {
-		Position p = new Position(this.position);
-		return p;
+	public float getY(){
+		return cameray;
 	}
-	
-	public Dimension getSize() {
-		return size;
+
+	public int getWidth() {
+		return width;
 	}
-	
+
+	public int getHeight() {
+		return height;
+	}
 	public void update() {
 		this.update(10);
 	}
 	
 	public void update(int elapsedTime) {
-		float x = this.position.getX();
-		float y = this.position.getY();
-		float newX = (float)(x+1)/*(x + (10 / elapsedTime))*/;
-		this.position.setX(newX);
-		this.position.setY(y);
+		for (Entity e : world.getEntities()){
+			if (e instanceof PlayerCharacter){
+				this.pc = (PlayerCharacter)e;	
+			}
+		}
+		this.camerax = (pc.getPosition().getX()-this.getWidth()/2);
+		this.cameray = (pc.getPosition().getY()-this.getHeight()/2);
 	}
 	
 }
+

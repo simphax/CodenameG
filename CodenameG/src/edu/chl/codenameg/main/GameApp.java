@@ -32,7 +32,7 @@ public class GameApp {
 		GameController controller = new GameController(model,view);
 		
 		try {
-			agc = new AppGameContainer(controller,800,600,false);
+			agc = new AppGameContainer(controller,500,600,false);
 			agc.setTargetFrameRate(60);
 			agc.start();
 		} catch (SlickException e) {

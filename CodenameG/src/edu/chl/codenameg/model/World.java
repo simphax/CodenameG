@@ -21,11 +21,12 @@ public class World {
 
 	private boolean gameOver;
 	private boolean hasWonGame;
-
+	private Camera camera;
 	private List<Entity> entities;
 	private int amountOfPlayers;
 
 	public World() {
+		this.camera=new Camera(this);
 		this.gameOver = false;
 		this.hasWonGame = false;
 		this.entities = new ArrayList<Entity>();
@@ -59,7 +60,7 @@ public class World {
 	}
 
 	public Camera getCamera() {
-		return new Camera();
+		return camera;
 	}
 
 	public void update(int elapsedTime) {
@@ -86,7 +87,9 @@ public class World {
 			}
 			move(e);
 			e.update(elapsedTime);
+			
 		}
+		camera.update(elapsedTime);
 	}
 
 	private void move(Entity e) {
