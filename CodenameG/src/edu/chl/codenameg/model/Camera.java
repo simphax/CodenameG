@@ -1,7 +1,6 @@
 package edu.chl.codenameg.model;
 
 import java.awt.Dimension;
-
 public class Camera {
 	
 	private Position position;

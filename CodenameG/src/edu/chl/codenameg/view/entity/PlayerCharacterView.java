@@ -43,7 +43,7 @@ public class PlayerCharacterView implements EntityView {
 		}
 		walkLeft = new Animation();
 		for (int i = 15; i >= 0; i--) {
-			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 50);
+			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 20);
 		}
 		crouchRight = new Animation();
 		for (int i = 0; i < 15; i++) {
@@ -59,7 +59,7 @@ public class PlayerCharacterView implements EntityView {
 		}
 		walkRight = new Animation();
 		for (int i = 0; i < 16; i++) {
-			walkRight.addFrame(spriteSheet.getSprite(i, 1), 50);
+			walkRight.addFrame(spriteSheet.getSprite(i, 1), 20);
 		}
 		jumpRight.setLooping(false);
 		crouchRight.setLooping(false);
