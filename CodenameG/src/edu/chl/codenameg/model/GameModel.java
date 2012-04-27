@@ -10,6 +10,7 @@ public class GameModel {
 
 	private World world;
 	private boolean running;
+	private int selectedLevel;
 	private List<PlayerCharacter> listOfPC;
 
 	public GameModel() {
@@ -68,18 +69,13 @@ public class GameModel {
 			this.world = null;
 		}
 	}
-	public Level selectLevel(int i)throws IllegalArgumentException{
-		if(i == 1){
-			return new LevelOne();
-		}else if (i == 2){
-			return new LevelTwo();
-		}else if (i == 3){
-			return new LevelThree();
-		}else if (i == 4){
-			return new LevelFour();
-		}else{
-			throw new IllegalArgumentException();
-		}
+	public Level selectLevel(int i) {
+		this.selectedLevel = i;
+		return LevelFactory.getLevel(i);
+	}
+	
+	public int getSelectedLevel() {
+		return this.selectedLevel;
 	}
 	public void performAction(Action action) {
 		switch (action) {
