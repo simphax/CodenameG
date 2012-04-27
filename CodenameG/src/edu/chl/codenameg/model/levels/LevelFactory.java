@@ -7,7 +7,7 @@ public class LevelFactory {
 
 	public static Level getLevel(int i)throws IllegalArgumentException{
 		if(i == 1){
-			return LevelFactory.loadLevelFromFile("level/level1.tmx");
+			return LevelFactory.loadLevelFromFile(LevelFactory.getLevelFilePath(i));
 		}else if (i == 2){
 			return new LevelTwo();
 		}else if (i == 3){
@@ -33,7 +33,7 @@ public class LevelFactory {
 	}
 	
 	public static String getLevelFilePath(int i) {
-		return "level/level1.tmx";
+		return "levels/level1.tmx";
 	}
 	
 }
