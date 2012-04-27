@@ -5,9 +5,11 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.GameModel;
+import edu.chl.codenameg.model.levels.LevelFactory;
 import edu.chl.codenameg.view.LevelView;
 
 public class LevelState extends BasicGameState {
@@ -20,7 +22,6 @@ public class LevelState extends BasicGameState {
 	boolean player2RightKeyPressed;
 	
 	public LevelState(GameModel model) {
-		this.view = new LevelView(model);
 		
 		this.model = model;
 
@@ -31,7 +32,9 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		TiledMap tm = new TiledMap(LevelFactory.getLevelFilePath(1));
+		this.view = new LevelView(model, tm);
+		
 		
 	}
 

@@ -27,9 +27,9 @@ public class GameApp {
 	public static void main(String[] args) {
 		
 		GameModel model = new GameModel();
-		GameView view = new MainView(model);
+		//GameView view = new MainView(model);
 		AppGameContainer agc = null;
-		GameController controller = new GameController(model,view);
+		GameController controller = new GameController(model);
 		
 		try {
 			agc = new AppGameContainer(controller,500,600,false);
