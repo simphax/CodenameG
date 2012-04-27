@@ -7,6 +7,14 @@
  <tileset firstgid="199" name="block2" tilewidth="32" tileheight="32" spacing="2" margin="2">
   <image source="tileset/blocks2.png" trans="000000" width="640" height="376"/>
  </tileset>
+ <layer name="Background" width="50" height="10">
+  <properties>
+   <property name="imagesrc" value="backimg"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBUAcARPTJAtAHAAA=
+  </data>
+ </layer>
  <layer name="Ground" width="50" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC7VVQQ4CMQjEN3jRRL8C8/9X6caSsJNiLa2TELKUAp1uMyoi2gzBPGZhrec5z5IasY4FH+OHVaHFfbbQMwMW9mbz3P/YM0OV0wOYjI/Wr9VBZO2OMw5G3FT3fYO/F8j8fe/+z7NzYLLO7Fwr/PUA+vZ3NjuXDayXH6Hkq7zw/FmdXTxq6+mGtz0un77R/2qe73WU/K31eYb4DvB9Qc76FDWPNYvzIWdtZH1kTWTNRCfP+fAzez7jBUkFe8LQBwAA
