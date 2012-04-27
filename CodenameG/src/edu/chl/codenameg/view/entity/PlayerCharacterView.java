@@ -79,24 +79,24 @@ public class PlayerCharacterView implements EntityView {
 			case LEFT:
 				if (pc.isCrouching()) {
 					crouchLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2 +5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
 							.getPosition().getY() - 64 / 2);
 					jumpLeft.restart();
 				} else if (pc.isJumping()) {
 					jumpLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
 							.getPosition().getY()-9);
 					crouchLeft.restart();
 				} else if (pc.isMoving()) {
 					//walkLeft.setSpeed(Math.abs(5/speed));
 					walkLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
 					jumpLeft.restart();
 					crouchLeft.restart();
 				} else {
 					standLeft.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
 							.getPosition().getY()-9);
 					crouchLeft.restart();
 					jumpLeft.restart();
@@ -106,24 +106,24 @@ public class PlayerCharacterView implements EntityView {
 			case RIGHT:
 				if (pc.isCrouching()) {
 					crouchRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY() - 64 / 2 );
 					jumpRight.restart();
 				} else if (pc.isJumping()) {
 					jumpRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
 					crouchRight.restart();						//whats that smell??
 				} else if (pc.isMoving()) {
 					//walkRight.setSpeed(Math.abs(5/speed));
 					walkRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
 					crouchRight.restart();
 					jumpRight.restart();
 				} else {
 					standRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2 +5) - 64 / 2, pc
+							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
 					crouchRight.restart();
 					jumpRight.restart();
