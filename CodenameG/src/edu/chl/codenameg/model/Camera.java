@@ -1,6 +1,6 @@
 package edu.chl.codenameg.model;
-
 import edu.chl.codenameg.model.entity.PlayerCharacter;
+/** Class that represents a camera and controls the camera position depending on a player character */
 public class Camera {
 	private int width = 500;
 	private int height = 600;
