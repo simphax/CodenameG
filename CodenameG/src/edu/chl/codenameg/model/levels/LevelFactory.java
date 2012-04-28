@@ -9,6 +9,7 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.entity.Block;
+import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
@@ -90,10 +91,31 @@ public class LevelFactory {
 					entities.add(movableblock);
 				}
 				if(name.equals("MovingBlock")) {
-					Position startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
-					Position endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+					String direction = tiledmap.getObjectProperty(groupID, objectID, "Direction", "down");
+					Position endPosition = new Position(0,0);
+					Position startPosition = new Position(0,0);
+					if(direction.equals("up")) {
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+					} else if(direction.equals("down")) {
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+					} else if(direction.equals("right")) {
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					} else if(direction.equals("left")) {
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					}
 					Entity movingblock = new MovingBlock(startPosition,endPosition,1000);
 					entities.add(movingblock);
+				}
+				if(name.equals("GoalBlock")) {
+					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID),tiledmap.getObjectHeight(groupID, objectID));
+					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Entity lethalblock = new GoalBlock(position,hitbox);
+					entities.add(lethalblock);
 				}
 				if(name.equals("Spawn")) {
 					spawnposition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));

@@ -18,6 +18,9 @@ public class GoalBlock extends Block{
 	public GoalBlock(Position pt){
 		super(pt);
 	}
+	public GoalBlock(Position pt,Hitbox hb){
+		super(pt,hb);
+	}
 	
 	public GoalBlock() {
 		super();
