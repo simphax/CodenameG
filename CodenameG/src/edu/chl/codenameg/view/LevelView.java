@@ -27,6 +27,8 @@ public class LevelView {
 	private GameModel model;
 	private Map<Entity, EntityView> entityMap;
 	private TiledMap tm;
+	private Image background;
+	
 
 
 	public LevelView(final GameModel model, TiledMap tm) {
@@ -42,10 +44,19 @@ public class LevelView {
 	}
 
 	public void repaint(Graphics g) {
-		g.setBackground(Color.white);
+		try {
+			background = new Image("res/backimg.jpg");
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		g.drawImage(background, -200, -200);
+		
 		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
 		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
+		
 		tm.render(0, 0);
+		
 		
 		for (Entity e : model.getWorld().getEntities()) {
 			if (entityMap.containsKey(e)) {
