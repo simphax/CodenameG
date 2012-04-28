@@ -71,7 +71,7 @@ public class GameModel {
 	}
 	public Level selectLevel(int i) {
 		this.selectedLevel = i;
-		return LevelFactory.getLevel(i);
+		return LevelFactory.getInstance().getLevel(i);
 	}
 	
 	public int getSelectedLevel() {

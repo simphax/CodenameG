@@ -26,10 +26,10 @@ public class GameApp {
 	 */
 	public static void main(String[] args) {
 		
-		GameModel model = new GameModel();
+//		GameModel model = new GameModel();
 		//GameView view = new MainView(model);
 		AppGameContainer agc = null;
-		GameController controller = new GameController(model);
+		GameController controller = new GameController();
 		
 		try {
 			agc = new AppGameContainer(controller,500,600,false);

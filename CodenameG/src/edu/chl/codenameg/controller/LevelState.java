@@ -21,9 +21,8 @@ public class LevelState extends BasicGameState {
 	boolean player2LeftKeyPressed;
 	boolean player2RightKeyPressed;
 	
-	public LevelState(GameModel model) {
+	public LevelState() {
 		
-		this.model = model;
 
 		player1LeftKeyPressed = false; player1RightKeyPressed = false;
 		player2LeftKeyPressed = false; player2RightKeyPressed = false;
@@ -32,10 +31,12 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		TiledMap tm = new TiledMap(LevelFactory.getLevelFilePath(1));
+		
+		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(1));
+		LevelFactory.getInstance().setTiledMap(tm);
+		
+		this.model = new GameModel();
 		this.view = new LevelView(model, tm);
-		
-		
 	}
 
 	@Override

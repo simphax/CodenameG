@@ -33,7 +33,7 @@ public class MainMenuState extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer gc, StateBasedGame game, int arg2)
+	public void update(GameContainer gc, StateBasedGame game, int elapsedTime)
 			throws SlickException {
 		// TODO Auto-generated method stub
 

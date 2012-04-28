@@ -23,14 +23,14 @@ public class GameController extends StateBasedGame {
 	
 	private boolean isRunning = true;
 	
-	public GameController( GameModel model) {
+	public GameController() {
 		super("CodenameG");
 		
-		this.model = model;
+//		this.model = model;
 		//this.view = view;
 		
 		this.addState(new MainMenuState());
-		this.addState(new LevelState(model));
+		this.addState(new LevelState());
 		
 		
 	}
