@@ -1,6 +1,7 @@
 package edu.chl.codenameg.model.entity;
 
 import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 
 
@@ -16,6 +17,9 @@ public class LethalBlock extends Block{
 	}
 	public LethalBlock(Position ps){
 		super(ps);
+	}
+	public LethalBlock(Position ps, Hitbox hb){
+		super(ps,hb);
 	}
 	
 	public LethalBlock() {

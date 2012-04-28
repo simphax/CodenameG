@@ -11,7 +11,7 @@ import edu.chl.codenameg.model.Vector2D;
 
 
 public class Block implements Entity{
-	private static final Hitbox hb = new Hitbox(32,32);
+	private Hitbox hb;
 	private Vector2D v2d;
 	private boolean colliding;
 	private Position ps;
@@ -21,12 +21,19 @@ public class Block implements Entity{
 	}
 	
 	public Block(Position position){
+		this(position,new Hitbox(32,32));
+	}
+	public Block(Position position, Hitbox hitbox){
+		this.setHitbox(hitbox);
 		this.setPosition(position);
 		this.colliding = false;
 		this.v2d = new Vector2D(0,0);
 	}
 	public Hitbox getHitbox() {
 			return new Hitbox(hb);
+	}
+	public void setHitbox(Hitbox hb) {
+		this.hb = new Hitbox(hb);
 	}
 
 	public Vector2D getVector2D() {

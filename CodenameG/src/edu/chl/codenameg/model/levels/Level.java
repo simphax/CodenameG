@@ -10,7 +10,6 @@ public interface Level {
 	//Just a suggestion , different list for singleplayer / multiplayer to enhance the difficulty relative to players.
 	
 	public List<Entity> getListOfEnteties();
-	public void setAmountOfPlayers(int aop) throws IllegalArgumentException;
 	public Position getStartPosition();
 	public int getAmountOfPlayers();
 	

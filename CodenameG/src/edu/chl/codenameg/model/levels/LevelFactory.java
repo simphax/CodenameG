@@ -1,39 +1,149 @@
 package edu.chl.codenameg.model.levels;
 
-import org.newdawn.slick.SlickException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.tiled.TiledMap;
 
-public class LevelFactory {
+import edu.chl.codenameg.model.Entity;
+import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
+import edu.chl.codenameg.model.entity.Block;
+import edu.chl.codenameg.model.entity.LethalBlock;
+import edu.chl.codenameg.model.entity.MovableBlock;
+import edu.chl.codenameg.model.entity.MovingBlock;
 
-	public static Level getLevel(int i)throws IllegalArgumentException{
+public class LevelFactory {
+	
+	private static LevelFactory instance;
+	
+	TiledMap tiledmap;
+	
+	private LevelFactory() {
+		
+	}
+	
+	public static LevelFactory getInstance(){
+		if(instance == null) {
+			instance = new LevelFactory();
+		}
+		return instance;
+		
+	}
+
+	public Level getLevel(int i)throws IllegalArgumentException{
 		if(i == 1){
-			return LevelFactory.loadLevelFromFile(LevelFactory.getLevelFilePath(i));
+			return loadLevelFromFile(getLevelFilePath(i));
 		}else if (i == 2){
 			return new LevelTwo();
 		}else if (i == 3){
 			return new LevelThree();
 		}else if (i == 4){
-			return new LevelFour();
+			return loadLevelFromFile(getLevelFilePath(i));
 		}else{
 			throw new IllegalArgumentException();
 		}
 	}
 	
-	public static Level loadLevelFromFile(String path) {
-		try {
-			TiledMap map = new TiledMap(path,"level");
-			map.getLayerIndex("Block");
+	public Level loadLevelFromFile(String path) {
+//		if(tiledmap != null) {
+//			for(Object o : tiledmap.getObjectGroups()) {
+//				System.out.println(o);
+//				if(o instanceof ObjectGroup) {
+//					GroupObject go = (GroupObject)o;
+//					
+//					System.out.println(go.index);
+//				}
+//			}
+//		}
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		Position spawnposition = new Position(0,0);
+		
+		for(int groupID=0; groupID<tiledmap.getObjectGroupCount(); groupID++) {
+//		int groupID = 0;
+//		System.out.println(tiledmap.getLayerCount());
+//			String blocktype = tiledmap.getLayerProperty(groupID,"layertype","fff");
+//			System.out.println(blocktype);
+		
 			
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			for(int objectID=0; objectID<tiledmap.getObjectCount(groupID); objectID++) {
+				
+				String name = tiledmap.getObjectName(groupID, objectID); 
+				
+				if(name.equals("Block")) {
+					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID),tiledmap.getObjectHeight(groupID, objectID));
+					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Entity block = new Block(position,hitbox);
+					entities.add(block);
+				}
+				if(name.equals("LethalBlock")) {
+					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID),tiledmap.getObjectHeight(groupID, objectID));
+					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Entity lethalblock = new LethalBlock(position,hitbox);
+					entities.add(lethalblock);
+				}
+				if(name.equals("MovableBlock")) {
+					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID),tiledmap.getObjectHeight(groupID, objectID));
+					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Entity movableblock = new MovableBlock(position, hitbox);
+					entities.add(movableblock);
+				}
+				if(name.equals("MovingBlock")) {
+					Position startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Position endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+					Entity movingblock = new MovingBlock(startPosition,endPosition,1000);
+					entities.add(movingblock);
+				}
+				if(name.equals("Spawn")) {
+					spawnposition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+				}
+			}
 		}
-		return new LevelOne();
+		
+		Level level = new GeneratedLevel(entities,spawnposition,1);
+		
+		return level;
 		
 	}
 	
-	public static String getLevelFilePath(int i) {
+	public String getLevelFilePath(int i) {
 		return "levels/level1.tmx";
+	}
+	
+	public void setTiledMap(TiledMap tm) {
+		this.tiledmap = tm;
+	}
+	
+	
+	private class GeneratedLevel implements Level {
+		
+		List<Entity> entities;
+		Position spawnposition;
+		int numberPlayers = 1;
+		
+		public GeneratedLevel(List<Entity> entities, Position spawnposition, int numberPlayers) {
+			this.entities = entities;
+			this.spawnposition = spawnposition;
+			this.numberPlayers = numberPlayers;
+		}
+
+		@Override
+		public List<Entity> getListOfEnteties() {
+			// TODO Auto-generated method stub
+			return entities;
+		}
+
+		@Override
+		public Position getStartPosition() {
+			return spawnposition;
+		}
+
+		@Override
+		public int getAmountOfPlayers() {
+			return numberPlayers;
+		}
+		
 	}
 	
 }

@@ -14,6 +14,9 @@ public class MovableBlock extends Block{
 	public MovableBlock(Position ps){
 		super(ps);
 	}
+	public MovableBlock(Position ps, Hitbox hb){
+		super(ps, hb);
+	}
 	
 	public MovableBlock() {
 		super();
