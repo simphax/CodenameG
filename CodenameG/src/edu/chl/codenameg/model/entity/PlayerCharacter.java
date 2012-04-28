@@ -54,15 +54,19 @@ public class PlayerCharacter implements Entity {
 			this.jumping = true;
 	}
 	public void toggleCrouch(){
+		if(!crouching) {
 			this.hbCopy=this.hitbox;
 			this.hitbox=new Hitbox(this.getHitbox().getWidth(),this.getHitbox().getHeight()-25);
 			this.pt=new Position(this.pt.getX(),this.pt.getY()+25);
 			this.crouching=true;
+		}
 	}
 	public void unToggleCrouch(){
+		if(crouching) {
 			this.pt=new Position(this.pt.getX(),this.pt.getY()-25);
 			this.hitbox =this.hbCopy;
 			this.crouching=false;
+		}
 	}
 	
 	public void Togglelift() {
