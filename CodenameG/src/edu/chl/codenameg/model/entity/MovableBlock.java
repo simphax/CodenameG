@@ -31,6 +31,7 @@ public class MovableBlock extends Block{
 	public List<String> getCollideTypes() {
 		List<String> list = new ArrayList<String>();
 		list.add("Block");
+		list.add("MovableBlock");
 		list.add("PlayerCharacter");
 		return list;
 	}
