@@ -94,21 +94,22 @@ public class LevelFactory {
 					String direction = tiledmap.getObjectProperty(groupID, objectID, "Direction", "down");
 					Position endPosition = new Position(0,0);
 					Position startPosition = new Position(0,0);
+					Entity movingblock = new MovingBlock();
 					if(direction.equals("up")) {
 						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
-						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID)-movingblock.getHitbox().getHeight());
 					} else if(direction.equals("down")) {
 						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
-						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID));
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID)-movingblock.getHitbox().getHeight());
 					} else if(direction.equals("right")) {
 						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
-						endPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						endPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID)-movingblock.getHitbox().getWidth(), tiledmap.getObjectY(groupID, objectID));
 					} else if(direction.equals("left")) {
 						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
 						
-						startPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+						startPosition = new Position(tiledmap.getObjectX(groupID, objectID)+tiledmap.getObjectWidth(groupID, objectID)-movingblock.getHitbox().getWidth(), tiledmap.getObjectY(groupID, objectID));
 					}
-					Entity movingblock = new MovingBlock(startPosition,endPosition,1000);
+					movingblock = new MovingBlock(startPosition,endPosition,1000);
 					entities.add(movingblock);
 				}
 				if(name.equals("GoalBlock")) {
