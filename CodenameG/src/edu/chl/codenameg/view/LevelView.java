@@ -50,7 +50,9 @@ public class LevelView {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		g.drawImage(background, -200, -200);
+		
+		
+		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
 		
 		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
 		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
