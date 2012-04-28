@@ -1,7 +1,5 @@
 package edu.chl.codenameg.model;
 
-import java.awt.Dimension;
-
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 public class Camera {
 	private int width = 500;
@@ -39,8 +37,14 @@ public class Camera {
 				this.pc = (PlayerCharacter)e;	
 			}
 		}
-		this.camerax = (pc.getPosition().getX()-this.getWidth()/2);
-		this.cameray = (pc.getPosition().getY()-this.getHeight()/2);
+		if (pc.isCrouching()){		//TODO whats that smell?
+			this.camerax = (pc.getPosition().getX()-this.getWidth()/2);
+			this.cameray = (pc.getPosition().getY()-this.getHeight()/2-25);	
+		}else{
+			this.camerax = (pc.getPosition().getX()-this.getWidth()/2);
+			this.cameray = (pc.getPosition().getY()-this.getHeight()/2);
+		}
+		
 	}
 	
 }
