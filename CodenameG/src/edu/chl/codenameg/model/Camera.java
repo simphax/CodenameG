@@ -3,7 +3,7 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 /** Class that represents a camera and controls the camera position depending on a player character */
 public class Camera {
 	private int width = 500;
-	private int height = 600;
+	private int height = 500;
 	private float camerax = 0;
 	private float cameray;
 	private World world;
