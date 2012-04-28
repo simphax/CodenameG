@@ -20,7 +20,7 @@ public class KeyBindings {
 				return Action.PLAYER_1_MOVE_RIGHT;
 			case Input.KEY_UP:
 				return Action.PLAYER_1_JUMP;
-			case Input.KEY_M:
+			case Input.KEY_DOWN:
 				return Action.PLAYER_1_TOGGLE_CROUCH;
 			case Input.KEY_A:
 				return Action.PLAYER_2_MOVE_LEFT;
@@ -28,7 +28,7 @@ public class KeyBindings {
 				return Action.PLAYER_2_MOVE_RIGHT;
 			case Input.KEY_W:
 				return Action.PLAYER_2_JUMP;
-			case Input.KEY_C:
+			case Input.KEY_S:
 				return Action.PLAYER_2_TOGGLE_CROUCH;
 			case Input.KEY_P:
 				return Action.PAUSE_GAME;
