@@ -139,6 +139,14 @@ public class PlayerCharacter implements Entity {
 		if(evt.getEntity().getType() != this.getType() && this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
 		}
+		if(this.getCollideTypes().contains(evt.getEntity().getType())) {
+			if(evt.getDirection() == Direction.RIGHT || evt.getDirection() == Direction.LEFT) {
+				this.acceleration.setX(0);
+			} else if(evt.getDirection() == Direction.TOP || evt.getDirection() == Direction.BOTTOM) {
+				this.acceleration.setY(0);
+			}
+		}
+		
 	}
 
 
