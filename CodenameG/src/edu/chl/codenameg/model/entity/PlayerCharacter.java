@@ -31,72 +31,81 @@ public class PlayerCharacter implements Entity {
 	private List<CollisionEvent> collidingList;
 	private Hitbox hbCopy;
 	private Position startPos;
+	private boolean inWater;
+	private float speedFactor;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
 	}
 
 	public PlayerCharacter(Position position) {
-		this.hitbox= new Hitbox(30, 49);
+		this.hitbox = new Hitbox(30, 49);
 		gameWon = false;
 		this.alive = true;
+		this.inWater = false;
 		this.setPosition(position);
 		this.startPos = position;
 		this.v2d = new Vector2D(0, 0);
 		this.addVector = new Vector2D(0, 0);
 		this.direction = Direction.RIGHT;
 		this.collidingList = new ArrayList<CollisionEvent>();
-		this.gravity = new Vector2D(0,1);
-		this.acceleration = new Vector2D(0,0);
+		this.gravity = new Vector2D(0, 1);
+		this.acceleration = new Vector2D(0, 0);
+		this.speedFactor = 1.0f;
 	}
 
 	public void jump() {
-			this.jumping = true;
+		this.jumping = true;
 	}
-	public void toggleCrouch(){
-		if(!crouching) {
-			this.hbCopy=this.hitbox;
-			this.hitbox=new Hitbox(this.getHitbox().getWidth(),this.getHitbox().getHeight()-25);
-			this.pt=new Position(this.pt.getX(),this.pt.getY()+25);
-			this.crouching=true;
+
+	public void toggleCrouch() {
+		if (!crouching) {
+			this.hbCopy = this.hitbox;
+			this.hitbox = new Hitbox(this.getHitbox().getWidth(), this
+					.getHitbox().getHeight() - 25);
+			this.pt = new Position(this.pt.getX(), this.pt.getY() + 25);
+			this.crouching = true;
 		}
 	}
-	public void unToggleCrouch(){
-		if(crouching) {
-			this.pt=new Position(this.pt.getX(),this.pt.getY()-25);
-			this.hitbox =this.hbCopy;
-			this.crouching=false;
+
+	public void unToggleCrouch() {
+		if (crouching) {
+			this.pt = new Position(this.pt.getX(), this.pt.getY() - 25);
+			this.hitbox = this.hbCopy;
+			this.crouching = false;
 		}
 	}
-	
+
 	public void Togglelift() {
-		//System.out.println("Lyfter");
+		// System.out.println("Lyfter");
 		this.lifting = true;
 	}
 
 	public void unToggleLift() {
-		//System.out.println("Släpper");
-		this.lifting=false;
-		if (lb!=null){
+		// System.out.println("Slï¿½pper");
+		this.lifting = false;
+		if (lb != null) {
 			lb.drop(this);
 			lb = null;
 		}
 	}
-	
-	public boolean isLifting(){
+
+	public boolean isLifting() {
 		return this.lifting;
 	}
-	public boolean isMoving(){
+
+	public boolean isMoving() {
 		return this.moving;
 	}
-	public boolean isCrouching(){
+
+	public boolean isCrouching() {
 		return this.crouching;
 	}
 
 	public void stopJump() {
-		if(jumping)
+		if (jumping)
 			this.justJumped = true;
-		this.jumping = false;	
+		this.jumping = false;
 	}
 
 	public void move() {
@@ -123,48 +132,54 @@ public class PlayerCharacter implements Entity {
 
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		if (this.getCollideTypes().contains(evt.getEntity().getType()) && (evt.getDirection() == Direction.BOTTOM)) {
+		if (this.getCollideTypes().contains(evt.getEntity().getType())
+				&& (evt.getDirection() == Direction.BOTTOM)) {
 			this.onGround = true;
 			this.justJumped = false;
 		}
-		if (evt.getDirection()==Direction.TOP){
-			this.jumping=false;
+		if (evt.getDirection() == Direction.TOP) {
+			this.jumping = false;
 		}
-		if ((evt.getEntity()instanceof LiftableBlock)&&(evt.getDirection()== Direction.LEFT || evt.getDirection()== Direction.RIGHT)){
-			lb = (LiftableBlock)evt.getEntity();
-			if (lifting){
-			lb.lift(this);
+		if (evt.getEntity() instanceof Water) {
+			this.inWater = true;
+		}
+		if ((evt.getEntity() instanceof LiftableBlock)
+				&& (evt.getDirection() == Direction.LEFT || evt.getDirection() == Direction.RIGHT)) {
+			lb = (LiftableBlock) evt.getEntity();
+			if (lifting) {
+				lb.lift(this);
 			}
 		}
-		if(evt.getEntity().getType() != this.getType() && this.getCollideTypes().contains(evt.getEntity().getType())) {
+		if (evt.getEntity().getType() != this.getType()
+				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
 		}
-		if(this.getCollideTypes().contains(evt.getEntity().getType())) {
-			if(evt.getDirection() == Direction.RIGHT || evt.getDirection() == Direction.LEFT) {
+		if (this.getCollideTypes().contains(evt.getEntity().getType())) {
+			if (evt.getDirection() == Direction.RIGHT
+					|| evt.getDirection() == Direction.LEFT) {
 				this.acceleration.setX(0);
-			} else if(evt.getDirection() == Direction.TOP || evt.getDirection() == Direction.BOTTOM) {
+			} else if (evt.getDirection() == Direction.TOP
+					|| evt.getDirection() == Direction.BOTTOM) {
 				this.acceleration.setY(0);
 			}
 		}
-		
+
 	}
 
-
 	private void checkCollisionDeath() {
-		
-		//TODO Check collision from both sides.
+
+		// TODO Check collision from both sides.
 		if (collidingList.size() > 0) {
 			int collideLeftCount = 0;
 			int collideRightCount = 0;
 			int collideTopCount = 0;
 			int collideBottomCount = 0;
-			
-			for(CollisionEvent evt : collidingList) {
-//				if(!(evt.getEntity() instanceof PlayerCharacter)){
-				if(!(evt.getEntity() instanceof LiftableBlock)){
-					
-				
-					switch(evt.getDirection()) {
+
+			for (CollisionEvent evt : collidingList) {
+				// if(!(evt.getEntity() instanceof PlayerCharacter)){
+				if (!(evt.getEntity() instanceof LiftableBlock)) {
+
+					switch (evt.getDirection()) {
 					case LEFT:
 						collideLeftCount++;
 						break;
@@ -179,12 +194,12 @@ public class PlayerCharacter implements Entity {
 						break;
 					}
 				}
-//				}
+				// }
 			}
-			
+
 			if ((collideLeftCount > 0) && (collideRightCount > 0)) {
 				this.die();
-			} else if ((collideTopCount > 0 ) && (collideBottomCount > 0)) {
+			} else if ((collideTopCount > 0) && (collideBottomCount > 0)) {
 				this.die();
 			}
 			this.collidingList.clear();
@@ -203,9 +218,11 @@ public class PlayerCharacter implements Entity {
 	public void setPosition(Position p) {
 		this.pt = p;
 	}
-	public Position getStartPosition(){
+
+	public Position getStartPosition() {
 		return new Position(this.startPos);
 	}
+
 	public Position getPosition() {
 		return new Position(this.pt);
 	}
@@ -244,7 +261,8 @@ public class PlayerCharacter implements Entity {
 	public boolean isOnGround() {
 		return this.onGround;
 	}
-	public boolean isJumping(){
+
+	public boolean isJumping() {
 		return this.jumping;
 	}
 
@@ -266,59 +284,64 @@ public class PlayerCharacter implements Entity {
 	public void update() {
 		this.update(10);
 	}
-	
+
 	public void update(int elapsedTime) {
 		this.checkCollisionDeath();
-		
+
 		this.v2d = new Vector2D(addVector);
 		this.addVector = new Vector2D(0, 0);
+		if (this.inWater) {
+			this.speedFactor = 0.9f;
+		}
 
 		if (this.direction == Direction.RIGHT && this.moving) {
 			this.v2d.add(new Vector2D(2.8f, 0));
-//			if(this.acceleration.getX()<0) {
-//				this.acceleration.setX(0);
-//			}
-			if(!this.jumping || this.acceleration.getX() < 0){
-				this.acceleration.add(new Vector2D(0.15f,0));
+			// if(this.acceleration.getX()<0) {
+			// this.acceleration.setX(0);
+			// }
+			if (!this.jumping || this.acceleration.getX() < 0) {
+				this.acceleration.add(new Vector2D(0.15f, 0));
 			}
 		} else if (this.direction == Direction.LEFT && this.moving) {
 			this.v2d.add(new Vector2D(-2.8f, 0));
-//			if(this.acceleration.getX()>0) {
-//				this.acceleration.setX(0);
-//			}
-			if(!this.jumping || this.acceleration.getX() > 0){
-				this.acceleration.add(new Vector2D(-0.15f,0));
+			// if(this.acceleration.getX()>0) {
+			// this.acceleration.setX(0);
+			// }
+			if (!this.jumping || this.acceleration.getX() > 0) {
+				this.acceleration.add(new Vector2D(-0.15f, 0));
 			}
-		} 
-			if(Math.abs(this.acceleration.getX())<0.1) {
-				this.acceleration.setX(0);
-			}
-			
-			if(this.acceleration.getX() > 0) {
-				this.acceleration.add(new Vector2D(-0.1f,0));
-			} else if(this.acceleration.getX() < 0) {
-				this.acceleration.add(new Vector2D(0.1f,0));
-			}
-		
-		
+		}
+		if (Math.abs(this.acceleration.getX()) < 0.1) {
+			this.acceleration.setX(0);
+		}
+
+		if (this.acceleration.getX() > 0) {
+			this.acceleration.add(new Vector2D(-0.1f, 0));
+		} else if (this.acceleration.getX() < 0) {
+			this.acceleration.add(new Vector2D(0.1f, 0));
+		}
+	
 		this.v2d.add(acceleration);
 
 		if (jumping && !justJumped) {
-			this.v2d.add(new Vector2D(0,-5));
-		} else if(justJumped) { //TODO Not being able to jump if just dropped from height
-			this.v2d.add(new Vector2D(0,-2));
+			this.v2d.add(new Vector2D(0, -5));
+		} else if (justJumped) { // TODO Not being able to jump if just dropped
+									// from height
+			this.v2d.add(new Vector2D(0, -2));
 		}
-
 
 		if (!onGround) {
-			this.gravity.add(new Vector2D(0,0.1f));
+			this.gravity.add(new Vector2D(0, 0.1f));
 		} else {
-			this.gravity = new Vector2D(0,0.98f);
+			this.gravity = new Vector2D(0, 0.98f);
 		}
 		this.v2d.add(this.gravity);
+		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY()*this.speedFactor);
 		this.onGround = false;
 		this.colliding = false;
+		
+		this.inWater = false;
+		this.speedFactor = 1.0f;
 	}
 
-	
 }
