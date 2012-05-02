@@ -137,7 +137,7 @@ public class PlayerCharacter implements Entity {
 			this.onGround = true;
 			this.justJumped = false;
 		}
-		if (evt.getDirection() == Direction.TOP) {
+		if (evt.getDirection() == Direction.TOP && !(evt.getEntity() instanceof Water)) {
 			this.jumping = false;
 		}
 		if (evt.getEntity() instanceof Water) {
@@ -291,7 +291,7 @@ public class PlayerCharacter implements Entity {
 		this.v2d = new Vector2D(addVector);
 		this.addVector = new Vector2D(0, 0);
 		if (this.inWater) {
-			this.speedFactor = 0.9f;
+			this.speedFactor = 0.5f;
 		}
 
 		if (this.direction == Direction.RIGHT && this.moving) {
@@ -336,7 +336,7 @@ public class PlayerCharacter implements Entity {
 			this.gravity = new Vector2D(0, 0.98f);
 		}
 		this.v2d.add(this.gravity);
-		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY()*this.speedFactor);
+		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY());
 		this.onGround = false;
 		this.colliding = false;
 		

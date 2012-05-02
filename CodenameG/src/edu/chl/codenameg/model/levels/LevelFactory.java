@@ -13,6 +13,7 @@ import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
+import edu.chl.codenameg.model.entity.Water;
 
 public class LevelFactory {
 	
@@ -77,6 +78,12 @@ public class LevelFactory {
 					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
 					Entity block = new Block(position,hitbox);
 					entities.add(block);
+				}
+				if(name.equals("Water")) {
+					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID)-1,tiledmap.getObjectHeight(groupID, objectID)-1);
+					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
+					Entity water = new Water(position,hitbox);
+					entities.add(water);
 				}
 				if(name.equals("LethalBlock")) {
 					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID)-1,tiledmap.getObjectHeight(groupID, objectID)-1);

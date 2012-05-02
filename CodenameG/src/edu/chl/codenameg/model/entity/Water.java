@@ -78,7 +78,7 @@ public class Water implements Entity{
 
 	@Override
 	public String getType() {
-		return "Block";
+		return "Water";
 	}
 
 	@Override
