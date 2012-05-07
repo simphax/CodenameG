@@ -5,17 +5,18 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import edu.chl.codenameg.view.MenuView;
+import edu.chl.codenameg.view.SelectLevelMenuView;
 
-public class MainMenuState extends BasicGameState {
+public class SelectLevelMenuState extends BasicGameState {
 	
-	MenuView view;
+	SelectLevelMenuView view;
 	int selectedId = 0;
 	
-	public MainMenuState() {
-		this.view = new MenuView();
+	public SelectLevelMenuState() {
+		this.view = new SelectLevelMenuView();
 	}
 
 	@Override
@@ -38,31 +39,40 @@ public class MainMenuState extends BasicGameState {
 		// TODO Auto-generated method stub
 
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
-			selectedId=(selectedId-1)%3;
+			selectedId=(selectedId-1)%2;
 		}
+		
 		if(gc.getInput().isKeyPressed(Input.KEY_DOWN)) {
-			selectedId=(selectedId+1)%3;
+			selectedId=(selectedId+1)%2;
 		}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
 			switch(selectedId) {
 			case 0:
+				this.selectLevel(game,1);
 				game.enterState(3);
 				break;
 			case 1:
-				game.enterState(2);
-				break;
-			case 2:
-				System.exit(0);
+				this.selectLevel(game,2);
+				game.enterState(3);
 				break;
 			}
 			
 		}
 	}
+	
+	public void selectLevel(StateBasedGame game,int level) {
+		GameState gs = game.getState(3);
+		if(gs instanceof LevelState) {
+			LevelState ls = (LevelState)gs;
+			ls.selectLevel(level);
+		}
+	}
 
 	@Override
 	public int getID() {
-		return 1;
+		// TODO Auto-generated method stub
+		return 2;
 	}
 
 }

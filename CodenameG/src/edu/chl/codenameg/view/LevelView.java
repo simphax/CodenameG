@@ -35,6 +35,7 @@ public class LevelView {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
 		this.tm = tm;
+		System.out.println("New LevelView with "+tm.toString());
 //		try {
 //			tm = new TiledMap("levels/testlevel.tmx", "levels");
 //		} catch (SlickException e) {
@@ -58,7 +59,6 @@ public class LevelView {
 		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
 		
 		tm.render(0, 0);
-		
 		
 		for (Entity e : model.getWorld().getEntities()) {
 			if (entityMap.containsKey(e)) {

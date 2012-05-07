@@ -8,6 +8,7 @@ import java.util.List;
 import org.newdawn.slick.geom.Rectangle;
 
 import edu.chl.codenameg.model.entity.PlayerCharacter;
+import edu.chl.codenameg.model.levels.Level;
 
 /*
  * World model object
@@ -26,15 +27,23 @@ public class World {
 	private int amountOfPlayers;
 
 	public World() {
+		this(new ArrayList<Entity>()); // Defaults to empty world
+	}
+
+	public World(Level copy) {
+		this(copy.getListOfEnteties());
+	}
+	public World(World copy) {
+		this(copy.getEntities());
+	}
+	public World(List<Entity> list) {
+		this.entities = new ArrayList<Entity>();
+		for(Entity e : list) {
+			this.add(e);
+		}
 		this.camera=new Camera(this);
 		this.gameOver = false;
 		this.hasWonGame = false;
-		this.entities = new ArrayList<Entity>();
-	}
-
-	public World(World copy) {
-		this();
-		this.entities = copy.getEntities();
 	}
 
 	public void add(Entity e) {

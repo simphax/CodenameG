@@ -17,6 +17,7 @@ public class BasicEntityView implements EntityView {
 		if (ent instanceof LethalBlock){
 			g.setColor(Color.red);
 		}else if(ent instanceof MovingBlock){
+			//System.out.println("width: "+ent.getHitbox().getWidth()+ " height: "+ent.getHitbox().getHeight());
 			g.setColor(Color.darkGray);
 		}else if(ent instanceof MovableBlock){
 			g.setColor(Color.green);

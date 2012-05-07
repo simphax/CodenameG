@@ -15,15 +15,14 @@ public class GameModel {
 
 	public GameModel() {
 		listOfPC = new ArrayList<PlayerCharacter>();
-		World testWorld = this.createTestWorld();
 
-		this.setWorld(testWorld);
+		this.selectLevel(1);
 	}
 
 	private World createTestWorld() {
 		World testWorld = new World();
 		
-		Level l1 = this.selectLevel(4);
+		Level l1 = this.getLevel(4);
 		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
 		for(int i = 0;i<level.size();i++){
 			testWorld.add(level.get(i));
@@ -48,11 +47,13 @@ public class GameModel {
 	}
 
 	public void restartGame() {
-		// This should be done using the controller instead...
+		/*// This should be done using the controller instead...
 		this.endGame();
 		//******************************
 		World testWorld = this.createTestWorld();
-		this.setWorld(testWorld);
+		this.setWorld(testWorld);*/
+		this.endGame();
+		this.selectLevel(selectedLevel);
 	}
 
 	public void pauseGame(World w) {
@@ -69,14 +70,28 @@ public class GameModel {
 			this.world = null;
 		}
 	}
-	public Level selectLevel(int i) {
-		this.selectedLevel = i;
+	public Level getLevel(int i) {
 		return LevelFactory.getInstance().getLevel(i);
+	}
+	
+	public void selectLevel(int i) {
+		this.selectedLevel = i;
+		World temp = new World(this.getLevel(i));
+		
+		PlayerCharacter pc1 = new PlayerCharacter();
+		pc1.setPosition(this.getLevel(i).getStartPosition());
+		temp.add(pc1);
+		listOfPC.removeAll(listOfPC);
+		listOfPC.add(pc1);
+		
+		this.setWorld(temp);
+		System.out.println("Select level "+i);
 	}
 	
 	public int getSelectedLevel() {
 		return this.selectedLevel;
 	}
+	
 	public void performAction(Action action) {
 		switch (action) {
 		case START_GAME:

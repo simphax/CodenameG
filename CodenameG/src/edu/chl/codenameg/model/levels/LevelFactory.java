@@ -33,17 +33,12 @@ public class LevelFactory {
 		
 	}
 
-	public Level getLevel(int i)throws IllegalArgumentException{
-		if(i == 1){
-			return loadLevelFromFile(getLevelFilePath(i));
-		}else if (i == 2){
-			return new LevelTwo();
-		}else if (i == 3){
-			return new LevelThree();
-		}else if (i == 4){
-			return loadLevelFromFile(getLevelFilePath(i));
-		}else{
-			throw new IllegalArgumentException();
+	public Level getLevel(int i) throws IllegalArgumentException{
+		Level l = loadLevelFromFile(getLevelFilePath(i));
+		if(l != null) {
+			return l;
+		} else {
+			throw new IllegalArgumentException("The level does not exist");
 		}
 	}
 	
@@ -137,7 +132,7 @@ public class LevelFactory {
 	}
 	
 	public String getLevelFilePath(int i) {
-		return "levels/level1.tmx";
+		return "levels/level"+i+".tmx";
 	}
 	
 	public void setTiledMap(TiledMap tm) {

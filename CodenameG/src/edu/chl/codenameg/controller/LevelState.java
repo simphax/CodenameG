@@ -20,23 +20,45 @@ public class LevelState extends BasicGameState {
 	boolean player1RightKeyPressed;
 	boolean player2LeftKeyPressed;
 	boolean player2RightKeyPressed;
+	int lastLevel = 1;
 	
 	public LevelState() {
-		
-
 		player1LeftKeyPressed = false; player1RightKeyPressed = false;
 		player2LeftKeyPressed = false; player2RightKeyPressed = false;
 	}
+	
+	public void selectLevel(int level) {
+		model.selectLevel(level);
+		
+		/*try {
+			TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
+			LevelFactory.getInstance().setTiledMap(tm);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+	}
 
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(1));
+		int level = 1;
+		if(model != null) {
+			level = model.getSelectedLevel();
+		}
+
+		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
 		LevelFactory.getInstance().setTiledMap(tm);
 		
-		this.model = new GameModel();
-		this.view = new LevelView(model, tm);
+		System.out.println(LevelFactory.getInstance().getLevelFilePath(level));
+		
+		if(model == null) {
+			this.model = new GameModel();
+		}
+		
+		this.view = new LevelView(model,tm);
 	}
 
 	@Override
@@ -49,13 +71,19 @@ public class LevelState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		if(model.getSelectedLevel() != lastLevel) { //Slick can only init TiledMap on init()
+			this.init(container, game);
+			lastLevel=model.getSelectedLevel();
+		}
+		
 		model.update(elapsedTime);
+		
 	}
 
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 3;
 	}
 	
 	@Override

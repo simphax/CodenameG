@@ -10,7 +10,7 @@ public class MainView implements GameView {
 	
 	LevelView currentView;
 	MenuView mv;
-	LevelMenuView lmv;
+	SelectLevelMenuView lmv;
 	PauseMenuView pmv;
 	
 	public MainView(final GameModel model) {
