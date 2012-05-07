@@ -14,13 +14,10 @@ import edu.chl.codenameg.view.LevelView;
 
 public class LevelState extends BasicGameState {
 	
-	LevelView view;
-	GameModel model;
-	boolean player1LeftKeyPressed;
-	boolean player1RightKeyPressed;
-	boolean player2LeftKeyPressed;
-	boolean player2RightKeyPressed;
-	int lastLevel = 1;
+	private LevelView view;
+	private GameModel model;
+	private boolean player1LeftKeyPressed, player1RightKeyPressed, player2LeftKeyPressed, player2RightKeyPressed;
+	private int lastLevel = 1;
 	
 	public LevelState() {
 		player1LeftKeyPressed = false; player1RightKeyPressed = false;
@@ -28,16 +25,7 @@ public class LevelState extends BasicGameState {
 	}
 	
 	public void selectLevel(int level) {
-		model.selectLevel(level);
-		
-		/*try {
-			TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
-			LevelFactory.getInstance().setTiledMap(tm);
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+		model.selectLevel(level);		
 	}
 
 	@Override
@@ -70,7 +58,6 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		// TODO Auto-generated method stub
 		if(model.getSelectedLevel() != lastLevel) { //Slick can only init TiledMap on init()
 			this.init(container, game);
 			lastLevel=model.getSelectedLevel();
@@ -82,7 +69,6 @@ public class LevelState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 3;
 	}
 	
