@@ -11,9 +11,9 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
+import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
-import edu.chl.codenameg.model.entity.Water;
 
 public class LevelFactory {
 	
@@ -79,12 +79,6 @@ public class LevelFactory {
 					Entity block = new Block(position,hitbox);
 					entities.add(block);
 				}
-				if(name.equals("Water")) {
-					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID)-1,tiledmap.getObjectHeight(groupID, objectID)-1);
-					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
-					Entity water = new Water(position,hitbox);
-					entities.add(water);
-				}
 				if(name.equals("LethalBlock")) {
 					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID)-1,tiledmap.getObjectHeight(groupID, objectID)-1);
 					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
@@ -97,11 +91,16 @@ public class LevelFactory {
 					Entity movableblock = new MovableBlock(position, hitbox);
 					entities.add(movableblock);
 				}
-				if(name.equals("MovingBlock")) {
+				if(name.equals("MovingBlock") || name.equals("LethalMovingBlock")) {
 					String direction = tiledmap.getObjectProperty(groupID, objectID, "Direction", "down");
 					Position endPosition = new Position(0,0);
 					Position startPosition = new Position(0,0);
-					Entity movingblock = new MovingBlock();
+					Entity movingblock;
+					if(name.equals(("MovingBlock"))){
+						movingblock = new MovingBlock();
+					}else{
+						movingblock = new LethalMovingBlock();
+					}
 					if(direction.equals("up")) {
 						endPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
 						startPosition = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID)+tiledmap.getObjectHeight(groupID, objectID)-movingblock.getHitbox().getHeight());

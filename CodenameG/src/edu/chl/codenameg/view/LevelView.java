@@ -13,7 +13,6 @@ import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
-import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.LevelFactory;
 import edu.chl.codenameg.view.entity.BasicEntityView;
@@ -22,7 +21,6 @@ import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.HitboxView;
 import edu.chl.codenameg.view.entity.LethalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
-import edu.chl.codenameg.view.entity.MovingBlockView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 
 public class LevelView {
@@ -79,11 +77,7 @@ public class LevelView {
 					EntityView view = new GoalBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
-				}else if (e instanceof MovingBlock) {
-					EntityView view = new MovingBlockView();
-					view.render(e, g);
-					entityMap.put(e, view);
-				}  
+				} 
 			}
 			
 			//if debug
