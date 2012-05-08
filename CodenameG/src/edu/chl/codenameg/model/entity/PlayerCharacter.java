@@ -117,11 +117,12 @@ public class PlayerCharacter implements Entity {
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
 		if (this.getCollideTypes().contains(evt.getEntity().getType())
-				&& (evt.getDirection() .equals( Direction.BOTTOM))) {
+				&& (evt.getDirection().equals(Direction.BOTTOM))) {
 			this.onGround = true;
 			this.justJumped = false;
 		}
-		if (evt.getDirection() .equals(Direction.TOP)) {
+		if (evt.getDirection().equals(Direction.TOP)
+				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.jumping = false;
 		}
 		if ((evt.getEntity() instanceof LiftableBlock)
