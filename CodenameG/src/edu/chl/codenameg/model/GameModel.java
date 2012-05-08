@@ -117,13 +117,20 @@ public class GameModel {
 				break;
 			}
 		case PLAYER_1_TOGGLE_LIFT:
-			getPlayer(1).Togglelift();
+			if (!listOfPC.get(0).isLifting())
+				getPlayer(1).toggleLift();
+			else
+				getPlayer(1).unToggleLift();
 			break;
 		case PLAYER_2_TOGGLE_LIFT:
 			if(this.listOfPC.size()>1){
-				getPlayer(2).Togglelift();
+				if (!listOfPC.get(1).isLifting())
+					getPlayer(2).toggleLift();
+				else
+					getPlayer(2).unToggleLift();
 				break;
 			}
+			break;
 		default:
 			break;
 		}
@@ -166,14 +173,11 @@ public class GameModel {
 				getPlayer(2).unToggleCrouch();
 				break;
 			}
-		case PLAYER_1_TOGGLE_LIFT:
-			getPlayer(1).unToggleLift();
-			break;
-		case PLAYER_2_TOGGLE_LIFT:
-			if(this.listOfPC.size()>1){
-				getPlayer(2).unToggleLift();
-				break;
-			}
+//		case PLAYER_2_TOGGLE_LIFT:
+//			if(this.listOfPC.size()>1){
+//				getPlayer(2).unToggleLift();
+//				break;
+//			}
 		default:
 			break;
 		}
