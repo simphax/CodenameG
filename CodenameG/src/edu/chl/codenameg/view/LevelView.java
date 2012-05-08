@@ -3,25 +3,22 @@ package edu.chl.codenameg.view;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
-import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
-import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
-import edu.chl.codenameg.model.levels.LevelFactory;
+import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.view.entity.BasicEntityView;
-import edu.chl.codenameg.view.entity.BlockView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
-import edu.chl.codenameg.view.entity.HitboxView;
-import edu.chl.codenameg.view.entity.LethalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
+import edu.chl.codenameg.view.entity.WaterBlockView;
 
 public class LevelView {
 	private GameModel model;
@@ -58,7 +55,7 @@ public class LevelView {
 		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
 		g.translate(-model.getWorld().getCamera().getX(), model.getWorld().getCamera().getY());
 		
-		tm.render(0, 0);
+		tm.render(0, 0, 0);
 		
 		for (Entity e : model.getWorld().getEntities()) {
 			if (entityMap.containsKey(e)) {
@@ -77,12 +74,28 @@ public class LevelView {
 					EntityView view = new GoalBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
+<<<<<<< OURS
 				} 
+=======
+				} else if (e instanceof MovingBlock) {
+					EntityView view = new MovingBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				} else if (e instanceof Water) {
+					EntityView view = new WaterBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				}
+>>>>>>> THEIRS
 			}
 			
 			//if debug
 			(new BasicEntityView()).render(e, g);
 
+		}
+		
+		for (int i = 1; tm.getLayerCount() > i; i++) {
+			tm.render(0, 0, i);
 		}
 	}
 	// TODO Possible memory leak? Clear all unused mappings.

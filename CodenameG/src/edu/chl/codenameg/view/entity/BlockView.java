@@ -21,6 +21,5 @@ public class BlockView implements EntityView{
 		g.drawImage(standardBlock, ent.getPosition().getX(), ent.getPosition().getY());
 	}
 
-
 	
 }
