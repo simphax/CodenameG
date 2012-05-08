@@ -14,6 +14,7 @@ import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
+import edu.chl.codenameg.model.entity.Water;
 
 public class LevelFactory {
 
@@ -55,39 +56,6 @@ public class LevelFactory {
 		// }
 
 		List<Entity> entities = new ArrayList<Entity>();
-<<<<<<< OURS
-		Position spawnposition = new Position(0, 0);
-
-		for (int groupID = 0; groupID < tiledmap.getObjectGroupCount(); groupID++) {
-			// int groupID = 0;
-			// System.out.println(tiledmap.getLayerCount());
-			// String blocktype =
-			// tiledmap.getLayerProperty(groupID,"layertype","fff");
-			// System.out.println(blocktype);
-
-			for (int objectID = 0; objectID < tiledmap.getObjectCount(groupID); objectID++) {
-
-				String name = tiledmap.getObjectName(groupID, objectID);
-
-				if (name.equals("Block")) {
-					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID,
-							objectID) - 1, tiledmap.getObjectHeight(groupID,
-							objectID) - 1);
-					Position position = new Position(tiledmap.getObjectX(
-							groupID, objectID), tiledmap.getObjectY(groupID,
-							objectID));
-					Entity block = new Block(position, hitbox);
-					entities.add(block);
-				}
-				if (name.equals("LethalBlock")) {
-					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID,
-							objectID) - 1, tiledmap.getObjectHeight(groupID,
-							objectID) - 1);
-					Position position = new Position(tiledmap.getObjectX(
-							groupID, objectID), tiledmap.getObjectY(groupID,
-							objectID));
-					Entity lethalblock = new LethalBlock(position, hitbox);
-=======
 		Position spawnposition = new Position(0,0);
 		
 		for(int groupID=0; groupID<tiledmap.getObjectGroupCount(); groupID++) {
@@ -117,7 +85,6 @@ public class LevelFactory {
 					Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(groupID, objectID)-1,tiledmap.getObjectHeight(groupID, objectID)-1);
 					Position position = new Position(tiledmap.getObjectX(groupID, objectID), tiledmap.getObjectY(groupID, objectID));
 					Entity lethalblock = new LethalBlock(position,hitbox);
->>>>>>> THEIRS
 					entities.add(lethalblock);
 				}
 				if (name.equals("MovableBlock")) {

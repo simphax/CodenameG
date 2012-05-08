@@ -12,6 +12,7 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
+import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.view.entity.BasicEntityView;
@@ -74,19 +75,15 @@ public class LevelView {
 					EntityView view = new GoalBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
-<<<<<<< OURS
-				} 
-=======
-				} else if (e instanceof MovingBlock) {
-					EntityView view = new MovingBlockView();
-					view.render(e, g);
-					entityMap.put(e, view);
+//				} else if (e instanceof MovingBlock) {
+//					EntityView view = new MovingBlockView();
+//					view.render(e, g);
+//					entityMap.put(e, view);
 				} else if (e instanceof Water) {
 					EntityView view = new WaterBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
 				}
->>>>>>> THEIRS
 			}
 			
 			//if debug
