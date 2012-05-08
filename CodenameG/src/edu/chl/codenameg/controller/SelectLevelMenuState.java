@@ -36,14 +36,14 @@ public class SelectLevelMenuState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		int amountOfLevels=3;
 
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
-			selectedId=(selectedId-1)%2;
+			selectedId=(selectedId-1)% amountOfLevels;
 		}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_DOWN)) {
-			selectedId=(selectedId+1)%2;
+			selectedId=(selectedId+1)%amountOfLevels;
 		}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
@@ -54,6 +54,10 @@ public class SelectLevelMenuState extends BasicGameState {
 				break;
 			case 1:
 				this.selectLevel(game,2);
+				game.enterState(3);
+				break;
+			case 2:
+				this.selectLevel(game,3);
 				game.enterState(3);
 				break;
 			}

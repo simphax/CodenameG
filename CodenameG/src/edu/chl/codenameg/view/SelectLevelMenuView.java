@@ -25,5 +25,8 @@ public class SelectLevelMenuView {
 		c = selectedId==1?Color.red:Color.blue;
 		g.setColor(c);
 		g.drawString("Level 2", 200, 200);
+		c = selectedId==2?Color.red:Color.blue;
+		g.setColor(c);
+		g.drawString("Level 3", 200, 250);
 	}
 }
