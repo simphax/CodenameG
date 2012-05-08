@@ -245,25 +245,9 @@ public class World {
 		return true;
 	}
 
-//	private List<Entity> getEntitiesAt(Position p) {
-//		List<Entity> list = new ArrayList<Entity>();
-//		for (Entity e : this.getEntities()) {
-//			// TODO float->int :(((
-//			Rectangle rect = new Rectangle(Math.round(e.getPosition().getX()),
-//					Math.round(e.getPosition().getY()), e.getHitbox()
-//							.getWidth(), e.getHitbox().getHeight());
-//			if (rect.contains(new Point(Math.round(p.getX()), Math.round(p
-//					.getY())))) {
-//				list.add(e);
-//			}
-//		}
-//		return list;
-//	}
-
 	public List<Entity> getEntitiesAt(Rectangle target) {
 		List<Entity> list = new ArrayList<Entity>();
 		for (Entity e : this.getEntities()) {
-			// TODO float->int :(((
 			Rectangle rect = new Rectangle((e.getPosition().getX()),
 					(e.getPosition().getY()), e.getHitbox()
 							.getWidth(), e.getHitbox().getHeight());
@@ -274,72 +258,5 @@ public class World {
 		return list;
 	}
 
-//	@Deprecated
-//	private void checkCollision(Entity e) {
-//		for (Entity target : this.getEntities()) {
-//			if (target != e) {
-//				boolean collision = false;
-//
-//				// TODO Collision detection without using rounded doubles!!
-//
-//				Rectangle thisRectangle = new Rectangle(new Point(Math.round(e
-//						.getPosition().getX()), Math.round(e.getPosition()
-//						.getY())), new Dimension(e.getHitbox().getWidth(), e
-//						.getHitbox().getHeight()));
-//
-//				Rectangle targetRectangle = new Rectangle(new Point(
-//						Math.round(target.getPosition().getX()),
-//						Math.round(target.getPosition().getY())),
-//						new Dimension(target.getHitbox().getWidth(), target
-//								.getHitbox().getHeight()));
-//
-//				if (thisRectangle.intersects(targetRectangle)) {
-//					collision = true;
-//
-//					if (e.getCollideTypes().contains(target.getType())) {
-//						Rectangle intersection = thisRectangle
-//								.intersection(targetRectangle);
-//
-//						// Collision on bottom
-//						if (intersection.y == targetRectangle.y) {
-//							e.setPosition(new Position(e.getPosition().getX(),
-//									e.getPosition().getY()
-//											- intersection.height));
-//						}
-//						// Collision on top
-//						if (intersection.y + intersection.height == targetRectangle.y
-//								+ targetRectangle.height) {
-//							System.out
-//									.println(e.getType() + " collided on top");
-//							e.setPosition(new Position(e.getPosition().getX(),
-//									e.getPosition().getY()
-//											+ intersection.height));
-//						}
-//						// Collision on right
-//						if (intersection.x == targetRectangle.x) {
-//							e.setPosition(new Position(e.getPosition().getX()
-//									- intersection.width, e.getPosition()
-//									.getY()));
-//						}
-//						// Collision on left
-//						if (intersection.x + intersection.width == targetRectangle.x
-//								+ targetRectangle.width) {
-//							System.out.println(e.getType()
-//									+ " collided on left");
-//							e.setPosition(new Position(e.getPosition().getX()
-//									+ intersection.width, e.getPosition()
-//									.getY()));
-//						}
-//					}
-//				}
-//				if (collision) {
-//					/*
-//					 * e.collide(target); target.collide(e);
-//					 */
-//				}
-//			}
-//
-//		}
-//	}
 
 }
