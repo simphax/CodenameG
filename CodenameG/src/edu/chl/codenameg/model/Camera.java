@@ -16,34 +16,50 @@ public class Camera {
 		this.world = world;
 		this.players = new ArrayList<PlayerCharacter>();
 	}
+	
 	public float getX(){
-		camerax = ((Xmax+Xmin)/2)-this.getWidth()/2;
+		
 		return camerax;
 	}
 	public float getY(){
-		cameray = Math.abs(((Ymax+Ymin)/2)-this.getHeight()/2);
+		
 		return cameray;
 	}
+	
 	public int getWidth() {
 		return width;
 	}
 	public int getHeight() {
 		return height;
 	}
+	
 	public void update() {
 		this.update(10);
 	}
 	public void update(int elapsedTime) {
+		Xmax = 0;
+		Ymax = 0;
+		Xmin = 40000;
+		Ymin = 40000;
+		
+		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.add(c);
 		}
+		
 		for(int i = 0; i < world.getAmountOfPlayers();i++){
 		Xmax = Math.max(Xmax, players.get(i).getPosition().getX());
-		Xmin = Xmax;
 		Xmin = Math.min(Xmin, players.get(i).getPosition().getX());
 		Ymax = Math.max(Ymax, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
-		Ymin = Ymax;
 		Ymin = Math.min(Ymin, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
 		}
+		
+		
+		
+		for(PlayerCharacter c : world.getPlayers()){
+			players.remove(c);
+		}
+		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
+		cameray =((Ymax+Ymin)/2)-this.getHeight()/2;
 }
 }
