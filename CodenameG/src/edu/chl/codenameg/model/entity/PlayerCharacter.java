@@ -311,7 +311,7 @@ public class PlayerCharacter implements Entity {
 			this.v2d.add(new Vector2D(0, -5));
 		} else if (justJumped) { // TODO Not being able to jump if just dropped
 									// from height
-			this.v2d.add(new Vector2D(0, -2));
+			this.v2d.add(new Vector2D(0, -2f));
 		}
 
 		if (!onGround) {
