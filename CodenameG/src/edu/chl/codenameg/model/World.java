@@ -33,7 +33,7 @@ public class World {
 	}
 
 	public World(Level copy) {
-		this(copy.getListOfEnteties());
+		this(copy.getListOfEntities());
 		
 	}
 	public World(World copy) {

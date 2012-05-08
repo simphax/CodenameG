@@ -200,7 +200,7 @@ public class LevelFactory {
 		}
 
 		@Override
-		public List<Entity> getListOfEnteties() {
+		public List<Entity> getListOfEntities() {
 			// TODO Auto-generated method stub
 			return entities;
 		}

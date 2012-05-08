@@ -8,7 +8,7 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-public class LiftableBlock extends Block{
+public class LiftableBlock extends MovableBlock{
 	
 	private static final Hitbox hb = new Hitbox(32,32);
 	private PlayerCharacter pc;
@@ -46,6 +46,7 @@ public class LiftableBlock extends Block{
 		this.update(10);
 	}
 	
+	@Override
 	public void update(int elapsedTime) {
 	if (pc != null){
 		if (this.pc.getDirection()==Direction.RIGHT){
@@ -76,6 +77,6 @@ public class LiftableBlock extends Block{
 	public void drop(PlayerCharacter pc) {
 	//this.setHitbox(hb);
 	this.pc=null;
-	System.out.println("Släpper");
+	System.out.println("Slï¿½pper");
 	}
 }

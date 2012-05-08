@@ -23,7 +23,7 @@ public class GameModel {
 		World testWorld = new World();
 		
 		Level l1 = this.getLevel(4);
-		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEnteties();
+		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEntities();
 		for(int i = 0;i<level.size();i++){
 			testWorld.add(level.get(i));
 		}

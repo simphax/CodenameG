@@ -9,7 +9,7 @@ import edu.chl.codenameg.model.Position;
 public interface Level {
 	//Just a suggestion , different list for singleplayer / multiplayer to enhance the difficulty relative to players.
 	
-	public List<Entity> getListOfEnteties();
+	public List<Entity> getListOfEntities();
 	public Position getStartPosition();
 	public int getAmountOfPlayers();
 	
