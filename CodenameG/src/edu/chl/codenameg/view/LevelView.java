@@ -56,7 +56,7 @@ public class LevelView {
 		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
 		
 		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
-		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
+		g.translate(-model.getWorld().getCamera().getX(), model.getWorld().getCamera().getY());
 		
 		tm.render(0, 0);
 		

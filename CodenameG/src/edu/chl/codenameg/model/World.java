@@ -24,7 +24,9 @@ public class World {
 	private boolean hasWonGame;
 	private Camera camera;
 	private List<Entity> entities;
+	private ArrayList<PlayerCharacter> players;
 	private int amountOfPlayers;
+	
 
 	public World() {
 		this(new ArrayList<Entity>()); // Defaults to empty world
@@ -32,12 +34,15 @@ public class World {
 
 	public World(Level copy) {
 		this(copy.getListOfEnteties());
+		
 	}
 	public World(World copy) {
 		this(copy.getEntities());
+		this.players = copy.getPlayers();
 	}
 	public World(List<Entity> list) {
 		this.entities = new ArrayList<Entity>();
+		this.players = new ArrayList<PlayerCharacter>();
 		for(Entity e : list) {
 			this.add(e);
 		}
@@ -49,6 +54,7 @@ public class World {
 	public void add(Entity e) {
 		if (e instanceof PlayerCharacter) {
 			entities.add(e);
+			players.add((PlayerCharacter) e);
 			this.amountOfPlayers++;
 		} else {
 			entities.add(e);
@@ -58,6 +64,7 @@ public class World {
 	public void remove(Entity e) {
 		if (e instanceof PlayerCharacter) {
 			entities.remove(e);
+			players.remove(e);
 			this.amountOfPlayers--;
 		} else {
 			entities.remove(e);
@@ -66,6 +73,10 @@ public class World {
 
 	public List<Entity> getEntities() {
 		return new ArrayList<Entity>(this.entities);
+	}
+	
+	public ArrayList<PlayerCharacter> getPlayers() {
+		return new ArrayList<PlayerCharacter>(this.players);
 	}
 
 	public Camera getCamera() {
