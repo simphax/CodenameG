@@ -17,13 +17,14 @@ public class PlayerCharacter implements Entity {
 	private Position pt, startPos;
 	private Vector2D v2d, addVector, gravity, acceleration;
 	private boolean colliding, alive, moving, onGround, jumping, lifting,
-			justJumped, crouching, gameWon;
+			justJumped, crouching, gameWon, inWater;
 	private Direction direction;
 	private LiftableBlock lb;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hitbox, hbCopy;
 	private World world;
 	private List<String> collideList;
+	private float speedFactor;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
@@ -57,6 +58,7 @@ public class PlayerCharacter implements Entity {
 		this.collidingList = new ArrayList<CollisionEvent>();
 		this.gravity = new Vector2D(0, 1);
 		this.acceleration = new Vector2D(0, 0);
+		this.speedFactor = 1.0f;
 	}
 	
 
@@ -82,7 +84,7 @@ public class PlayerCharacter implements Entity {
 		}
 	}
 
-	public void Togglelift() {
+	public void toggleLift() {
 		this.collideList.remove("LiftableBlock");
 		Rectangle searchRectangle;
 		if (this.direction == Direction.RIGHT) {
@@ -318,6 +320,9 @@ public class PlayerCharacter implements Entity {
 
 		this.v2d = new Vector2D(addVector);
 		this.addVector = new Vector2D(0, 0);
+		if (this.inWater) {
+			this.speedFactor = 0.5f;
+		}
 
 		if (this.direction.equals(Direction.RIGHT) && this.moving) {
 			this.v2d.add(new Vector2D(2.8f, 0));
@@ -361,8 +366,12 @@ public class PlayerCharacter implements Entity {
 			this.gravity = new Vector2D(0, 0.98f);
 		}
 		this.v2d.add(this.gravity);
+		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY());
 		this.onGround = false;
 		this.colliding = false;
+		
+		this.inWater = false;
+		this.speedFactor = 1.0f;
 	}
 
 }
