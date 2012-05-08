@@ -58,6 +58,7 @@ public class PlayerCharacter implements Entity {
 		this.collidingList = new ArrayList<CollisionEvent>();
 		this.gravity = new Vector2D(0, 1);
 		this.acceleration = new Vector2D(0, 0);
+		this.inWater = false;
 		this.speedFactor = 1.0f;
 	}
 	
@@ -171,6 +172,12 @@ public class PlayerCharacter implements Entity {
 		if (evt.getDirection().equals(Direction.TOP)
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.jumping = false;
+		}
+		if (evt.getDirection() == Direction.TOP && !(evt.getEntity() instanceof Water)) {
+			this.jumping = false;
+		}
+		if (evt.getEntity() instanceof Water) {
+			this.inWater = true;
 		}
 //		if ((evt.getEntity() instanceof LiftableBlock)
 //				&& (evt.getDirection().equals(Direction.LEFT) || evt
@@ -303,7 +310,7 @@ public class PlayerCharacter implements Entity {
 	@Override
 	public List<String> getCollideTypes() {
 		List<String> list = new ArrayList<String>(this.collideList);
-		return collideList;
+		return list;
 	}
 
 	@Override
