@@ -19,25 +19,6 @@ public class GameModel {
 		this.selectLevel(1);
 	}
 
-	private World createTestWorld() {
-		World testWorld = new World();
-		
-		Level l1 = this.getLevel(4);
-		ArrayList<Entity> level = (ArrayList<Entity>) l1.getListOfEntities();
-		for(int i = 0;i<level.size();i++){
-			testWorld.add(level.get(i));
-		}
-		PlayerCharacter pc1 = new PlayerCharacter();
-		pc1.setPosition(l1.getStartPosition());
-		testWorld.add(pc1);
-		listOfPC.removeAll(listOfPC);
-		listOfPC.add(pc1);
-		
-		//listOfPC.add(pc2);
-		
-		return testWorld;
-	}
-
 	public void setWorld(World w) {
 		this.world = w;
 	}
