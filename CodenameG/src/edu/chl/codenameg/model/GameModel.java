@@ -59,7 +59,7 @@ public class GameModel {
 		this.selectedLevel = i;
 		World temp = new World(this.getLevel(i));
 		
-		PlayerCharacter pc1 = new PlayerCharacter();
+		PlayerCharacter pc1 = new PlayerCharacter(world);
 		pc1.setPosition(this.getLevel(i).getStartPosition());
 		temp.add(pc1);
 		listOfPC.removeAll(listOfPC);

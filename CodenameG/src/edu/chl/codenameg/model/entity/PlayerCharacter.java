@@ -9,6 +9,7 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
+import edu.chl.codenameg.model.World;
 
 public class PlayerCharacter implements Entity {
 	private Position pt, startPos;
@@ -19,9 +20,20 @@ public class PlayerCharacter implements Entity {
 	private LiftableBlock lb;
 	private List<CollisionEvent> collidingList;
 	private Hitbox hitbox, hbCopy;
+	private World world;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
+	}
+	
+	public PlayerCharacter(World world) {
+		this(new Position(0, 0));
+		this.world = world;
+	}
+	
+	public PlayerCharacter(Position position, World world) {
+		this(position);
+		this.world = world;
 	}
 
 	public PlayerCharacter(Position position) {
@@ -37,6 +49,7 @@ public class PlayerCharacter implements Entity {
 		this.gravity = new Vector2D(0, 1);
 		this.acceleration = new Vector2D(0, 0);
 	}
+	
 
 	public void jump() {
 		this.jumping = true;
