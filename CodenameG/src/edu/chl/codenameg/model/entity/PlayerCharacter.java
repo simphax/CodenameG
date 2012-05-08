@@ -66,7 +66,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void unToggleLift() {
-		// System.out.println("Släpper");
+		// System.out.println("Slï¿½pper");
 		this.lifting = false;
 		if (lb != null) {
 			lb.drop(this);
@@ -283,7 +283,7 @@ public class PlayerCharacter implements Entity {
 			// if(this.acceleration.getX()<0) {
 			// this.acceleration.setX(0);
 			// }
-			if (!this.jumping || this.acceleration.getX() < 0) {
+			if (this.onGround && (!this.jumping || this.acceleration.getX() < 0)) {
 				this.acceleration.add(new Vector2D(0.15f, 0));
 			}
 		} else if (this.direction.equals(Direction.LEFT) && this.moving) {
@@ -291,7 +291,7 @@ public class PlayerCharacter implements Entity {
 			// if(this.acceleration.getX()>0) {
 			// this.acceleration.setX(0);
 			// }
-			if (!this.jumping || this.acceleration.getX() > 0) {
+			if (this.onGround && (!this.jumping || this.acceleration.getX() > 0)) {
 				this.acceleration.add(new Vector2D(-0.15f, 0));
 			}
 		}
