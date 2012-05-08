@@ -86,25 +86,27 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void toggleLift() {
-		this.collideList.remove("LiftableBlock");
 		Rectangle searchRectangle;
+		int factor = crouching ? 2 : 1;
 		if (this.direction == Direction.RIGHT) {
 			searchRectangle = new Rectangle(
 					this.getPosition().getX()+this.hitbox.getWidth(), 
 					this.getPosition().getY(),
 					25f, 
-					this.getHitbox().getHeight());
+					this.getHitbox().getHeight()*factor);
+			
 		} else {
 			searchRectangle = new Rectangle(
 					this.getPosition().getX()-this.hitbox.getWidth(), 
 					this.getPosition().getY(),
 					25f, 
-					this.getHitbox().getHeight());
+					this.getHitbox().getHeight()*factor);
 		}
 		List<Entity> entitiesList = this.world.getEntitiesAt(searchRectangle);
 		
 		for (Entity entity: entitiesList) {
 			if (entity instanceof LiftableBlock) {
+				this.collideList.remove("LiftableBlock");
 				this.lb = ((LiftableBlock) entity);
 				this.lb.lift(this);
 				this.lifting = true;
@@ -114,7 +116,9 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void unToggleLift() {
-		this.collideList.add("LiftableBlock");
+		if (!this.collideList.contains("LiftableBlock")) {
+			this.collideList.add("LiftableBlock");			
+		}
 		this.lifting = false;
 		if (lb != null) {
 			lb.drop(this);
@@ -173,7 +177,9 @@ public class PlayerCharacter implements Entity {
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.jumping = false;
 		}
-		if (evt.getDirection() == Direction.TOP && !(evt.getEntity() instanceof Water)) {
+		if (evt.getDirection() == Direction.TOP && 
+				this.getCollideTypes().contains(evt.getEntity().getType()) && 
+				!(evt.getEntity() instanceof Water)) {
 			this.jumping = false;
 		}
 		if (evt.getEntity() instanceof Water) {

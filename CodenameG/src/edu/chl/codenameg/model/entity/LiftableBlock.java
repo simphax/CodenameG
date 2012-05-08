@@ -68,6 +68,12 @@ public class LiftableBlock extends MovableBlock{
 				&& (evt.getDirection().equals(Direction.BOTTOM))) {
 			this.onGround = true;
 		}
+		if (this.getCollideTypes().contains(evt.getEntity().getType())) {
+			if (evt.getDirection().equals(Direction.RIGHT)
+					|| evt.getDirection().equals(Direction.LEFT)) {
+				this.setVector2D(new Vector2D(0, 0));
+			}
+		}
 	}
 	
 	public void update() {
@@ -78,11 +84,13 @@ public class LiftableBlock extends MovableBlock{
 	public void update(int elapsedTime) {
 		if (pc != null){
 			if (this.pc.getDirection()==Direction.RIGHT){
-				this.setPosition(new Position((pc.getPosition().getX() + 5 + pc.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));	
+				this.setPosition(new Position(pc.getPosition().getX(), pc.getPosition().getY() - this.getHitbox().getHeight() - 5));
+//				this.setPosition(new Position((pc.getPosition().getX() + 5 + pc.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));	
 			}else{
-				this.setPosition(new Position((pc.getPosition().getX() - 5 - this.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));		
+				this.setPosition(new Position(pc.getPosition().getX() - (pc.getHitbox().getWidth() - this.getHitbox().getWidth()), pc.getPosition().getY() - this.getHitbox().getHeight() - 5));
+//				this.setPosition(new Position((pc.getPosition().getX() - 5 - this.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));		
 			}
-			this.setVector2D(pc.getVector2D());
+//			this.setVector2D(pc.getVector2D());
 		}else{
 			this.addVector2D(new Vector2D(0, 0.1f));
 		}
