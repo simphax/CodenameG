@@ -3,6 +3,8 @@ package edu.chl.codenameg.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.geom.Rectangle;
+
 import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Entity;
@@ -75,7 +77,30 @@ public class PlayerCharacter implements Entity {
 
 	public void Togglelift() {
 		// System.out.println("Lyfter");
-		this.lifting = true;
+		Rectangle searchRectangle;
+		if (this.direction == Direction.RIGHT) {
+			searchRectangle = new Rectangle(
+					this.getPosition().getX()+this.hitbox.getWidth(), 
+					this.getPosition().getY(),
+					25f, 
+					this.getHitbox().getHeight());
+		} else {
+			searchRectangle = new Rectangle(
+					this.getPosition().getX()-this.hitbox.getWidth(), 
+					this.getPosition().getY(),
+					25f, 
+					this.getHitbox().getHeight());
+		}
+		List<Entity> entitiesList = this.world.getEntitiesAt(searchRectangle);
+		
+		for (Entity entity: entitiesList) {
+			if (entity instanceof LiftableBlock) {
+				this.lb = ((LiftableBlock) entity);
+				this.lb.lift(this);
+				this.lifting = true;
+				break;
+			}
+		}
 	}
 
 	public void unToggleLift() {
