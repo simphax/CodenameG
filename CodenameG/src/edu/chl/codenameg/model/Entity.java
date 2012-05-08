@@ -11,10 +11,7 @@ public interface Entity {
 	public Hitbox getHitbox();
 	
 	public Vector2D getVector2D();
-	
-	public void setVector2D(Vector2D v2d);
 
-	public void addVector2D(Vector2D v2d);
 
 	public List<String> getCollideTypes();
 	

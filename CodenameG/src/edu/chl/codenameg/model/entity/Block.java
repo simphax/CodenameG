@@ -65,7 +65,6 @@ public class Block implements Entity{
 		
 	}
 
-	@Override
 	public void setVector2D(Vector2D v2d) {
 		this.v2d=v2d;
 	}
@@ -81,7 +80,7 @@ public class Block implements Entity{
 		return "Block";
 	}
 
-	@Override
+
 	public void addVector2D(Vector2D v2d) {
 		this.v2d.add(v2d);
 	}
