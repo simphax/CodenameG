@@ -65,7 +65,6 @@ public class Water implements Entity{
 		
 	}
 
-	@Override
 	public void setVector2D(Vector2D v2d) {
 		this.v2d=v2d;
 	}
@@ -81,7 +80,6 @@ public class Water implements Entity{
 		return "Water";
 	}
 
-	@Override
 	public void addVector2D(Vector2D v2d) {
 		this.v2d.add(v2d);
 	}
