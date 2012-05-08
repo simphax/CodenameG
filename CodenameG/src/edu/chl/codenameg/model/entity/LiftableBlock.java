@@ -93,10 +93,9 @@ public class LiftableBlock extends MovableBlock{
 
 		if (this.onGround) {
 			if (this.getVector2D().getX() < 0) {
-//				DO SOMETHING WHEN LEFT
 				this.addVector2D(new Vector2D(0.1f, 0));
+				
 			} else if (this.getVector2D().getX() > 0) {
-//				DO SOMETHING WHEN RIGHT
 				this.addVector2D(new Vector2D(-0.1f, 0));
 			}
 		}
@@ -113,5 +112,7 @@ public class LiftableBlock extends MovableBlock{
 	public void drop(PlayerCharacter pc) {
 	this.pc = null;
 	addCompleteCollideList();
+	float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);
+	this.setVector2D(new Vector2D(temp, -2f));
 	}
 }
