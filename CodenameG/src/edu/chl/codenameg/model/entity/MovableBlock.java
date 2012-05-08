@@ -3,7 +3,6 @@ package edu.chl.codenameg.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;

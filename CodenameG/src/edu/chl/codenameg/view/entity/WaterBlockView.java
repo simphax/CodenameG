@@ -15,7 +15,4 @@ public class WaterBlockView implements EntityView{
 	@Override
 	public void render(Entity ent, Graphics g) {
 	}
-
-
-	
 }

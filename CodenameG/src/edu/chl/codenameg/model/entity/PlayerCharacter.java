@@ -23,9 +23,11 @@ public class PlayerCharacter implements Entity {
 	private List<CollisionEvent> collidingList;
 	private Hitbox hitbox, hbCopy;
 	private World world;
+	private List<String> collideList;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
+		
 	}
 	
 	public PlayerCharacter(World world) {
@@ -39,6 +41,11 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public PlayerCharacter(Position position) {
+		this.collideList = new ArrayList<String>();
+		this.collideList.add("Block");
+		this.collideList.add("MovableBlock");
+		this.collideList.add("PlayerCharacter");
+		this.collideList.add("LiftableBlock");
 		this.hitbox = new Hitbox(30, 49);
 		gameWon = false;
 		this.alive = true;
@@ -76,7 +83,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void Togglelift() {
-		// System.out.println("Lyfter");
+		this.collideList.remove("LiftableBlock");
 		Rectangle searchRectangle;
 		if (this.direction == Direction.RIGHT) {
 			searchRectangle = new Rectangle(
@@ -104,7 +111,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void unToggleLift() {
-		// System.out.println("Sl�pper");
+		this.collideList.add("LiftableBlock");
 		this.lifting = false;
 		if (lb != null) {
 			lb.drop(this);
@@ -163,14 +170,14 @@ public class PlayerCharacter implements Entity {
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.jumping = false;
 		}
-		if ((evt.getEntity() instanceof LiftableBlock)
-				&& (evt.getDirection().equals(Direction.LEFT) || evt
-						.getDirection().equals(Direction.RIGHT))) {
-			lb = (LiftableBlock) evt.getEntity();
-			if (lifting) {
-				lb.lift(this);
-			}
-		}
+//		if ((evt.getEntity() instanceof LiftableBlock)
+//				&& (evt.getDirection().equals(Direction.LEFT) || evt
+//						.getDirection().equals(Direction.RIGHT))) {
+//			lb = (LiftableBlock) evt.getEntity();
+//			if (lifting) {
+//				lb.lift(this);
+//			}
+//		}
 		if (evt.getEntity().getType().equals(this.getType())
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
@@ -293,12 +300,8 @@ public class PlayerCharacter implements Entity {
 
 	@Override
 	public List<String> getCollideTypes() {
-		List<String> list = new ArrayList<String>();
-		list.add("Block");
-		list.add("MovableBlock");
-		list.add("PlayerCharacter");
-		list.add("LiftableBlock");
-		return list;
+		List<String> list = new ArrayList<String>(this.collideList);
+		return collideList;
 	}
 
 	@Override
