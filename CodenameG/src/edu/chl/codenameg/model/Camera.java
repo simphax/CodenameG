@@ -54,7 +54,10 @@ public class Camera {
 		Ymin = Math.min(Ymin, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
 		}
 		
-		
+//		width = (int)(Xmax - Xmin + 100 + 100);
+//		height = (int)(Ymax - Ymin + 100);
+//		System.out.println(width);
+//		System.out.println(height);
 		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.remove(c);

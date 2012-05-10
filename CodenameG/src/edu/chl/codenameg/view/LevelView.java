@@ -56,14 +56,11 @@ public class LevelView {
 		
 		
 		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
-		
-		//g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
-		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
-
-		scaleY = 500/model.getWorld().getCamera().getHeight();
-		scaleX = 500/model.getWorld().getCamera().getWidth();
+		scaleY = 500f/model.getWorld().getCamera().getHeight();
+		scaleX = 500f/model.getWorld().getCamera().getWidth();
 		System.out.println(scaleX);
-		//g.scale(1,1);
+		g.scale(scaleX,scaleY);
+		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
 		tm.render(0, 0);
 		
 		for (Entity e : model.getWorld().getEntities()) {
