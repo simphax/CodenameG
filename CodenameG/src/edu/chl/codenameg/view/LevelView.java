@@ -12,12 +12,15 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
+import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.view.entity.BasicEntityView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
+import edu.chl.codenameg.view.entity.MovableBlockView;
+import edu.chl.codenameg.view.entity.MovingBlockView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 import edu.chl.codenameg.view.entity.WaterBlockView;
 
@@ -26,7 +29,7 @@ public class LevelView {
 	private Map<Entity, EntityView> entityMap;
 	private TiledMap tm;
 	private Image background;
-	private int scaleX, scaleY;
+	private float scaleX, scaleY;
 	
 
 
@@ -54,12 +57,13 @@ public class LevelView {
 		
 		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
 		
-		g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
+		//g.setClip(0,0, model.getWorld().getCamera().getWidth(), model.getWorld().getCamera().getHeight());
 		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
 
 		scaleY = 500/model.getWorld().getCamera().getHeight();
 		scaleX = 500/model.getWorld().getCamera().getWidth();
-		g.scale(scaleX, scaleY);
+		System.out.println(scaleX);
+		//g.scale(1,1);
 		tm.render(0, 0);
 		
 		for (Entity e : model.getWorld().getEntities()) {
@@ -79,11 +83,15 @@ public class LevelView {
 					EntityView view = new GoalBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
-//				} else if (e instanceof MovingBlock) {
-//					EntityView view = new MovingBlockView();
-//					view.render(e, g);
-//					entityMap.put(e, view);
-				} else if (e instanceof Water) {
+				} else if (e instanceof MovingBlock) {
+					EntityView view = new MovingBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				} else if (e instanceof MovableBlock) {
+					EntityView view = new MovableBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				}else if (e instanceof Water) {
 					EntityView view = new WaterBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
