@@ -37,16 +37,16 @@ public class LevelState extends BasicGameState {
 			level = model.getSelectedLevel();
 		}
 
-		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
-		LevelFactory.getInstance().setTiledMap(tm);
+//		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
+//		LevelFactory.getInstance().setTiledMap(tm);
 		
-		System.out.println(LevelFactory.getInstance().getLevelFilePath(level));
+//		System.out.println(LevelFactory.getInstance().getLevelFilePath(level));
 		
 		if(model == null) {
 			this.model = new GameModel();
 		}
 		
-		this.view = new LevelView(model,tm);
+		this.view = new LevelView(model);
 	}
 
 	@Override

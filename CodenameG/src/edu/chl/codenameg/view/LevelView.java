@@ -16,6 +16,7 @@ import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
+import edu.chl.codenameg.model.levels.LevelFactory;
 import edu.chl.codenameg.view.entity.BasicEntityView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
@@ -33,10 +34,10 @@ public class LevelView {
 	
 
 
-	public LevelView(final GameModel model, TiledMap tm) {
+	public LevelView(final GameModel model) throws SlickException {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
-		this.tm = tm;
+		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
 		System.out.println("New LevelView with "+tm.toString());
 //		try {
 //			tm = new TiledMap("levels/testlevel.tmx", "levels");
