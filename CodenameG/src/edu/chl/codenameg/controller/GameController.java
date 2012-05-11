@@ -12,7 +12,9 @@ public class GameController extends StateBasedGame {
 	
 	public void initStatesList(GameContainer container) throws SlickException {
 		this.addState(new MainMenuState());
-		this.addState(new LevelState());
+		LevelState levelState = new LevelState();
+		this.addState(levelState);
+		this.addState(new PausedLevelState(levelState));
 		this.addState(new SelectLevelMenuState());
 
 	}

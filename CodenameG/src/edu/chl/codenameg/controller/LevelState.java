@@ -2,6 +2,7 @@ package edu.chl.codenameg.controller;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -63,6 +64,10 @@ public class LevelState extends BasicGameState {
 			lastLevel=model.getSelectedLevel();
 		}
 		
+		if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+			game.enterState(4);
+		}
+		
 		model.update(elapsedTime);
 		
 	}
@@ -92,6 +97,7 @@ public class LevelState extends BasicGameState {
 		default:
 			break;
 		}
+		
 		model.performAction(action);
 		
 	}

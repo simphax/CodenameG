@@ -97,6 +97,9 @@ public class LevelView {
 		for (int i = 1; tm.getLayerCount() > i; i++) {
 			tm.render(0, 0, i);
 		}
+		
+		g.translate(model.getWorld().getCamera().getX(), model.getWorld().getCamera().getY());
+		g.scale(1/scaleX, 1/scaleY);
 	}
 	// TODO Possible memory leak? Clear all unused mappings.
 
