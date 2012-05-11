@@ -38,13 +38,6 @@ public class LevelView {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
 		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
-		System.out.println("New LevelView with "+tm.toString());
-//		try {
-//			tm = new TiledMap("levels/testlevel.tmx", "levels");
-//		} catch (SlickException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 
 	public void repaint(Graphics g) {
@@ -59,7 +52,7 @@ public class LevelView {
 		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
 		scaleY = 500f/model.getWorld().getCamera().getHeight();
 		scaleX = 500f/model.getWorld().getCamera().getWidth();
-		System.out.println(scaleX);
+//		System.out.println(scaleX);
 		g.scale(scaleX,scaleY);
 		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
 		tm.render(0, 0);
