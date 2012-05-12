@@ -26,7 +26,8 @@ public class LevelState extends BasicGameState {
 	}
 	
 	public void selectLevel(int level) {
-		model.selectLevel(level);		
+		model.selectLevel(level);
+		model.startGame();
 	}
 
 	@Override
