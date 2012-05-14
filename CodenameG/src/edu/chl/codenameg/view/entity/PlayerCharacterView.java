@@ -83,7 +83,7 @@ public class PlayerCharacterView implements EntityView {
 			PlayerCharacter pc = (PlayerCharacter) ent;
 			//speed = ent.getVector2D().getX();
 			
-			this.playSound(pc);
+			this.playSounds(pc);
 			
 			switch (pc.getDirection()) {
 			case LEFT:
@@ -144,7 +144,7 @@ public class PlayerCharacterView implements EntityView {
 		}
 	}
 	
-	public void playSound(PlayerCharacter pc) {
+	public void playSounds(PlayerCharacter pc) {
 		if(pc.isJumping() && !jumping) {
 			jumping = true;
 			jumpSound.play();
