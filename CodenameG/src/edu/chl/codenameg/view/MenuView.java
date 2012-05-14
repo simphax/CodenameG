@@ -9,12 +9,11 @@ public class MenuView {
 	
 	private int selectedId = 0;
 	private Image background;
+	private Image startGame;
+	private Image selectLevel;
+	private Image quit;
 	public void setSelected(int id) {
 		this.selectedId = id;
-	}
-	
-	private void menuView(){
-	
 	}
 	
 	public int getSelected() {
@@ -23,7 +22,10 @@ public class MenuView {
 	
 	public void repaint(Graphics g) {
 		try {
-			background = new Image("res/backimgherp.jpg");
+			background = new Image("res/backgroundherpderp.jpg");
+			selectLevel = new Image("res/select_level.png");
+			startGame = new Image("res/start_game.png");
+			quit = new Image("res/quit.png");
 		} catch (SlickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -33,12 +35,12 @@ public class MenuView {
 		Color c;
 		c = selectedId==0?Color.red:Color.blue;
 		g.setColor(c);
-		g.drawString("START GAME", 200, 100);
+		g.drawImage(startGame, 150, 100);
 		c = selectedId==1?Color.red:Color.blue;
 		g.setColor(c);
-		g.drawString("SELECT LEVEL", 200, 150);
+		g.drawImage(selectLevel, 150, 200);
 		c = selectedId==2?Color.red:Color.blue;
 		g.setColor(c);
-		g.drawString("QUIT", 200, 200);
+		g.drawImage(quit, 150, 300);
 	}
 }
