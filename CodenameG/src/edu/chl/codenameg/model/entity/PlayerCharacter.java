@@ -14,17 +14,30 @@ import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.World;
 
 public class PlayerCharacter implements Entity {
-	private Position pt, startPos;
-	private Vector2D v2d, addVector, gravity, acceleration;
-	private boolean colliding, alive, moving, onGround, jumping, lifting,
-			justJumped, crouching, gameWon, inWater;
-	private Direction direction;
-	private LiftableBlock lb;
-	private List<CollisionEvent> collidingList;
-	private Hitbox hitbox, hbCopy;
-	private World world;
-	private List<String> collideList;
-	private float speedFactor;
+	private Position				pt; 
+	private Position				startPos;
+	private Vector2D				v2d;
+	private Vector2D				addVector;
+	private Vector2D				gravity;
+	private Vector2D				acceleration;
+	private boolean					colliding;
+	private boolean					alive;
+	private boolean					moving;
+	private boolean					onGround;
+	private boolean					jumping;
+	private boolean					lifting;
+	private boolean					justJumped;
+	private boolean					crouching;
+	private boolean					gameWon;
+	private boolean 				inWater;
+	private Direction				direction;
+	private LiftableBlock 			lb;
+	private List<CollisionEvent> 	collidingList;
+	private Hitbox 					hitbox;
+	private	Hitbox 					hbCopy;
+	private World					world;
+	private List<String> 			collideList;
+	private float 					speedFactor;
 
 	public PlayerCharacter() {
 		this(new Position(0, 0));
@@ -47,8 +60,8 @@ public class PlayerCharacter implements Entity {
 		this.collideList.add("MovableBlock");
 		this.collideList.add("PlayerCharacter");
 		this.collideList.add("LiftableBlock");
-		this.hitbox = new Hitbox(30, 49);
-		gameWon = false;
+		this.collideList.add("FallingBlock");
+		this.gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
 		this.startPos = position;
@@ -310,7 +323,7 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public boolean isJumping() {
-		return this.jumping;
+		return this.jumping || this.justJumped;
 	}
 
 	@Override
