@@ -4,6 +4,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 
 import edu.chl.codenameg.model.Entity;
@@ -20,14 +21,22 @@ public class PlayerCharacterView implements EntityView {
 	private Animation jumpRight = null;
 	private Animation crouchRight = null;
 	private Animation standRight = null;
+	
+	private Sound jumpSound;
+	
+	private boolean jumping = false;
+	
 	//private float speed;
 	public PlayerCharacterView() {
 		try {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
+			
+			jumpSound = new Sound("res/sounds/Mario Jump.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		crouchLeft = new Animation();
 		for (int i = 15; i > 1; i--) {
@@ -74,6 +83,7 @@ public class PlayerCharacterView implements EntityView {
 			PlayerCharacter pc = (PlayerCharacter) ent;
 			//speed = ent.getVector2D().getX();
 			
+			this.playSound(pc);
 			
 			switch (pc.getDirection()) {
 			case LEFT:
@@ -131,6 +141,15 @@ public class PlayerCharacterView implements EntityView {
 				break;
 				
 			}
+		}
+	}
+	
+	public void playSound(PlayerCharacter pc) {
+		if(pc.isJumping() && !jumping) {
+			jumping = true;
+			jumpSound.play();
+		} else if(!pc.isJumping()) {
+			jumping = false;
 		}
 	}
 
