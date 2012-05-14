@@ -73,6 +73,7 @@ public class PlayerCharacter implements Entity {
 		this.acceleration = new Vector2D(0, 0);
 		this.inWater = false;
 		this.speedFactor = 1.0f;
+		this.hitbox = new Hitbox(39,46);
 	}
 	
 
