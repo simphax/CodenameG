@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 /** Class that represents a camera and controls the camera position depending on a player character */
 public class Camera {
-	private int width = 500;
-	private int height = 500;
+	
+	private int minWidth = 500;
+	private int minHeight = 500;
+	private int width;
+	private int height;
 	private float camerax = 0;
 	private float Xmax,Ymax,Xmin,Ymin;
 	private float cameray;
@@ -37,32 +40,31 @@ public class Camera {
 		this.update(10);
 	}
 	public void update(int elapsedTime) {
-		Xmax = 0;
-		Ymax = 0;
-		Xmin = 40000;
-		Ymin = 40000;
-		
 		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.add(c);
 		}
 		
-		for(int i = 0; i < world.getAmountOfPlayers();i++){
+		Xmax = players.get(0).getPosition().getX();
+		Ymax = players.get(0).getPosition().getY();
+		Xmin = players.get(0).getPosition().getX();
+		Ymin = players.get(0).getPosition().getY();
+		
+		for(int i = 1; i < world.getAmountOfPlayers();i++){
 		Xmax = Math.max(Xmax, players.get(i).getPosition().getX());
 		Xmin = Math.min(Xmin, players.get(i).getPosition().getX());
 		Ymax = Math.max(Ymax, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
 		Ymin = Math.min(Ymin, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
 		}
 		
-//		width = (int)(Xmax - Xmin + 100 + 100);
-//		height = (int)(Ymax - Ymin + 100);
-//		System.out.println(width);
-//		System.out.println(height);
+		width = (int)(Xmax - Xmin + minWidth);
+		height = (int)(Ymax - Ymin + minHeight);
+		
+		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
+		cameray =((Ymax+Ymin)/2)-this.getHeight()/2;
 		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.remove(c);
 		}
-		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
-		cameray =((Ymax+Ymin)/2)-this.getHeight()/2;
 }
 }

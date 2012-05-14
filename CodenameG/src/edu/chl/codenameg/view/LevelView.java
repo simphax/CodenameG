@@ -38,17 +38,15 @@ public class LevelView {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
 		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
-	}
-
-	public void repaint(Graphics g) {
 		try {
 			background = new Image("res/backimg.jpg");
 		} catch (SlickException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+	}
+
+	public void repaint(Graphics g) {
 		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
 		scaleY = 500f/model.getWorld().getCamera().getHeight();
 		scaleX = 500f/model.getWorld().getCamera().getWidth();
