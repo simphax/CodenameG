@@ -39,22 +39,22 @@ public class PlayerCharacter implements Entity {
 	private List<String> 			collideList;
 	private float 					speedFactor;
 
-	public PlayerCharacter() {
-		this(new Position(0, 0));
-		
-	}
+//	public PlayerCharacter() {
+//		this(new Position(0, 0));
+//		
+//	}
 	
 	public PlayerCharacter(World world) {
-		this(new Position(0, 0));
-		this.world = world;
+		this(new Position(0, 0),world);
 	}
 	
-	public PlayerCharacter(Position position, World world) {
-		this(position);
-		this.world = world;
-	}
+//	public PlayerCharacter(Position position) {
+//		this(position);
+//		this.world = world;
+//	}
 
-	public PlayerCharacter(Position position) {
+	public PlayerCharacter(Position position, World world) {
+		this.world = world;
 		this.collideList = new ArrayList<String>();
 		this.collideList.add("Block");
 		this.collideList.add("MovableBlock");
@@ -196,7 +196,7 @@ public class PlayerCharacter implements Entity {
 				!(evt.getEntity() instanceof Water)) {
 			this.jumping = false;
 		}
-		if (evt.getEntity() instanceof Water) {
+		if (evt.getEntity().getType().equals("Water")) {
 			this.inWater = true;
 		}
 //		if ((evt.getEntity() instanceof LiftableBlock)
@@ -321,6 +321,10 @@ public class PlayerCharacter implements Entity {
 
 	public boolean isOnGround() {
 		return this.onGround;
+	}
+	
+	public boolean isInWater() {
+		return this.inWater;
 	}
 
 	public boolean isJumping() {

@@ -1,8 +1,9 @@
 package edu.chl.codenameg.model.levels;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -14,7 +15,6 @@ import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
-import edu.chl.codenameg.model.entity.LiftableBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.Water;
@@ -46,8 +46,9 @@ public class LevelFactory {
 
 	public Level loadLevelFromFile(String path) {
 		List<Entity> entities = new ArrayList<Entity>();
-		Position spawnposition = new Position(0, 0);
+		Map<Integer,Position> spawnPositions = new HashMap<Integer,Position>();
 		TiledMap tiledmap;
+		int numberOfPlayers = 1;
 		try {
 			tiledmap = new TiledMap(path);
 
@@ -168,24 +169,33 @@ public class LevelFactory {
 						Entity lethalblock = new GoalBlock(position, hitbox);
 						entities.add(lethalblock);
 					}
-					if (name.equals("Spawn")) {
-						spawnposition = new Position(tiledmap.getObjectX(
+					if (name.equals("SpawnPC1")) {
+						spawnPositions.put(1,new Position(tiledmap.getObjectX(
 								groupID, objectID), tiledmap.getObjectY(
-								groupID, objectID));
+								groupID, objectID)));
+					}
+					if (name.equals("SpawnPC2")) {
+						spawnPositions.put(2,new Position(tiledmap.getObjectX(
+								groupID, objectID), tiledmap.getObjectY(
+										groupID, objectID)));
 					}
 					if (name.equals("CheckPoint")) {
-						spawnposition = new Position(tiledmap.getObjectX(
-								groupID, objectID), tiledmap.getObjectY(
-								groupID, objectID));
+//						spawnposition = new Position(tiledmap.getObjectX(
+//								groupID, objectID), tiledmap.getObjectY(
+//								groupID, objectID));
 
 					}
 				}
 			}
+			
+			numberOfPlayers = Integer.parseInt(tiledmap.getMapProperty("numberOfPlayers", "1"));
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		Level level = new GeneratedLevel(entities, spawnposition, 1);
+		
+		Level level = new GeneratedLevel(entities, spawnPositions, numberOfPlayers);
 
 		return level;
 
@@ -198,13 +208,13 @@ public class LevelFactory {
 	private class GeneratedLevel implements Level {
 
 		List<Entity> entities;
-		Position spawnposition;
+		Map<Integer,Position> spawnPositions;
 		int numberPlayers = 1;
 
-		public GeneratedLevel(List<Entity> entities, Position spawnposition,
+		public GeneratedLevel(List<Entity> entities, Map<Integer,Position> spawnPositions,
 				int numberPlayers) {
 			this.entities = entities;
-			this.spawnposition = spawnposition;
+			this.spawnPositions = spawnPositions;
 			this.numberPlayers = numberPlayers;
 		}
 
@@ -215,8 +225,12 @@ public class LevelFactory {
 		}
 
 		@Override
-		public Position getStartPosition() {
-			return spawnposition;
+		public Position getPlayerSpawnPosition(int playerno) {
+			if(spawnPositions.get(playerno) != null) {
+				return spawnPositions.get(playerno);
+			} else {
+				return new Position(0,0);
+			}
 		}
 
 		@Override
