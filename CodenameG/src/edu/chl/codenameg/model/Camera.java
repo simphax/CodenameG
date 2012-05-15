@@ -11,6 +11,7 @@ public class Camera {
 	
 	private int 						minWidth = 500;
 	private int 						minHeight = 500;
+	private int 						maxWidth = 700;
 	private int 						width;
 	private int 						height;
 	private float 						camerax = 0;
@@ -44,22 +45,22 @@ public class Camera {
 			players.add(c);
 		}
 		Xmax = players.get(0).getPosition().getX();
-		Ymax = players.get(0).getPosition().getY();
 		Xmin = players.get(0).getPosition().getX();
-		Ymin = players.get(0).getPosition().getY();
+		Ymax = players.get(0).getPosition().getY()+players.get(0).getHitbox().getHeight();
+		Ymin = players.get(0).getPosition().getY()+players.get(0).getHitbox().getHeight();
 		
 		for(int i = 1; i < world.getAmountOfPlayers();i++){
 		Xmax = Math.max(Xmax, players.get(i).getPosition().getX());
 		Xmin = Math.min(Xmin, players.get(i).getPosition().getX());
-		Ymax = Math.max(Ymax, players.get(i).getPosition().getY());
-		Ymin = Math.min(Ymin, players.get(i).getPosition().getY());
+		Ymax = Math.max(Ymax, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
+		Ymin = Math.min(Ymin, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
 		}
 		
-		width = Math.max((int)(Ymax - Ymin + minHeight),(int)(Xmax - Xmin + minWidth));
+		width = Math.min(Math.max((int)(Ymax - Ymin + minHeight),(int)(Xmax - Xmin + minWidth)),maxWidth);
 		height = width;
 		
 		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
-		cameray =((Ymax+Ymin)/2+ players.get(0).getHitbox().getHeight())-this.getHeight()/2;
+		cameray =((Ymax+Ymin)/2)-this.getHeight()/2;
 		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.remove(c);
