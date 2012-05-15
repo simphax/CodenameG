@@ -24,8 +24,10 @@ public class PlayerCharacterView implements EntityView {
 	private Animation standRight = null;
 	
 	private GSound jumpSound;
+	private GSound waterSplashSound;
 	
 	private boolean jumping = false;
+	private boolean inWater = false;
 	
 	//private float speed;
 	public PlayerCharacterView() {
@@ -33,6 +35,7 @@ public class PlayerCharacterView implements EntityView {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
 			
 			jumpSound = new GSound("res/sounds/Mario Jump.wav");
+			waterSplashSound = new GSound("res/sounds/Mario Jump.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,6 +154,12 @@ public class PlayerCharacterView implements EntityView {
 			jumpSound.play();
 		} else if(!pc.isJumping()) {
 			jumping = false;
+		}
+		if(pc.isInWater() && !inWater) {
+			inWater = true;
+			waterSplashSound.play();
+		} else if(!pc.isInWater()) {
+			inWater = false;
 		}
 	}
 
