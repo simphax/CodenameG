@@ -189,7 +189,7 @@ public class LevelFactory {
 								tiledmap.getObjectHeight(groupID, objectID) - 1);
 						Entity checkpoint  = new CheckPoint(position, hitbox, null);
 						entities.add(checkpoint);
-
+					}
 				}
 			}
 			
