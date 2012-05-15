@@ -4,7 +4,10 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-
+/** 
+ * Class that represents a menue graphics
+ * that changes according to selected options.
+ */
 public class SelectLevelMenuView {
 	private Image selectLevel;
 	private Image background;

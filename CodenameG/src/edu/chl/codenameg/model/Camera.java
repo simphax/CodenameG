@@ -2,7 +2,11 @@ package edu.chl.codenameg.model;
 import java.util.ArrayList;
 
 import edu.chl.codenameg.model.entity.PlayerCharacter;
-/** Class that represents a camera and controls the camera position depending on a player character */
+/** 
+ * Class that represents a camera
+ * with width, height and position 
+ * depending on the player characters.
+ */
 public class Camera {
 	
 	private int minWidth = 500;
