@@ -10,6 +10,7 @@ import org.newdawn.slick.SpriteSheet;
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.EntityView;
+import edu.chl.codenameg.view.GSound;
 
 public class PlayerCharacterView implements EntityView {
 	private SpriteSheet spriteSheet = null;
@@ -22,7 +23,7 @@ public class PlayerCharacterView implements EntityView {
 	private Animation crouchRight = null;
 	private Animation standRight = null;
 	
-	private Sound jumpSound;
+	private GSound jumpSound;
 	
 	private boolean jumping = false;
 	
@@ -31,7 +32,7 @@ public class PlayerCharacterView implements EntityView {
 		try {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
 			
-			jumpSound = new Sound("res/sounds/Mario Jump.wav");
+			jumpSound = new GSound("res/sounds/Mario Jump.wav");
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
