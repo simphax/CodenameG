@@ -12,6 +12,7 @@ public class MenuView {
 	private Image startGame;
 	private Image selectLevel;
 	private Image quit;
+	private Image romijam;
 	private Image startGameSelected;
 	private Image selectLevelSelected;
 	private Image quitSelected;
@@ -25,7 +26,8 @@ public class MenuView {
 	
 	public void repaint(Graphics g) {
 		try {
-			background = new Image("res/backgroundherpderp.jpg");
+			romijam = new Image("res/romijam.png");
+			background = new Image("res/background.jpg");
 			selectLevel = new Image("res/select_level.png");
 			startGame = new Image("res/start_game.png");
 			quit = new Image("res/quit.png");
@@ -36,14 +38,15 @@ public class MenuView {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		g.drawImage(background,0,0);
+		g.drawImage(background, 0, 0);
+		g.drawImage(romijam, 0, 20);
 		Image img;
 		img = selectedId==0?startGameSelected:startGame;
-		g.drawImage(img, 150, 100);
+		g.drawImage(img, 150, 150);
 		img = selectedId==1?selectLevelSelected:selectLevel;
-		g.drawImage(img, 150, 200);
+		g.drawImage(img, 150, 250);
 		img = selectedId==2?quitSelected:quit;
-		g.drawImage(img, 150, 300);
+		g.drawImage(img, 150, 350);
 		
 	}
 }
