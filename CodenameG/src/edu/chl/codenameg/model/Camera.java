@@ -9,37 +9,32 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
  */
 public class Camera {
 	
-	private int minWidth = 500;
-	private int minHeight = 500;
-	private int width;
-	private int height;
-	private float camerax = 0;
-	private float Xmax,Ymax,Xmin,Ymin;
-	private float cameray;
-	private World world;
-	private ArrayList<PlayerCharacter> players;
+	private int 						minWidth = 500;
+	private int 						minHeight = 500;
+	private int 						width;
+	private int 						height;
+	private float 						camerax = 0;
+	private float 						Xmax,Ymax,Xmin,Ymin;
+	private float 						cameray;
+	private World 						world;
+	private ArrayList<PlayerCharacter> 	players;
 
 	public Camera(World world) {
 		this.world = world;
 		this.players = new ArrayList<PlayerCharacter>();
 	}
-	
 	public float getX(){
-		
 		return camerax;
 	}
 	public float getY(){
-		
 		return cameray;
 	}
-	
 	public int getWidth() {
 		return width;
 	}
 	public int getHeight() {
 		return height;
 	}
-	
 	public void update() {
 		this.update(10);
 	}
@@ -48,7 +43,6 @@ public class Camera {
 		for(PlayerCharacter c : world.getPlayers()){
 			players.add(c);
 		}
-		
 		Xmax = players.get(0).getPosition().getX();
 		Ymax = players.get(0).getPosition().getY();
 		Xmin = players.get(0).getPosition().getX();
@@ -61,8 +55,8 @@ public class Camera {
 		Ymin = Math.min(Ymin, players.get(i).getPosition().getY());
 		}
 		
-		width = (int)(Xmax - Xmin + minWidth);
-		height = (int)(Ymax - Ymin + minHeight);
+		width = Math.max((int)(Ymax - Ymin + minHeight),(int)(Xmax - Xmin + minWidth));
+		height = width;
 		
 		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
 		cameray =((Ymax+Ymin)/2+ players.get(0).getHitbox().getHeight())-this.getHeight()/2;
