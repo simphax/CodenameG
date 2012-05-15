@@ -18,9 +18,9 @@ public class MovingBlock extends Block {
 
 	public MovingBlock(Position ps, Position endPos, int travelTime) {
 		super(ps);
-		this.startPos = ps;
+		this.setStartPosition(ps);
 		this.endPos = endPos;
-		this.travelTime = travelTime;
+		this.setTravelTime(travelTime);
 		this.easing = Quad.INOUT;
 
 
@@ -35,6 +35,12 @@ public class MovingBlock extends Block {
 	public void collide(CollisionEvent evt) {
 		super.collide(evt);
 
+	}
+	public void setStartPosition(Position p){
+		this.startPos = p;
+	}
+	public void setTravelTime(int tt){
+		this.travelTime = tt;
 	}
 
 	public Vector2D calculateNextVector(Position pos, int currentTime, int steps) {

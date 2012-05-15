@@ -22,5 +22,7 @@ public class LethalMovingBlock extends MovingBlock{
 	public LethalMovingBlock() {
 		super();
 	}
-
+	public String getType(){
+		return "LethalMovingBlock";
+	}
 }
