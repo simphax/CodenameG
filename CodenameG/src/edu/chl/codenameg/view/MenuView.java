@@ -38,11 +38,11 @@ public class MenuView {
 		}
 		g.drawImage(background,0,0);
 		Image img;
-		img = selectedId==0?quit:startGame;
+		img = selectedId==0?startGameSelected:startGame;
 		g.drawImage(img, 150, 100);
-		img = selectedId==1?quit:selectLevel;
+		img = selectedId==1?selectLevelSelected:selectLevel;
 		g.drawImage(img, 150, 200);
-		img = selectedId==2?startGame:quit;
+		img = selectedId==2?quitSelected:quit;
 		g.drawImage(img, 150, 300);
 		
 	}
