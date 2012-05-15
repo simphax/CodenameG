@@ -71,7 +71,6 @@ public class Block implements Entity{
 
 	@Override
 	public List<String> getCollideTypes() {
-		// TODO Auto-generated method stub
 		return new ArrayList<String>();
 	}
 
