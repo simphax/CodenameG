@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 /** 
  * Class that represents a menue graphics
  * that changes according to selected options.
- */
+ */ //(100,159,225) (243,105,215)
 public class SelectLevelMenuView {
 	private Image selectLevel;
 	private Image background;
@@ -29,16 +29,15 @@ public class SelectLevelMenuView {
 			e1.printStackTrace();
 		}
 		g.drawImage(background, 0,0);
-		g.setColor(Color.green);
 		g.drawImage(selectLevel, 150, 50);
 		Color c;
-		c = selectedId==0?Color.red:Color.blue;
+		c = selectedId==0?new Color(255,138,0):new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 1", 200, 200);
-		c = selectedId==1?Color.red:Color.blue;
+		c = selectedId==1?new Color(255,138,0):new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 2", 200, 250);
-		c = selectedId==2?Color.red:Color.blue;
+		c = selectedId==2?new Color(255,138,0):new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 3", 200, 300);
 	}
