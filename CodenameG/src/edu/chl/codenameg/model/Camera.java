@@ -57,15 +57,15 @@ public class Camera {
 		for(int i = 1; i < world.getAmountOfPlayers();i++){
 		Xmax = Math.max(Xmax, players.get(i).getPosition().getX());
 		Xmin = Math.min(Xmin, players.get(i).getPosition().getX());
-		Ymax = Math.max(Ymax, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
-		Ymin = Math.min(Ymin, players.get(i).getPosition().getY()+ players.get(i).getHitbox().getHeight());
+		Ymax = Math.max(Ymax, players.get(i).getPosition().getY());
+		Ymin = Math.min(Ymin, players.get(i).getPosition().getY());
 		}
 		
 		width = (int)(Xmax - Xmin + minWidth);
 		height = (int)(Ymax - Ymin + minHeight);
 		
 		camerax =((Xmax+Xmin)/2)-this.getWidth()/2;
-		cameray =((Ymax+Ymin)/2)-this.getHeight()/2;
+		cameray =((Ymax+Ymin)/2+ players.get(0).getHitbox().getHeight())-this.getHeight()/2;
 		
 		for(PlayerCharacter c : world.getPlayers()){
 			players.remove(c);

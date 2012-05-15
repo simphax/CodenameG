@@ -18,12 +18,12 @@
    <property name="imagesrc" value="backimg"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQlPoAAAeBoqs0udYAkAAA==
   </data>
  </layer>
  <layer name="Ground" width="50" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA81UUQrCMAxdQHYBEZ1TcNfYh/b+eA29wn41tMGQLU1rKfTB421N0+S1tHPXDuYKuUeI5z0Kamqo4WMw8lxBTQ01fDgjT4vv/+6kjo+7kafFD8r4K6GXnWAOSvZgC9JHH+7ZVLiOBc1Hb9xzq/4SdBDjqZBnY50V+qCeUWnfpKaC+pX9cx8L+85dXwP6uAXimu7LEfy7SpoD7PcCXkdY/5867/HK4ugL33lSTg6MvyN1JSehuXwaujVPI4c23jrQ4xl+zL1jrUCeVczHB9Z8GktgCQAA
+   H4sIAAAAAAAAC81UUQrCMAxdQHYBEZ1TcNfYh/b+eA29wn41tMGQLU1rKfTB421N0+S1tHPXDuYKuUeI5z0Kamqo4WMw8lxBTQ01fDgjT4vv/+6kjo+7kafFD8r4K6GXnWAOSvZgC9JHH+7ZVLiOBc1Hb9xzq/4SdBDjqZBnY50V+qCeUWnfpKaC+pX9cx8L+85dXwP6uAXimu7LEfy7SpoD7PcCXkdY/5867/HK4ugL33lSTg6MvyN1JSehuXwaujVPI4c23jrQ4xl+zL1jrUCeVczHB9Z8GktgCQAA
   </data>
  </layer>
  <objectgroup name="MovableBlock" width="50" height="12">
@@ -103,7 +103,8 @@
   </object>
  </objectgroup>
  <objectgroup name="Spawn" width="50" height="12">
-  <object name="Spawn" x="64" y="64" width="32" height="64"/>
+  <object name="SpawnPC1" x="64" y="64" width="32" height="64"/>
+  <object name="SpawnPC2" x="128" y="64" width="32" height="64"/>
  </objectgroup>
  <objectgroup color="#0055ff" name="Water" width="50" height="12">
   <properties>
@@ -117,7 +118,7 @@
  </objectgroup>
  <layer name="Water" width="50" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYBSMglEw2EAqNwNDJhCnA3EGlJ2Ggz+YQSfQfV1E4lEwCoYTAADYcX5rYAkAAA==
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw2EAqNwNDJhCnA3EGlJ2Ggz+YQSfQfV1E4lEwCoYTAADYcX5rYAkAAA==
   </data>
  </layer>
 </map>
