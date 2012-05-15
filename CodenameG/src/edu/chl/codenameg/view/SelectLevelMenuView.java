@@ -7,11 +7,11 @@ import org.newdawn.slick.SlickException;
 /** 
  * Class that represents a menue graphics
  * that changes according to selected options.
- */ //(100,159,225) (243,105,215)
+ */ 
 public class SelectLevelMenuView {
-	private Image selectLevel;
-	private Image background;
-	int selectedId = 0;
+	private Image 	selectLevel;
+	private Image 	background;
+	private int 	selectedId = 0;
 	
 	public void setSelected(int id) {
 		this.selectedId = id;
@@ -22,7 +22,7 @@ public class SelectLevelMenuView {
 	
 	public void repaint(Graphics g) {
 		try {
-			background = new Image("res/backgroundherpderp.jpg");
+			background = new Image("res/background.jpg");
 			selectLevel = new Image("res/select_level.png");
 		} catch (SlickException e1) {
 			// TODO Auto-generated catch block
