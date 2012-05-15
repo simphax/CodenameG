@@ -207,7 +207,7 @@ public class PlayerCharacter implements Entity {
 //				lb.lift(this);
 //			}
 //		}
-		if (evt.getEntity().getType().equals(this.getType())
+		if (!evt.getEntity().getType().equals(this.getType())
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
 		}
