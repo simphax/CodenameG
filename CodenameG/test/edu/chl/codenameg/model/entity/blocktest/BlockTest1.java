@@ -12,7 +12,7 @@ import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 
-public class BlockTest {
+public class BlockTest1 {
 
 	@Test
 	public void testSetPosition() {

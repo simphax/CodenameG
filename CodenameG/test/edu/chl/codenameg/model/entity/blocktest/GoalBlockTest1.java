@@ -13,7 +13,7 @@ import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
-public class GoalBlockTest {
+public class GoalBlockTest1 {
 
 	@Test
 	public void testSetPosition() {

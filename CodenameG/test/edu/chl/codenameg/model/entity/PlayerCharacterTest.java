@@ -1,133 +1,194 @@
 package edu.chl.codenameg.model.entity;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
-import edu.chl.codenameg.model.CollisionEvent;
-import edu.chl.codenameg.model.Direction;
-import edu.chl.codenameg.model.Hitbox;
-import edu.chl.codenameg.model.Position;
-import edu.chl.codenameg.model.Vector2D;
+import org.junit.Test;
 
 public class PlayerCharacterTest {
 
 	@Test
-	public void testGetHitbox() {
-		PlayerCharacter pc = new PlayerCharacter();
-		Hitbox hb = pc.getHitbox();
-		assertTrue(hb.equals(new Hitbox(10,15)));
+	public void testPlayerCharacterWorld() {
+		fail("Not yet implemented");
 	}
-	
+
 	@Test
-	public void testGetPosition() {
-		PlayerCharacter pc = new PlayerCharacter();
-		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(0,0)));
+	public void testPlayerCharacterPositionWorld() {
+		fail("Not yet implemented");
 	}
-	
-	@Test
-	public void testSpawnAtPosition() {
-		PlayerCharacter pc = new PlayerCharacter(new Position(25,25));
-		Position pos = pc.getPosition();
-		assertTrue(pos.equals(new Position(25,25)));
-	}
-	
-	@Test
-	public void testMove() {
-		PlayerCharacter pc = new PlayerCharacter();
-		Vector2D v2d1 = pc.getVector2D();
-		pc.move(Direction.LEFT);
-		pc.update(10);
-		Vector2D v2d2 = pc.getVector2D();
-		assertTrue(!v2d1.equals(v2d2));
-	}
-		
-	@Test
-	public void testChangeDirection() {
-		PlayerCharacter pc = new PlayerCharacter();
-		Direction direction = pc.getDirection();
-		pc.setDirection(Direction.LEFT);
-		Direction secondDirection = pc.getDirection();
-		assertTrue(!direction.equals(secondDirection));
-	}
-	
+
 	@Test
 	public void testJump() {
-		PlayerCharacter pc = new PlayerCharacter();
-		pc.setVector2D(new Vector2D(0,0));
-		pc.jump();
-		pc.update();
-		assertTrue(pc.getVector2D().getY() < 0 );
+		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testStopJump(){
-		PlayerCharacter pc = new PlayerCharacter();
-		pc.jump();
-		boolean jumped = pc.isJumping();
-		pc.stopJump();
-		assertTrue(jumped && !pc.isJumping());
+	public void testToggleCrouch() {
+		fail("Not yet implemented");
 	}
-	
+
 	@Test
-	public void testWinGame(){
-		PlayerCharacter anders = new PlayerCharacter();
-		GoalBlock gb = new GoalBlock(new Hitbox(5,5),new Position(4,4));
-		anders.collide(new CollisionEvent(gb,Direction.BOTTOM));
-		gb.collide(new CollisionEvent(anders,Direction.TOP));
-		assertTrue(anders.hasWonGame());
+	public void testUnToggleCrouch() {
+		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testToggleCrouch(){
-		PlayerCharacter gimli = new PlayerCharacter();
-		float h1 = gimli.getHitbox().getHeight();
-		float p1 = gimli.getPosition().getY();
-		gimli.toggleCrouch();
-		gimli.update();
-		float h2 = gimli.getHitbox().getHeight();
-		float p2 = gimli.getPosition().getY();
-		assertTrue(h1 > h2 && p1 < p2);
+	public void testToggleLift() {
+		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testUnToggleCrouch(){
-		PlayerCharacter hulk = new PlayerCharacter();
-		hulk.toggleCrouch();
-		hulk.update();
-		float h1 = hulk.getHitbox().getHeight();
-		float p1 = hulk.getPosition().getY();
-		hulk.unToggleCrouch();
-		hulk.update();
-		float h2 = hulk.getHitbox().getHeight();
-		float p2 = hulk.getPosition().getY();
-		assertTrue(h2 > h1 && p2 < p1);
+	public void testUnToggleLift() {
+		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testToggleLift(){
-		PlayerCharacter mario= new PlayerCharacter();
-		mario.Togglelift();
-		assertTrue(mario.isLifting());
+	public void testIsLifting() {
+		fail("Not yet implemented");
 	}
-	public void testUntoggleLift(){
-		PlayerCharacter monalisa= new PlayerCharacter();
-		monalisa.Togglelift();
-		boolean lift=monalisa.isLifting();
-		monalisa.unToggleLift();
-		assertTrue(!monalisa.isLifting() && lift);
-	}
-	
+
 	@Test
-	public void testDie(){
-		PlayerCharacter berit = new PlayerCharacter();
-		LethalBlock lb = new LethalBlock(new Hitbox(5,5),new Position(4,4));
-		berit.collide(new CollisionEvent(lb,Direction.LEFT));
-		lb.collide(new CollisionEvent(berit,Direction.RIGHT));
-		assertTrue(!berit.isAlive());
+	public void testIsMoving() {
+		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testDieOnTwoCollides(){
-		PlayerCharacter rocky = new PlayerCharacter();
-		rocky.collide(new CollisionEvent(new Block(), Direction.LEFT));
-		rocky.collide(new CollisionEvent(new Block(), Direction.RIGHT));
-		rocky.update(10);
-		assertTrue(!rocky.isAlive());
+	public void testIsCrouching() {
+		fail("Not yet implemented");
 	}
+
+	@Test
+	public void testStopJump() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testMoveDirection() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetDirection() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStopMove() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetDirection() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCollide() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDie() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testWinGame() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetPosition() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStartPosition() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetStartPosition() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetPosition() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetHitbox() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetVector2D() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddVector2D() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetVector2D() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsColliding() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testHasWonGame() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsAlive() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsOnGround() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsInWater() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsJumping() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetCollideTypes() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetType() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdate() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateInt() {
+		fail("Not yet implemented");
+	}
+
 }

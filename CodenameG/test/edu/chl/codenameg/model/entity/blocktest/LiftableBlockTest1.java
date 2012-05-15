@@ -7,7 +7,7 @@ import org.junit.Test;
 import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.entity.*;
 
-public class LiftableBlockTest {
+public class LiftableBlockTest1 {
 
 	@Test
 	public void testLift() {

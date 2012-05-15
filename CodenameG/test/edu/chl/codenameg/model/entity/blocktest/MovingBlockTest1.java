@@ -11,7 +11,7 @@ import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 
-public class MovingBlockTest {
+public class MovingBlockTest1 {
 
 	@Test
 	public void testGetVector2D() {
