@@ -25,4 +25,7 @@ public class LethalBlock extends Block{
 	public LethalBlock() {
 		super();
 	}
+	public String getType(){
+		return "LethalBlock";
+	}
 }
