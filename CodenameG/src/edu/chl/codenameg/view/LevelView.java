@@ -24,13 +24,15 @@ import edu.chl.codenameg.view.entity.MovableBlockView;
 import edu.chl.codenameg.view.entity.MovingBlockView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 import edu.chl.codenameg.view.entity.WaterBlockView;
+// Needs to complete the TODO or remove
 
 public class LevelView {
-	private GameModel model;
+	private float		scaleX;
+	private float		scaleY;
+	private GameModel 	model;
 	private Map<Entity, EntityView> entityMap;
-	private TiledMap tm;
-	private Image background;
-	private float scaleX, scaleY;
+	private TiledMap	tm;
+	private Image		background;
 	
 	public LevelView(final GameModel model) throws SlickException {
 		this.model = model;
@@ -42,22 +44,25 @@ public class LevelView {
 		try {
 			background = new Image("res/backimg.jpg");
 		} catch (SlickException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		g.drawImage(background, -200 -model.getWorld().getCamera().getX()/2,-200 -model.getWorld().getCamera().getY()/2);
+		
+		g.drawImage(background, 
+				-200 -model.getWorld().getCamera().getX()/2,
+				-200 -model.getWorld().getCamera().getY()/2);
+		
 		scaleY = 500f/model.getWorld().getCamera().getHeight();
 		scaleX = 500f/model.getWorld().getCamera().getWidth();
 //		System.out.println(scaleX);
 		g.scale(scaleX,scaleY);
-		g.translate(-model.getWorld().getCamera().getX(), -model.getWorld().getCamera().getY());
+		g.translate(-model.getWorld().getCamera().getX(), 
+					-model.getWorld().getCamera().getY());
 		tm.render(0, 0);
 		
 		for (Entity e : model.getWorld().getEntities()) {
 			if (entityMap.containsKey(e)) {
 				entityMap.get(e).render(e, g);
 			} else {
-
 				if (e instanceof PlayerCharacter) {
 					EntityView view = new PlayerCharacterView();
 					view.render(e, g);
@@ -87,7 +92,6 @@ public class LevelView {
 			
 			//if debug
 			(new BasicEntityView()).render(e, g);
-
 		}
 		
 		for (int i = 1; tm.getLayerCount() > i; i++) {
@@ -98,5 +102,4 @@ public class LevelView {
 		g.scale(1/scaleX, 1/scaleY);
 	}
 	// TODO Possible memory leak? Clear all unused mappings.
-
 }

@@ -4,16 +4,18 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
 /** 
- * Class that represents a menue graphics
+ * Class that represents a menu graphics
  * that changes according to selected options.
  */ 
 public class SelectLevelMenuView {
 	private Image 	selectLevel;
 	private Image 	background;
-	private int 	selectedId = 0;
+	private int 	selectedId;
 	
 	public SelectLevelMenuView(){
+		this.selectedId = 0;
 		try {
 			background = new Image("res/background.jpg");
 			selectLevel = new Image("res/select_level.png");
@@ -31,17 +33,24 @@ public class SelectLevelMenuView {
 	}
 	
 	public void repaint(Graphics g) {
+		try {
+			background = new Image("res/background.jpg");
+			selectLevel = new Image("res/select_level.png");
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		g.drawImage(background, 0,0);
 		g.drawImage(selectLevel, 150, 50);
 		Color c;
-		c = selectedId==0?new Color(255,138,0):new Color(255,240,0);
+		c = selectedId == 0 ? new Color(255,138,0) : new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 1", 200, 200);
-		c = selectedId==1?new Color(255,138,0):new Color(255,240,0);
+		c = selectedId == 1 ? new Color(255,138,0) : new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 2", 200, 250);
-		c = selectedId==2?new Color(255,138,0):new Color(255,240,0);
+		c = selectedId == 2 ? new Color(255,138,0) : new Color(255,240,0);
 		g.setColor(c);
 		g.drawString("Level 3", 200, 300);
 	}

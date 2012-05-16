@@ -1,9 +1,11 @@
 package edu.chl.codenameg.view;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+
 /** 
- * Class that represents a menue graphics
+ * Class that represents a menu graphics
  * that changes according to selected options.
  */
 public class PauseMenuView {
@@ -13,7 +15,11 @@ public class PauseMenuView {
 	private Image 	startGameSelected;
 	private Image 	selectLevelSelected;
 	private Image 	quitSelected;
-	private int 	selectedId = 0;
+	private int 	selectedId;
+	
+	public PauseMenuView() {
+		this.selectedId = 0;
+	}
 	
 	public PauseMenuView(){
 		try {
@@ -24,7 +30,6 @@ public class PauseMenuView {
 			startGameSelected = new Image("res/start_game_selected.png");
 			quitSelected = new Image("res/quit_selected.png");
 		} catch (SlickException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}

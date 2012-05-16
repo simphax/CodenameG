@@ -7,8 +7,7 @@ import org.newdawn.slick.Sound;
  * Simple class to play sound files.
  */
 public class GSound implements ISound {
-
-	Sound sound;
+	private Sound sound;
 	
 	public GSound(String path) throws SlickException {
 		sound = new Sound(path);
@@ -18,5 +17,4 @@ public class GSound implements ISound {
 	public void play() {
 		sound.play();
 	}
-
 }
