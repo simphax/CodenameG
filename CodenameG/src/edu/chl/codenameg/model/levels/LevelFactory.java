@@ -18,6 +18,7 @@ import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
+import edu.chl.codenameg.model.entity.MovingWall;
 import edu.chl.codenameg.model.entity.Water;
 
 public class LevelFactory {
@@ -101,16 +102,20 @@ public class LevelFactory {
 						entities.add(movableblock);
 					}
 					if (name.equals("MovingBlock")
-							|| name.equals("LethalMovingBlock")) {
+							|| name.equals("LethalMovingBlock") || name.equals("MovingWall")) {
 						String direction = tiledmap.getObjectProperty(groupID,
 								objectID, "Direction", "down");
 						Position endPosition = new Position(0, 0);
 						Position startPosition = new Position(0, 0);
 						Entity movingblock;
+						String lethality = tiledmap.getObjectProperty(groupID, objectID, "lethality", "false");
+						int traveltime = Integer.parseInt(tiledmap.getObjectProperty(groupID, objectID, "traveltime", "1000"));
 						if (name.equals(("MovingBlock"))) {
 							movingblock = new MovingBlock();
-						} else {
+						} else if(name.equals("LethalMovingBlock")){
 							movingblock = new LethalMovingBlock();
+						}else{
+							movingblock = new MovingWall();
 						}
 						if (direction.equals("up")) {
 							endPosition = new Position(tiledmap.getObjectX(
@@ -156,8 +161,21 @@ public class LevelFactory {
 													.getWidth(),
 									tiledmap.getObjectY(groupID, objectID));
 						}
-						movingblock = new MovingBlock(startPosition,
-								endPosition, 1000);
+						if (name.equals(("MovingBlock"))) {
+							movingblock = new MovingBlock(startPosition,
+									endPosition, traveltime);
+						} else if(name.equals("LethalMovingBlock")){
+							movingblock = new LethalMovingBlock(startPosition,
+									endPosition, traveltime);
+						}else{
+							if(lethality.equals("false")){
+							movingblock = new MovingWall(startPosition,
+									endPosition, traveltime, false);
+							}else{
+								movingblock = new MovingWall(startPosition, endPosition, traveltime, true);
+							}
+						}
+
 						entities.add(movingblock);
 					}
 					if (name.equals("GoalBlock")) {
@@ -190,6 +208,7 @@ public class LevelFactory {
 						Entity checkpoint  = new CheckPoint(position, hitbox, null);
 						entities.add(checkpoint);
 					}
+					
 				}
 			}
 			

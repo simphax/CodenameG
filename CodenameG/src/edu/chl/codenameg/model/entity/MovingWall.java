@@ -14,8 +14,15 @@ public class MovingWall extends MovingBlock{
 		this.lethal = lethal;
 		this.travelTime = travelTime;
 	}
+	public MovingWall(){
+		this(new Position(2.5f, 2.5f), new Position(7.5f,
+				7.5f), 100,false);
+	}
 	public boolean isLethal(){
 		return this.lethal;
+	}
+	public void toggleLethal(boolean l){
+		this.lethal = l;
 	}
 	@Override
 	public void collide(CollisionEvent evt){
