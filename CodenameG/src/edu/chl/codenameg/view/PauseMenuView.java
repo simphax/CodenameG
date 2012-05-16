@@ -1,11 +1,19 @@
 package edu.chl.codenameg.view;
-
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+/** 
+ * Class that represents a menue graphics
+ * that changes according to selected options.
+ */
 public class PauseMenuView {
-	
-	int selectedId = 0;
+	private Image 	startGame;
+	private Image 	selectLevel;
+	private Image 	quit;
+	private Image 	startGameSelected;
+	private Image 	selectLevelSelected;
+	private Image 	quitSelected;
+	private int 	selectedId = 0;
 	
 	public void setSelected(int id) {
 		this.selectedId = id;
@@ -15,15 +23,24 @@ public class PauseMenuView {
 	}
 	
 	public void repaint(Graphics g) {
-		Color c;
-		c = selectedId==0?Color.red:Color.blue;
-		g.setColor(c);
-		g.drawString("START GAME", 200, 100);
-		c = selectedId==1?Color.red:Color.blue;
-		g.setColor(c);
-		g.drawString("SELECT LEVEL", 200, 150);
-		c = selectedId==2?Color.red:Color.blue;
-		g.setColor(c);
-		g.drawString("QUIT", 200, 200);
+		try {
+			selectLevel = new Image("res/select_level.png");
+			startGame = new Image("res/start_game.png");
+			quit = new Image("res/quit.png");
+			selectLevelSelected = new Image("res/select_level_selected.png");
+			startGameSelected = new Image("res/start_game_selected.png");
+			quitSelected = new Image("res/quit_selected.png");
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		Image img;
+		img = selectedId==0?startGameSelected:startGame;
+		g.drawImage(img, 150, 150);
+		img = selectedId==1?selectLevelSelected:selectLevel;
+		g.drawImage(img, 150, 250);
+		img = selectedId==2?quitSelected:quit;
+		g.drawImage(img, 150, 350);
 	}
 }
