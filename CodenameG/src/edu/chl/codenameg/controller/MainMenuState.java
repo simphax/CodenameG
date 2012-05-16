@@ -10,20 +10,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import edu.chl.codenameg.view.MenuView;
 
 public class MainMenuState extends BasicGameState {
-	
-	MenuView view;
-	int selectedId = 0;
+	private MenuView	view;
+	private int 		selectedId;
 	
 	public MainMenuState() {
+		this.selectedId = 0;
 		this.view = new MenuView();
 	}
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		
-	}
+			throws SlickException {}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -35,8 +32,6 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		// TODO Auto-generated method stub
-
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
 			selectedId=(selectedId-1)%3;
 		}
@@ -56,7 +51,6 @@ public class MainMenuState extends BasicGameState {
 				System.exit(0);
 				break;
 			}
-			
 		}
 	}
 
@@ -64,5 +58,4 @@ public class MainMenuState extends BasicGameState {
 	public int getID() {
 		return 1;
 	}
-
 }

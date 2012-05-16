@@ -7,14 +7,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import edu.chl.codenameg.view.MenuView;
 import edu.chl.codenameg.view.PauseMenuView;
 
 public class PausedLevelState extends BasicGameState {
-	
-	PauseMenuView view;
-	int selectedId = 0;
-	LevelState levelState;
+	private PauseMenuView 	view;
+	private int 			selectedId = 0;
+	private LevelState 		levelState;
 	
 	public PausedLevelState(LevelState levelState) {
 		this.view = new PauseMenuView();
@@ -23,10 +21,7 @@ public class PausedLevelState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		
-	}
+			throws SlickException {}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -34,14 +29,11 @@ public class PausedLevelState extends BasicGameState {
 		levelState.render(container, game, g);
 		view.setSelected(selectedId);
 		view.repaint(g);
-		
-
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		
 		levelState.update(container, game, elapsedTime);
 
 		if(container.getInput().isKeyPressed(Input.KEY_UP)) {
@@ -63,7 +55,6 @@ public class PausedLevelState extends BasicGameState {
 				System.exit(0);
 				break;
 			}
-			
 		}
 	}
 
@@ -71,5 +62,4 @@ public class PausedLevelState extends BasicGameState {
 	public int getID() {
 		return 4;
 	}
-
 }

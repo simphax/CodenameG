@@ -11,9 +11,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import edu.chl.codenameg.view.SelectLevelMenuView;
 
 public class SelectLevelMenuState extends BasicGameState {
-	
-	SelectLevelMenuView view;
-	int selectedId = 0;
+	private SelectLevelMenuView view;
+	private int selectedId = 0;
 	
 	public SelectLevelMenuState() {
 		this.view = new SelectLevelMenuView();
@@ -21,10 +20,7 @@ public class SelectLevelMenuState extends BasicGameState {
 
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		
-	}
+			throws SlickException {}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -61,7 +57,6 @@ public class SelectLevelMenuState extends BasicGameState {
 				game.enterState(3);
 				break;
 			}
-			
 		}
 	}
 	
@@ -78,5 +73,4 @@ public class SelectLevelMenuState extends BasicGameState {
 		// TODO Auto-generated method stub
 		return 2;
 	}
-
 }

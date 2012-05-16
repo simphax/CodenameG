@@ -6,23 +6,30 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.tiled.TiledMap;
 
 import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.GameModel;
-import edu.chl.codenameg.model.levels.LevelFactory;
 import edu.chl.codenameg.view.LevelView;
+
+// Needs to remove unused code
 
 public class LevelState extends BasicGameState {
 	
-	private LevelView view;
-	private GameModel model;
-	private boolean player1LeftKeyPressed, player1RightKeyPressed, player2LeftKeyPressed, player2RightKeyPressed;
-	private int lastLevel = 1;
+	private LevelView 	view;
+	private GameModel 	model;
+	private boolean 	player1LeftKeyPressed;
+	private boolean 	player1RightKeyPressed;
+	private boolean 	player2LeftKeyPressed;
+	private boolean 	player2RightKeyPressed;
+	private int 		lastLevel;
 	
 	public LevelState() {
-		player1LeftKeyPressed = false; player1RightKeyPressed = false;
-		player2LeftKeyPressed = false; player2RightKeyPressed = false;
+		lastLevel = 1;
+		
+		player1LeftKeyPressed 	= false; 
+		player1RightKeyPressed 	= false;
+		player2LeftKeyPressed 	= false; 
+		player2RightKeyPressed 	= false;
 	}
 	
 	public void selectLevel(int level) {
@@ -33,17 +40,16 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		
-		int level = 1;
-		if(model != null) {
-			level = model.getSelectedLevel();
-		}
+//		int level;
+//		if(model != null) {
+//			level = model.getSelectedLevel();
+//		}
 
 //		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
 //		LevelFactory.getInstance().setTiledMap(tm);
 		
 //		System.out.println(LevelFactory.getInstance().getLevelFilePath(level));
-		
+//		
 		if(model == null) {
 			this.model = new GameModel();
 		}
@@ -70,7 +76,6 @@ public class LevelState extends BasicGameState {
 		}
 		
 		model.update(elapsedTime);
-		
 	}
 
 	@Override
@@ -80,7 +85,6 @@ public class LevelState extends BasicGameState {
 	
 	@Override
 	public void keyPressed(int key, char c) {
-		
 		Action action = KeyBindings.getAction(key);
 		switch (action) {
 		case PLAYER_1_MOVE_LEFT:
@@ -100,7 +104,6 @@ public class LevelState extends BasicGameState {
 		}
 		
 		model.performAction(action);
-		
 	}
 
 	@Override
@@ -150,7 +153,5 @@ public class LevelState extends BasicGameState {
 		} else if (!player2LeftKeyPressed && !player2RightKeyPressed) {
 			model.stopAction(Action.PLAYER_2_MOVE_LEFT);
 		}
-		
 	}
-
 }

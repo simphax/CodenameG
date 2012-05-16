@@ -3,7 +3,6 @@ package edu.chl.codenameg.controller;
 import org.newdawn.slick.Input;
 
 import edu.chl.codenameg.model.Action;
-import edu.chl.codenameg.model.Direction;
 
 public class KeyBindings {
 
@@ -27,6 +26,8 @@ public class KeyBindings {
 			return Action.PLAYER_1_TOGGLE_CROUCH;
 		case Input.KEY_A:
 			return Action.PLAYER_2_MOVE_LEFT;
+		case Input.KEY_L:
+			return Action.PLAYER_1_TOGGLE_LIFT;
 		case Input.KEY_D:
 			return Action.PLAYER_2_MOVE_RIGHT;
 		case Input.KEY_W:
@@ -35,12 +36,10 @@ public class KeyBindings {
 			return Action.PLAYER_2_TOGGLE_CROUCH;
 		case Input.KEY_LSHIFT:
 			return Action.PLAYER_2_TOGGLE_CROUCH;
-		case Input.KEY_P:
-			return Action.PAUSE_GAME;
-		case Input.KEY_L:
-			return Action.PLAYER_1_TOGGLE_LIFT;
 		case Input.KEY_T:
 			return Action.PLAYER_2_TOGGLE_LIFT;
+		case Input.KEY_P:
+			return Action.PAUSE_GAME;
 		default:
 			return Action.NO_ACTION;
 		}

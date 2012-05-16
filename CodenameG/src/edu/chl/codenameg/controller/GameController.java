@@ -1,7 +1,8 @@
 package edu.chl.codenameg.controller;
 
 
-import org.newdawn.slick.*;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GameController extends StateBasedGame {
@@ -16,6 +17,5 @@ public class GameController extends StateBasedGame {
 		this.addState(levelState);
 		this.addState(new PausedLevelState(levelState));
 		this.addState(new SelectLevelMenuState());
-
 	}
 }
