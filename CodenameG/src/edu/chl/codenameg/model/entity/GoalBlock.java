@@ -10,7 +10,7 @@ public class GoalBlock extends Block{
 	@Override
 	public void collide(CollisionEvent evt){
 		super.collide(evt);
-		if(evt.getEntity() instanceof PlayerCharacter){
+		if(evt.getEntity().getType().equals("PlayerCharacter")){
 			PlayerCharacter skilledPlayer = (PlayerCharacter)evt.getEntity();
 			skilledPlayer.winGame();
 		}

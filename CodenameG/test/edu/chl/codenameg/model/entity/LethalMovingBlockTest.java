@@ -11,19 +11,4 @@ public class LethalMovingBlockTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testLethalMovingBlockPositionPositionInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testLethalMovingBlock() {
-		fail("Not yet implemented");
-	}
-
 }

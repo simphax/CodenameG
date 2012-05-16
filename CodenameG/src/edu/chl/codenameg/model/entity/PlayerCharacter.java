@@ -120,7 +120,7 @@ public class PlayerCharacter implements Entity {
 		List<Entity> entitiesList = this.world.getEntitiesAt(searchRectangle);
 		
 		for (Entity entity: entitiesList) {
-			if (entity instanceof LiftableBlock) {
+			if (entity.getType().equals("LiftableBlock")) {
 				this.collideList.remove("LiftableBlock");
 				this.lb = ((LiftableBlock) entity);
 				this.lb.lift(this);
@@ -194,20 +194,12 @@ public class PlayerCharacter implements Entity {
 		}
 		if (evt.getDirection() == Direction.TOP && 
 				this.getCollideTypes().contains(evt.getEntity().getType()) && 
-				!(evt.getEntity() instanceof Water)) {
+				!(evt.getEntity().getType().equals("Water"))) {
 			this.jumping = false;
 		}
 		if (evt.getEntity().getType().equals("Water")) {
 			this.inWater = true;
 		}
-//		if ((evt.getEntity() instanceof LiftableBlock)
-//				&& (evt.getDirection().equals(Direction.LEFT) || evt
-//						.getDirection().equals(Direction.RIGHT))) {
-//			lb = (LiftableBlock) evt.getEntity();
-//			if (lifting) {
-//				lb.lift(this);
-//			}
-//		}
 		if (!evt.getEntity().getType().equals(this.getType())
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
@@ -234,8 +226,8 @@ public class PlayerCharacter implements Entity {
 			int collideBottomCount = 0;
 
 			for (CollisionEvent evt : collidingList) {
-				// if(!(evt.getEntity() instanceof PlayerCharacter)){
-				if (!(evt.getEntity() instanceof LiftableBlock)) {
+
+				if (!(evt.getEntity().getType().equals("LiftableBlock"))) {
 
 					switch (evt.getDirection()) {
 					case LEFT:
