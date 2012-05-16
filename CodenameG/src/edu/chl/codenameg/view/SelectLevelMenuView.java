@@ -13,6 +13,16 @@ public class SelectLevelMenuView {
 	private Image 	background;
 	private int 	selectedId = 0;
 	
+	public SelectLevelMenuView(){
+		try {
+			background = new Image("res/background.jpg");
+			selectLevel = new Image("res/select_level.png");
+		} catch (SlickException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+	}
+	
 	public void setSelected(int id) {
 		this.selectedId = id;
 	}
@@ -21,13 +31,7 @@ public class SelectLevelMenuView {
 	}
 	
 	public void repaint(Graphics g) {
-		try {
-			background = new Image("res/background.jpg");
-			selectLevel = new Image("res/select_level.png");
-		} catch (SlickException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
 		g.drawImage(background, 0,0);
 		g.drawImage(selectLevel, 150, 50);
 		Color c;

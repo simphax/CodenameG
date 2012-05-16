@@ -15,14 +15,7 @@ public class PauseMenuView {
 	private Image 	quitSelected;
 	private int 	selectedId = 0;
 	
-	public void setSelected(int id) {
-		this.selectedId = id;
-	}
-	public int getSelected() {
-		return this.selectedId;
-	}
-	
-	public void repaint(Graphics g) {
+	public PauseMenuView(){
 		try {
 			selectLevel = new Image("res/select_level.png");
 			startGame = new Image("res/start_game.png");
@@ -34,7 +27,16 @@ public class PauseMenuView {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+	}
+	
+	public void setSelected(int id) {
+		this.selectedId = id;
+	}
+	public int getSelected() {
+		return this.selectedId;
+	}
+	
+	public void repaint(Graphics g) {
 		Image img;
 		img = selectedId==0?startGameSelected:startGame;
 		g.drawImage(img, 150, 150);

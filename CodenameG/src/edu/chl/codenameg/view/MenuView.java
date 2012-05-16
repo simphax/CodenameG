@@ -16,15 +16,8 @@ public class MenuView {
 	private Image startGameSelected;
 	private Image selectLevelSelected;
 	private Image quitSelected;
-	public void setSelected(int id) {
-		this.selectedId = id;
-	}
 	
-	public int getSelected() {
-		return this.selectedId;
-	}
-	
-	public void repaint(Graphics g) {
+	public MenuView(){
 		try {
 			romijam = new Image("res/romijam.png");
 			background = new Image("res/background.jpg");
@@ -38,6 +31,16 @@ public class MenuView {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	
+	public void setSelected(int id) {
+		this.selectedId = id;
+	}
+	public int getSelected() {
+		return this.selectedId;
+	}
+	
+	public void repaint(Graphics g) {
 		g.drawImage(background, 0, 0);
 		g.drawImage(romijam, 0, 20);
 		Image img;
