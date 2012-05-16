@@ -3,7 +3,6 @@ package edu.chl.codenameg.model;
 import java.awt.Dimension;
 
 public class Hitbox {
-	
 	private int width;
 	private int height;
 	
@@ -32,6 +31,7 @@ public class Hitbox {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
 	public Dimension getDimension(){
 		return new Dimension(this.width,this.height);
 	}
@@ -60,6 +60,4 @@ public class Hitbox {
 			return false;
 		return true;
 	}
-
-
 }

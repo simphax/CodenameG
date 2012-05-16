@@ -14,6 +14,5 @@ public enum Action {
 	PLAYER_1_TOGGLE_LIFT,
 	PLAYER_2_TOGGLE_LIFT,
 	PAUSE_GAME,
-	
 	NO_ACTION,
 }

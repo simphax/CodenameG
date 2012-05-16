@@ -18,13 +18,13 @@ public class CheckPoint implements Entity{
 	private int 		elapsedTime;
 	private boolean 	used;
 	
-
 	public CheckPoint(Position p , Hitbox hb, World world){
 		this.pos = p;
 		this.hb = hb;
 		this.world = world;
 		this.used = false;
 	}
+	
 	@Override
 	public void setPosition(Position p) {
 		this.pos = p;
@@ -44,7 +44,6 @@ public class CheckPoint implements Entity{
 	public Vector2D getVector2D() {
 		return new Vector2D(0,0);
 	}
-
 
 	@Override
 	public String getType() {
@@ -73,11 +72,9 @@ public class CheckPoint implements Entity{
 					int tt = mw.getTravelTime() - this.elapsedTime;
 					mw.setTravelTime(tt);					
 				}
-			}//end movingWall checkpoint-loop.
+			}
 			this.used = true;
 		}
-		
-		
 	}
 
 	@Override
@@ -89,5 +86,4 @@ public class CheckPoint implements Entity{
 	public List<String> getCollideTypes() {
 		return new ArrayList<String>();
 	}
-	
 }

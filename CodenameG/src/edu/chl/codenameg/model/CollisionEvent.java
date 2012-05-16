@@ -1,9 +1,8 @@
 package edu.chl.codenameg.model;
 
 public class CollisionEvent {
-	
-	Entity e;
-	Direction d;
+	private Entity e;
+	private Direction d;
 	
 	public CollisionEvent(Entity e, Direction d) {
 		this.e = e;
@@ -13,8 +12,8 @@ public class CollisionEvent {
 	public Entity getEntity() {
 		return e;
 	}
+	
 	public Direction getDirection() {
 		return d;
 	}
-	
 }

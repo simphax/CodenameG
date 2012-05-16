@@ -7,12 +7,12 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.Level;
 import edu.chl.codenameg.model.levels.LevelFactory;
 
+// Remove comments in here
 public class GameModel {
-
-	private World world;
-	private boolean running;
-	private int selectedLevel;
-	private List<PlayerCharacter> listOfPC;
+	private boolean 				running;
+	private int 					selectedLevel;
+	private World 					world;
+	private List<PlayerCharacter> 	listOfPC;
 
 	public GameModel() {
 		listOfPC = new ArrayList<PlayerCharacter>();
@@ -29,11 +29,6 @@ public class GameModel {
 	}
 
 	public void restartGame() {
-		/*
-		 * // This should be done using the controller instead...
-		 * this.endGame(); //****************************** World testWorld =
-		 * this.createTestWorld(); this.setWorld(testWorld);
-		 */
 		this.endGame();
 		this.selectLevel(selectedLevel);
 	}
@@ -58,13 +53,11 @@ public class GameModel {
 	}
 
 	public void selectLevel(int i) {
+		Level level = this.getLevel(i);
+		World temp = new World(level);
 		this.selectedLevel = i;
 
-		Level level = this.getLevel(i);
-
-		World temp = new World(level);
-
-		List<PlayerCharacter> playerList = new ArrayList();
+		List<PlayerCharacter> playerList = new ArrayList<PlayerCharacter>();
 		
 		for (int j=1; j <= level.getAmountOfPlayers(); j++) {
 			PlayerCharacter player = new PlayerCharacter(temp);
@@ -77,7 +70,6 @@ public class GameModel {
 		}
 		listOfPC.removeAll(listOfPC);
 		listOfPC.addAll(playerList);
-
 		this.setWorld(temp);
 		System.out.println("Select level " + i);
 	}
@@ -109,6 +101,12 @@ public class GameModel {
 		case PLAYER_1_TOGGLE_CROUCH:
 			getPlayer(1).toggleCrouch();
 			break;
+		case PLAYER_1_TOGGLE_LIFT:
+			if (!listOfPC.get(0).isLifting())
+				getPlayer(1).toggleLift();
+			else
+				getPlayer(1).unToggleLift();
+			break;
 		case PLAYER_2_MOVE_LEFT:
 			if (this.listOfPC.size() > 1) {
 				getPlayer(2).move(Direction.LEFT);
@@ -129,12 +127,6 @@ public class GameModel {
 				getPlayer(2).toggleCrouch();
 				break;
 			}
-		case PLAYER_1_TOGGLE_LIFT:
-			if (!listOfPC.get(0).isLifting())
-				getPlayer(1).toggleLift();
-			else
-				getPlayer(1).unToggleLift();
-			break;
 		case PLAYER_2_TOGGLE_LIFT:
 			if (this.listOfPC.size() > 1) {
 				if (!listOfPC.get(1).isLifting())
@@ -150,7 +142,10 @@ public class GameModel {
 	}
 
 	public void stopAction(Action action) {
+		boolean twoPlayer = (this.listOfPC.size() > 1) ? true : false;
+		
 		switch (action) {
+		
 		case PLAYER_1_MOVE_LEFT:
 			getPlayer(1).stopMove();
 			break;
@@ -167,30 +162,25 @@ public class GameModel {
 			getPlayer(1).unToggleCrouch();
 			break;
 		case PLAYER_2_MOVE_LEFT:
-			if (this.listOfPC.size() > 1) {
+			if (twoPlayer) {
 				getPlayer(2).stopMove();
 				break;
 			}
 		case PLAYER_2_MOVE_RIGHT:
-			if (this.listOfPC.size() > 1) {
+			if (twoPlayer) {
 				getPlayer(2).stopMove();
 				break;
 			}
 		case PLAYER_2_JUMP:
-			if (this.listOfPC.size() > 1) {
+			if (twoPlayer) {
 				getPlayer(2).stopJump();
 				break;
 			}
 		case PLAYER_2_TOGGLE_CROUCH:
-			if (this.running && this.listOfPC.size() > 1) {
+			if (this.running && twoPlayer) {
 				getPlayer(2).unToggleCrouch();
 				break;
 			}
-			// case PLAYER_2_TOGGLE_LIFT:
-			// if(this.listOfPC.size()>1){
-			// getPlayer(2).unToggleLift();
-			// break;
-			// }
 		default:
 			break;
 		}

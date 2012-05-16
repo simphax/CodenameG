@@ -10,22 +10,20 @@ import org.newdawn.slick.geom.Rectangle;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.Level;
 
-/*
+// Complete the TODO and remove commented code
+/**
  * World model object
- * 
  * Contains all entities and the camera for a level in the game.
- * 
  * On update: moves all entities according to its vectors and collide types.
- * 
  */
 public class World {
 
-	private boolean gameOver;
-	private boolean hasWonGame;
-	private Camera camera;
-	private List<Entity> entities;
+	private boolean 		gameOver;
+	private boolean 		hasWonGame;
+	private Camera 			camera;
+	private List<Entity> 	entities;
 	private ArrayList<PlayerCharacter> players;
-	private int amountOfPlayers;
+	private int 			amountOfPlayers;
 
 	public World() {
 		this(new ArrayList<Entity>()); // Defaults to empty world
@@ -33,7 +31,6 @@ public class World {
 
 	public World(Level copy) {
 		this(copy.getListOfEntities());
-
 	}
 
 	public World(World copy) {
@@ -44,12 +41,12 @@ public class World {
 	public World(List<Entity> list) {
 		this.entities = new ArrayList<Entity>();
 		this.players = new ArrayList<PlayerCharacter>();
-		for (Entity e : list) {
-			this.add(e);
-		}
 		this.camera = new Camera(this);
 		this.gameOver = false;
 		this.hasWonGame = false;
+		for (Entity e : list) {
+			this.add(e);
+		}
 	}
 
 	public void add(Entity e) {
@@ -85,8 +82,6 @@ public class World {
 	}
 
 	public void update(int elapsedTime) {
-		// System.out.println("World update()!!!!!!!!");
-
 		Map<Entity, List<Entity>> collidedEntities = new HashMap<Entity, List<Entity>>();
 
 		for (Entity e : this.getEntities()) {
@@ -117,10 +112,8 @@ public class World {
 			}
 
 			e.update(elapsedTime);
-
 			move(e, collidedEntities);
 			checkCollision(e, collidedEntities);
-
 		}
 	}
 
@@ -208,7 +201,6 @@ public class World {
 					// Otherwise just pass through the entity
 				}
 			}
-			// System.out.println(Math.signum(preferredx));
 			e.setPosition(new Position(e.getPosition().getX()
 					+ Math.signum(preferredx), e.getPosition().getY()));
 
@@ -280,10 +272,8 @@ public class World {
 	 */
 	private void checkCollision(Entity e,
 			Map<Entity, List<Entity>> collidedEntities) {
-
 		Rectangle rect = new Rectangle(e.getPosition().getX(), e.getPosition()
 				.getY(), e.getHitbox().getWidth(), e.getHitbox().getHeight());
-
 		List<Entity> collided = collidedEntities.get(e);
 
 		for (Entity colliding : getEntitiesAt(rect)) {
@@ -297,6 +287,7 @@ public class World {
 
 	public List<Entity> getEntitiesAt(Rectangle target) {
 		List<Entity> list = new ArrayList<Entity>();
+		
 		for (Entity e : this.getEntities()) {
 			Rectangle rect = new Rectangle((e.getPosition().getX()),
 					(e.getPosition().getY()), e.getHitbox().getWidth(), e
@@ -308,5 +299,4 @@ public class World {
 		}
 		return list;
 	}
-
 }
