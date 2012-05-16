@@ -55,7 +55,7 @@ public class Block implements Entity{
 	}
 
 	public void update(int elapsedTime) {
-		// TODO Auto-generated method stub
+		// do nothing
 		
 	}
 

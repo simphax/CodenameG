@@ -10,9 +10,4 @@ public class CameraTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testUpdateInt() {
-		fail("Not yet implemented");
-	}
-
 }

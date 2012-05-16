@@ -1,31 +1,33 @@
-package edu.chl.codenameg.model;
+package edu.chl.codenameg.model.entity;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class WorldTest {
+public class GoalBlockTest {
 
 	@Test
-	public void testAdd() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemove() {
+	public void testCollide() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testUpdate() {
+	public void testGetType() {
 		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testStepPositionX(){
+	public void testGoalBlockPosition() {
 		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testStepPositionY(){
+	public void testGoalBlockPositionHitbox() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGoalBlock() {
 		fail("Not yet implemented");
 	}
 

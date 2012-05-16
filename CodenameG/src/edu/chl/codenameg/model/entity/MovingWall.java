@@ -6,7 +6,6 @@ import edu.chl.codenameg.model.Vector2D;
 
 public class MovingWall extends MovingBlock{
 	private boolean lethal;
-	private Position startPos;
 	private int travelTime;
 	
 	public MovingWall(Position ps, Position endPos, int travelTime, boolean lethal){
