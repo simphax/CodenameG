@@ -4,51 +4,26 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
+import edu.chl.codenameg.model.World;
+
 public class MovingWallTest {
 
 	@Test
 	public void testCollide() {
-		fail("Not yet implemented");
+		MovingWall mw = new MovingWall();
+		PlayerCharacter pc1 = new PlayerCharacter(new World());
+		PlayerCharacter pc2 = new PlayerCharacter(new World());
+		mw.toggleLethal(true);
+		CollisionEvent evt1 = new CollisionEvent(pc1,Direction.LEFT);
+		CollisionEvent evt2 = new CollisionEvent(pc2,Direction.LEFT);
+		mw.collide(evt1);
+		mw.toggleLethal(false);
+		mw.collide(evt2);
+		assertTrue(!pc1.isAlive() && pc2.isAlive());
+
 	}
 
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetStartPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCalculateNextVector() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMovingWallPositionPositionIntBoolean() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMovingWall() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsLethal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToggleLethal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTravelTime() {
-		fail("Not yet implemented");
-	}
 
 }

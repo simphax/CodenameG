@@ -11,12 +11,12 @@ import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.World;
 
 public class CheckPoint implements Entity{
-	private Position pos;
-	private Hitbox hb;
-	private boolean colliding;
-	private World world;
-	private int elapsedTime;
-	private boolean used;
+	private Position 	pos;
+	private Hitbox 		hb;
+	private boolean 	colliding;
+	private World 		world;
+	private int 		elapsedTime;
+	private boolean 	used;
 	
 
 	public CheckPoint(Position p , Hitbox hb, World world){
