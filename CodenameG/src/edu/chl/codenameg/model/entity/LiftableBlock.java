@@ -1,4 +1,5 @@
 package edu.chl.codenameg.model.entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,35 +9,35 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
+// Remove commented code
 public class LiftableBlock extends MovableBlock{
-	
 	private PlayerCharacter pc;
-	private List<String> collideList = new ArrayList<String>();
+	private List<String> collideList;
 	private boolean colliding;
 	private boolean onGround;
 
 	public LiftableBlock(Position ps){
 		super(ps);
-		this.collideList = new ArrayList<String>();
+		this.collideList 	= new ArrayList<String>();
+		this.colliding 		= false;
+		this.onGround		= false;
 		addCompleteCollideList();
-		this.colliding = false;
-		this.onGround = false;
-		
 	}
+	
 	public LiftableBlock(Position ps, Hitbox hb){
 		super(ps, hb);
-		this.collideList = new ArrayList<String>();
+		this.collideList 	= new ArrayList<String>();
+		this.colliding 		= false;
+		this.onGround 		= false;
 		addCompleteCollideList();
-		this.colliding = false;
-		this.onGround = false;
 	}
 	
 	public LiftableBlock() {
 		super();
-		this.collideList = new ArrayList<String>();
+		this.collideList 	= new ArrayList<String>();
+		this.colliding 		= false;
+		this.onGround 		= false;
 		addCompleteCollideList();
-		this.colliding = false;
-		this.onGround = false;
 	}
 	
 	private void addCompleteCollideList() {
@@ -52,10 +53,12 @@ public class LiftableBlock extends MovableBlock{
 		}
 	}
 	
+	@Override
 	public String getType() {
 		return "LiftableBlock";
 	}
 	
+	@Override
 	public List<String> getCollideTypes() {
 		List<String> list = new ArrayList<String>(this.collideList);
 		return list;
@@ -76,6 +79,12 @@ public class LiftableBlock extends MovableBlock{
 		}
 	}
 	
+	@Override
+	public boolean isColliding() {
+		return this.colliding;
+	}
+	
+	@Override
 	public void update() {
 		this.update(10);
 	}
@@ -109,18 +118,17 @@ public class LiftableBlock extends MovableBlock{
 		}
 		
 		this.onGround = false;
-		
 	}
 	
 	public void lift(PlayerCharacter pc) {
-	this.pc = pc;
-	removeAllInCollideList();
+		this.pc = pc;
+		removeAllInCollideList();
 	}
 
 	public void drop(PlayerCharacter pc) {
-	this.pc = null;
-	addCompleteCollideList();
-	float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);
-	this.setVector2D(new Vector2D(temp, -2f));
+		this.pc = null;
+		addCompleteCollideList();
+		float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);
+		this.setVector2D(new Vector2D(temp, -2f));
 	}
 }

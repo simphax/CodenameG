@@ -13,6 +13,7 @@ public class LethalMovingBlock extends MovingBlock{
 			deadPlayer.die();
 		}
 	}
+	
 	public LethalMovingBlock(Position ps, Position endPos, int travelTime){
 		super(ps,endPos,travelTime);
 	}
@@ -20,6 +21,8 @@ public class LethalMovingBlock extends MovingBlock{
 	public LethalMovingBlock() {
 		super();
 	}
+	
+	@Override
 	public String getType(){
 		return "LethalMovingBlock";
 	}

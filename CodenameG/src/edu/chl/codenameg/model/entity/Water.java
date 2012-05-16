@@ -9,12 +9,11 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-
 public class Water implements Entity{
-	private Hitbox hb;
-	private Vector2D v2d;
-	private boolean colliding;
-	private Position ps;
+	private Hitbox 		hb;
+	private Vector2D 	v2d;
+	private boolean 	colliding;
+	private Position 	ps;
 	
 	public Water(){
 		this(new Position(0,0));
@@ -23,46 +22,49 @@ public class Water implements Entity{
 	public Water(Position position){
 		this(position,new Hitbox(32,32));
 	}
+	
 	public Water(Position position, Hitbox hitbox){
 		this.setHitbox(hitbox);
 		this.setPosition(position);
 		this.colliding = false;
 		this.v2d = new Vector2D(0,0);
 	}
+	
+	@Override
 	public Hitbox getHitbox() {
 			return new Hitbox(hb);
 	}
+	
 	public void setHitbox(Hitbox hb) {
 		this.hb = new Hitbox(hb);
 	}
 
+	@Override
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);
 	}
 
+	@Override
 	public boolean isColliding() {
 		return colliding;
 	}
 
+	@Override
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		
 	}
-	
 
+	@Override
 	public Position getPosition() {
 		return new Position(this.ps);
 	}
 
-	public void update(int elapsedTime) {
-		// TODO Auto-generated method stub
-		
-	}
+	@Override
+	public void update(int elapsedTime) {}
 
 	@Override
 	public void setPosition(Position p) {
 		this.ps=p;
-		
 	}
 
 	public void setVector2D(Vector2D v2d) {
@@ -71,7 +73,6 @@ public class Water implements Entity{
 
 	@Override
 	public List<String> getCollideTypes() {
-		// TODO Auto-generated method stub
 		return new ArrayList<String>();
 	}
 

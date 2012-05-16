@@ -13,6 +13,7 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.World;
 
+// Needs cleaning of code and to finish TODOs
 public class PlayerCharacter implements Entity {
 	private Position				pt; 
 	private Position				startPos;
@@ -39,19 +40,19 @@ public class PlayerCharacter implements Entity {
 	private List<String> 			collideList;
 	private float 					speedFactor;
 
+// TODO Clean this commented code
 //	public PlayerCharacter() {
 //		this(new Position(0, 0));
 //		
 //	}
-	
-	public PlayerCharacter(World world) {
-		this(new Position(0, 0),world);
-	}
-	
+//	
 //	public PlayerCharacter(Position position) {
 //		this(position);
 //		this.world = world;
 //	}
+	public PlayerCharacter(World world) {
+		this(new Position(0, 0),world);
+	}
 
 	public PlayerCharacter(Position position, World world) {
 		this.world = world;
@@ -76,7 +77,6 @@ public class PlayerCharacter implements Entity {
 		this.speedFactor = 1.0f;
 		this.hitbox = new Hitbox(31,46);
 	}
-	
 
 	public void jump() {
 		this.jumping = true;
@@ -85,8 +85,8 @@ public class PlayerCharacter implements Entity {
 	public void toggleCrouch() {
 		if (!crouching) {
 			this.hbCopy = this.hitbox;
-			this.hitbox = new Hitbox(this.getHitbox().getWidth(), this
-					.getHitbox().getHeight() - 25);
+			this.hitbox = new Hitbox(this.getHitbox().getWidth(), 
+									 this.getHitbox().getHeight() - 25);
 			this.pt = new Position(this.pt.getX(), this.pt.getY() + 25);
 			this.crouching = true;
 		}
@@ -103,6 +103,7 @@ public class PlayerCharacter implements Entity {
 	public void toggleLift() {
 		Rectangle searchRectangle;
 		int factor = crouching ? 2 : 1;
+		
 		if (this.direction == Direction.RIGHT) {
 			searchRectangle = new Rectangle(
 					this.getPosition().getX()+this.hitbox.getWidth(), 
@@ -135,6 +136,7 @@ public class PlayerCharacter implements Entity {
 			this.collideList.add("LiftableBlock");			
 		}
 		this.lifting = false;
+		
 		if (lb != null) {
 			lb.drop(this);
 			lb = null;
@@ -154,8 +156,9 @@ public class PlayerCharacter implements Entity {
 	}
 
 	public void stopJump() {
-		if (jumping)
+		if (jumping) {
 			this.justJumped = true;
+		}
 		this.jumping = false;
 	}
 
@@ -178,11 +181,14 @@ public class PlayerCharacter implements Entity {
 
 	public Direction getDirection() {
 		Direction temp = this.direction;
+		
 		return temp;
 	}
 
+	@Override
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
+		
 		if (this.getCollideTypes().contains(evt.getEntity().getType())
 				&& (evt.getDirection().equals(Direction.BOTTOM))) {
 			this.onGround = true;
@@ -213,7 +219,6 @@ public class PlayerCharacter implements Entity {
 				this.acceleration.setY(0);
 			}
 		}
-
 	}
 
 	private void checkCollisionDeath() {
@@ -264,7 +269,8 @@ public class PlayerCharacter implements Entity {
 		this.gameWon = true;
 	}
 
-	// getters & setters
+	// Getters and setters
+	@Override
 	public void setPosition(Position p) {
 		this.pt = p;
 	}
@@ -277,10 +283,12 @@ public class PlayerCharacter implements Entity {
 		this.startPos = p;
 	}
 
+	@Override
 	public Position getPosition() {
 		return new Position(this.pt);
 	}
 
+	@Override
 	public Hitbox getHitbox() {
 		return new Hitbox(hitbox);
 	}
@@ -293,10 +301,13 @@ public class PlayerCharacter implements Entity {
 		this.addVector = new Vector2D(v2d);
 	}
 
+	@Override
 	public Vector2D getVector2D() {
 		return new Vector2D(this.v2d);
-	}
+	} // End of getters and setters
 
+	// Boolean methods
+	@Override
 	public boolean isColliding() {
 		boolean temp = this.colliding;
 		return temp;
@@ -322,7 +333,7 @@ public class PlayerCharacter implements Entity {
 
 	public boolean isJumping() {
 		return this.jumping || this.justJumped;
-	}
+	} // End of boolean methods
 
 	@Override
 	public List<String> getCollideTypes() {
@@ -339,6 +350,7 @@ public class PlayerCharacter implements Entity {
 		this.update(10);
 	}
 
+	@Override
 	public void update(int elapsedTime) {
 		this.checkCollisionDeath();
 
@@ -350,6 +362,7 @@ public class PlayerCharacter implements Entity {
 
 		if (this.direction.equals(Direction.RIGHT) && this.moving) {
 			this.v2d.add(new Vector2D(2.8f, 0));
+			// TODO Clean this code
 			// if(this.acceleration.getX()<0) {
 			// this.acceleration.setX(0);
 			// }
@@ -358,6 +371,7 @@ public class PlayerCharacter implements Entity {
 			}
 		} else if (this.direction.equals(Direction.LEFT) && this.moving) {
 			this.v2d.add(new Vector2D(-2.8f, 0));
+			// TODO Clean this code
 			// if(this.acceleration.getX()>0) {
 			// this.acceleration.setX(0);
 			// }
@@ -379,8 +393,7 @@ public class PlayerCharacter implements Entity {
 
 		if (jumping && !justJumped) {
 			this.v2d.add(new Vector2D(0, -5));
-		} else if (justJumped) { // TODO Not being able to jump if just dropped
-									// from height
+		} else if (justJumped) { // TODO Not being able to jump if just dropped from height
 			this.v2d.add(new Vector2D(0, -2f));
 		}
 
@@ -393,9 +406,7 @@ public class PlayerCharacter implements Entity {
 		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY());
 		this.onGround = false;
 		this.colliding = false;
-		
 		this.inWater = false;
 		this.speedFactor = 1.0f;
 	}
-
 }

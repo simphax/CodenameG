@@ -1,29 +1,28 @@
 package edu.chl.codenameg.model.entity;
 
 import aurelienribon.tweenengine.TweenEquation;
-import aurelienribon.tweenengine.TweenManager;
 import aurelienribon.tweenengine.equations.Quad;
 import edu.chl.codenameg.model.CollisionEvent;
-
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
+// Remove comments and unused variable
 public class MovingBlock extends Block {
-	boolean moving = false;
+	private boolean moving;  // Remove unused?
 	private int travelTime;
 	private Position endPos;
 	private Position startPos;
-	private int currentTime = 0;
+	private int currentTime;
 	private TweenEquation easing;
 
 	public MovingBlock(Position ps, Position endPos, int travelTime) {
 		super(ps);
+		this.moving = false;
+		this.currentTime = 0;
 		this.setStartPosition(ps);
 		this.endPos = endPos;
 		this.setTravelTime(travelTime);
 		this.easing = Quad.INOUT;
-
-
 	}
 
 	public MovingBlock() {
@@ -34,17 +33,17 @@ public class MovingBlock extends Block {
 	@Override
 	public void collide(CollisionEvent evt) {
 		super.collide(evt);
-
 	}
+	
 	public void setStartPosition(Position p){
 		this.startPos = p;
 	}
+	
 	public void setTravelTime(int tt){
 		this.travelTime = tt;
 	}
 
 	public Vector2D calculateNextVector(Position pos, int currentTime, int steps) {
-
 		int time = currentTime + 10;
 		int rounds = 0;
 
@@ -68,10 +67,10 @@ public class MovingBlock extends Block {
 		}
 	}
 
+	@Override
 	public void update(int elapsedTime) {
 		// manager.update(elapsedTime);
 		this.setVector2D(this.calculateNextVector(this.getPosition(), this.currentTime, 0));
 		currentTime += elapsedTime;
 	}
-
 }
