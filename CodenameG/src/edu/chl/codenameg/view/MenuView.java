@@ -19,10 +19,6 @@ public class MenuView {
 	private Image 	selectLevelSelected;
 	private Image 	quitSelected;
 	
-	public void setSelected(int id) {
-		this.selectedId = id;
-	}
-	
 	public MenuView(){
 		try {
 			romijam = 				new Image("res/romijam.png");

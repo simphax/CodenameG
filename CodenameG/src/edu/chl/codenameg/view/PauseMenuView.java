@@ -17,11 +17,9 @@ public class PauseMenuView {
 	private Image 	quitSelected;
 	private int 	selectedId;
 	
-	public PauseMenuView() {
-		this.selectedId = 0;
-	}
-	
 	public PauseMenuView(){
+		this.selectedId = 0;
+		
 		try {
 			selectLevel = new Image("res/select_level.png");
 			startGame = new Image("res/start_game.png");
