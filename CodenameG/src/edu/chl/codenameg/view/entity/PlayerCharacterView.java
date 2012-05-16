@@ -4,7 +4,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 
 import edu.chl.codenameg.model.Entity;
@@ -12,36 +11,44 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.view.EntityView;
 import edu.chl.codenameg.view.GSound;
 
+// There are comments to be cleaned in here
 public class PlayerCharacterView implements EntityView {
-	private SpriteSheet spriteSheet = null;
-	private Animation walkLeft = null;
-	private Animation jumpLeft = null;
-	private Animation crouchLeft = null;
-	private Animation standLeft = null;
-	private Animation walkRight = null;
-	private Animation jumpRight = null;
-	private Animation crouchRight = null;
-	private Animation standRight = null;
+	private SpriteSheet spriteSheet;
+	private Animation	walkLeft;
+	private Animation 	jumpLeft;
+	private Animation 	crouchLeft;
+	private Animation 	standLeft;
+	private Animation 	walkRight;
+	private Animation 	jumpRight;
+	private Animation 	crouchRight;
+	private Animation 	standRight;
+	private GSound 		jumpSound;
+	private GSound 		waterSplashSound;
+	private boolean 	jumping;
+	private boolean 	inWater;
 	
-	private GSound jumpSound;
-	private GSound waterSplashSound;
-	
-	private boolean jumping = false;
-	private boolean inWater = false;
-	
-	//private float speed;
 	public PlayerCharacterView() {
+		spriteSheet = null;
+		walkLeft 	= null;
+		jumpLeft 	= null;
+		crouchLeft 	= null;
+		standLeft 	= null;
+		walkRight 	= null;
+		jumpRight 	= null;
+		crouchRight = null;
+		standRight 	= null;
+		jumping 	= false;
+		inWater 	= false;
+		
 		try {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
 			
 			jumpSound = new GSound("res/sounds/Mario Jump.wav");
 			waterSplashSound = new GSound("res/sounds/Mario Jump.wav");
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-
 		crouchLeft = new Animation();
 		for (int i = 15; i > 1; i--) {
 			crouchLeft.addFrame(spriteSheet.getSprite(i, 23), 80);
@@ -78,7 +85,6 @@ public class PlayerCharacterView implements EntityView {
 		crouchRight.setLooping(false);
 		jumpLeft.setLooping(false);
 		crouchLeft.setLooping(false);
-
 	}
 
 	@Override
@@ -143,7 +149,6 @@ public class PlayerCharacterView implements EntityView {
 					jumpRight.restart();
 				}
 				break;
-				
 			}
 		}
 	}
@@ -162,5 +167,4 @@ public class PlayerCharacterView implements EntityView {
 			inWater = false;
 		}
 	}
-
 }

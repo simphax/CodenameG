@@ -16,10 +16,9 @@ public class BlockView implements EntityView{
 			e.printStackTrace();
 		}
 	}
+	
 	@Override
 	public void render(Entity ent, Graphics g) {
 		g.drawImage(standardBlock, ent.getPosition().getX(), ent.getPosition().getY());
 	}
-
-	
 }

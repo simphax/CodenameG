@@ -11,13 +11,16 @@ import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.view.EntityView;
 
 public class LethalBlockView implements EntityView{
-	private SpriteSheet spriteSheet = null;
-	private Animation spin = null;
+	private SpriteSheet spriteSheet;
+	private Animation 	spin;
+	
 	public LethalBlockView(){
+		spriteSheet = null;
+		spin 		= null;
+		
 		try {
 			spriteSheet = new SpriteSheet("res/Muncher.png", 32, 32,Color.white);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		spin = new Animation();
@@ -26,12 +29,11 @@ public class LethalBlockView implements EntityView{
 		}
 	}
 
-@Override
-public void render(Entity ent, Graphics g) {
-	if (ent instanceof LethalBlock) {
-		LethalBlock lb = (LethalBlock) ent;
-		spin.draw(lb.getPosition().getX(), lb.getPosition().getY());
+	@Override
+	public void render(Entity ent, Graphics g) {
+		if (ent instanceof LethalBlock) {
+			LethalBlock lb = (LethalBlock) ent;
+			spin.draw(lb.getPosition().getX(), lb.getPosition().getY());
+		}
 	}
-	
-}
 }

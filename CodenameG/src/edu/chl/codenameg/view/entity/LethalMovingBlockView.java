@@ -11,13 +11,16 @@ import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.view.EntityView;
 
 public class LethalMovingBlockView implements EntityView{
-	private SpriteSheet spriteSheet = null;
-	private Animation spin = null;
+	private SpriteSheet spriteSheet;
+	private Animation 	spin;
+	
 	public LethalMovingBlockView(){
+		spriteSheet = null;
+		spin 		= null;
+		
 		try {
 			spriteSheet = new SpriteSheet("res/lethal2.png", 33, 32,Color.white);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		spin = new Animation();
@@ -26,12 +29,12 @@ public class LethalMovingBlockView implements EntityView{
 		}
 	}
 
-@Override
-public void render(Entity ent, Graphics g) {
-	if (ent instanceof LethalMovingBlock) {
-		LethalMovingBlock lmb = (LethalMovingBlock) ent;
-		spin.draw(lmb.getPosition().getX(), lmb.getPosition().getY());
+	@Override
+	public void render(Entity ent, Graphics g) {
+		if (ent instanceof LethalMovingBlock) {
+			LethalMovingBlock lmb = (LethalMovingBlock) ent;
+			spin.draw(lmb.getPosition().getX(), lmb.getPosition().getY());
+		}
+		
 	}
-	
-}
 }
