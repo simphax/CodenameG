@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.newdawn.slick.geom.Rectangle;
 
+import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.Level;
 
@@ -163,17 +164,6 @@ public class World {
 						collided.add(colliding);
 					}
 
-					Rectangle cameraRectangle = new Rectangle(camera.getX(),
-							camera.getY(), camera.getWidth(),
-							camera.getHeight());
-					Rectangle collidingRectangle = new Rectangle(colliding
-							.getPosition().getX(), colliding.getPosition()
-							.getY(), colliding.getHitbox().getWidth(),
-							colliding.getHitbox().getHeight());
-					if (cameraRectangle.contains(collidingRectangle)) {
-						System.out.println("GOING OUTSIDE OF CAMERA!!!");
-					}
-
 					// If the entity is set to collide with this entity, check
 					// if the other has this in its list, in that case try to
 					// move that
@@ -201,9 +191,26 @@ public class World {
 					// Otherwise just pass through the entity
 				}
 			}
-			e.setPosition(new Position(e.getPosition().getX()
-					+ Math.signum(preferredx), e.getPosition().getY()));
-
+			
+			
+			//Do not go outside camera, if camera is in collidetypes
+			Rectangle cameraRectangle = new Rectangle(camera.getX()+e.getHitbox().getWidth(),
+					camera.getY(), camera.getWidth()-e.getHitbox().getWidth()*2,
+					camera.getHeight());
+			
+			Rectangle eRectangle = new Rectangle(e
+					.getPosition().getX() + Math.signum(preferredx), e.getPosition()
+					.getY(), e.getHitbox().getWidth(),
+					e.getHitbox().getHeight());
+			
+			if (!cameraRectangle.intersects(eRectangle) && e.getCollideTypes().contains("Camera")) {
+				System.out.println(e + "is outside of camera, Do not move");
+				//camera.setX(camera.getX()+Math.signum(preferredx));
+			} else {
+				e.setPosition(new Position(e.getPosition().getX()
+						+ Math.signum(preferredx), e.getPosition().getY()));
+			}
+			
 			// Send friction to objects on top
 			for (Entity colliding : this.getEntitiesAt(new Rectangle((e
 					.getPosition().getX()), (e.getPosition().getY()) - 1, e
