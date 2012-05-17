@@ -10,55 +10,51 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class FallingBlock extends Block{
-	private Hitbox hb;
-	private Vector2D v2d;
-	private boolean colliding;
-	private Position ps;
-	private boolean onGround;
+	private boolean 		colliding;
+	private List<String> 	list;
+
 	
 	public FallingBlock(){
-		super(new Position(0,0));
+		this(new Position(0,0));
 	}
 	
 	public FallingBlock(Position position){
-		super(position,new Hitbox(32,32));
+		this(position,new Hitbox(32,32));
 	}
 	public FallingBlock(Position position, Hitbox hitbox){
-		this.setHitbox(hitbox);
-		this.setPosition(position);
-		this.colliding = false;
-		this.v2d = new Vector2D(0,0);
+		super(position,hitbox);
+		list = new ArrayList<String>();
+		list.add("Block");
+		list.add("PlayerCharacter");
+		list.add("LethalBlock");
+		list.add("MovingBlock");
+		list.add("LethalMovingBlock");
+		list.add("LiftableBlock");
 	}
-
-
+	
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
 		if(evt.getEntity().getType().equals("PlayerCharacter") && evt.getDirection().equals(Direction.TOP)){
 			this.addVector2D(new Vector2D(0,2));
-		}	
+		}
 		if (this.getCollideTypes().contains(evt.getEntity().getType())
 				&& (evt.getDirection().equals(Direction.BOTTOM))) {
-			this.onGround = true;
 		}
-		
 	}
 
 	@Override
 	public void setPosition(Position p) {
-		this.ps=p;
+		super.setPosition(p);
 		
 	}
 
 	public void setVector2D(Vector2D v2d) {
-		this.v2d=v2d;
+		super.setVector2D(v2d);
 	}
 
 	@Override
 	public List<String> getCollideTypes() {
-		List<String> list= new ArrayList<String>();
-		list.add("Block");
-		list.add("PlayerCharacter");
-		return list;
+		return this.list;
 	}
 
 	@Override
@@ -68,7 +64,11 @@ public class FallingBlock extends Block{
 
 
 	public void addVector2D(Vector2D v2d) {
-		this.v2d.add(v2d);
+		super.addVector2D(v2d);
+	}
+	@Override
+	public boolean isColliding(){
+		return this.colliding;
 	}
 
 }

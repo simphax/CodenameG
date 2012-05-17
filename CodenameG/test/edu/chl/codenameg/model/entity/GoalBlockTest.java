@@ -4,31 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
+import edu.chl.codenameg.model.World;
+
 public class GoalBlockTest {
 
 	@Test
 	public void testCollide() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoalBlockPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoalBlockPositionHitbox() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGoalBlock() {
-		fail("Not yet implemented");
+		PlayerCharacter pc = new PlayerCharacter(new World());
+		GoalBlock gb = new GoalBlock();
+		CollisionEvent evt = new CollisionEvent(pc,Direction.RIGHT);
+		gb.collide(evt);
+		assertTrue(pc.hasWonGame());
+		
 	}
 
 }
