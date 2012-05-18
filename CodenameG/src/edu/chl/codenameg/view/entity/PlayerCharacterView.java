@@ -1,5 +1,10 @@
 package edu.chl.codenameg.view.entity;
 
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -22,9 +27,15 @@ public class PlayerCharacterView implements EntityView {
 	private Animation 	jumpRight;
 	private Animation 	crouchRight;
 	private Animation 	standRight;
-	private GSound 		jumpSound;
-	private GSound 		waterSplashSound;
+	private List<GSound> hurtSounds;
+	private List<GSound> jumpSounds;
+	private List<GSound> stepSounds;
+	private List<GSound> crouchSounds;
+	private List<GSound> waterSplashSounds;
+	private boolean 	dead;
 	private boolean 	jumping;
+	private boolean 	walking;
+	private boolean 	crouching;
 	private boolean 	inWater;
 	
 	public PlayerCharacterView() {
@@ -43,8 +54,12 @@ public class PlayerCharacterView implements EntityView {
 		try {
 			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
 			
-			jumpSound = new GSound("res/sounds/Mario Jump.wav");
-			waterSplashSound = new GSound("res/sounds/Mario Jump.wav");
+			hurtSounds = loadSounds("res/sounds/hurt");
+			jumpSounds = loadSounds("res/sounds/jump");
+			stepSounds = loadSounds("res/sounds/steps");
+			crouchSounds = loadSounds("res/sounds/crouch");
+			waterSplashSounds = loadSounds("res/sounds/water_splash");
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -85,6 +100,16 @@ public class PlayerCharacterView implements EntityView {
 		crouchRight.setLooping(false);
 		jumpLeft.setLooping(false);
 		crouchLeft.setLooping(false);
+	}
+	
+	private List<GSound> loadSounds(String path) throws SlickException {
+		List<GSound> sounds = new ArrayList<GSound>();
+		File soundsDir = new File(path);
+		for(String s : soundsDir.list()) {
+			sounds.add(new GSound(path + "/"+s));
+		}
+		
+		return sounds;
 	}
 
 	@Override
@@ -154,15 +179,37 @@ public class PlayerCharacterView implements EntityView {
 	}
 	
 	public void playSounds(PlayerCharacter pc) {
+		if(!pc.isAlive() && !dead) {
+			dead = true;
+			hurtSounds.get((int)(Math.random()*hurtSounds.size())).play();
+		} else if(!pc.isJumping()) {
+			dead = false;
+		}
 		if(pc.isJumping() && !jumping) {
 			jumping = true;
-			jumpSound.play();
-		} else if(!pc.isJumping()) {
+			jumpSounds.get((int)(Math.random()*jumpSounds.size())).play();
+		} else if(!pc.isJumping() || pc.isOnGround()) {
 			jumping = false;
+		}
+		if(pc.isMoving() && pc.isOnGround() && !walking) {
+			walking = true;
+			int rand = (int)(Math.random()*stepSounds.size());
+			stepSounds.get(rand).play();
+		} else if(!pc.isMoving() || !pc.isOnGround()) {
+			walking = false;
+			for(GSound sound : stepSounds) {
+				sound.stop();
+			}
+		}
+		if(pc.isCrouching() && !crouching) {
+			crouching = true;
+			crouchSounds.get((int)(Math.random()*crouchSounds.size())).play();
+		} else if(!pc.isCrouching()) {
+			crouching = false;
 		}
 		if(pc.isInWater() && !inWater) {
 			inWater = true;
-			waterSplashSound.play();
+			waterSplashSounds.get((int)(Math.random()*waterSplashSounds.size())).play();
 		} else if(!pc.isInWater()) {
 			inWater = false;
 		}
