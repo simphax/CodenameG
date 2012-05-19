@@ -22,8 +22,5 @@ public class MovingWallTest {
 		mw.toggleLethal(false);
 		mw.collide(evt2);
 		assertTrue(!pc1.isAlive() && pc2.isAlive());
-
 	}
-
-
 }
