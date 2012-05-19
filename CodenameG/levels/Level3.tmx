@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2">
+  <image source="tileset/blocks1.png" trans="000000" width="640" height="376"/>
+ </tileset>
+ <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2">
+  <image source="tileset/blocks2.png" trans="000000" width="640" height="376"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="150" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2abW7jRhBEeY7kJsmvDbzefyvJsiUbOegGJkAdIVeKB5mCS5UeZ2HRWCF5D2iQIueD5hS7e3r36zRNX/9nBh9Pe8+HFzt2O5gdzR5f7Knb0c6f+r1j0U/31PcQ/bz9wfpU8+dz5e+nQZ/HOB7WeW3wLzRdPXTb2vndi+1fbNdtb8dtv7+xo/q3+/f92raf3/fzXT/f2zj3NqfG8La7mG9jY2qsh+n8OR7s2eDH0HTV3v99P7o2tOZa2421lXbUxttrDK3z3XSuQ2lHc0pnO7una3f9uubaTufPs53Ov4O9jQE/jqarXFdppK2V68p/5xpKA9KP68L1J43omvyN7u/tuJvOdbifzjXrmtuv/WLgIpqu0h94DHNf1tq5b5DWvI3rQTry/tKSYpy33UbbfTGXns+fUfPA9dB0JT1prT1m6dz9gsch91+eS6mv+0LZQ1zzHOs+rm/jd+Z9eg781XXRdPWp2292dPN7zeRPFJ+koZ+6eZz0+Oa+bRfXbvocX7rJN7l25KM8BvtccD00XXk9wGsIqgv4Nd8/yqfJf6g+9Oc7TPUOmeKl5/ieW0lr7v/gemjr6Xt3z62155OGNr29/ITWU+svjb6nVvk4vfqxSkOKe80f/mzmmoPrQbpSPu57L62xTD7J8yjPjVSzUB3yaEevlR6m81rlcfpn7u/P4nuKNsfvZu7X4HrwuCb/Iz/l+bJ8h9ZSe7g76+vrnDWCqq61MfMcX228duq6yrxOOoTrQf7Kc2xpSdcf4p7XmTaD322dle+3nPzL9LoPaOef+33l5RlTFf+km/SXrknpFa4HxS75Ha8p3E3ntYasVXmt3fNr7R1/+Q7TPtBrr1sbP+utet78t6DN2i8GLqKt0+309/o2LXzuv92kk9t+f7SnU/vv0VOlr0/9eGPPdGvXbqZXXXkMln+F6+FH/5+V99ivK48B6/PcbTZrv092T79lS9xber9TPy5mc7RbYp7n4nfOMVt/H+dkx9nOfYzq75ltrNPlrxAKtCauD9dI6inXSUdf19na+1qnBlMbqau5uD5P51o72bg+lpt/F0sxDqyPr1fayFe5P3EdZb/Kt7ivcA27ZtNvervnsOxTaXi2efN5lstfIRR4DMk4kevi37+3dZ2570tfUWk2tZDx1HVTxT/XR/U35POkL32+/BVCQcaVKu/J+JGxsoqjGaMy50o/k+ZaTN2OfGrOk9qrfC5x8GOo8vMqrlTrtBR9/Jq3GfmSOfrlmOmH8jmrXD+fw31mFSNhfdLfZLxILeSeb9Q341ZqK/OmUc791r5hlHf5OFX8TI3D+qSvqPbtp2iT+ViumfsI18EprmXcc63mfiD3dKnB3COO5qq+BVifzDcyllS1gKpPtdbVPi/9SZXbpcaqGla1N6xqE9W3kN8NrE/m6pkrVXvD1FfVLvd0OUb6yNR01iuqnH2J4zezP8y+FebjwfpUcaHag1W+yq9V9YnMmas+6VeWuJf5dj5bpZXMB6vnQVcfS+YiGe+q9cz8POtTo31b+iSPa5UG5uirsVJLmfdX+9hqT6IjrE/GlJFf8W98lG9ljuVrnprN3C39WrVvnGOeUbyuahOZ7/k3AOuTOqn0kfn0qAaRbaq9XsbMqi51KsbMeJxxrqpj5LX0mZoL1qfKf1IL1bqMtOPrWcXEbJ97AfeZGYPzWTOGVt9AFWOzD6xP7vUzVx7VQ7N+NdJeVbcY7ferWJh7wKoOVenX77+VQy6Xv0IoyHiScTA1NappZp1oiWuZp6d+qzyr8lVZo3BN5d+Sx4zfug7rM8p5qxw61yPrSqmbHKfq91ZdITWT+4jRPtDnqXJ+/0aoMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAf5G/ANwEjmVg6gAA
+  </data>
+ </layer>
+ <objectgroup name="FallingBlock" width="150" height="100">
+  <object name="FallingBlock" x="480" y="224" width="63" height="30"/>
+ </objectgroup>
+ <objectgroup name="MovableBlock" width="150" height="100"/>
+ <objectgroup name="MovingBlock" width="150" height="100">
+  <object name="MovingBlock" x="672" y="192" width="415" height="32">
+   <properties>
+    <property name="Direction" value="right"/>
+    <property name="traveltime" value="5000"/>
+   </properties>
+  </object>
+  <object x="1984" y="164" width="33" height="635"/>
+  <object name="Block" x="2019" y="480" width="128" height="35"/>
+  <object name="Block" x="1402" y="480" width="36" height="386"/>
+  <object name="Block" x="1632" y="801" width="352" height="30"/>
+  <object name="Block" x="1532" y="833" width="100" height="31"/>
+  <object name="Block" x="1440" y="867" width="100" height="31"/>
+ </objectgroup>
+ <objectgroup name="LethalMovingBlock" width="150" height="100">
+  <object name="LethalMovingBlock" x="701" y="62" width="34" height="193">
+   <properties>
+    <property name="direction" value="down"/>
+    <property name="traveltime" value="2500"/>
+   </properties>
+  </object>
+  <object name="LethalMovingBlock" x="863" y="62" width="34" height="193">
+   <properties>
+    <property name="direction" value="down"/>
+    <property name="traveltime" value="3000"/>
+   </properties>
+  </object>
+  <object name="LethalMovingBlock" x="1024" y="62" width="34" height="193">
+   <properties>
+    <property name="direcion" value="down"/>
+    <property name="traveltime" value="1800"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Blocks" width="150" height="100">
+  <object x="1" y="2" width="33" height="509"/>
+  <object name="Block" x="35" y="1" width="1917" height="32"/>
+  <object name="Block" x="38" y="226" width="378" height="31"/>
+  <object name="Block" x="382" y="257" width="34" height="94"/>
+  <object name="Block" x="607" y="224" width="33" height="126"/>
+  <object x="672" y="290" width="415" height="35"/>
+  <object name="Block" x="639" y="224" width="34" height="66"/>
+  <object name="Block" x="37" y="446" width="378" height="31"/>
+  <object name="Block" x="735" y="385" width="287" height="31"/>
+  <object name="Block" x="1090" y="447" width="318" height="31"/>
+  <object name="Block" x="1023" y="417" width="64" height="31"/>
+  <object name="Block" x="671" y="416" width="64" height="31"/>
+  <object name="Block" x="608" y="447" width="64" height="31"/>
+  <object name="Block" x="1086" y="225" width="34" height="66"/>
+  <object name="Block" x="1121" y="225" width="97" height="33"/>
+  <object name="Block" x="1408" y="287" width="128" height="35"/>
+  <object name="Block" x="1404" y="321" width="33" height="157"/>
+  <object name="Block" x="1476" y="480" width="504" height="31"/>
+ </objectgroup>
+</map>
