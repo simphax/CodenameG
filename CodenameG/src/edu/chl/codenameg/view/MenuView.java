@@ -23,12 +23,12 @@ public class MenuView {
 		try {
 			romijam = 				new Image("res/romijam.png");
 			background = 			new Image("res/background.jpg");
-			selectLevel = 			new Image("res/select_level.png");
-			startGame =				new Image("res/start_game.png");
-			quit = 					new Image("res/quit.png");
-			selectLevelSelected = 	new Image("res/select_level_selected.png");
-			startGameSelected = 	new Image("res/start_game_selected.png");
-			quitSelected = 			new Image("res/quit_selected.png");
+			selectLevel = 			new Image("res/menu_select_level.png");
+			startGame =				new Image("res/menu_start_game.png");
+			quit = 					new Image("res/menu_quit.png");
+			selectLevelSelected = 	new Image("res/menu_select_level_selected.png");
+			startGameSelected = 	new Image("res/menu_start_game_selected.png");
+			quitSelected = 			new Image("res/menu_quit_selected.png");
 		} catch (SlickException e1) {
 			e1.printStackTrace();
 		}
@@ -49,8 +49,8 @@ public class MenuView {
 		img = selectedId==0?startGameSelected:startGame;
 		g.drawImage(img, 150, 150);
 		img = selectedId==1?selectLevelSelected:selectLevel;
-		g.drawImage(img, 150, 250);
+		g.drawImage(img, 150, 270);
 		img = selectedId==2?quitSelected:quit;
-		g.drawImage(img, 150, 350);
+		g.drawImage(img, 150, 370);
 	}
 }

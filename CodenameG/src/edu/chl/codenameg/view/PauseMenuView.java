@@ -9,24 +9,24 @@ import org.newdawn.slick.SlickException;
  * that changes according to selected options.
  */
 public class PauseMenuView {
-	private Image 	startGame;
+	private Image 	continueImg;
 	private Image 	selectLevel;
-	private Image 	quit;
-	private Image 	startGameSelected;
+	private Image 	mainMenu;
+	private Image 	continueSelected;
 	private Image 	selectLevelSelected;
-	private Image 	quitSelected;
+	private Image 	mainMenuSelected;
 	private int 	selectedId;
 	
 	public PauseMenuView(){
 		this.selectedId = 0;
 		
 		try {
-			selectLevel = new Image("res/select_level.png");
-			startGame = new Image("res/start_game.png");
-			quit = new Image("res/quit.png");
-			selectLevelSelected = new Image("res/select_level_selected.png");
-			startGameSelected = new Image("res/start_game_selected.png");
-			quitSelected = new Image("res/quit_selected.png");
+			selectLevel = new Image("res/menu_select_level.png");
+			continueImg = new Image("res/menu_continue.png");
+			mainMenu = new Image("res/menu_main_menu.png");
+			selectLevelSelected = new Image("res/menu_select_level_selected.png");
+			continueSelected = new Image("res/menu_continue_selected.png");
+			mainMenuSelected = new Image("res/menu_main_menu_selected.png");
 		} catch (SlickException e1) {
 			e1.printStackTrace();
 		}
@@ -41,11 +41,11 @@ public class PauseMenuView {
 	
 	public void repaint(Graphics g) {
 		Image img;
-		img = selectedId==0?startGameSelected:startGame;
-		g.drawImage(img, 150, 150);
+		img = selectedId==0?continueSelected:continueImg;
+		g.drawImage(img, 150, 100);
 		img = selectedId==1?selectLevelSelected:selectLevel;
-		g.drawImage(img, 150, 250);
-		img = selectedId==2?quitSelected:quit;
-		g.drawImage(img, 150, 350);
+		g.drawImage(img, 150, 170);
+		img = selectedId==2?mainMenuSelected:mainMenu;
+		g.drawImage(img, 150, 270);
 	}
 }

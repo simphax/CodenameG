@@ -48,6 +48,9 @@ public class SelectLevelMenuState extends BasicGameState {
 			throws SlickException {
 		int amountOfLevels=3;
 
+		if(gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+		    game.enterState(1);
+		}
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
 			// Enables the menu to continue scroll endlessly in both directions
 			selectedId = (selectedId == 0) ? amountOfLevels-1 : (selectedId-1)%amountOfLevels;

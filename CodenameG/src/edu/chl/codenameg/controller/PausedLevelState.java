@@ -72,7 +72,7 @@ public class PausedLevelState extends BasicGameState {
 				game.enterState(2);
 				break;
 			case 2:
-				System.exit(0);
+			    	game.enterState(1);
 				break;
 			}
 		}
