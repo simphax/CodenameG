@@ -33,14 +33,31 @@ public class LevelView {
 	private Map<Entity, EntityView> entityMap;
 	private TiledMap	tm;
 	private Image		background;
+	private GMusic		music;
+	private boolean		musicStopped;
 	
 	public LevelView(final GameModel model) throws SlickException {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
 		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
+		this.music = new GMusic("res/sounds/uteliggarjazz.wav");
+		music.setLooping(true);
+		music.setVolume(0.7f);
+		music.play();
+		musicStopped = false;
 	}
 
 	public void repaint(Graphics g) {
+		
+		if(!model.isRunning()) {
+			musicStopped = true;
+			music.pause();
+			
+		} else if(musicStopped) {
+			musicStopped=false;
+			music.resume();
+		}
+		
 		try {
 			background = new Image("res/backimg.jpg");
 		} catch (SlickException e1) {
