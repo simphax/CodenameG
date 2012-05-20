@@ -267,8 +267,28 @@ public class World {
 					}
 				}
 			}
-			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()
-					.getY() + Math.signum(preferredy)));
+			
+			//Do not go outside camera, if camera is in collidetypes
+			Rectangle cameraRectangle = new Rectangle(camera.getX()+e.getHitbox().getWidth(),
+					camera.getY()+e.getHitbox().getHeight(), camera.getWidth()-e.getHitbox().getWidth()*2,
+					camera.getHeight()-e.getHitbox().getHeight()*2);
+			
+			Rectangle eRectangle = new Rectangle(e
+					.getPosition().getX(), e.getPosition()
+					.getY()+ Math.signum(preferredy), e.getHitbox().getWidth(),
+					e.getHitbox().getHeight());
+			
+			if (!cameraRectangle.intersects(eRectangle) && e.getCollideTypes().contains("Camera")) {
+				System.out.println(e + "is outside of camera, Do not move");
+				e.collide(new CollisionEvent(new Block(),Direction.TOP)); //TODO Unrelated collide event
+				//camera.setX(camera.getX()+Math.signum(preferredx));
+			} else {
+				e.setPosition(new Position(e.getPosition().getX()
+						, e.getPosition().getY() + Math.signum(preferredy)));
+			}
+			
+//			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()
+//					.getY() + Math.signum(preferredy)));
 		}
 		return true;
 	}
