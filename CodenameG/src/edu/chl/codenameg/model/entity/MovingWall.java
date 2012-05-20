@@ -1,17 +1,22 @@
 package edu.chl.codenameg.model.entity;
 
 import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
 public class MovingWall extends MovingBlock{
 	private boolean lethal;
 	private int travelTime;
+
+	
 	
 	public MovingWall(Position ps, Position endPos, int travelTime, boolean lethal){
 		super(ps,endPos,travelTime);
 		this.lethal = lethal;
 		this.travelTime = travelTime;
+
+
 	}
 	
 	public MovingWall(){
@@ -56,5 +61,8 @@ public class MovingWall extends MovingBlock{
 	
 	public int getTravelTime(){
 		return this.travelTime;
+	}
+	public void setHitbox(Hitbox hb){
+		super.setHitbox(hb);
 	}
 }

@@ -3,6 +3,7 @@ package edu.chl.codenameg.model.entity;
 import aurelienribon.tweenengine.TweenEquation;
 import aurelienribon.tweenengine.equations.Quad;
 import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
@@ -72,5 +73,9 @@ public class MovingBlock extends Block {
 		// manager.update(elapsedTime);
 		this.setVector2D(this.calculateNextVector(this.getPosition(), this.currentTime, 0));
 		currentTime += elapsedTime;
+	}
+	@Override
+	public void setHitbox(Hitbox hb){
+		super.setHitbox(hb);
 	}
 }

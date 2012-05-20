@@ -24,7 +24,8 @@ import edu.chl.codenameg.model.entity.Water;
 public class LevelFactory {
 	private static LevelFactory instance;
 
-	private LevelFactory(){}
+	private LevelFactory() {
+	}
 
 	public static LevelFactory getInstance() {
 		if (instance == null) {
@@ -35,7 +36,7 @@ public class LevelFactory {
 
 	public Level getLevel(int i) throws IllegalArgumentException {
 		Level l = loadLevelFromFile(getLevelFilePath(i));
-		
+
 		if (l != null) {
 			return l;
 		} else {
@@ -45,13 +46,13 @@ public class LevelFactory {
 
 	public Level loadLevelFromFile(String path) {
 		List<Entity> entities = new ArrayList<Entity>();
-		Map<Integer,Position> spawnPositions = new HashMap<Integer,Position>();
+		Map<Integer, Position> spawnPositions = new HashMap<Integer, Position>();
 		TiledMap tiledmap;
 		int numberOfPlayers = 1;
-		
+
 		try {
 			tiledmap = new TiledMap(path);
-			
+
 			for (int groupID = 0; groupID < tiledmap.getObjectGroupCount(); groupID++) {
 
 				for (int objectID = 0; objectID < tiledmap
@@ -99,73 +100,88 @@ public class LevelFactory {
 						entities.add(movableblock);
 					}
 					if (name.equals("MovingBlock")
-							|| name.equals("LethalMovingBlock") || name.equals("MovingWall")) {
+							|| name.equals("LethalMovingBlock")
+							|| name.equals("MovingWall")) {
 						String direction = tiledmap.getObjectProperty(groupID,
 								objectID, "Direction", "down");
 						Position endPosition = new Position(0, 0);
 						Position startPosition = new Position(0, 0);
 						Entity movingblock;
-						String lethality = tiledmap.getObjectProperty(groupID, objectID, "lethality", "false");
-						int traveltime = Integer.parseInt(tiledmap.getObjectProperty(groupID, objectID, "traveltime", "1000"));
+						String lethality = tiledmap.getObjectProperty(groupID,
+								objectID, "lethality", "false");
+						int traveltime = Integer.parseInt(tiledmap
+								.getObjectProperty(groupID, objectID,
+										"traveltime", "1000"));
 						if (name.equals(("MovingBlock"))) {
 							movingblock = new MovingBlock();
-						} else if(name.equals("LethalMovingBlock")){
+						} else if (name.equals("LethalMovingBlock")) {
 							movingblock = new LethalMovingBlock();
-						}else{
+						} else {
 							movingblock = new MovingWall();
 						}
 						if (direction.equals("up")) {
 							endPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID));
+									groupID, objectID));
 							startPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID)
+									groupID, objectID)
 									+ tiledmap.getObjectHeight(groupID,
 											objectID)
 									- movingblock.getHitbox().getHeight());
 						} else if (direction.equals("down")) {
 							startPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID));
+									groupID, objectID));
 							endPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID)
+									groupID, objectID)
 									+ tiledmap.getObjectHeight(groupID,
 											objectID)
 									- movingblock.getHitbox().getHeight());
 						} else if (direction.equals("right")) {
 							startPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID));
+									groupID, objectID));
 							endPosition = new Position(
-									tiledmap.getObjectX(groupID, objectID) 
-											+ tiledmap.getObjectWidth(groupID,objectID) 
-											- movingblock.getHitbox().getWidth(),
+									tiledmap.getObjectX(groupID, objectID)
+											+ tiledmap.getObjectWidth(groupID,
+													objectID)
+											- movingblock.getHitbox()
+													.getWidth(),
 									tiledmap.getObjectY(groupID, objectID));
 						} else if (direction.equals("left")) {
 							endPosition = new Position(tiledmap.getObjectX(
 									groupID, objectID), tiledmap.getObjectY(
-											groupID, objectID));
+									groupID, objectID));
 
 							startPosition = new Position(
 									tiledmap.getObjectX(groupID, objectID)
-											+ tiledmap.getObjectWidth(groupID,objectID)
-											- movingblock.getHitbox().getWidth(),
+											+ tiledmap.getObjectWidth(groupID,
+													objectID)
+											- movingblock.getHitbox()
+													.getWidth(),
 									tiledmap.getObjectY(groupID, objectID));
 						}
 						if (name.equals(("MovingBlock"))) {
 							movingblock = new MovingBlock(startPosition,
 									endPosition, traveltime);
-						} else if(name.equals("LethalMovingBlock")){
+						} else if (name.equals("LethalMovingBlock")) {
 							movingblock = new LethalMovingBlock(startPosition,
 									endPosition, traveltime);
-						}else{
-							if(lethality.equals("false")){
-							movingblock = new MovingWall(startPosition,
-									endPosition, traveltime, false);
-							}else{
-								movingblock = new MovingWall(startPosition, endPosition, traveltime, true);
+						} else {
+							if (lethality.equals("false")) {
+								movingblock = new MovingWall(startPosition,
+										endPosition, traveltime, false);
+								((MovingWall)movingblock).setHitbox(new Hitbox(32,
+										(tiledmap.getObjectHeight(
+												objectID, groupID))));
+							} else {
+								movingblock = new MovingWall(startPosition,
+										endPosition, traveltime, true);
+								((MovingWall) movingblock).setHitbox(new Hitbox(32,
+										(tiledmap.getObjectHeight(
+												objectID, groupID))));
 							}
 						}
 
@@ -179,41 +195,48 @@ public class LevelFactory {
 								groupID, objectID), tiledmap.getObjectY(
 								groupID, objectID));
 						Entity lethalblock = new GoalBlock(position, hitbox);
-						
+
 						entities.add(lethalblock);
 					}
 					if (name.equals("SpawnPC1")) {
-						spawnPositions.put(1,new Position(tiledmap.getObjectX(
-								groupID, objectID), tiledmap.getObjectY(
-										groupID, objectID)));
+						spawnPositions.put(
+								1,
+								new Position(tiledmap.getObjectX(groupID,
+										objectID), tiledmap.getObjectY(groupID,
+										objectID)));
 					}
 					if (name.equals("SpawnPC2")) {
-						spawnPositions.put(2,new Position(tiledmap.getObjectX(
-								groupID, objectID), tiledmap.getObjectY(
-										groupID, objectID)));
+						spawnPositions.put(
+								2,
+								new Position(tiledmap.getObjectX(groupID,
+										objectID), tiledmap.getObjectY(groupID,
+										objectID)));
 					}
 					if (name.equals("CheckPoint")) {
 						Position position = new Position(tiledmap.getObjectX(
 								groupID, objectID), tiledmap.getObjectY(
-										groupID, objectID));
+								groupID, objectID));
 						Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(
 								groupID, objectID) - 1,
-										tiledmap.getObjectHeight(groupID, objectID) - 1);
-						Entity checkpoint  = new CheckPoint(position, hitbox, null);
-						
+								tiledmap.getObjectHeight(groupID, objectID) - 1);
+						Entity checkpoint = new CheckPoint(position, hitbox,
+								null);
+
 						entities.add(checkpoint);
 					}
-					
+
 				}
 			}
-			
-			numberOfPlayers = Integer.parseInt(tiledmap.getMapProperty("numberOfPlayers", "1"));
+
+			numberOfPlayers = Integer.parseInt(tiledmap.getMapProperty(
+					"numberOfPlayers", "1"));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		Level level = new GeneratedLevel(entities, spawnPositions, numberOfPlayers);
+		Level level = new GeneratedLevel(entities, spawnPositions,
+				numberOfPlayers);
 
 		return level;
 
@@ -225,11 +248,11 @@ public class LevelFactory {
 
 	private class GeneratedLevel implements Level {
 		private List<Entity> entities;
-		private Map<Integer,Position> spawnPositions;
+		private Map<Integer, Position> spawnPositions;
 		private int numberPlayers;
 
-		public GeneratedLevel(List<Entity> entities, Map<Integer,Position> spawnPositions, 
-				int numberPlayers) {
+		public GeneratedLevel(List<Entity> entities,
+				Map<Integer, Position> spawnPositions, int numberPlayers) {
 			this.entities = entities;
 			this.spawnPositions = spawnPositions;
 			this.numberPlayers = numberPlayers;
@@ -242,10 +265,10 @@ public class LevelFactory {
 
 		@Override
 		public Position getPlayerSpawnPosition(int playerno) {
-			if(spawnPositions.get(playerno) != null) {
+			if (spawnPositions.get(playerno) != null) {
 				return spawnPositions.get(playerno);
 			} else {
-				return new Position(0,0);
+				return new Position(0, 0);
 			}
 		}
 

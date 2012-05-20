@@ -86,4 +86,9 @@ public class CheckPoint implements Entity{
 	public List<String> getCollideTypes() {
 		return new ArrayList<String>();
 	}
+
+	public void setHitbox(Hitbox hb) {
+		this.hb = hb;
+		
+	}
 }
