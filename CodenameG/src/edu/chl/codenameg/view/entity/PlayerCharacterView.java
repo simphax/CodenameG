@@ -27,12 +27,18 @@ public class PlayerCharacterView implements EntityView {
 	private Animation 	jumpRight;
 	private Animation 	crouchRight;
 	private Animation 	standRight;
+<<<<<<< OURS
 	private List<GSound> hurtSounds;
 	private List<GSound> jumpSounds;
 	private List<GSound> stepSounds;
 	private List<GSound> crouchSounds;
 	private List<GSound> waterSplashSounds;
 	private boolean 	dead;
+=======
+	private Animation	lastAnimation;
+	private GSound 		jumpSound;
+	private GSound 		waterSplashSound;
+>>>>>>> THEIRS
 	private boolean 	jumping;
 	private boolean 	walking;
 	private boolean 	crouching;
@@ -48,6 +54,7 @@ public class PlayerCharacterView implements EntityView {
 		jumpRight 	= null;
 		crouchRight = null;
 		standRight 	= null;
+		lastAnimation=null;
 		jumping 	= false;
 		inWater 	= false;
 		
@@ -122,54 +129,73 @@ public class PlayerCharacterView implements EntityView {
 			
 			switch (pc.getDirection()) {
 			case LEFT:
+				jumpRight.restart();
+				crouchRight.restart();
 				if (pc.isCrouching()) {
+					if(lastAnimation.equals(crouchRight)){
+						crouchLeft.setCurrentFrame(crouchLeft.getFrameCount()-1);
+					}
 					crouchLeft.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
-							.getPosition().getY() - 64 / 2);
+							.getPosition().getY() - 64 / 2);	
+					lastAnimation = crouchLeft;
 					jumpLeft.restart();
+					
 				} else if (pc.isJumping()) {
 					jumpLeft.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = jumpLeft;
 					crouchLeft.restart();
 				} else if (pc.isMoving()) {
 					//walkLeft.setSpeed(Math.abs(5/speed));
 					walkLeft.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = walkLeft;
 					jumpLeft.restart();
 					crouchLeft.restart();
 				} else {
 					standLeft.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = standLeft;
 					crouchLeft.restart();
 					jumpLeft.restart();
 				}
 
 				break;
 			case RIGHT:
+				jumpLeft.restart();
+				crouchLeft.restart();
 				if (pc.isCrouching()) {
-					crouchRight.draw(pc.getPosition().getX()
-							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
-							.getPosition().getY() - 64 / 2 );
+					if(lastAnimation.equals(crouchLeft)){
+						crouchRight.setCurrentFrame(crouchRight.getFrameCount()-1);
+						}
+						crouchRight.draw(pc.getPosition().getX()
+								+ (pc.getHitbox().getWidth() / 2) - 64 / 2, pc
+								.getPosition().getY() - 64 / 2);	
+					lastAnimation = crouchRight;
 					jumpRight.restart();
 				} else if (pc.isJumping()) {
 					jumpRight.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = jumpRight;
 					crouchRight.restart();						//whats that smell??
 				} else if (pc.isMoving()) {
 					//walkRight.setSpeed(Math.abs(5/speed));
 					walkRight.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = walkRight;
 					crouchRight.restart();
 					jumpRight.restart();
 				} else {
 					standRight.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
+					lastAnimation = standRight;
 					crouchRight.restart();
 					jumpRight.restart();
 				}
