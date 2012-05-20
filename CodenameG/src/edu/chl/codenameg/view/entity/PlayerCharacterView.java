@@ -68,35 +68,35 @@ public class PlayerCharacterView implements EntityView {
 		
 		crouchLeft = new Animation();
 		for (int i = 15; i > 1; i--) {
-			crouchLeft.addFrame(spriteSheet.getSprite(i, 23), 80);
+			crouchLeft.addFrame(spriteSheet.getSprite(i, 23), 10);
 		}
 		jumpLeft = new Animation();
 		for (int i = 15; i > 6; i--) {
-			jumpLeft.addFrame(spriteSheet.getSprite(i, 25), 80);
+			jumpLeft.addFrame(spriteSheet.getSprite(i, 25), 10);
 		}
 		standLeft = new Animation();
 		for (int i = 15; i >= 0; i--) {
-			standLeft.addFrame(spriteSheet.getSprite(i, 16), 80);
+			standLeft.addFrame(spriteSheet.getSprite(i, 16), 40);
 		}
 		walkLeft = new Animation();
 		for (int i = 15; i >= 0; i--) {
-			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 20);
+			walkLeft.addFrame(spriteSheet.getSprite(i, 17), 10);
 		}
 		crouchRight = new Animation();
 		for (int i = 0; i < 15; i++) {
-			crouchRight.addFrame(spriteSheet.getSprite(i, 7), 80);
+			crouchRight.addFrame(spriteSheet.getSprite(i, 7), 10);
 		}
 		jumpRight = new Animation();
 		for (int i = 0; i <10; i++) {
-			jumpRight.addFrame(spriteSheet.getSprite(i, 9), 80);
+			jumpRight.addFrame(spriteSheet.getSprite(i, 9), 10);
 		}
 		standRight = new Animation();
 		for (int i = 0; i < 16; i++) {
-			standRight.addFrame(spriteSheet.getSprite(i, 0), 80);
+			standRight.addFrame(spriteSheet.getSprite(i, 0), 40);
 		}
 		walkRight = new Animation();
 		for (int i = 0; i < 16; i++) {
-			walkRight.addFrame(spriteSheet.getSprite(i, 1), 20);
+			walkRight.addFrame(spriteSheet.getSprite(i, 1), 10);
 		}
 		jumpRight.setLooping(false);
 		crouchRight.setLooping(false);
