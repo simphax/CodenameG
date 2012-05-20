@@ -231,7 +231,6 @@ public class World {
 
 			if (!cameraRectangle.intersects(eRectangle)
 					&& e.getCollideTypes().contains("Camera")) {
-				System.out.println(e + "is outside of camera, Do not move");
 				// camera.setX(camera.getX()+Math.signum(preferredx));
 			} else {
 				e.setPosition(new Position(e.getPosition().getX()
@@ -322,7 +321,6 @@ public class World {
 
 			if (!cameraRectangle.intersects(eRectangle)
 					&& e.getCollideTypes().contains("Camera")) {
-				System.out.println(e + "is outside of camera, Do not move");
 				e.collide(new CollisionEvent(new Block(), Direction.TOP));
 			} else {
 				e.setPosition(new Position(e.getPosition().getX(), e
