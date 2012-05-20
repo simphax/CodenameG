@@ -14,6 +14,7 @@ import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
+import edu.chl.codenameg.model.entity.MovingWall;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.model.levels.LevelFactory;
@@ -22,9 +23,9 @@ import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
 import edu.chl.codenameg.view.entity.MovableBlockView;
 import edu.chl.codenameg.view.entity.MovingBlockView;
+import edu.chl.codenameg.view.entity.MovingWallView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 import edu.chl.codenameg.view.entity.WaterBlockView;
-// Needs to complete the TODO or remove
 
 public class LevelView {
 	private float		scaleX;
@@ -42,9 +43,8 @@ public class LevelView {
 		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
 		this.music = new GMusic("res/sounds/uteliggarjazz.wav");
 		music.setLooping(true);
-		music.setVolume(0.7f);
-		music.play();
-		musicStopped = false;
+		music.setVolume(0.5f);
+		musicStopped = true;
 	}
 
 	public void repaint(Graphics g) {
@@ -52,7 +52,6 @@ public class LevelView {
 		if(!model.isRunning()) {
 			musicStopped = true;
 			music.pause();
-			
 		} else if(musicStopped) {
 			musicStopped=false;
 			music.resume();
@@ -84,6 +83,10 @@ public class LevelView {
 					EntityView view = new PlayerCharacterView();
 					view.render(e, g);
 					entityMap.put(e, view);
+				} else if (e instanceof MovingWall) {
+					EntityView view = new MovingWallView();
+					view.render(e, g);
+					entityMap.put(e, view);
 				} else if (e instanceof LethalMovingBlock) {
 					EntityView view = new LethalMovingBlockView();
 					view.render(e, g);
@@ -100,7 +103,7 @@ public class LevelView {
 					EntityView view = new MovableBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
-				}else if (e instanceof Water) {
+				} else if (e instanceof Water) {
 					EntityView view = new WaterBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
@@ -108,7 +111,7 @@ public class LevelView {
 			}
 			
 			//if debug
-			(new BasicEntityView()).render(e, g);
+//			(new BasicEntityView()).render(e, g);
 		}
 		
 		for (int i = 1; tm.getLayerCount() > i; i++) {

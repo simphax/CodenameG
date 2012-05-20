@@ -1,6 +1,7 @@
 package edu.chl.codenameg.model.entity;
 
 import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
@@ -8,14 +9,25 @@ import edu.chl.codenameg.model.Vector2D;
 public class MovingWall extends MovingBlock{
 	private boolean lethal;
 	private int travelTime;
-
+	private Direction direction;
 	
 	
 	public MovingWall(Position ps, Position endPos, int travelTime, boolean lethal){
 		super(ps,endPos,travelTime);
 		this.lethal = lethal;
 		this.travelTime = travelTime;
-
+		
+		if(ps.getX()<endPos.getX()) {
+			this.direction = Direction.RIGHT;
+		} else if(ps.getX()>endPos.getX()) {
+			this.direction = Direction.LEFT;
+		} else if(ps.getY()<endPos.getY()) {
+			this.direction = Direction.BOTTOM;
+		} else if(ps.getY()>endPos.getY()) {
+			this.direction = Direction.TOP;
+		} else {
+			this.direction = Direction.NONE;
+		}
 
 	}
 	
@@ -64,5 +76,9 @@ public class MovingWall extends MovingBlock{
 	}
 	public void setHitbox(Hitbox hb){
 		super.setHitbox(hb);
+	}
+	
+	public Direction getDirection() {
+		return this.direction;
 	}
 }
