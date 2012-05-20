@@ -31,6 +31,7 @@ public class GameModel {
 	public void restartGame() {
 		this.endGame();
 		this.selectLevel(selectedLevel);
+		this.startGame();
 	}
 
 	public void pauseGame(World w) {
