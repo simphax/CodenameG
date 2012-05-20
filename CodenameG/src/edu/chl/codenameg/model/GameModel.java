@@ -213,4 +213,8 @@ public class GameModel {
 		// }
 		// }
 	}
+	
+	public boolean isRunning() {
+		return this.running;
+	}
 }
