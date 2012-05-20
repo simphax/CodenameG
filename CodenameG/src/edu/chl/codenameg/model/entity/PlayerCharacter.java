@@ -15,43 +15,45 @@ import edu.chl.codenameg.model.World;
 
 // Needs cleaning of code and to finish TODOs
 public class PlayerCharacter implements Entity {
-	private Position				pt; 
-	private Position				startPos;
-	private Vector2D				v2d;
-	private Vector2D				addVector;
-	private Vector2D				gravity;
-	private Vector2D				acceleration;
-	private boolean					colliding;
-	private boolean					alive;
-	private boolean					moving;
-	private boolean					onGround;
-	private boolean					jumping;
-	private boolean					lifting;
-	private boolean					justJumped;
-	private boolean					crouching;
-	private boolean					gameWon;
-	private boolean 				inWater;
-	private Direction				direction;
-	private LiftableBlock 			lb;
-	private List<CollisionEvent> 	collidingList;
-	private Hitbox 					hitbox;
-	private	Hitbox 					hbCopy;
-	private World					world;
-	private List<String> 			collideList;
-	private float 					speedFactor;
+	private Position pt;
+	private Position startPos;
+	private Vector2D v2d;
+	private Vector2D addVector;
+	private Vector2D gravity;
+	private Vector2D acceleration;
+	private boolean colliding;
+	private boolean alive;
+	private boolean moving;
+	private boolean onGround;
+	private boolean jumping;
+	private boolean lifting;
+	private boolean justJumped;
+	private boolean crouching;
+	private boolean isUncrouchable;
+	private boolean waitingToUncrouch;
+	private boolean gameWon;
+	private boolean inWater;
+	private Direction direction;
+	private LiftableBlock lb;
+	private List<CollisionEvent> collidingList;
+	private Hitbox hitbox;
+	private Hitbox hbCopy;
+	private World world;
+	private List<String> collideList;
+	private float speedFactor;
 
-// TODO Clean this commented code
-//	public PlayerCharacter() {
-//		this(new Position(0, 0));
-//		
-//	}
-//	
-//	public PlayerCharacter(Position position) {
-//		this(position);
-//		this.world = world;
-//	}
+	// TODO Clean this commented code
+	// public PlayerCharacter() {
+	// this(new Position(0, 0));
+	//
+	// }
+	//
+	// public PlayerCharacter(Position position) {
+	// this(position);
+	// this.world = world;
+	// }
 	public PlayerCharacter(World world) {
-		this(new Position(0, 0),world);
+		this(new Position(0, 0), world);
 	}
 
 	public PlayerCharacter(Position position, World world) {
@@ -76,7 +78,7 @@ public class PlayerCharacter implements Entity {
 		this.acceleration = new Vector2D(0, 0);
 		this.inWater = false;
 		this.speedFactor = 1.0f;
-		this.hitbox = new Hitbox(31,46);
+		this.hitbox = new Hitbox(31, 46);
 	}
 
 	public void jump() {
@@ -86,8 +88,8 @@ public class PlayerCharacter implements Entity {
 	public void toggleCrouch() {
 		if (!crouching) {
 			this.hbCopy = this.hitbox;
-			this.hitbox = new Hitbox(this.getHitbox().getWidth(), 
-									 this.getHitbox().getHeight() - 25);
+			this.hitbox = new Hitbox(this.getHitbox().getWidth(), this
+					.getHitbox().getHeight() - 25);
 			this.pt = new Position(this.pt.getX(), this.pt.getY() + 25);
 			this.crouching = true;
 		}
@@ -95,33 +97,43 @@ public class PlayerCharacter implements Entity {
 
 	public void unToggleCrouch() {
 		if (crouching) {
-			this.pt = new Position(this.pt.getX(), this.pt.getY() - 25);
-			this.hitbox = this.hbCopy;
-			this.crouching = false;
+			this.waitingToUncrouch = false;
+			Rectangle searchRectangle = new Rectangle(
+					this.getPosition().getX(), this.getPosition().getY()
+							+ this.getHitbox().getHeight()-this.hbCopy.getHeight(),
+					this.hbCopy.getWidth(), this.hbCopy.getHeight());
+			for (Entity e : world.getEntitiesAt(searchRectangle)) {
+				if (this.getCollideTypes().contains(e.getType())&& !e.equals(this)) {
+					this.waitingToUncrouch = true;
+				}
+			}
+
+			if (!waitingToUncrouch) {
+				this.pt = new Position(this.pt.getX(), this.pt.getY() - 25);
+				this.hitbox = this.hbCopy;
+				this.crouching = false;
+				this.waitingToUncrouch = false;
+			}
 		}
 	}
 
 	public void toggleLift() {
 		Rectangle searchRectangle;
 		int factor = crouching ? 2 : 1;
-		
+
 		if (this.direction == Direction.RIGHT) {
-			searchRectangle = new Rectangle(
-					this.getPosition().getX()+this.hitbox.getWidth(), 
-					this.getPosition().getY(),
-					25f, 
-					this.getHitbox().getHeight()*factor);
-			
+			searchRectangle = new Rectangle(this.getPosition().getX()
+					+ this.hitbox.getWidth(), this.getPosition().getY(), 25f,
+					this.getHitbox().getHeight() * factor);
+
 		} else {
-			searchRectangle = new Rectangle(
-					this.getPosition().getX()-this.hitbox.getWidth(), 
-					this.getPosition().getY(),
-					25f, 
-					this.getHitbox().getHeight()*factor);
+			searchRectangle = new Rectangle(this.getPosition().getX()
+					- this.hitbox.getWidth(), this.getPosition().getY(), 25f,
+					this.getHitbox().getHeight() * factor);
 		}
 		List<Entity> entitiesList = this.world.getEntitiesAt(searchRectangle);
-		
-		for (Entity entity: entitiesList) {
+
+		for (Entity entity : entitiesList) {
 			if (entity.getType().equals("LiftableBlock")) {
 				this.collideList.remove("LiftableBlock");
 				this.lb = ((LiftableBlock) entity);
@@ -134,10 +146,10 @@ public class PlayerCharacter implements Entity {
 
 	public void unToggleLift() {
 		if (!this.collideList.contains("LiftableBlock")) {
-			this.collideList.add("LiftableBlock");			
+			this.collideList.add("LiftableBlock");
 		}
 		this.lifting = false;
-		
+
 		if (lb != null) {
 			lb.drop(this);
 			lb = null;
@@ -182,14 +194,14 @@ public class PlayerCharacter implements Entity {
 
 	public Direction getDirection() {
 		Direction temp = this.direction;
-		
+
 		return temp;
 	}
 
 	@Override
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		
+
 		if (this.getCollideTypes().contains(evt.getEntity().getType())
 				&& (evt.getDirection().equals(Direction.BOTTOM))) {
 			this.onGround = true;
@@ -199,9 +211,9 @@ public class PlayerCharacter implements Entity {
 				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.jumping = false;
 		}
-		if (evt.getDirection() == Direction.TOP && 
-				this.getCollideTypes().contains(evt.getEntity().getType()) && 
-				!(evt.getEntity().getType().equals("Water"))) {
+		if (evt.getDirection() == Direction.TOP
+				&& this.getCollideTypes().contains(evt.getEntity().getType())
+				&& !(evt.getEntity().getType().equals("Water"))) {
 			this.jumping = false;
 		}
 		if (evt.getEntity().getType().equals("Water")) {
@@ -327,7 +339,7 @@ public class PlayerCharacter implements Entity {
 	public boolean isOnGround() {
 		return this.onGround;
 	}
-	
+
 	public boolean isInWater() {
 		return this.inWater;
 	}
@@ -361,13 +373,19 @@ public class PlayerCharacter implements Entity {
 			this.speedFactor = 0.5f;
 		}
 
+		if (this.waitingToUncrouch) {
+			this.unToggleCrouch();
+			System.out.println("hejhopp");
+		}
+
 		if (this.direction.equals(Direction.RIGHT) && this.moving) {
 			this.v2d.add(new Vector2D(2.8f, 0));
 			// TODO Clean this code
 			// if(this.acceleration.getX()<0) {
 			// this.acceleration.setX(0);
 			// }
-			if (this.onGround && (!this.jumping || this.acceleration.getX() < 0)) {
+			if (this.onGround
+					&& (!this.jumping || this.acceleration.getX() < 0)) {
 				this.acceleration.add(new Vector2D(0.15f, 0));
 			}
 		} else if (this.direction.equals(Direction.LEFT) && this.moving) {
@@ -376,7 +394,8 @@ public class PlayerCharacter implements Entity {
 			// if(this.acceleration.getX()>0) {
 			// this.acceleration.setX(0);
 			// }
-			if (this.onGround && (!this.jumping || this.acceleration.getX() > 0)) {
+			if (this.onGround
+					&& (!this.jumping || this.acceleration.getX() > 0)) {
 				this.acceleration.add(new Vector2D(-0.15f, 0));
 			}
 		}
@@ -394,7 +413,8 @@ public class PlayerCharacter implements Entity {
 
 		if (jumping && !justJumped) {
 			this.v2d.add(new Vector2D(0, -5));
-		} else if (justJumped) { // TODO Not being able to jump if just dropped from height
+		} else if (justJumped) { // TODO Not being able to jump if just dropped
+									// from height
 			this.v2d.add(new Vector2D(0, -2f));
 		}
 
@@ -404,7 +424,8 @@ public class PlayerCharacter implements Entity {
 			this.gravity = new Vector2D(0, 0.98f);
 		}
 		this.v2d.add(this.gravity);
-		this.v2d = new Vector2D(this.v2d.getX()*this.speedFactor, this.v2d.getY());
+		this.v2d = new Vector2D(this.v2d.getX() * this.speedFactor,
+				this.v2d.getY());
 		this.onGround = false;
 		this.colliding = false;
 		this.inWater = false;
