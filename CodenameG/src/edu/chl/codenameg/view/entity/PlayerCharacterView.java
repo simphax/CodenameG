@@ -18,6 +18,12 @@ import edu.chl.codenameg.view.GSound;
 
 // There are comments to be cleaned in here
 public class PlayerCharacterView implements EntityView {
+    
+    	public static int DEFAULT = 0;
+    	public static int BLUE = 1;
+    	public static int GREEN = 2;
+    	public static int PINK = 3;
+    	
 	private SpriteSheet		spriteSheet;
 	private Animation		walkLeft;
 	private Animation 		jumpLeft;
@@ -39,7 +45,7 @@ public class PlayerCharacterView implements EntityView {
 	private boolean 		crouching;
 	private boolean 		inWater;
 	
-	public PlayerCharacterView() {
+	public PlayerCharacterView(int variation) {
 		spriteSheet = null;
 		walkLeft 	= null;
 		jumpLeft 	= null;
@@ -54,7 +60,15 @@ public class PlayerCharacterView implements EntityView {
 		inWater 	= false;
 		
 		try {
-			spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64,Color.white);
+		    	if(variation == PlayerCharacterView.BLUE) {
+		    	    spriteSheet = new SpriteSheet("res/character_lr_blue.png", 64, 64);
+		    	} else if(variation == PlayerCharacterView.GREEN) {
+		    	    spriteSheet = new SpriteSheet("res/character_lr_green.png", 64, 64);
+		    	} else if(variation == PlayerCharacterView.PINK) {
+		    		spriteSheet = new SpriteSheet("res/character_lr_pink.png", 64, 64);
+		    	} else {
+		    	    spriteSheet = new SpriteSheet("res/character_lr.png", 64, 64);
+		    	}
 			
 			hurtSounds = loadSounds("res/sounds/hurt");
 			jumpSounds = loadSounds("res/sounds/jump");

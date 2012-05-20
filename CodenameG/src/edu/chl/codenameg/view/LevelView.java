@@ -41,7 +41,7 @@ public class LevelView {
 		this.model = model;
 		entityMap = new HashMap<Entity, EntityView>();
 		this.tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(model.getSelectedLevel()));
-		this.music = new GMusic("res/sounds/uteliggarjazz.wav");
+		this.music = new GMusic("res/sounds/music.wav");
 		music.setLooping(true);
 		music.setVolume(0.5f);
 		musicStopped = true;
@@ -80,7 +80,12 @@ public class LevelView {
 				entityMap.get(e).render(e, g);
 			} else {
 				if (e instanceof PlayerCharacter) {
-					EntityView view = new PlayerCharacterView();
+				    	EntityView view = null;
+				    	if(model.getWorld().getAmountOfPlayers() > 1 && e.equals(model.getPlayer(2))) {
+				    	    view = new PlayerCharacterView(PlayerCharacterView.GREEN);
+				    	} else {
+				    	    view = new PlayerCharacterView(PlayerCharacterView.DEFAULT);
+				    	}
 					view.render(e, g);
 					entityMap.put(e, view);
 				} else if (e instanceof MovingWall) {
