@@ -220,7 +220,7 @@ public class PlayerCharacter implements Entity {
 			this.inWater = true;
 		}
 		if (!evt.getEntity().getType().equals(this.getType())
-				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
+				&& this.getCollideTypes().contains(evt.getEntity().getType()) && !evt.getEntity().getCollideTypes().contains(this.getType())) {
 			this.collidingList.add(evt);
 		}
 		if (this.getCollideTypes().contains(evt.getEntity().getType())) {
@@ -245,7 +245,7 @@ public class PlayerCharacter implements Entity {
 
 			for (CollisionEvent evt : collidingList) {
 
-				if (!(evt.getEntity().getType().equals("LiftableBlock"))) {
+//				if (!(evt.getEntity().getType().equals("LiftableBlock")) ) {
 
 					switch (evt.getDirection()) {
 					case LEFT:
@@ -261,7 +261,7 @@ public class PlayerCharacter implements Entity {
 						collideBottomCount++;
 						break;
 					}
-				}
+//				}
 				// }
 			}
 
