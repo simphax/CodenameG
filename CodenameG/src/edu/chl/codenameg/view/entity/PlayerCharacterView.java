@@ -18,31 +18,26 @@ import edu.chl.codenameg.view.GSound;
 
 // There are comments to be cleaned in here
 public class PlayerCharacterView implements EntityView {
-	private SpriteSheet spriteSheet;
-	private Animation	walkLeft;
-	private Animation 	jumpLeft;
-	private Animation 	crouchLeft;
-	private Animation 	standLeft;
-	private Animation 	walkRight;
-	private Animation 	jumpRight;
-	private Animation 	crouchRight;
-	private Animation 	standRight;
-<<<<<<< OURS
-	private List<GSound> hurtSounds;
-	private List<GSound> jumpSounds;
-	private List<GSound> stepSounds;
-	private List<GSound> crouchSounds;
-	private List<GSound> waterSplashSounds;
-	private boolean 	dead;
-=======
-	private Animation	lastAnimation;
-	private GSound 		jumpSound;
-	private GSound 		waterSplashSound;
->>>>>>> THEIRS
-	private boolean 	jumping;
-	private boolean 	walking;
-	private boolean 	crouching;
-	private boolean 	inWater;
+	private SpriteSheet		spriteSheet;
+	private Animation		walkLeft;
+	private Animation 		jumpLeft;
+	private Animation 		crouchLeft;
+	private Animation 		standLeft;
+	private Animation 		walkRight;
+	private Animation 		jumpRight;
+	private Animation 		crouchRight;
+	private Animation 		standRight;
+	private List<GSound>	hurtSounds;
+	private List<GSound> 	jumpSounds;
+	private List<GSound> 	stepSounds;
+	private List<GSound> 	crouchSounds;
+	private List<GSound> 	waterSplashSounds;
+	private boolean 		dead;
+	private Animation		lastAnimation;
+	private boolean 		jumping;
+	private boolean 		walking;
+	private boolean 		crouching;
+	private boolean 		inWater;
 	
 	public PlayerCharacterView() {
 		spriteSheet = null;
@@ -54,7 +49,7 @@ public class PlayerCharacterView implements EntityView {
 		jumpRight 	= null;
 		crouchRight = null;
 		standRight 	= null;
-		lastAnimation=null;
+		lastAnimation = null;
 		jumping 	= false;
 		inWater 	= false;
 		
