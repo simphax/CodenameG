@@ -169,20 +169,13 @@ public class LevelFactory {
 						} else if (name.equals("LethalMovingBlock")) {
 							movingblock = new LethalMovingBlock(startPosition,
 									endPosition, traveltime);
-						} else {
-							if (lethality.equals("false")) {
-								movingblock = new MovingWall(startPosition,
-										endPosition, traveltime, false);
-								((MovingWall)movingblock).setHitbox(new Hitbox(32,
-										(tiledmap.getObjectHeight(
-												objectID, groupID))));
-							} else {
-								movingblock = new MovingWall(startPosition,
-										endPosition, traveltime, true);
-								((MovingWall) movingblock).setHitbox(new Hitbox(32,
-										(tiledmap.getObjectHeight(
-												objectID, groupID))));
-							}
+						} else { // MovingWall
+							movingblock = new MovingWall(startPosition,
+									endPosition, traveltime,
+									lethality.equals("true"));
+							((MovingWall) movingblock).setHitbox(new Hitbox(32,
+									(int) tiledmap.getObjectHeight(groupID,
+											objectID)));
 						}
 
 						entities.add(movingblock);
