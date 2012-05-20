@@ -52,6 +52,9 @@ public class PausedLevelState extends BasicGameState {
 			throws SlickException {
 		levelState.update(container, game, elapsedTime);
 
+		if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+		    game.enterState(3);
+		}
 		if(container.getInput().isKeyPressed(Input.KEY_UP)) {
 			// Enables the menu to continue scroll endlessly in both directions
 			selectedId = (selectedId == 0) ? 2 : (selectedId-1)%3;  
