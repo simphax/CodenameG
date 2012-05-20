@@ -10,6 +10,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import edu.chl.codenameg.view.SelectLevelMenuView;
 
+/**
+ * This is a MenuState that where you select the level
+ * @author ???
+ *
+ */
 public class SelectLevelMenuState extends BasicGameState {
 	private SelectLevelMenuView view;
 	private int selectedId = 0;
@@ -18,10 +23,16 @@ public class SelectLevelMenuState extends BasicGameState {
 		this.view = new SelectLevelMenuView();
 	}
 
+	/**
+	 * Initializes nothing
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {}
 
+	/**
+	 * Repaints the view with the selected Graphics object
+	 */
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
@@ -29,13 +40,17 @@ public class SelectLevelMenuState extends BasicGameState {
 		view.repaint(g);
 	}
 
+	/**
+	 * Updates the menu to highlight the right choice and enters the correct state if chosen
+	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int elapsedTime)
 			throws SlickException {
 		int amountOfLevels=3;
 
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
-			selectedId=(selectedId-1)% amountOfLevels;
+			// Enables the menu to continue scroll endlessly in both directions
+			selectedId = (selectedId == 0) ? amountOfLevels-1 : (selectedId-1)%amountOfLevels;
 		}
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_DOWN)) {
@@ -60,7 +75,12 @@ public class SelectLevelMenuState extends BasicGameState {
 		}
 	}
 	
-	public void selectLevel(StateBasedGame game,int level) {
+	/**
+	 * Selects the correct LevelState when the level is chosen
+	 * @param game
+	 * @param level
+	 */
+	public void selectLevel(StateBasedGame game, int level) {
 		GameState gs = game.getState(3);
 		if(gs instanceof LevelState) {
 			LevelState ls = (LevelState)gs;
@@ -68,6 +88,9 @@ public class SelectLevelMenuState extends BasicGameState {
 		}
 	}
 
+	/**
+	 * Returns this class's ID
+	 */
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub

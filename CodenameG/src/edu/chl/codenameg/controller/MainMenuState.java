@@ -9,6 +9,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import edu.chl.codenameg.view.MenuView;
 
+/**
+ * This is the state that represents the main menu
+ * @author ???
+ *
+ */
 public class MainMenuState extends BasicGameState {
 	private MenuView	view;
 	private int 		selectedId;
@@ -18,22 +23,32 @@ public class MainMenuState extends BasicGameState {
 		this.view = new MenuView();
 	}
 
+	/**
+	 * This initializes nothing
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {}
 
+	/**
+	 * Repaints the view with the selected Graphics object
+	 */
 	@Override
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) // What is the need of gc and sbg here?
 			throws SlickException {
 		view.setSelected(selectedId);
 		view.repaint(g);
 	}
 
+	/**
+	 *  Updates the menu to highlight the right choice and enters the correct state if chosen
+	 */
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int elapsedTime)
 			throws SlickException {
 		if(gc.getInput().isKeyPressed(Input.KEY_UP)) {
-			selectedId=(selectedId-1)%3;
+			// Enables the menu to continue scroll endlessly in both directions
+			selectedId = (selectedId == 0) ? 2 : (selectedId-1)%3;  
 		}
 		if(gc.getInput().isKeyPressed(Input.KEY_DOWN)) {
 			selectedId=(selectedId+1)%3;
@@ -54,6 +69,9 @@ public class MainMenuState extends BasicGameState {
 		}
 	}
 
+	/**
+	 * Returns this state's ID
+	 */
 	@Override
 	public int getID() {
 		return 1;

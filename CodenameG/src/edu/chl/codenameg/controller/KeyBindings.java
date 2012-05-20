@@ -4,8 +4,21 @@ import org.newdawn.slick.Input;
 
 import edu.chl.codenameg.model.Action;
 
+/**
+ * This binds different keys to "actions".
+ * If you would like to change the controls of the game you only have
+ * to change them here.
+ * 
+ * @author Mike Phoohad
+ * 
+ */
 public class KeyBindings {
 
+	/**
+	 * 
+	 * @param key
+	 * @return an Action corresponding to the key
+	 */
 	public static Action getAction(int key) {
 		switch (key) {
 		case Input.KEY_ESCAPE:

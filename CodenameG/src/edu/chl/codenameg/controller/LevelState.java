@@ -11,16 +11,18 @@ import edu.chl.codenameg.model.Action;
 import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.view.LevelView;
 
-// Needs to remove unused code
-
+/**
+ * This is the GameState that is used to actually play the game.
+ * 
+ * @author ???
+ */
 public class LevelState extends BasicGameState {
-	
 	private LevelView 	view;
 	private GameModel 	model;
-	private boolean 	player1LeftKeyPressed;
-	private boolean 	player1RightKeyPressed;
-	private boolean 	player2LeftKeyPressed;
-	private boolean 	player2RightKeyPressed;
+	private boolean 	player1LeftKeyPressed;		// These booleans are used to correct a 
+	private boolean 	player1RightKeyPressed;		// bug explained in the end of keyReleased
+	private boolean 	player2LeftKeyPressed;		// |
+	private boolean 	player2RightKeyPressed;		// v
 	private int 		lastLevel;
 	
 	public LevelState() {
@@ -37,19 +39,12 @@ public class LevelState extends BasicGameState {
 		model.startGame();
 	}
 
+	/**
+	 * Initiates the game model and adds the view
+	 */
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-//		int level;
-//		if(model != null) {
-//			level = model.getSelectedLevel();
-//		}
-
-//		TiledMap tm = new TiledMap(LevelFactory.getInstance().getLevelFilePath(level));
-//		LevelFactory.getInstance().setTiledMap(tm);
-		
-//		System.out.println(LevelFactory.getInstance().getLevelFilePath(level));
-//		
 		if(model == null) {
 			this.model = new GameModel();
 		}
@@ -57,16 +52,22 @@ public class LevelState extends BasicGameState {
 		this.view = new LevelView(model);
 	}
 
+	/**
+	 * Repaints the view with the selected Graphics object
+	 */
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		view.repaint(g);
 	}
 
+	/**
+	 * This updates the model and also pauses the game
+	 */
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		if(model.getSelectedLevel() != lastLevel) { //Slick can only init TiledMap on init()
+		if(model.getSelectedLevel() != lastLevel) { // Slick can only init TiledMap on init()
 			this.init(container, game);
 			lastLevel=model.getSelectedLevel();
 		}
@@ -78,11 +79,17 @@ public class LevelState extends BasicGameState {
 		model.update(elapsedTime);
 	}
 
+	/**
+	 * Returns this state's ID
+	 */
 	@Override
 	public int getID() {
 		return 3;
 	}
 	
+	/**
+	 * If a key is pressed the corresponding action is sent to the model
+	 */
 	@Override
 	public void keyPressed(int key, char c) {
 		Action action = KeyBindings.getAction(key);
@@ -106,6 +113,9 @@ public class LevelState extends BasicGameState {
 		model.performAction(action);
 	}
 
+	/**
+	 * If a key is released the corresponding action is sent to the model
+	 */
 	@Override
 	public void keyReleased(int key, char c) {
 		Action action = KeyBindings.getAction(key);
@@ -147,7 +157,8 @@ public class LevelState extends BasicGameState {
 			break;
 		}
 		
-		// Doesn't matter if I send both stopActions or not
+		// This fixes the player stopping if you for example pressed
+		// down the left key before you release the right
 		if (!player1LeftKeyPressed && !player1RightKeyPressed) {
 			model.stopAction(Action.PLAYER_1_MOVE_LEFT);
 		} else if (!player2LeftKeyPressed && !player2RightKeyPressed) {

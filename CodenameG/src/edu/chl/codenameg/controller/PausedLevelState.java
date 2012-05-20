@@ -9,20 +9,33 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import edu.chl.codenameg.view.PauseMenuView;
 
+/**
+ * This state represents the paused game menu
+ * @author ???
+ *
+ */
 public class PausedLevelState extends BasicGameState {
 	private PauseMenuView 	view;
-	private int 			selectedId = 0;
+	private int 			selectedId;
 	private LevelState 		levelState;
 	
 	public PausedLevelState(LevelState levelState) {
+		this.selectedId = 0;
 		this.view = new PauseMenuView();
 		this.levelState = levelState;
 	}
 
+	/**
+	 * Initializes nothing
+	 */
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {}
 
+	/**
+	 * Repaints the view with the selected Graphics object
+	 * Also highlights the selected menu-choice
+	 */
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
@@ -31,16 +44,20 @@ public class PausedLevelState extends BasicGameState {
 		view.repaint(g);
 	}
 
+	/**
+	 * Updates the menu to highlight the right choice and enters the correct state if chosen
+	 */
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
 		levelState.update(container, game, elapsedTime);
 
 		if(container.getInput().isKeyPressed(Input.KEY_UP)) {
-			selectedId=(selectedId-1)%3;
+			// Enables the menu to continue scroll endlessly in both directions
+			selectedId = (selectedId == 0) ? 2 : (selectedId-1)%3;  
 		}
 		if(container.getInput().isKeyPressed(Input.KEY_DOWN)) {
-			selectedId=(selectedId+1)%3;
+			selectedId = (selectedId+1)%3;
 		}
 		
 		if(container.getInput().isKeyPressed(Input.KEY_ENTER)){
@@ -58,6 +75,9 @@ public class PausedLevelState extends BasicGameState {
 		}
 	}
 
+	/**
+	 * Returns this class's ID
+	 */
 	@Override
 	public int getID() {
 		return 4;
