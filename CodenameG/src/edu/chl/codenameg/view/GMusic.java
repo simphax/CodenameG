@@ -45,7 +45,12 @@ public class GMusic {
 	}
 	
 	public void resume(){
-		music.resume();
+		System.out.println(music.getPosition());
+		if(music.getPosition() > 0.1f) {
+			music.resume();
+		} else {
+			this.play();
+		}
 	}
 	public void stop(){
 		music.stop();
