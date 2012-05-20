@@ -1,5 +1,10 @@
 package edu.chl.codenameg.model;
 
+/**
+ * This represents a two dimensional vector
+ * @author ???
+ *
+ */
 public class Vector2D {
 	private float x;
 	private float y;
@@ -25,11 +30,19 @@ public class Vector2D {
 		this.y = y;
 	}
 	
+	/**
+	 * Add a vector this vector
+	 * @param a Vector2D
+	 */
 	public void add(Vector2D v2d){
 		this.setX(this.getX()+v2d.getX());
 		this.setY(this.getY()+v2d.getY());
 	}
 	
+	/**
+	 * Subtract a vector from this vector
+	 * @param a Vector2D
+	 */
 	public void subtract(Vector2D v2d){
 		this.x=this.getX()-v2d.getX();
 		this.y=this.getY()-v2d.getY();

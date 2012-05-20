@@ -6,8 +6,9 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 /** 
  * Class that represents a camera
- * with width, height and position 
- * depending on the player characters.
+ * with width, height and a position depending 
+ * on the player character's position.
+ * @author ???
  */
 public class Camera {
 	private int 						minWidth;
@@ -29,35 +30,52 @@ public class Camera {
 		this.minWidth 	= 500;
 		this.minHeight 	= 500;
 		this.maxWidth 	= 700;
+		this.maxHeight 	= 700;
 		this.camerax 	= 0;
-		this.world = world;
-		this.players = new ArrayList<PlayerCharacter>();
-		minWidth = 500;
-		minHeight = 500;
-		maxWidth = 700;
-		maxHeight = 700;
+		this.world 		= world;
+		this.players 	= new ArrayList<PlayerCharacter>();
 	}
 	
+	/**
+	 * @return The X-value of the camera
+	 */
 	public float getX(){
 		return camerax;
 	}
 	
+	/**
+	 * @return The Y-value of the camera
+	 */
 	public float getY(){
 		return cameray;
 	}
 	
+	/**
+	 * @return The width of the camera
+	 */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * @return The height of the camera
+	 */
 	public int getHeight() {
 		return height;
 	}
 	
+	/**
+	 * Updates with a default value of 10 ms
+	 */
 	public void update() {
 		this.update(10);
 	}
 	
+	/**
+	 * Updates the camera's position to match the two players' position
+	 * or just one player of the other is dead
+	 * @param The time since the last update
+	 */
 	public void update(int elapsedTime) {
 		for(PlayerCharacter c : world.getPlayers()){
 			players.add(c);

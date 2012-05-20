@@ -1,5 +1,10 @@
 package edu.chl.codenameg.model;
 
+/**
+ * This class is used to give an object a position or coordinates
+ * @author ???
+ *
+ */
 public class Position {
 	private	float x;
 	private float y;

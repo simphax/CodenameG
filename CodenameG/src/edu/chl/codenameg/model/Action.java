@@ -1,5 +1,10 @@
 package edu.chl.codenameg.model;
 
+/**
+ * This is an enum that lists all the actions that can be sent to the game's model
+ * @author Mike Phoohad
+ *
+ */
 public enum Action {
 	START_GAME,
 	RESTART_GAME,

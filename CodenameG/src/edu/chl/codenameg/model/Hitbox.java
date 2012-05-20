@@ -2,6 +2,12 @@ package edu.chl.codenameg.model;
 
 import java.awt.Dimension;
 
+/**
+ * Represents an area which is used to define an entity's "hitbox"
+ * (i.e. the area that other areas collide or interact with)
+ * @author ???
+ *
+ */
 public class Hitbox {
 	private int width;
 	private int height;
@@ -20,12 +26,12 @@ public class Hitbox {
 		return width;
 	}
 	
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	
 	public int getHeight() {
 		return height;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
 	}
 	
 	public void setHeight(int height) {

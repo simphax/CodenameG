@@ -1,10 +1,15 @@
 package edu.chl.codenameg.model;
 
 import java.util.List;
-// Remove comment in here
+
+/**
+ * This interface specifies constitutes what an 
+ * entity should be able to do
+ * @author ???
+ *
+ */
 public interface Entity {
 	
-	//methods to be tested
 	public void setPosition(Position p);
 	
 	public Position getPosition();

@@ -1,5 +1,10 @@
 package edu.chl.codenameg.model;
 
+/**
+ * Represents a collision by defining an entity and a direction of the collision
+ * @author ???
+ *
+ */
 public class CollisionEvent {
 	private Entity e;
 	private Direction d;

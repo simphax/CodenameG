@@ -11,23 +11,22 @@ import edu.chl.codenameg.model.entity.Block;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.Level;
 
-// Complete the TODO and remove commented code
 /**
- * World model object
- * Contains all entities and the camera for a level in the game.
- * On update: moves all entities according to its vectors and collide types.
+ * World model object Contains all entities and the camera for a level in the
+ * game. On update: moves all entities according to its vectors and collide
+ * types.
  */
 public class World {
 
-	private boolean 		gameOver;
-	private boolean 		hasWonGame;
-	private Camera 			camera;
-	private List<Entity> 	entities;
+	private boolean gameOver;
+	private boolean hasWonGame;
+	private Camera camera;
+	private List<Entity> entities;
 	private ArrayList<PlayerCharacter> players;
-	private int 			amountOfPlayers;
+	private int amountOfPlayers;
 
 	public World() {
-		this(new ArrayList<Entity>()); // Defaults to empty world
+		this(new ArrayList<Entity>()); // Defaults to an empty world
 	}
 
 	public World(Level copy) {
@@ -50,6 +49,12 @@ public class World {
 		}
 	}
 
+	/**
+	 * Add an entity to this World
+	 * 
+	 * @param an
+	 *            Entity
+	 */
 	public void add(Entity e) {
 		if (e instanceof PlayerCharacter) {
 			entities.add(e);
@@ -60,6 +65,12 @@ public class World {
 		}
 	}
 
+	/**
+	 * Remove an entity from this World
+	 * 
+	 * @param an
+	 *            Entity
+	 */
 	public void remove(Entity e) {
 		if (e instanceof PlayerCharacter) {
 			entities.remove(e);
@@ -70,6 +81,9 @@ public class World {
 		}
 	}
 
+	/**
+	 * @return a list containing all the entities in this world
+	 */
 	public List<Entity> getEntities() {
 		return new ArrayList<Entity>(this.entities);
 	}
@@ -82,6 +96,11 @@ public class World {
 		return camera;
 	}
 
+	/**
+	 * Moves all entities according to their vectors and collision
+	 * 
+	 * @param int, time since last update
+	 */
 	public void update(int elapsedTime) {
 		Map<Entity, List<Entity>> collidedEntities = new HashMap<Entity, List<Entity>>();
 
@@ -96,20 +115,13 @@ public class World {
 				PlayerCharacter pc = (PlayerCharacter) e;
 				if (pc.hasWonGame() && this.getAmountOfPlayers() < 2) {
 					this.hasWonGame = true;
-					this.gameOver();
+					this.setGameOver();
 				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
-					this.gameOver();
+					this.setGameOver();
 				}
 				if (!pc.isAlive() && this.getAmountOfPlayers() == 2) {
 					this.remove(pc);
 				}
-				/*
-				 * else if(pc.hasWonGame() && this.getAmountOfPlayers() > 2){
-				 * entities.remove(pc); this.amountOfPlayers--; } else
-				 * if(!pc.isAlive() && this.getAmountOfPlayers() > 2){
-				 * entities.remove(pc); entities.add(new
-				 * PlayerCharacter(pc.getStartPosition())); }
-				 */
 			}
 
 			e.update(elapsedTime);
@@ -124,7 +136,7 @@ public class World {
 		stepPositionY(e, vector.getY(), collidedEntities);
 	}
 
-	public void gameOver() {
+	public void setGameOver() {
 		this.gameOver = true;
 	}
 
@@ -140,12 +152,27 @@ public class World {
 		return this.amountOfPlayers;
 	}
 
+	/**
+	 * Checks if it's able to move an entity in the X-plane Used to check for
+	 * collision in movement
+	 * 
+	 * @param Entity
+	 * @param float, amount of movement
+	 * @param Map
+	 *            of collidedEntities
+	 * @return True if able to move, else false
+	 */
 	private boolean stepPositionX(Entity e, float movex,
 			Map<Entity, List<Entity>> collidedEntities) {
 		// TODO float->int conversion!!!
+		// This can be done to make the game more accurate
+		// Right now it only checks every integer so there is a loss of accuracy
+		// E.g. you can be 0.6 from a wall and still collide with it, which is a
+		// quite noticable distance
 		int preferredx = Math.round(movex);
 		List<Entity> collided = collidedEntities.get(e);
 		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
+
 		for (int x = 0; x < Math.abs(preferredx); x++) {
 			for (Entity colliding : this.getEntitiesAt(new Rectangle((e
 					.getPosition().getX() + (x * Math.signum(preferredx)))
@@ -191,26 +218,26 @@ public class World {
 					// Otherwise just pass through the entity
 				}
 			}
-			
-			
-			//Do not go outside camera, if camera is in collidetypes
-			Rectangle cameraRectangle = new Rectangle(camera.getX()+e.getHitbox().getWidth(),
-					camera.getY(), camera.getWidth()-e.getHitbox().getWidth()*2,
+
+			// Do not go outside camera, if camera is in collidetypes
+			Rectangle cameraRectangle = new Rectangle(camera.getX()
+					+ e.getHitbox().getWidth(), camera.getY(),
+					camera.getWidth() - e.getHitbox().getWidth() * 2,
 					camera.getHeight());
-			
-			Rectangle eRectangle = new Rectangle(e
-					.getPosition().getX() + Math.signum(preferredx), e.getPosition()
-					.getY(), e.getHitbox().getWidth(),
-					e.getHitbox().getHeight());
-			
-			if (!cameraRectangle.intersects(eRectangle) && e.getCollideTypes().contains("Camera")) {
+
+			Rectangle eRectangle = new Rectangle(e.getPosition().getX()
+					+ Math.signum(preferredx), e.getPosition().getY(), e
+					.getHitbox().getWidth(), e.getHitbox().getHeight());
+
+			if (!cameraRectangle.intersects(eRectangle)
+					&& e.getCollideTypes().contains("Camera")) {
 				System.out.println(e + "is outside of camera, Do not move");
-				//camera.setX(camera.getX()+Math.signum(preferredx));
+				// camera.setX(camera.getX()+Math.signum(preferredx));
 			} else {
 				e.setPosition(new Position(e.getPosition().getX()
 						+ Math.signum(preferredx), e.getPosition().getY()));
 			}
-			
+
 			// Send friction to objects on top
 			for (Entity colliding : this.getEntitiesAt(new Rectangle((e
 					.getPosition().getX()), (e.getPosition().getY()) - 1, e
@@ -226,13 +253,27 @@ public class World {
 		return true;
 	}
 
+	/**
+	 * Checks if it's able to move an entity in the Y-plane Used to check for
+	 * collision in movement
+	 * 
+	 * @param Entity
+	 * @param float, amount of movement
+	 * @param Map
+	 *            of collidedEntities
+	 * @return True if able to move, else false
+	 */
 	private boolean stepPositionY(Entity e, float movey,
 			Map<Entity, List<Entity>> collidedEntities) {
 		// TODO float->int conversion!!!
+		// This can be done to make the game more accurate
+		// Right now it only checks every integer so there is a loss of accuracy
+		// E.g. you can be 0.6 from a wall and still collide with it, which is a
+		// quite noticable distance
 		int preferredy = Math.round(movey);
 		List<Entity> collided = collidedEntities.get(e);
-
 		int addy = Math.signum(preferredy) > 0 ? 1 : -1;
+
 		for (int y = 0; y < Math.abs(preferredy); y++) {
 			for (Entity colliding : this.getEntitiesAt(new Rectangle((e
 					.getPosition().getX()), (e.getPosition().getY() + (y * Math
@@ -267,28 +308,26 @@ public class World {
 					}
 				}
 			}
-			
-			//Do not go outside camera, if camera is in collidetypes
-			Rectangle cameraRectangle = new Rectangle(camera.getX()+e.getHitbox().getWidth(),
-					camera.getY()+e.getHitbox().getHeight(), camera.getWidth()-e.getHitbox().getWidth()*2,
-					camera.getHeight()-e.getHitbox().getHeight()*2);
-			
-			Rectangle eRectangle = new Rectangle(e
-					.getPosition().getX(), e.getPosition()
-					.getY()+ Math.signum(preferredy), e.getHitbox().getWidth(),
-					e.getHitbox().getHeight());
-			
-			if (!cameraRectangle.intersects(eRectangle) && e.getCollideTypes().contains("Camera")) {
+
+			// Do not go outside camera, if camera is in collidetypes
+			Rectangle cameraRectangle = new Rectangle(camera.getX()
+					+ e.getHitbox().getWidth(), camera.getY()
+					+ e.getHitbox().getHeight(), camera.getWidth()
+					- e.getHitbox().getWidth() * 2, camera.getHeight()
+					- e.getHitbox().getHeight() * 2);
+
+			Rectangle eRectangle = new Rectangle(e.getPosition().getX(), e
+					.getPosition().getY() + Math.signum(preferredy), e
+					.getHitbox().getWidth(), e.getHitbox().getHeight());
+
+			if (!cameraRectangle.intersects(eRectangle)
+					&& e.getCollideTypes().contains("Camera")) {
 				System.out.println(e + "is outside of camera, Do not move");
-				e.collide(new CollisionEvent(new Block(),Direction.TOP)); //TODO Unrelated collide event
-				//camera.setX(camera.getX()+Math.signum(preferredx));
+				e.collide(new CollisionEvent(new Block(), Direction.TOP));
 			} else {
-				e.setPosition(new Position(e.getPosition().getX()
-						, e.getPosition().getY() + Math.signum(preferredy)));
+				e.setPosition(new Position(e.getPosition().getX(), e
+						.getPosition().getY() + Math.signum(preferredy)));
 			}
-			
-//			e.setPosition(new Position(e.getPosition().getX(), e.getPosition()
-//					.getY() + Math.signum(preferredy)));
 		}
 		return true;
 	}
@@ -312,9 +351,15 @@ public class World {
 		}
 	}
 
+	/**
+	 * 
+	 * @param target
+	 *            Rectangle of the check
+	 * @return a list of all the entities that are inside the target Rectangle
+	 */
 	public List<Entity> getEntitiesAt(Rectangle target) {
 		List<Entity> list = new ArrayList<Entity>();
-		
+
 		for (Entity e : this.getEntities()) {
 			Rectangle rect = new Rectangle((e.getPosition().getX()),
 					(e.getPosition().getY()), e.getHitbox().getWidth(), e

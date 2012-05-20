@@ -7,7 +7,12 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.levels.Level;
 import edu.chl.codenameg.model.levels.LevelFactory;
 
-// Remove comments in here
+/**
+ * This is the main model of Romijam.
+ * The main objective of this class is to control the game's models and perform Actions
+ * @author ???
+ *
+ */
 public class GameModel {
 	private boolean 				running;
 	private int 					selectedLevel;
@@ -20,20 +25,34 @@ public class GameModel {
 		this.selectLevel(1);
 	}
 
+	/**
+	 * Sets the current World
+	 * @param a World object
+	 */
 	public void setWorld(World w) {
 		this.world = w;
 	}
 
+	/**
+	 * Starts the game
+	 */
 	public void startGame() {
 		this.running = true;
 	}
 
+	/**
+	 * Ends the game and starts it again (from the beginning)
+	 */
 	public void restartGame() {
 		this.endGame();
 		this.selectLevel(selectedLevel);
 		this.startGame();
 	}
 
+	/**
+	 * Pauses the specified World
+	 * @param World
+	 */
 	public void pauseGame(World w) {
 		this.running = false;
 	}
@@ -42,6 +61,9 @@ public class GameModel {
 		return world;
 	}
 
+	/**
+	 * Ends the current game
+	 */
 	public void endGame() {
 		if (world != null && running) {
 			this.running = false;
@@ -53,6 +75,10 @@ public class GameModel {
 		return LevelFactory.getInstance().getLevel(i);
 	}
 
+	/**
+	 * Sets the game's level
+	 * @param int, number of the level to select
+	 */
 	public void selectLevel(int i) {
 		Level level = this.getLevel(i);
 		World temp = new World(level);
@@ -79,6 +105,10 @@ public class GameModel {
 		return this.selectedLevel;
 	}
 
+	/**
+	 * Performs an action
+	 * @param action to perform
+	 */
 	public void performAction(Action action) {
 		switch (action) {
 		case START_GAME:
@@ -142,11 +172,15 @@ public class GameModel {
 		}
 	}
 
+	/**
+	 * Stops an action
+	 * @param action to stop
+	 */
 	public void stopAction(Action action) {
+		// Makes sure it is a two player game
 		boolean twoPlayer = (this.listOfPC.size() > 1) ? true : false;
 		
 		switch (action) {
-		
 		case PLAYER_1_MOVE_LEFT:
 			getPlayer(1).stopMove();
 			break;
@@ -191,6 +225,10 @@ public class GameModel {
 		return listOfPC.get(num - 1);
 	}
 
+	/**
+	 * Updates the game's models and restarts the game if it is won or lost
+	 * @param int, time since last update
+	 */
 	public void update(int elapsedTime) {
 		if (world != null && running) {
 			world.update(elapsedTime);
@@ -201,17 +239,6 @@ public class GameModel {
 			}
 			this.restartGame();
 		}
-		// for (Entity entity : world.getEntities()) {
-		// if (entity instanceof PlayerCharacter) {
-		// PlayerCharacter pc = (PlayerCharacter)entity;
-		// if (pc.hasWonGame()) {
-		// this.restartGame();
-		// System.out.println("Congratulations for winning the game!");
-		// } else if (!(pc.isAlive())) {
-		// this.restartGame(); // TODO Skriv klart
-		// }
-		// }
-		// }
 	}
 	
 	public boolean isRunning() {
