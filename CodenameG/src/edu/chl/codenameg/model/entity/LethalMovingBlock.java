@@ -3,16 +3,8 @@ package edu.chl.codenameg.model.entity;
 import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Position;
 
-/**
- * A moving block that is capable of killing a player character
- * @author ???
- *
- */
 public class LethalMovingBlock extends MovingBlock{
 	
-	/**
-	 * Handles collision with this
-	 */
 	@Override
 	public void collide(CollisionEvent evt){
 		super.collide(evt);

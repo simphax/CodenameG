@@ -7,10 +7,6 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-/**
- * A block that is movable by a player character pushing it
- * It is affected by gravity
- */
 public class MovableBlock extends Block{
 
 	public MovableBlock(Position ps){
@@ -29,12 +25,9 @@ public class MovableBlock extends Block{
 		this.update(10);
 	}
 	
-	/**
-	 * Adds gravity to the block
-	 */
 	@Override
 	public void update(int elapsedTime) {
-		this.setVector2D(new Vector2D(0, 3));
+		this.setVector2D( new Vector2D(0, 1));
 	}
 	
 	@Override

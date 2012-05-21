@@ -9,11 +9,6 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-/**
- * This is the game's water entity
- * 
- * It slows down the player if he walks through it
- */
 public class Water implements Entity{
 	private Hitbox 		hb;
 	private Vector2D 	v2d;
@@ -72,6 +67,10 @@ public class Water implements Entity{
 		this.ps=p;
 	}
 
+	public void setVector2D(Vector2D v2d) {
+		this.v2d=v2d;
+	}
+
 	@Override
 	public List<String> getCollideTypes() {
 		return new ArrayList<String>();
@@ -80,5 +79,9 @@ public class Water implements Entity{
 	@Override
 	public String getType() {
 		return "Water";
+	}
+
+	public void addVector2D(Vector2D v2d) {
+		this.v2d.add(v2d);
 	}
 }
