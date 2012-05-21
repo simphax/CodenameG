@@ -1,106 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="150" height="100" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2">
+ <tileset firstgid="1" name="block3supermario" tilewidth="32" tileheight="32" spacing="2" margin="2">
+  <image source="tileset/block3supermario.png" width="1168" height="1156"/>
+ </tileset>
+ <tileset firstgid="1157" name="blocks1" tilewidth="32" tileheight="32" spacing="2" margin="2">
   <image source="tileset/blocks1.png" trans="000000" width="640" height="376"/>
  </tileset>
- <tileset firstgid="199" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2">
+ <tileset firstgid="1355" name="blocks2" tilewidth="32" tileheight="32" spacing="2" margin="2">
   <image source="tileset/blocks2.png" trans="000000" width="640" height="376"/>
  </tileset>
- <layer name="Tile Layer 1" width="150" height="100">
+ <layer name="Tiles" width="150" height="100">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="FallingBlock" width="150" height="100">
-  <object name="FallingBlock" x="512" y="223" width="31" height="32"/>
+ <objectgroup name="SPAWN" width="150" height="100">
+  <object name="SpawnPC1" x="96" y="160"/>
+  <object name="SpawnPC2" x="128" y="160"/>
  </objectgroup>
- <objectgroup name="MovableBlock" width="150" height="100">
-  <object name="MovableBlock" x="1441" y="253" width="34" height="32"/>
+ <objectgroup name="Block" width="150" height="100">
+  <object name="Block" x="0" y="512" width="704" height="32"/>
+  <object name="Block" x="1024" y="512" width="608" height="32"/>
+  <object name="Block" x="672" y="544" width="352" height="32"/>
+  <object name="Block" x="576" y="384" width="192" height="32"/>
+  <object name="Block" x="448" y="320" width="160" height="32"/>
+  <object name="Block" x="224" y="192" width="96" height="32"/>
+  <object name="Block" x="288" y="256" width="192" height="32"/>
+  <object name="Block" x="160" y="128" width="96" height="32"/>
+  <object name="Block" x="96" y="64" width="96" height="32"/>
+  <object name="Block" x="0" y="0" width="128" height="32"/>
+  <object name="Block" x="96" y="32" width="32" height="32"/>
+  <object name="Block" x="160" y="96" width="32" height="32"/>
+  <object name="Block" x="288" y="224" width="64" height="32"/>
+  <object name="Block" x="224" y="160" width="32" height="32"/>
+  <object name="Block" x="448" y="288" width="32" height="32"/>
+  <object name="Block" x="736" y="416" width="32" height="64"/>
+  <object name="Block" x="768" y="448" width="192" height="32"/>
+  <object name="Block" x="672" y="480" width="32" height="32"/>
+  <object name="Block" x="704" y="512" width="32" height="32"/>
+  <object name="Block" x="960" y="512" width="32" height="32"/>
+  <object name="Block" x="928" y="384" width="32" height="64"/>
+  <object name="Block" x="960" y="384" width="160" height="32"/>
+  <object name="Block" x="1088" y="288" width="32" height="96"/>
+  <object name="Block" x="1120" y="256" width="32" height="64"/>
+  <object name="Block" x="1184" y="192" width="32" height="64"/>
+  <object name="Block" x="1152" y="224" width="32" height="64"/>
+  <object name="Block" x="1216" y="192" width="64" height="32"/>
+  <object name="Block" x="1248" y="160" width="64" height="32"/>
+  <object name="Block" x="1280" y="128" width="160" height="32"/>
+  <object name="Block" x="1408" y="96" width="64" height="32"/>
+  <object name="Block" x="1440" y="64" width="192" height="32"/>
+  <object name="Block" x="1600" y="96" width="32" height="416"/>
+  <object name="Block" x="992" y="480" width="32" height="64"/>
+  <object name="Block" x="800" y="480" width="96" height="32"/>
+  <object name="Block" x="0" y="32" width="32" height="480"/>
  </objectgroup>
- <objectgroup name="MovingBlock" width="150" height="100">
-  <object name="MovingBlock" x="672" y="192" width="415" height="32">
-   <properties>
-    <property name="Direction" value="right"/>
-    <property name="traveltime" value="5000"/>
-   </properties>
-  </object>
-  <object name="MovingBlock" x="1984" y="164" width="33" height="635">
-   <properties>
-    <property name="Direction" value="down"/>
-    <property name="traveltime" value="2000"/>
-   </properties>
-  </object>
-  <object name="Block" x="2019" y="480" width="128" height="35"/>
-  <object name="Block" x="1402" y="480" width="36" height="386"/>
-  <object name="Block" x="1632" y="801" width="352" height="30"/>
-  <object name="Block" x="1532" y="833" width="100" height="31"/>
-  <object name="Block" x="1440" y="867" width="100" height="31"/>
- </objectgroup>
- <objectgroup name="LethalMovingBlock" width="150" height="100">
-  <object name="LethalMovingBlock" x="701" y="62" width="34" height="193">
-   <properties>
-    <property name="direction" value="up"/>
-    <property name="traveltime" value="2500"/>
-   </properties>
-  </object>
-  <object name="LethalMovingBlock" x="863" y="62" width="34" height="193">
-   <properties>
-    <property name="direction" value="down"/>
-    <property name="traveltime" value="3000"/>
-   </properties>
-  </object>
-  <object name="LethalMovingBlock" x="1024" y="62" width="34" height="193">
-   <properties>
-    <property name="direcion" value="up"/>
-    <property name="traveltime" value="1800"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="Blocks" width="150" height="100">
-  <object name="Block" x="1" y="2" width="33" height="509"/>
-  <object name="Block" x="35" y="1" width="1917" height="32"/>
-  <object name="Block" x="38" y="226" width="378" height="31"/>
-  <object name="Block" x="382" y="257" width="34" height="94"/>
-  <object name="Block" x="638" y="225" width="33" height="126"/>
-  <object name="Block" x="672" y="290" width="415" height="35"/>
-  <object name="Block" x="37" y="446" width="378" height="31"/>
-  <object name="Block" x="735" y="385" width="287" height="31"/>
-  <object name="Block" x="1090" y="447" width="318" height="31"/>
-  <object name="Block" x="1023" y="417" width="64" height="31"/>
-  <object name="Block" x="671" y="416" width="64" height="31"/>
-  <object name="Block" x="641" y="449" width="64" height="31"/>
-  <object name="Block" x="1086" y="225" width="34" height="66"/>
-  <object name="Block" x="1121" y="225" width="97" height="33"/>
-  <object name="Block" x="1408" y="287" width="128" height="35"/>
-  <object name="Block" x="1404" y="321" width="33" height="157"/>
-  <object name="Block" x="1476" y="480" width="504" height="31"/>
- </objectgroup>
- <objectgroup name="Checkpoint" width="150" height="100">
-  <object x="639" y="193" width="35" height="31"/>
- </objectgroup>
- <objectgroup name="Spawn" width="150" height="100">
-  <object name="SpawnPC1" x="126" y="127" width="20" height="7">
-   <properties>
-    <property name="spawnPC1" value=""/>
-   </properties>
-  </object>
-  <object name="SpawnPC2" x="122" y="351" width="12" height="6">
-   <properties>
-    <property name="spawnPC2" value=""/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup name="LethalBlock" width="150" height="100">
-  <object name="LethalBlock" x="420" y="448" width="217" height="34"/>
-  <object name="LethalBlock" x="673" y="257" width="412" height="30"/>
- </objectgroup>
- <objectgroup name="MovingWall" width="150" height="100">
-  <object name="MovingWall" x="36" y="37" width="1883" height="1179">
-   <properties>
-    <property name="Direction" value="right"/>
-    <property name="lethality" value="false"/>
-    <property name="traveltime" value="3000"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Object Layer 3" width="150" height="100"/>
+ <objectgroup name="Object Layer 4" width="150" height="100"/>
+ <objectgroup name="Object Layer 5" width="150" height="100"/>
+ <objectgroup name="Object Layer 6" width="150" height="100"/>
+ <objectgroup name="Object Layer 7" width="150" height="100"/>
+ <objectgroup name="Object Layer 8" width="150" height="100"/>
+ <objectgroup name="Object Layer 9" width="150" height="100"/>
+ <objectgroup name="Object Layer 10" width="150" height="100"/>
+ <layer name="Water" width="150" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3SIQ6AMBAEwBPlUzhAwD9qgP8/gJJWYFEkZSbZ5Nad2AgAAACAfxuHrz+gZ/YFAAAA/dtSxNoyp9qXkqn1O/BWLrvZS45U77P1/OgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQuwvjdbmiYOoAAA==
+  </data>
+ </layer>
 </map>

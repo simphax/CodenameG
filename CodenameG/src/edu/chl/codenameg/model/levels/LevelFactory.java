@@ -12,7 +12,7 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.entity.Block;
-import edu.chl.codenameg.model.entity.CheckPoint;
+import edu.chl.codenameg.model.entity.FallingBlock;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
@@ -196,9 +196,20 @@ public class LevelFactory {
 			Position position = new Position(tiledmap.getObjectX(
 				groupID, objectID), tiledmap.getObjectY(
 				groupID, objectID));
-			Entity lethalblock = new GoalBlock(position, hitbox);
+			Entity goalblock = new GoalBlock(position, hitbox);
 
-			entities.add(lethalblock);
+			entities.add(goalblock);
+		    }
+		    if (name.equals("FallingBlock")){
+				Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(
+						groupID, objectID) - 1,
+						tiledmap.getObjectHeight(groupID, objectID) - 1);
+					Position position = new Position(tiledmap.getObjectX(
+						groupID, objectID), tiledmap.getObjectY(
+						groupID, objectID));
+					Entity fallingblock = new FallingBlock(position, hitbox);
+
+					entities.add(fallingblock);
 		    }
 		    if (name.equals("SpawnPC1")) {
 			spawnPositions.put(
@@ -214,21 +225,8 @@ public class LevelFactory {
 					objectID), tiledmap.getObjectY(groupID,
 					objectID)));
 		    }
-		    if (name.equals("CheckPoint")) {
-			Position position = new Position(tiledmap.getObjectX(
-				groupID, objectID), tiledmap.getObjectY(
-				groupID, objectID));
-			Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(
-				groupID, objectID) - 1,
-				tiledmap.getObjectHeight(groupID, objectID) - 1);
-			Entity checkpoint = new CheckPoint(position, hitbox,
-				null);
-
-			entities.add(checkpoint);
-		    }
-
 		}
-	    }
+	}
 
 	    numberOfPlayers = Integer.parseInt(tiledmap.getMapProperty(
 		    "numberOfPlayers", "1"));

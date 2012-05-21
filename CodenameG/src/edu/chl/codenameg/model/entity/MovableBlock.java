@@ -37,7 +37,8 @@ public class MovableBlock extends Block{
 		list.add("MovableBlock");
 		list.add("PlayerCharacter");
 		list.add("LethalBlock");
-		
+		list.add("MovingBlock");
+		list.add("FallingBlock");
 		return list;
 	}
 	
