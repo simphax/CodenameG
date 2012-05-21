@@ -81,4 +81,7 @@ public class MovingWall extends MovingBlock{
 	public Direction getDirection() {
 		return this.direction;
 	}
+	public String getType(){
+		return "MovingWall";
+	}
 }

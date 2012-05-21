@@ -78,4 +78,7 @@ public class MovingBlock extends Block {
 	public void setHitbox(Hitbox hb){
 		super.setHitbox(hb);
 	}
+	public String getType(){
+		return "MovingBlock";
+	}
 }
