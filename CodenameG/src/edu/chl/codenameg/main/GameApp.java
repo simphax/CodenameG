@@ -20,6 +20,7 @@ public class GameApp {
 			// Sets the settings of the game and then starts it
 			agc = new AppGameContainer(controller,540,540,false);
 			agc.setTargetFrameRate(60);
+			agc.setShowFPS(false);
 			agc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
