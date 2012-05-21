@@ -219,7 +219,7 @@ public class PlayerCharacter implements Entity {
 			this.inWater = true;
 		}
 		if (!evt.getEntity().getType().equals(this.getType())
-				&& this.getCollideTypes().contains(evt.getEntity().getType()) && !evt.getEntity().getCollideTypes().contains(this.getType())) {
+				&& this.getCollideTypes().contains(evt.getEntity().getType())) {
 			this.collidingList.add(evt);
 		}
 		if (this.getCollideTypes().contains(evt.getEntity().getType())) {
@@ -261,7 +261,7 @@ public class PlayerCharacter implements Entity {
 						break;
 					}
 //				}
-				// }
+//				 }
 			}
 
 			if ((collideLeftCount > 0) && (collideRightCount > 0)) {
