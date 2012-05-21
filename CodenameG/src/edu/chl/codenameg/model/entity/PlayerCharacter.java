@@ -13,44 +13,40 @@ import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.World;
 
-// Needs cleaning of code and to finish TODOs
+/**
+ * The representation of the player in the game's model.
+ * This entity is the main interaction entity of the game
+ * 
+ * Is spawned at the start of each level
+ * Can move, die and win the game
+ */
 public class PlayerCharacter implements Entity {
-	private Position pt;
-	private Position startPos;
-	private Vector2D v2d;
-	private Vector2D addVector;
-	private Vector2D gravity;
-	private Vector2D acceleration;
-	private boolean colliding;
-	private boolean alive;
-	private boolean moving;
-	private boolean onGround;
-	private boolean jumping;
-	private boolean lifting;
-	private boolean justJumped;
-	private boolean crouching;
-	private boolean waitingToUncrouch;
-	private boolean gameWon;
-	private boolean inWater;
-	private Direction direction;
-	private LiftableBlock lb;
-	private List<CollisionEvent> collidingList;
-	private Hitbox hitbox;
-	private Hitbox hbCopy;
-	private World world;
-	private List<String> collideList;
-	private float speedFactor;
+	private Position 				pt;
+	private Position 				startPos;
+	private Vector2D 				v2d;
+	private Vector2D 				addVector;
+	private Vector2D 				gravity;
+	private Vector2D 				acceleration;
+	private boolean 				colliding;
+	private boolean 				alive;
+	private boolean 				moving;
+	private boolean 				onGround;
+	private boolean 				jumping;
+	private boolean 				lifting;
+	private boolean 				justJumped;
+	private boolean 				crouching;
+	private boolean 				waitingToUncrouch;
+	private boolean 				gameWon;
+	private boolean 				inWater;
+	private Direction				direction;
+	private LiftableBlock			lb;
+	private List<CollisionEvent> 	collidingList;
+	private Hitbox 					hitbox;
+	private Hitbox 					hbCopy;
+	private World 					world;
+	private List<String> 			collideList;
+	private float 					speedFactor;
 
-	// TODO Clean this commented code
-	// public PlayerCharacter() {
-	// this(new Position(0, 0));
-	//
-	// }
-	//
-	// public PlayerCharacter(Position position) {
-	// this(position);
-	// this.world = world;
-	// }
 	public PlayerCharacter(World world) {
 		this(new Position(0, 0), world);
 	}
@@ -100,7 +96,7 @@ public class PlayerCharacter implements Entity {
 			this.waitingToUncrouch = false;
 			Rectangle searchRectangle = new Rectangle(
 					this.getPosition().getX(), this.getPosition().getY()
-							+ this.getHitbox().getHeight()-this.hbCopy.getHeight(),
+					+ this.getHitbox().getHeight()-this.hbCopy.getHeight(),
 					this.hbCopy.getWidth(), this.hbCopy.getHeight());
 			for (Entity e : world.getEntitiesAt(searchRectangle)) {
 				if (this.getCollideTypes().contains(e.getType())&& !e.equals(this)) {
@@ -244,24 +240,20 @@ public class PlayerCharacter implements Entity {
 
 			for (CollisionEvent evt : collidingList) {
 
-//				if (!(evt.getEntity().getType().equals("LiftableBlock")) ) {
-
-					switch (evt.getDirection()) {
-					case LEFT:
-						collideLeftCount++;
-						break;
-					case RIGHT:
-						collideRightCount++;
-						break;
-					case TOP:
-						collideTopCount++;
-						break;
-					case BOTTOM:
-						collideBottomCount++;
-						break;
-					}
-//				}
-//				 }
+				switch (evt.getDirection()) {
+				case LEFT:
+					collideLeftCount++;
+					break;
+				case RIGHT:
+					collideRightCount++;
+					break;
+				case TOP:
+					collideTopCount++;
+					break;
+				case BOTTOM:
+					collideBottomCount++;
+					break;
+				}
 			}
 
 			if ((collideLeftCount > 0) && (collideRightCount > 0)) {
@@ -379,19 +371,12 @@ public class PlayerCharacter implements Entity {
 
 		if (this.direction.equals(Direction.RIGHT) && this.moving) {
 			this.v2d.add(new Vector2D(2.8f, 0));
-			// TODO Clean this code
-			// if(this.acceleration.getX()<0) {
-			// this.acceleration.setX(0);
-			// }
 			if (this.onGround
 					&& (!this.jumping || this.acceleration.getX() < 0)) {
 				this.acceleration.add(new Vector2D(0.15f, 0));
 			}
 		} else if (this.direction.equals(Direction.LEFT) && this.moving) {
 			this.v2d.add(new Vector2D(-2.8f, 0));
-			// TODO Clean this code
-			// if(this.acceleration.getX()>0) {
-			// this.acceleration.setX(0);
 			// }
 			if (this.onGround
 					&& (!this.jumping || this.acceleration.getX() > 0)) {
@@ -412,8 +397,7 @@ public class PlayerCharacter implements Entity {
 
 		if (jumping && !justJumped) {
 			this.v2d.add(new Vector2D(0, -5));
-		} else if (justJumped) { // TODO Not being able to jump if just dropped
-									// from height
+		} else if (justJumped) {
 			this.v2d.add(new Vector2D(0, -2f));
 		}
 
