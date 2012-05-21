@@ -29,7 +29,6 @@ public class PlayerCharacter implements Entity {
 	private boolean lifting;
 	private boolean justJumped;
 	private boolean crouching;
-	private boolean isUncrouchable;
 	private boolean waitingToUncrouch;
 	private boolean gameWon;
 	private boolean inWater;
@@ -66,7 +65,6 @@ public class PlayerCharacter implements Entity {
 		this.collideList.add("FallingBlock");
 		this.collideList.add("MovingWall");
 		this.collideList.add("Camera");
-		this.collideList.add("MovingBlock");
 		this.gameWon = false;
 		this.alive = true;
 		this.setPosition(position);
