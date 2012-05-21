@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
  * 
  * *Can only play one track at the time*
  */
-public class GMusic {
+public class GMusic implements IMusic {
 	
 	private Music music;
 	private boolean loop;
