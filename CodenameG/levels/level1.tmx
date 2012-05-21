@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="50" height="12" tilewidth="32" tileheight="32">
  <properties>
+  <property name="background" value="1"/>
   <property name="numberOfPlayers" value="2"/>
  </properties>
  <tileset firstgid="1" name="block1" tilewidth="32" tileheight="32" spacing="2" margin="2">

@@ -67,15 +67,16 @@ public class LevelView {
 			music.resume();
 		}
 		
-		try {
-			background = new Image("res/backimg.jpg");
-		} catch (SlickException e1) {
-			e1.printStackTrace();
+		if(this.tm.getMapProperty("background", "0").equals("1")) {
+			try {
+				background = new Image("res/backimg.jpg");
+				g.drawImage(background, 
+						-200 -model.getWorld().getCamera().getX()/2,
+						-200 -model.getWorld().getCamera().getY()/2);
+			} catch (SlickException e1) {
+				e1.printStackTrace();
+			}
 		}
-		
-		g.drawImage(background, 
-				-200 -model.getWorld().getCamera().getX()/2,
-				-200 -model.getWorld().getCamera().getY()/2);
 		
 		scaleY = 500f/model.getWorld().getCamera().getHeight();
 		scaleX = 500f/model.getWorld().getCamera().getWidth();
