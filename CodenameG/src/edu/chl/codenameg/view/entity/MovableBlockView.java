@@ -6,6 +6,9 @@ import org.newdawn.slick.SlickException;
 
 import edu.chl.codenameg.model.Entity;
 
+/**
+ * The movable block's view that sets the graphic for the entity
+ */
 public class MovableBlockView extends BasicEntityView{
 	private Image movableBlock;
 	

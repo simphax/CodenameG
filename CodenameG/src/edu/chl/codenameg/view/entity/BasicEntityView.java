@@ -9,6 +9,10 @@ import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.view.EntityView;
 
+/**
+ * Draws rectangles around level entities for easier distinction
+ * This is used mainly for testing the view
+ */
 public class BasicEntityView implements EntityView {
 	
 	@Override
@@ -17,8 +21,6 @@ public class BasicEntityView implements EntityView {
 		if (ent instanceof LethalBlock){
 			g.setColor(Color.red);
 		}else if(ent instanceof MovingBlock){
-			
-			//System.out.println("width: "+ent.getHitbox().getWidth()+ " height: "+ent.getHitbox().getHeight());
 			g.setColor(Color.darkGray);
 		}else if(ent instanceof MovableBlock){
 			g.setColor(Color.green);

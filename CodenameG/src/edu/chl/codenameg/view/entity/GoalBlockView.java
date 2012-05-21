@@ -9,6 +9,9 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.view.EntityView;
 
+/**
+ * The goal's view that sets the graphic for the entity
+ */
 public class GoalBlockView implements EntityView{
 	private Animation 	spin;
 	private SpriteSheet spriteSheet;

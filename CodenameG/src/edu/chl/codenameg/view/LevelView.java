@@ -131,9 +131,6 @@ public class LevelView {
 					entityMap.put(e, view);
 				}
 			}
-			
-			//if debug
-//			(new BasicEntityView()).render(e, g);
 		}
 		
 		for (int i = 1; tm.getLayerCount() > i; i++) {
@@ -143,5 +140,4 @@ public class LevelView {
 		g.translate(model.getWorld().getCamera().getX(), model.getWorld().getCamera().getY());
 		g.scale(1/scaleX, 1/scaleY);
 	}
-	// TODO Possible memory leak? Clear all unused mappings.
 }

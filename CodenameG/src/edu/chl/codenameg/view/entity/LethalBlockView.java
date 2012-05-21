@@ -10,6 +10,9 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.view.EntityView;
 
+/**
+ * The lethal block's view that sets the graphic for the entity
+ */
 public class LethalBlockView implements EntityView{
 	private SpriteSheet spriteSheet;
 	private Animation 	spin;

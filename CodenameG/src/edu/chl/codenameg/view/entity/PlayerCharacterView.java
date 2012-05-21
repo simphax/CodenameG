@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -16,13 +15,16 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.sound.GSound;
 import edu.chl.codenameg.view.EntityView;
 
-// There are comments to be cleaned in here
+/**
+ * The player character's view that sets the animations and graphics for the entity
+ * 
+ * Also gives different colors to different players when there are multiple players playing
+ */
 public class PlayerCharacterView implements EntityView {
-    
-    	public static int DEFAULT = 0;
-    	public static int BLUE = 1;
-    	public static int GREEN = 2;
-    	public static int PINK = 3;
+	public static int DEFAULT = 0;
+	public static int BLUE = 1;
+	public static int GREEN = 2;
+	public static int PINK = 3;
     	
 	private SpriteSheet		spriteSheet;
 	private Animation		walkLeft;
@@ -132,7 +134,6 @@ public class PlayerCharacterView implements EntityView {
 	public void render(Entity ent, Graphics g) {
 		if (ent instanceof PlayerCharacter) {
 			PlayerCharacter pc = (PlayerCharacter) ent;
-			//speed = ent.getVector2D().getX();
 			
 			this.playSounds(pc);
 			
@@ -157,7 +158,6 @@ public class PlayerCharacterView implements EntityView {
 					lastAnimation = jumpLeft;
 					crouchLeft.restart();
 				} else if (pc.isMoving()) {
-					//walkLeft.setSpeed(Math.abs(5/speed));
 					walkLeft.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
@@ -191,9 +191,8 @@ public class PlayerCharacterView implements EntityView {
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);
 					lastAnimation = jumpRight;
-					crouchRight.restart();						//whats that smell??
+					crouchRight.restart();
 				} else if (pc.isMoving()) {
-					//walkRight.setSpeed(Math.abs(5/speed));
 					walkRight.draw(pc.getPosition().getX()
 							+ (pc.getHitbox().getWidth() / 2+3) - 64 / 2, pc
 							.getPosition().getY()-9);

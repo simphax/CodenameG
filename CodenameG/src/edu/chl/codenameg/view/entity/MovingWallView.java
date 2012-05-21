@@ -11,8 +11,10 @@ import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.MovingWall;
 import edu.chl.codenameg.view.EntityView;
 
+/**
+ * The moving wall's view that sets the graphic for the entity
+ */
 public class MovingWallView implements EntityView {
-
     Animation fireRightAni;
     Animation fireUpAni;
 
@@ -51,21 +53,6 @@ public class MovingWallView implements EntityView {
 			fireRightAni.draw(ent.getPosition().getX() - 50, ent
 				.getPosition().getY() - 50 + i);
 		    }
-		    // } else if (wall.getDirection().equals(Direction.LEFT)) {
-		    // for (int i = 0; i <
-		    // Math.round(ent.getHitbox().getHeight()) - 50; i = i +
-		    // 100) {
-		    // fireLeftAni.draw(ent.getPosition().getX() -+ 50,
-		    // ent.getPosition().getY() - 50 + i);
-		    // }
-		    // } else if (wall.getDirection().equals(Direction.BOTTOM))
-		    // {
-		    // for (int i = 0; i <
-		    // Math.round(ent.getHitbox().getHeight()) - 50; i = i +
-		    // 100) {
-		    // fireDownAni.draw(ent.getPosition().getX() - 50,
-		    // ent.getPosition().getY() - 50 + i);
-		    // }
 		} else if (wall.getDirection().equals(Direction.TOP)) {
 		    for (int i = 0; i < Math.round(ent.getHitbox().getWidth()) - 50; i = i + 100) {
 			fireUpAni.draw(ent.getPosition().getX() - 50 + i, ent
