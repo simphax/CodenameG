@@ -16,6 +16,7 @@ import edu.chl.codenameg.model.entity.FallingBlock;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
+import edu.chl.codenameg.model.entity.LiftableBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.MovingWall;
@@ -98,6 +99,16 @@ public class LevelFactory {
 				groupID, objectID));
 			Entity movableblock = new MovableBlock(position, hitbox);
 			entities.add(movableblock);
+		    }
+		    if (name.equals("LiftableBlock")){
+		    	Hitbox hitbox = new Hitbox(tiledmap.getObjectWidth(
+						groupID, objectID) - 1,
+						tiledmap.getObjectHeight(groupID, objectID) - 1);
+					Position position = new Position(tiledmap.getObjectX(
+						groupID, objectID), tiledmap.getObjectY(
+						groupID, objectID));
+					Entity liftableblock = new LiftableBlock(position, hitbox);
+					entities.add(liftableblock);
 		    }
 		    if (name.equals("MovingBlock")
 			    || name.equals("LethalMovingBlock")

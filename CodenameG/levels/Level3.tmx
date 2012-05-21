@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="150" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="numberOfPlayers" value="2"/>
+ </properties>
  <tileset firstgid="1" name="block3supermario" tilewidth="32" tileheight="32" spacing="2" margin="2">
   <image source="tileset/block3supermario.png" width="1168" height="1156"/>
  </tileset>
@@ -11,12 +14,20 @@
  </tileset>
  <layer name="Tiles" width="150" height="100">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="SPAWN" width="150" height="100">
-  <object name="SpawnPC1" x="96" y="160"/>
-  <object name="SpawnPC2" x="128" y="160"/>
+  <object name="SpawnPC1" x="64" y="160" width="32" height="64">
+   <properties>
+    <property name="SpawnPC1" value=""/>
+   </properties>
+  </object>
+  <object name="SpawnPC2" x="128" y="160" width="32" height="64">
+   <properties>
+    <property name="SpawnPC2" value=""/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Block" width="150" height="100">
   <object name="Block" x="0" y="512" width="704" height="32"/>
@@ -35,7 +46,7 @@
   <object name="Block" x="224" y="160" width="32" height="32"/>
   <object name="Block" x="448" y="288" width="32" height="32"/>
   <object name="Block" x="736" y="416" width="32" height="64"/>
-  <object name="Block" x="768" y="448" width="192" height="32"/>
+  <object name="Block" x="768" y="448" width="160" height="32"/>
   <object name="Block" x="672" y="480" width="32" height="32"/>
   <object name="Block" x="704" y="512" width="32" height="32"/>
   <object name="Block" x="960" y="512" width="32" height="32"/>
@@ -170,4 +181,13 @@
    H4sIAAAAAAAAA+3XQQrCMBAF0Fk0l6q6UBd6j260h/KspjSFIigIxRh4Dz5kdgkMkyQCAAAAYFt9itjlHFLtnQBAfb07EWiYGca3lv/gkn2JPuJXXntwHX3I4pG2zeTaRVxKTt1cn3OOpZ5S41y0bch9c8u5d/N6LPWwqv/Vu5m7fh+Y0Xyy5YwGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADa9gR6In51YOoAAA==
   </data>
  </layer>
+ <objectgroup name="MovingWall" width="150" height="100" visible="0">
+  <object name="MovingWall" x="-32" y="0" width="3616" height="1120">
+   <properties>
+    <property name="Direction" value="right"/>
+    <property name="lethality" value="true"/>
+    <property name="traveltime" value="200000"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
