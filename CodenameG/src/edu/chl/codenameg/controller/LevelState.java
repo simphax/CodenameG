@@ -35,8 +35,8 @@ public class LevelState extends BasicGameState {
 	}
 	
 	public void selectLevel(int level) {
-		model.selectLevel(level);
-		model.startGame();
+		this.model.selectLevel(level);
+		this.model.startGame();
 	}
 
 	/**
@@ -45,11 +45,11 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		if(model == null) {
+		if(this.model == null) {
 			this.model = new GameModel();
 		}
 		
-		this.view = new LevelView(model);
+		this.view = new LevelView(this.model);
 	}
 
 	/**
@@ -67,16 +67,16 @@ public class LevelState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int elapsedTime)
 			throws SlickException {
-		if(model.getSelectedLevel() != lastLevel) { // Slick can only init TiledMap on init()
+		if(this.model.getSelectedLevel() != lastLevel) { // Slick can only init TiledMap on init()
 			this.init(container, game);
-			lastLevel=model.getSelectedLevel();
+			lastLevel=this.model.getSelectedLevel();
 		}
 		
 		if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
 			game.enterState(4);
 		}
 		
-		model.update(elapsedTime);
+		this.model.update(elapsedTime);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class LevelState extends BasicGameState {
 			break;
 		}
 		
-		model.performAction(action);
+		this.model.performAction(action);
 	}
 
 	/**
@@ -123,46 +123,46 @@ public class LevelState extends BasicGameState {
 		case PLAYER_1_MOVE_LEFT:
 			player1LeftKeyPressed = false;
 			if (player1RightKeyPressed) {
-				model.performAction(Action.PLAYER_1_MOVE_RIGHT);
+				this.model.performAction(Action.PLAYER_1_MOVE_RIGHT);
 			} else {
-				model.stopAction(action);
+				this.model.stopAction(action);
 			}
 			break;
 		case PLAYER_1_MOVE_RIGHT:
 			player1RightKeyPressed = false;
 			if (player1LeftKeyPressed) {
-				model.performAction(Action.PLAYER_1_MOVE_LEFT);
+				this.model.performAction(Action.PLAYER_1_MOVE_LEFT);
 			}else {
-				model.stopAction(action);
+				this.model.stopAction(action);
 			}
 			break;
 		case PLAYER_2_MOVE_LEFT:
 			player2LeftKeyPressed = false;
 			if (player2RightKeyPressed) {
-				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+				this.model.performAction(Action.PLAYER_2_MOVE_RIGHT);
 			}else {
-				model.stopAction(action);
+				this.model.stopAction(action);
 			}
 			break;
 		case PLAYER_2_MOVE_RIGHT:
 			player2RightKeyPressed = false;
 			if (player2RightKeyPressed) {
-				model.performAction(Action.PLAYER_2_MOVE_RIGHT);
+				this.model.performAction(Action.PLAYER_2_MOVE_RIGHT);
 			}else {
-				model.stopAction(action);
+				this.model.stopAction(action);
 			}
 			break;
 		default:
-			model.stopAction(action);
+			this.model.stopAction(action);
 			break;
 		}
 		
 		// This fixes the player stopping if you for example pressed
 		// down the left key before you release the right
 		if (!player1LeftKeyPressed && !player1RightKeyPressed) {
-			model.stopAction(Action.PLAYER_1_MOVE_LEFT);
+			this.model.stopAction(Action.PLAYER_1_MOVE_LEFT);
 		} else if (!player2LeftKeyPressed && !player2RightKeyPressed) {
-			model.stopAction(Action.PLAYER_2_MOVE_LEFT);
+			this.model.stopAction(Action.PLAYER_2_MOVE_LEFT);
 		}
 	}
 }
