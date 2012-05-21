@@ -17,14 +17,14 @@
  </tileset>
  <layer name="Tile Layer 1" width="150" height="100">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="FallingBlock" width="150" height="100">
   <object name="FallingBlock" x="512" y="223" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="MovableBlock" width="150" height="100">
-  <object name="MovableBlock" x="1434" y="252" width="34" height="32"/>
+  <object name="MovableBlock" x="1440" y="256" width="34" height="32"/>
   <object name="MovableBlock" x="1760" y="256" width="32" height="32"/>
   <object name="Block" x="2592" y="480" width="224" height="32"/>
  </objectgroup>
@@ -41,12 +41,12 @@
     <property name="traveltime" value="2000"/>
    </properties>
   </object>
-  <object name="Block" x="2019" y="480" width="187" height="31"/>
+  <object name="Block" x="2016" y="480" width="192" height="32"/>
   <object name="Block" x="1408" y="480" width="32" height="384"/>
   <object name="Block" x="1632" y="801" width="352" height="30"/>
   <object name="Block" x="1532" y="833" width="100" height="31"/>
   <object name="Block" x="1440" y="867" width="100" height="31"/>
-  <object name="MovingBlock" x="2271" y="64" width="32" height="544">
+  <object name="MovingBlock" x="2272" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="5500"/>
@@ -70,37 +70,37 @@
     <property name="traveltime" value="1000"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2402" y="62" width="32" height="544">
+  <object name="MovingBlock" x="2400" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="6000"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2436" y="64" width="32" height="544">
+  <object name="MovingBlock" x="2432" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="2000"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2467" y="62" width="32" height="544">
+  <object name="MovingBlock" x="2464" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="4400"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2498" y="63" width="32" height="544">
+  <object name="MovingBlock" x="2496" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="3400"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2530" y="62" width="32" height="544">
+  <object name="MovingBlock" x="2528" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="3000"/>
    </properties>
   </object>
-  <object name="MovingBlock" x="2559" y="66" width="32" height="544">
+  <object name="MovingBlock" x="2560" y="64" width="32" height="544">
    <properties>
     <property name="Direction" value="down"/>
     <property name="traveltime" value="1950"/>
@@ -132,13 +132,13 @@
     <property name="traveltime" value="1800"/>
    </properties>
   </object>
-  <object name="LethalMovingBlock" x="1729" y="324" width="224" height="32">
+  <object name="LethalMovingBlock" x="1728" y="320" width="224" height="32">
    <properties>
     <property name="Direction" value="right"/>
     <property name="traveltime" value="2500"/>
    </properties>
   </object>
-  <object name="LethalMovingBlock" x="1567" y="444" width="224" height="32">
+  <object name="LethalMovingBlock" x="1568" y="448" width="224" height="32">
    <properties>
     <property name="Direction" value="right"/>
     <property name="traveltime" value="2500"/>
@@ -154,23 +154,49 @@
   <object name="Block" x="38" y="226" width="378" height="31"/>
   <object name="Block" x="382" y="257" width="34" height="94"/>
   <object name="Block" x="638" y="225" width="32" height="128"/>
-  <object name="Block" x="672" y="290" width="416" height="32"/>
+  <object name="Block" x="672" y="288" width="416" height="32"/>
   <object name="Block" x="32" y="448" width="384" height="32"/>
   <object name="Block" x="735" y="385" width="288" height="32"/>
-  <object name="Block" x="1090" y="447" width="320" height="32"/>
+  <object name="Block" x="1088" y="448" width="320" height="32"/>
   <object name="Block" x="1023" y="417" width="64" height="32"/>
   <object name="Block" x="671" y="416" width="64" height="32"/>
   <object name="Block" x="641" y="449" width="64" height="32"/>
-  <object name="Block" x="1086" y="225" width="32" height="128"/>
-  <object name="Block" x="1405" y="287" width="128" height="32"/>
-  <object name="Block" x="1406" y="322" width="32" height="160"/>
+  <object name="Block" x="1088" y="224" width="32" height="128"/>
+  <object name="Block" x="1408" y="288" width="128" height="32"/>
+  <object name="Block" x="1408" y="320" width="32" height="160"/>
   <object name="Block" x="1476" y="480" width="504" height="31"/>
   <object name="Block" x="1664" y="288" width="288" height="32"/>
   <object name="Block" x="1792" y="32" width="32" height="224"/>
-  <object name="Block" x="1922" y="159" width="192" height="32"/>
-  <object name="Block" x="2078" y="192" width="32" height="288"/>
+  <object name="Block" x="1920" y="160" width="192" height="32"/>
+  <object name="Block" x="2080" y="192" width="32" height="288"/>
   <object name="Block" x="1856" y="271" width="34" height="14"/>
   <object name="Block" x="1726" y="272" width="34" height="14"/>
+  <object name="Block" x="2720" y="0" width="192" height="32"/>
+  <object name="Block" x="2880" y="32" width="64" height="32"/>
+  <object name="Block" x="2944" y="64" width="96" height="32"/>
+  <object name="Block" x="3008" y="96" width="96" height="32"/>
+  <object name="Block" x="3072" y="128" width="64" height="32"/>
+  <object name="Block" x="3104" y="160" width="64" height="32"/>
+  <object name="Block" x="3168" y="192" width="64" height="32"/>
+  <object name="Block" x="3200" y="224" width="96" height="32"/>
+  <object name="Block" x="3264" y="256" width="32" height="64"/>
+  <object name="Block" x="3296" y="288" width="32" height="64"/>
+  <object name="Block" x="3328" y="352" width="32" height="96"/>
+  <object name="Block" x="3360" y="416" width="32" height="288"/>
+  <object name="Block" x="2784" y="512" width="32" height="96"/>
+  <object name="Block" x="2816" y="576" width="32" height="512"/>
+  <object name="Block" x="2816" y="1088" width="64" height="32"/>
+  <object name="Block" x="2848" y="1120" width="32" height="224"/>
+  <object name="Block" x="2880" y="1312" width="32" height="192"/>
+  <object name="Block" x="2912" y="1472" width="32" height="64"/>
+  <object name="Block" x="2944" y="1504" width="32" height="32"/>
+  <object name="Block" x="2976" y="1536" width="192" height="32"/>
+  <object name="Block" x="3168" y="1504" width="64" height="32"/>
+  <object name="Block" x="3200" y="1472" width="32" height="32"/>
+  <object name="Block" x="3232" y="1312" width="32" height="160"/>
+  <object name="Block" x="3264" y="1184" width="32" height="160"/>
+  <object name="Block" x="3296" y="800" width="32" height="384"/>
+  <object name="Block" x="3328" y="672" width="32" height="160"/>
  </objectgroup>
  <objectgroup name="Spawn" width="150" height="100">
   <object name="SpawnPC1" x="126" y="128" width="20" height="7">
@@ -186,16 +212,35 @@
  </objectgroup>
  <objectgroup name="LethalBlock" width="150" height="100">
   <object name="LethalBlock" x="418" y="449" width="224" height="32"/>
-  <object name="LethalBlock" x="672" y="256" width="412" height="30"/>
-  <object name="LethalBlock" x="2205" y="606" width="387" height="33"/>
+  <object name="LethalBlock" x="672" y="256" width="416" height="32"/>
+  <object name="LethalBlock" x="2208" y="608" width="387" height="33"/>
   <object name="LethalBlock" x="2208" y="32" width="384" height="32"/>
-  <object name="Block" x="2172" y="513" width="36" height="157"/>
-  <object name="Block" x="2589" y="512" width="36" height="157"/>
+  <object name="Block" x="2176" y="512" width="32" height="160"/>
+  <object name="Block" x="2592" y="512" width="32" height="160"/>
   <object name="Block" x="2592" y="32" width="32" height="160"/>
-  <object name="Block" x="2172" y="32" width="32" height="160"/>
+  <object name="Block" x="2176" y="32" width="32" height="160"/>
+  <object name="LethalBlock" x="2816" y="544" width="32" height="32"/>
+  <object name="LethalBlock" x="2848" y="672" width="96" height="32"/>
+  <object name="LethalBlock" x="3136" y="672" width="96" height="32"/>
+  <object name="LethalBlock" x="3328" y="640" width="32" height="32"/>
+  <object name="LethalBlock" x="3296" y="768" width="32" height="32"/>
+  <object name="LethalBlock" x="3072" y="800" width="64" height="32"/>
+  <object name="LethalBlock" x="2848" y="1056" width="32" height="32"/>
+  <object name="LethalBlock" x="2880" y="1280" width="32" height="32"/>
+  <object name="LethalBlock" x="2944" y="1472" width="32" height="32"/>
+  <object name="LethalBlock" x="2912" y="1440" width="32" height="32"/>
+  <object name="LethalBlock" x="3264" y="1152" width="32" height="32"/>
+  <object name="LethalBlock" x="3200" y="1440" width="32" height="32"/>
+  <object name="LethalBlock" x="3168" y="1472" width="32" height="32"/>
+  <object name="LethalBlock" x="3232" y="1280" width="32" height="32"/>
+  <object name="LethalBlock" x="2912" y="1056" width="96" height="32"/>
+  <object name="LethalBlock" x="3168" y="1312" width="64" height="32"/>
+  <object name="LethalBlock" x="3136" y="1344" width="64" height="32"/>
+  <object name="LethalBlock" x="2976" y="1504" width="64" height="32"/>
+  <object name="LethalBlock" x="3104" y="1504" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="MovingWall" width="150" height="100">
-  <object name="MovingWall" x="32" y="32" width="3136" height="1184">
+  <object name="MovingWall" x="32" y="32" width="3808" height="1536">
    <properties>
     <property name="Direction" value="right"/>
     <property name="lethality" value="false"/>
@@ -214,7 +259,7 @@
     <property name="traveltime" value="2500"/>
    </properties>
   </object>
-  <object name="MovableBlock" x="1953" y="124" width="32" height="32"/>
+  <object name="MovableBlock" x="1952" y="128" width="32" height="32"/>
   <object name="MovableBlock" x="1470" y="252" width="34" height="32"/>
  </objectgroup>
  <objectgroup name="Water" width="150" height="100">
@@ -222,7 +267,10 @@
  </objectgroup>
  <layer name="Water" width="150" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SSQrCQABE0WxyPK/ugEbUSzjPCpbQggTBRdDVe/DppOllVRUAAAAA8G+9L//QNqmrqkmDNC7Nyzkt3/00Sos0fHvblPvZW/C0zBZWaZ02aVt/vtulfTqkYzqlc7qka7qlu11R2BW/YFf8wmtDy1Z2RRftLdkVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHTzAC9SByJg6gAA
+   H4sIAAAAAAAAA+3b3UoCYRSG0enAm+ieuvUsSsluwn40tRR6hW9AhkobNVPXggd1mAMPNnybEasKAAAAAPhrV2s+Q9N9p6p6qZvuSoPy2i/vr9Ntekw3K/f2yvWHlWBpmFl4Ss/pJb12vr42SuP0liZpmmbpPX2keVqYKwpzxT6YK/ahnqFhI3PFNpqzZK4A4H+6vDj0NwCA4+Uc5TvL2ajb5h4AOCfORNqyUwEAAABwaPXzKb8BAsBmnJUAAD/7zb5kt2KXPNti18wUAKduk3POWUgb6/6bCm01d3Q7OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPH7BNEk/L9g6gAA
   </data>
  </layer>
+ <objectgroup name="GoalBlock" width="150" height="100">
+  <object name="GoalBlock" x="3058" y="1480" width="32" height="32"/>
+ </objectgroup>
 </map>
