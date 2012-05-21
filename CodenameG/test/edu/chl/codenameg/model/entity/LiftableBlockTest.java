@@ -18,6 +18,7 @@ public class LiftableBlockTest {
 		LiftableBlock lb = new LiftableBlock();
 		CollisionEvent evt = new CollisionEvent(pc,Direction.RIGHT);
 		lb.collide(evt);
+		pc.collide(evt);
 		assertTrue(pc.isColliding() && lb.isColliding());
 	}
 
@@ -35,9 +36,13 @@ public class LiftableBlockTest {
 
 	@Test
 	public void testLiftableBlockPosition() {
+		World world = new World();
 		LiftableBlock lb = new LiftableBlock();
+		world.add(lb);
 		lb.setVector2D(new Vector2D(2f, 2f));
-		assertTrue(!lb.getPosition().equals(new Position(0, 0)));
+		lb.update();
+		lb.update();
+		assertTrue(!lb.getVector2D().equals(new Vector2D(0,0)));
 	}
 
 //	@Test
@@ -52,16 +57,26 @@ public class LiftableBlockTest {
 
 	@Test
 	public void testLift() {
-		PlayerCharacter pc = new PlayerCharacter(new World());
-		LiftableBlock lb = new LiftableBlock(new Position(pc.getHitbox().getWidth(), 0));
+		World wrld = new World();
+		PlayerCharacter pc = new PlayerCharacter(wrld);
+		LiftableBlock lb = new LiftableBlock(new Position(pc.getHitbox().getWidth()+2, 5));
+		wrld.add(pc);
+		wrld.add(lb);
+		pc.setDirection(Direction.RIGHT);
 		pc.toggleLift();
+		
+		lb.update();
+		pc.update();
 		assertTrue(lb.isLifted() && pc.isLifting());
 	}
 
 	@Test
 	public void testDrop() {
-		PlayerCharacter pc = new PlayerCharacter(new World());
+		World wrld = new World();
+		PlayerCharacter pc = new PlayerCharacter(wrld);
 		LiftableBlock lb = new LiftableBlock(new Position(pc.getHitbox().getWidth(), 0));
+		wrld.add(pc);
+		wrld.add(lb);
 		pc.toggleLift();
 		pc.unToggleLift();
 		lb.update();
