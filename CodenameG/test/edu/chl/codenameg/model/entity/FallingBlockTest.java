@@ -13,15 +13,15 @@ public class FallingBlockTest {
 
 	@Test
 	public void testCollide() {
-		PlayerCharacter gnarp = new PlayerCharacter(new World());
+
 		FallingBlock fb = new FallingBlock();
-		CollisionEvent evt1 = new CollisionEvent(gnarp,Direction.BOTTOM);
+		CollisionEvent evt1 = new CollisionEvent(new PlayerCharacter(new World()),Direction.BOTTOM);
 		fb.collide(evt1);
 		Vector2D v2d1 = new Vector2D(fb.getVector2D());
 		CollisionEvent evt2 = new CollisionEvent(new MovableBlock(),Direction.TOP);
 		fb.collide(evt2);
 		Vector2D v2d2 = new Vector2D(fb.getVector2D());
-		CollisionEvent evt3 = new CollisionEvent(gnarp,Direction.TOP);
+		CollisionEvent evt3 = new CollisionEvent(new PlayerCharacter(new World()),Direction.TOP);
 		fb.collide(evt3);
 		Vector2D v2d3 = new Vector2D(fb.getVector2D());
 		assertTrue(v2d1.equals(new Vector2D(0,0)) && v2d2.equals(v2d1) && v2d3.equals(new Vector2D(0,2)));

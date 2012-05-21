@@ -15,11 +15,11 @@ public class MovingWallTest {
 		MovingWall mw = new MovingWall();
 		PlayerCharacter pc1 = new PlayerCharacter(new World());
 		PlayerCharacter pc2 = new PlayerCharacter(new World());
-		mw.toggleLethal(true);
+		mw.setLethal(true);
 		CollisionEvent evt1 = new CollisionEvent(pc1,Direction.LEFT);
 		CollisionEvent evt2 = new CollisionEvent(pc2,Direction.LEFT);
 		mw.collide(evt1);
-		mw.toggleLethal(false);
+		mw.setLethal(false);
 		mw.collide(evt2);
 		assertTrue(!pc1.isAlive() && pc2.isAlive());
 	}

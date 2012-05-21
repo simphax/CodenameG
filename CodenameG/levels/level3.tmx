@@ -186,7 +186,7 @@
    <properties>
     <property name="Direction" value="right"/>
     <property name="lethality" value="true"/>
-    <property name="traveltime" value="50000"/>
+    <property name="traveltime" value="100000"/>
    </properties>
   </object>
  </objectgroup>

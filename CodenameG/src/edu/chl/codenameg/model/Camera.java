@@ -51,6 +51,34 @@ public class Camera {
 	}
 	
 	/**
+	 * @return The maximum width of the camera
+	 */
+	public float getMaxWidth(){
+		return this.maxWidth;
+	}
+	
+	/**
+	 * @return The maximum height of the camera
+	 */
+	public float getMaxHeight(){
+		return this.maxHeight;
+	}
+	
+	/**
+	 * @return The minimum width of the camera
+	 */
+	public float getMinWidth(){
+		return this.minWidth;
+	}
+	
+	/**
+	 * @return The minimum height of the camera
+	 */
+	public float getMinHeight(){
+		return this.maxHeight;
+	}
+	
+	/**
 	 * @return The width of the camera
 	 */
 	public int getWidth() {
