@@ -9,7 +9,10 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-
+/**
+ * An Entity that represents a basic block
+ * (a rectangle-shaped object)
+ */
 public class Block implements Entity{
 	private Hitbox 		hb;
 	private Vector2D 	v2d;
@@ -53,7 +56,6 @@ public class Block implements Entity{
 	@Override
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
-		
 	}
 
 	@Override
@@ -62,7 +64,9 @@ public class Block implements Entity{
 	}
 
 	@Override
-	public void update(int elapsedTime) {}
+	public void update(int elapsedTime) {
+		this.colliding = false;
+	}
 
 	@Override
 	public void setPosition(Position p) {
@@ -83,6 +87,10 @@ public class Block implements Entity{
 		return "Block";
 	}
 
+	/**
+	 * Adds a two dimensional vector to this object's vector
+	 * @param a Vector2D-object
+	 */
 	public void addVector2D(Vector2D v2d) {
 		this.v2d.add(v2d);
 	}

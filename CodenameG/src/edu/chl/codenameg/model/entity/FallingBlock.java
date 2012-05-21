@@ -9,10 +9,12 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
+/**
+ * This is a block that falls when you walk on it
+ */
 public class FallingBlock extends Block{
 	private boolean 		colliding;
 	private List<String> 	list;
-
 	
 	public FallingBlock(){
 		this(new Position(0,0));
@@ -32,6 +34,11 @@ public class FallingBlock extends Block{
 		list.add("LiftableBlock");
 	}
 	
+	/**
+	 * Handles collision with this block
+	 * 
+	 * Sets the block to fall if a player walks on it
+	 */
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
 		if(evt.getEntity().getType().equals("PlayerCharacter") && evt.getDirection().equals(Direction.TOP)){
@@ -70,5 +77,4 @@ public class FallingBlock extends Block{
 	public boolean isColliding(){
 		return this.colliding;
 	}
-
 }
