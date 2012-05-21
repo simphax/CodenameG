@@ -113,7 +113,7 @@ public class World {
 		for (Entity e : this.getEntities()) {
 			if (e instanceof PlayerCharacter) {
 				PlayerCharacter pc = (PlayerCharacter) e;
-				if (pc.hasWonGame() && this.getAmountOfPlayers() < 2) {
+				if (pc.hasWonGame()) {
 					this.hasWonGame = true;
 					this.setGameOver();
 				} else if (!pc.isAlive() && this.getAmountOfPlayers() < 2) {
