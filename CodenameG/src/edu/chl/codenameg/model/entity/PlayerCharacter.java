@@ -150,7 +150,7 @@ public class PlayerCharacter implements Entity {
 		this.lifting = false;
 
 		if (lb != null) {
-			lb.drop(this);
+			lb.drop();
 			lb = null;
 		}
 	}
@@ -235,7 +235,6 @@ public class PlayerCharacter implements Entity {
 
 	private void checkCollisionDeath() {
 
-		// TODO Check collision from both sides.
 		if (collidingList.size() > 0) {
 			int collideLeftCount = 0;
 			int collideRightCount = 0;

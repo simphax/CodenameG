@@ -9,7 +9,10 @@ import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 
-// Remove commented code
+/**
+ * A MovableBlock that is liftable by a PlayerCharacter
+ * Is affected by gravity and friction
+ */
 public class LiftableBlock extends MovableBlock{
 	private PlayerCharacter pc;
 	private List<String> collideList;
@@ -18,22 +21,20 @@ public class LiftableBlock extends MovableBlock{
 
 	public LiftableBlock(Position ps){
 		super(ps);
-		this.collideList 	= new ArrayList<String>();
-		this.colliding 		= false;
-		this.onGround		= false;
-		addCompleteCollideList();
+		init();
 	}
 	
 	public LiftableBlock(Position ps, Hitbox hb){
 		super(ps, hb);
-		this.collideList 	= new ArrayList<String>();
-		this.colliding 		= false;
-		this.onGround 		= false;
-		addCompleteCollideList();
+		init();
 	}
 	
 	public LiftableBlock() {
 		super();
+		init();
+	}
+	
+	private void init() {
 		this.collideList 	= new ArrayList<String>();
 		this.colliding 		= false;
 		this.onGround 		= false;
@@ -64,6 +65,9 @@ public class LiftableBlock extends MovableBlock{
 		return list;
 	}
 	
+	/**
+	 * Handles collision with this block
+	 */
 	@Override
 	public void collide(CollisionEvent evt) {
 		this.colliding = true;
@@ -89,24 +93,23 @@ public class LiftableBlock extends MovableBlock{
 		this.update(10);
 	}
 	
+	/**
+	 * Removes gravity and friction when held by a player and adds it when it's released
+	 */
 	@Override
 	public void update(int elapsedTime) {
 		if (pc != null){
 			if (this.pc.getDirection()==Direction.RIGHT){
-				this.setPosition(new Position(pc.getPosition().getX(), pc.getPosition().getY() - this.getHitbox().getHeight() - 5));
-//				this.setPosition(new Position((pc.getPosition().getX() + 5 + pc.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));	
+				this.setPosition(new Position(pc.getPosition().getX(), 
+						pc.getPosition().getY() - this.getHitbox().getHeight() - 5));
 			}else{
-				this.setPosition(new Position(pc.getPosition().getX() - (pc.getHitbox().getWidth() - this.getHitbox().getWidth()), pc.getPosition().getY() - this.getHitbox().getHeight() - 5));
-//				this.setPosition(new Position((pc.getPosition().getX() - 5 - this.getHitbox().getWidth()),(pc.getPosition().getY()+ pc.getHitbox().getHeight()-this.getHitbox().getHeight())));		
+				this.setPosition(new Position(pc.getPosition().getX() - 
+							(pc.getHitbox().getWidth() - this.getHitbox().getWidth()), 
+						pc.getPosition().getY() - this.getHitbox().getHeight() - 5));		
 			}
-//			this.setVector2D(pc.getVector2D());
 		}else{
 			this.addVector2D(new Vector2D(0, 0.1f));
 		}
-		
-//		if (Math.abs(this.acceleration.getX()) < 0.1) {
-//			this.acceleration.setX(0);
-//		}
 
 		if (this.onGround) {
 			if (this.getVector2D().getX() < 0) {
@@ -117,15 +120,24 @@ public class LiftableBlock extends MovableBlock{
 			}
 		}
 		
+		this.colliding = false;
 		this.onGround = false;
 	}
 	
+	/**
+	 * Sets this block to be lifted
+	 * @param a PlayerCharacter
+	 */
 	public void lift(PlayerCharacter pc) {
 		this.pc = pc;
 		removeAllInCollideList();
 	}
 
-	public void drop(PlayerCharacter pc) {
+	/**
+	 * Drops this block from the player holding it
+	 * Also adds throwing speed
+	 */
+	public void drop() {
 		this.pc = null;
 		addCompleteCollideList();
 		float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);

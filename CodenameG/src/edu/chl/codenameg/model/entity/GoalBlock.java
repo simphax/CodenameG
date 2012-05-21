@@ -4,8 +4,19 @@ import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 
+/**
+ * A block that represents the goal of the game
+ * If a player walks through it they win
+ * @author ???
+ *
+ */
 public class GoalBlock extends Block{
 	
+	/**
+	 * Handles collision with this block
+	 * 
+	 * Sets a PlayerCharacter to win if it walks through this block
+	 */
 	@Override
 	public void collide(CollisionEvent evt){
 		super.collide(evt);
