@@ -18,6 +18,7 @@ public class LiftableBlock extends MovableBlock{
 	private List<String> collideList;
 	private boolean colliding;
 	private boolean onGround;
+	private boolean isLifted;
 
 	public LiftableBlock(Position ps){
 		super(ps);
@@ -38,6 +39,8 @@ public class LiftableBlock extends MovableBlock{
 		this.collideList 	= new ArrayList<String>();
 		this.colliding 		= false;
 		this.onGround 		= false;
+		this.isLifted		= false;
+		
 		addCompleteCollideList();
 	}
 	
@@ -130,6 +133,8 @@ public class LiftableBlock extends MovableBlock{
 	 */
 	public void lift(PlayerCharacter pc) {
 		this.pc = pc;
+		this.isLifted = true;
+		
 		removeAllInCollideList();
 	}
 
@@ -141,6 +146,11 @@ public class LiftableBlock extends MovableBlock{
 		addCompleteCollideList();
 		float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);
 		this.setVector2D(new Vector2D(temp, -2f));
-		this.pc = null;
+		this.pc 		= null;
+		this.isLifted 	= false;
+	}
+	
+	public boolean isLifted() {
+		return this.isLifted;
 	}
 }
