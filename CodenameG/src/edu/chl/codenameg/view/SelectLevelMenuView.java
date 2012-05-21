@@ -1,14 +1,12 @@
 package edu.chl.codenameg.view;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /** 
- * Class that represents a menu graphics
- * that changes according to selected options.
- */ 
+ * Represents "Select level"-menu graphics that changes according to the selected option.
+ */
 public class SelectLevelMenuView {
 	private Image 	romijam;
 	private Image 	background;

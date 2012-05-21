@@ -5,8 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /** 
- * Class that represents a menu graphics
- * that changes according to selected options.
+ * Represents menu graphics that changes according to the selected option.
  */
 public class MenuView {
 	private int 	selectedId = 0;
