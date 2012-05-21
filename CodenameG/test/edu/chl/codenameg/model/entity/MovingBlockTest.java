@@ -4,41 +4,26 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.CollisionEvent;
+import edu.chl.codenameg.model.Direction;
+import edu.chl.codenameg.model.World;
+
 public class MovingBlockTest {
 
 	@Test
 	public void testCollide() {
-		fail("Not yet implemented");
+		PlayerCharacter pc = new PlayerCharacter(new World());
+		MovingBlock mb = new MovingBlock();
+		CollisionEvent evt = new CollisionEvent(pc,Direction.RIGHT);
+		mb.collide(evt);
+		pc.collide(evt);
+		assertTrue(pc.isColliding() && mb.isColliding());
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		MovingBlock mb = new MovingBlock();
+		mb.update();
+		assertTrue(mb.getVector2D().getY() != 0);
 	}
-
-	@Test
-	public void testMovingBlockPositionPositionInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMovingBlock() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetStartPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetTravelTime() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCalculateNextVector() {
-		fail("Not yet implemented");
-	}
-
 }
