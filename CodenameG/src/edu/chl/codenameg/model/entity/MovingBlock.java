@@ -43,6 +43,10 @@ public class MovingBlock extends Block {
 		this.travelTime = tt;
 	}
 
+	public void update() {
+		this.update(10);
+	}
+	
 	/**
 	 * Moves the block along it's path
 	 */
@@ -75,6 +79,7 @@ public class MovingBlock extends Block {
 			return calculateNextVector(temp, steps - 1, currentTime + 10);
 		}
 	}
+	@Override
 	public String getType(){
 		return "MovingBlock";
 	}
