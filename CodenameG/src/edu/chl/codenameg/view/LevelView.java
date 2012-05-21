@@ -10,6 +10,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.GameModel;
+import edu.chl.codenameg.model.entity.FallingBlock;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
@@ -19,6 +20,7 @@ import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.model.levels.LevelFactory;
 import edu.chl.codenameg.view.entity.BasicEntityView;
+import edu.chl.codenameg.view.entity.FallingBlockView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
 import edu.chl.codenameg.view.entity.MovableBlockView;
@@ -106,6 +108,10 @@ public class LevelView {
 					entityMap.put(e, view);
 				} else if (e instanceof MovableBlock) {
 					EntityView view = new MovableBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				} else if (e instanceof FallingBlock) {
+					EntityView view = new FallingBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
 				} else if (e instanceof Water) {
