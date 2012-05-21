@@ -4,8 +4,18 @@ import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 
+/**
+ * This is a block that kills a player if he touches it
+ * @author ???
+ *
+ */
 public class LethalBlock extends Block{
 	
+	/**
+	 * Handles collision with this block
+	 * 
+	 * If a player touches it, he dies
+	 */
 	@Override
 	public void collide(CollisionEvent evt){
 		super.collide(evt);
