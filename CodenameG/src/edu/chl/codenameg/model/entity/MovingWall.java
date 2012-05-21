@@ -4,15 +4,13 @@ import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
+import edu.chl.codenameg.model.Vector2D;
 
-/**
- * A big wall that behaves like a big moving block
- * behind the player character
- */
 public class MovingWall extends MovingBlock{
 	private boolean lethal;
 	private int travelTime;
 	private Direction direction;
+	
 	
 	public MovingWall(Position ps, Position endPos, int travelTime, boolean lethal){
 		super(ps,endPos,travelTime);
@@ -30,6 +28,7 @@ public class MovingWall extends MovingBlock{
 		} else {
 			this.direction = Direction.NONE;
 		}
+
 	}
 	
 	public MovingWall(){
@@ -41,17 +40,10 @@ public class MovingWall extends MovingBlock{
 		return this.lethal;
 	}
 	
-	/**
-	 * Sets this wall to kill players on impact
-	 * @param True if lethal
-	 */
-	public void toggleLethal(boolean l){
+	public void setLethal(boolean l){
 		this.lethal = l;
 	}
 	
-	/**
-	 * Handles the collision for this wall
-	 */
 	@Override
 	public void collide(CollisionEvent evt){
 		if(evt.getEntity().getType().equals("PlayerCharacter")){
@@ -62,6 +54,11 @@ public class MovingWall extends MovingBlock{
 				super.collide(evt);
 			}
 		}
+	}
+	
+	@Override
+	public void update(int elapsedTime) {
+		super.update(elapsedTime);
 	}
 	
 	@Override

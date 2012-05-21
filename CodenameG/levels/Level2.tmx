@@ -172,9 +172,6 @@
   <object name="Block" x="1856" y="271" width="34" height="14"/>
   <object name="Block" x="1726" y="272" width="34" height="14"/>
  </objectgroup>
- <objectgroup name="Checkpoint" width="150" height="100">
-  <object x="639" y="193" width="32" height="32"/>
- </objectgroup>
  <objectgroup name="Spawn" width="150" height="100">
   <object name="SpawnPC1" x="126" y="128" width="20" height="7">
    <properties>
