@@ -138,9 +138,9 @@ public class LiftableBlock extends MovableBlock{
 	 * Also adds throwing speed
 	 */
 	public void drop() {
-		this.pc = null;
 		addCompleteCollideList();
 		float temp = (pc.getDirection() == Direction.LEFT ? -3f : 3f);
 		this.setVector2D(new Vector2D(temp, -2f));
+		this.pc = null;
 	}
 }
