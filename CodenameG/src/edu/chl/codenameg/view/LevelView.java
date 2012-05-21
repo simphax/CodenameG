@@ -13,6 +13,7 @@ import edu.chl.codenameg.model.GameModel;
 import edu.chl.codenameg.model.entity.FallingBlock;
 import edu.chl.codenameg.model.entity.GoalBlock;
 import edu.chl.codenameg.model.entity.LethalMovingBlock;
+import edu.chl.codenameg.model.entity.LiftableBlock;
 import edu.chl.codenameg.model.entity.MovableBlock;
 import edu.chl.codenameg.model.entity.MovingBlock;
 import edu.chl.codenameg.model.entity.MovingWall;
@@ -23,6 +24,7 @@ import edu.chl.codenameg.sound.GMusic;
 import edu.chl.codenameg.view.entity.FallingBlockView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
+import edu.chl.codenameg.view.entity.LiftableBlockView;
 import edu.chl.codenameg.view.entity.MovableBlockView;
 import edu.chl.codenameg.view.entity.MovingBlockView;
 import edu.chl.codenameg.view.entity.MovingWallView;
@@ -109,6 +111,10 @@ public class LevelView {
 					entityMap.put(e, view);
 				} else if (e instanceof MovingBlock) {
 					EntityView view = new MovingBlockView();
+					view.render(e, g);
+					entityMap.put(e, view);
+				} else if (e instanceof LiftableBlock) {
+					EntityView view = new LiftableBlockView();
 					view.render(e, g);
 					entityMap.put(e, view);
 				} else if (e instanceof MovableBlock) {
