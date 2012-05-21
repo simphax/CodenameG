@@ -25,8 +25,20 @@ public class FallingBlockTest {
 		fb.collide(evt3);
 		Vector2D v2d3 = new Vector2D(fb.getVector2D());
 		assertTrue(v2d1.equals(new Vector2D(0,0)) && v2d2.equals(v2d1) && v2d3.equals(new Vector2D(0,2)));
+	}
+	
+	@Test
+	public void testUpdate() {
+		World world = new World();
+		FallingBlock fb = new FallingBlock();
+		PlayerCharacter pc = new PlayerCharacter(world);
+		world.add(pc);
+		world.add(fb);
+		CollisionEvent evt = new CollisionEvent(pc, Direction.TOP);
+		fb.collide(evt);
 		
-		
+		fb.update(10);
+		assertTrue(fb.getVector2D() != new Vector2D(0, 0));
 	}
 
 
