@@ -239,6 +239,17 @@
   <object name="LethalBlock" x="2976" y="1504" width="64" height="32"/>
   <object name="LethalBlock" x="3104" y="1504" width="64" height="32"/>
  </objectgroup>
+ <objectgroup name="Water" width="150" height="100">
+  <object name="Water" x="1440" y="320" width="640" height="160"/>
+ </objectgroup>
+ <layer name="Water" width="150" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3b3UoCYRSG0enAm+ieuvUsSsluwn40tRR6hW9AhkobNVPXggd1mAMPNnybEasKAAAAAPhrV2s+Q9N9p6p6qZvuSoPy2i/vr9Ntekw3K/f2yvWHlWBpmFl4Ss/pJb12vr42SuP0liZpmmbpPX2keVqYKwpzxT6YK/ahnqFhI3PFNpqzZK4A4H+6vDj0NwCA4+Uc5TvL2ajb5h4AOCfORNqyUwEAAABwaPXzKb8BAsBmnJUAAD/7zb5kt2KXPNti18wUAKduk3POWUgb6/6bCm01d3Q7OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPH7BNEk/L9g6gAA
+  </data>
+ </layer>
+ <objectgroup name="GoalBlock" width="150" height="100">
+  <object name="GoalBlock" x="3058" y="1480" width="32" height="32"/>
+ </objectgroup>
  <objectgroup name="MovingWall" width="150" height="100" visible="0">
   <object name="MovingWall" x="32" y="32" width="3808" height="1536">
    <properties>
@@ -260,17 +271,6 @@
    </properties>
   </object>
   <object name="MovableBlock" x="1952" y="128" width="32" height="32"/>
-  <object name="MovableBlock" x="1504" y="256" width="32" height="32"/>
- </objectgroup>
- <objectgroup name="Water" width="150" height="100">
-  <object name="Water" x="1440" y="320" width="640" height="160"/>
- </objectgroup>
- <layer name="Water" width="150" height="100">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3b3UoCYRSG0enAm+ieuvUsSsluwn40tRR6hW9AhkobNVPXggd1mAMPNnybEasKAAAAAPhrV2s+Q9N9p6p6qZvuSoPy2i/vr9Ntekw3K/f2yvWHlWBpmFl4Ss/pJb12vr42SuP0liZpmmbpPX2keVqYKwpzxT6YK/ahnqFhI3PFNpqzZK4A4H+6vDj0NwCA4+Uc5TvL2ajb5h4AOCfORNqyUwEAAABwaPXzKb8BAsBmnJUAAD/7zb5kt2KXPNti18wUAKduk3POWUgb6/6bCm01d3Q7OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPH7BNEk/L9g6gAA
-  </data>
- </layer>
- <objectgroup name="GoalBlock" width="150" height="100">
-  <object name="GoalBlock" x="3058" y="1480" width="32" height="32"/>
+  <object name="MovableBlock" x="1474" y="251" width="32" height="32"/>
  </objectgroup>
 </map>

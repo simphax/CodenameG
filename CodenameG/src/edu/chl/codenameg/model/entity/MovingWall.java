@@ -4,7 +4,7 @@ import edu.chl.codenameg.model.CollisionEvent;
 import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
-import edu.chl.codenameg.model.Vector2D;
+
 
 public class MovingWall extends MovingBlock{
 	private boolean lethal;
@@ -54,16 +54,6 @@ public class MovingWall extends MovingBlock{
 				super.collide(evt);
 			}
 		}
-	}
-	
-	@Override
-	public void update(int elapsedTime) {
-		super.update(elapsedTime);
-	}
-	
-	@Override
-	public void setStartPosition(Position p){
-		super.setStartPosition(p);
 	}
 	
 	public int getTravelTime(){
