@@ -66,9 +66,9 @@ public class Vector2D {
 		if (getClass() != obj.getClass())
 			return false;
 		Vector2D other = (Vector2D) obj;
-		if (Float.floatToIntBits(x) != Float.floatToIntBits(other.x))
+		if (Float.floatToIntBits(x) != Float.floatToIntBits(other.getX()))
 			return false;
-		if (Float.floatToIntBits(y) != Float.floatToIntBits(other.y))
+		if (Float.floatToIntBits(y) != Float.floatToIntBits(other.getY()))
 			return false;
 		
 		return true;
