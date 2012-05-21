@@ -22,11 +22,6 @@ public class LiftableBlockTest {
 		assertTrue(pc.isColliding() && lb.isColliding());
 	}
 
-//	@Test
-//	public void testUpdateInt() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testUpdate() {
 		LiftableBlock lb = new LiftableBlock();
@@ -44,16 +39,6 @@ public class LiftableBlockTest {
 		lb.update();
 		assertTrue(!lb.getVector2D().equals(new Vector2D(0,0)));
 	}
-
-//	@Test
-//	public void testLiftableBlockPositionHitbox() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testLiftableBlock() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testLift() {
