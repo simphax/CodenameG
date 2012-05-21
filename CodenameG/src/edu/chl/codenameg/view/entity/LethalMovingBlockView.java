@@ -22,7 +22,7 @@ public class LethalMovingBlockView implements EntityView{
 		spin 		= null;
 		
 		try {
-			spriteSheet = new SpriteSheet("res/lethal2.png", 33, 32,Color.white);
+			spriteSheet = new SpriteSheet("res/lethal3.png", 33, 32,Color.white);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
