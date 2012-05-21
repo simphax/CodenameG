@@ -1,7 +1,7 @@
 package edu.chl.codenameg.view;
 
 /**
- * Interface for playing sound files.
+ * Interface for classes playing sound files.
  */
 public interface ISound {
 

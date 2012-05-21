@@ -19,7 +19,6 @@ import edu.chl.codenameg.model.entity.MovingWall;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.model.levels.LevelFactory;
-import edu.chl.codenameg.view.entity.BasicEntityView;
 import edu.chl.codenameg.view.entity.FallingBlockView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
@@ -29,6 +28,12 @@ import edu.chl.codenameg.view.entity.MovingWallView;
 import edu.chl.codenameg.view.entity.PlayerCharacterView;
 import edu.chl.codenameg.view.entity.WaterBlockView;
 
+/**
+ * This is the highest abstracted view which 
+ * adds all the views for entities in the game
+ * 
+ * Basically is what you see in the level
+ */
 public class LevelView {
 	private float		scaleX;
 	private float		scaleY;
@@ -71,7 +76,6 @@ public class LevelView {
 		
 		scaleY = 500f/model.getWorld().getCamera().getHeight();
 		scaleX = 500f/model.getWorld().getCamera().getWidth();
-//		System.out.println(scaleX);
 		g.scale(scaleX,scaleY);
 		g.translate(-model.getWorld().getCamera().getX(), 
 					-model.getWorld().getCamera().getY());

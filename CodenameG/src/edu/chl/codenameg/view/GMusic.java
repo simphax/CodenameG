@@ -2,8 +2,12 @@ package edu.chl.codenameg.view;
 
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.openal.DeferredSound;
 
+/**
+ * Controls the music in the game
+ * 
+ * *Can only play one track at the time*
+ */
 public class GMusic {
 	
 	private Music music;
@@ -11,15 +15,6 @@ public class GMusic {
 	private float volume;
 	
 	public GMusic(String path) {
-//		InputStream is = null;
-//		try {
-//			is = new FileInputStream(new File(path));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		SoundStore.get().init();
-//		SoundStore.get().setDeferredLoading(true);
 		try {
 			music = new Music(path);
 		} catch (SlickException e) {

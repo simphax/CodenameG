@@ -4,7 +4,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
 /**
- * Simple class to play sound files.
+ * Plays sound files
  */
 public class GSound implements ISound {
 	private Sound 		sound;
