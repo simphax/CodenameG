@@ -1,14 +1,10 @@
 package edu.chl.codenameg.model.entity;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
+import static org.junit.Assert.assertTrue;
 import edu.chl.codenameg.model.Camera;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.Vector2D;
 import edu.chl.codenameg.model.World;
-import edu.chl.codenameg.model.entity.PlayerCharacter;
 
 public class CameraTest {
 
