@@ -64,6 +64,7 @@ public class PlayerCharacter implements Entity {
 		this.collideList.add("LiftableBlock");
 		this.collideList.add("FallingBlock");
 		this.collideList.add("MovingWall");
+		this.collideList.add("MovingBlock");
 		this.collideList.add("Camera");
 		this.gameWon = false;
 		this.alive = true;
