@@ -27,11 +27,11 @@ public class FallingBlock extends Block{
 		super(position,hitbox);
 		list = new ArrayList<String>();
 		list.add("Block");
-		list.add("PlayerCharacter");
 		list.add("LethalBlock");
 		list.add("MovingBlock");
 		list.add("LethalMovingBlock");
 		list.add("LiftableBlock");
+		list.add(this.getType());
 	}
 	
 	/**
