@@ -1,6 +1,7 @@
 package edu.chl.codenameg.controller;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -25,5 +26,12 @@ public class GameController extends StateBasedGame {
 		this.addState(levelState);
 		this.addState(new PausedLevelState(levelState));
 		this.addState(new SelectLevelMenuState());
+	}
+	
+	@Override
+	public void preRenderState(GameContainer gc, Graphics g)
+			throws SlickException {
+		g.translate(20,20);
+		g.setClip(20, 20, 500, 500);
 	}
 }
