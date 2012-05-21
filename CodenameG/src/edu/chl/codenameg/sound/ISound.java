@@ -1,4 +1,4 @@
-package edu.chl.codenameg.view;
+package edu.chl.codenameg.sound;
 
 /**
  * Interface for classes playing sound files.

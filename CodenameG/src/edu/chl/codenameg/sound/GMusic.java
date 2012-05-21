@@ -1,4 +1,4 @@
-package edu.chl.codenameg.view;
+package edu.chl.codenameg.sound;
 
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;

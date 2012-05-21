@@ -13,8 +13,8 @@ import org.newdawn.slick.SpriteSheet;
 
 import edu.chl.codenameg.model.Entity;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
+import edu.chl.codenameg.sound.GSound;
 import edu.chl.codenameg.view.EntityView;
-import edu.chl.codenameg.view.GSound;
 
 // There are comments to be cleaned in here
 public class PlayerCharacterView implements EntityView {

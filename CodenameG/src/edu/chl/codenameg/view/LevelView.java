@@ -19,6 +19,7 @@ import edu.chl.codenameg.model.entity.MovingWall;
 import edu.chl.codenameg.model.entity.PlayerCharacter;
 import edu.chl.codenameg.model.entity.Water;
 import edu.chl.codenameg.model.levels.LevelFactory;
+import edu.chl.codenameg.sound.GMusic;
 import edu.chl.codenameg.view.entity.FallingBlockView;
 import edu.chl.codenameg.view.entity.GoalBlockView;
 import edu.chl.codenameg.view.entity.LethalMovingBlockView;
