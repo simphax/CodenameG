@@ -60,6 +60,7 @@ public class PlayerCharacter implements Entity {
 		this.collideList = new ArrayList<String>();
 		this.collideList.add("Block");
 		this.collideList.add("MovableBlock");
+		this.collideList.add("MovingBlock");
 		this.collideList.add("PlayerCharacter");
 		this.collideList.add("LiftableBlock");
 		this.collideList.add("FallingBlock");
