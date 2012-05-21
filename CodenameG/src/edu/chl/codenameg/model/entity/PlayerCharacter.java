@@ -131,7 +131,10 @@ public class PlayerCharacter implements Entity {
 
 		for (Entity entity : entitiesList) {
 			if (entity.getType().equals("LiftableBlock")) {
-				this.collideList.remove("LiftableBlock");
+//				this.collideList.remove("LiftableBlock");
+				for (PlayerCharacter player : this.world.getPlayers()) {
+					player.collideList.remove("LiftableBlock");
+				}
 				this.lb = ((LiftableBlock) entity);
 				this.lb.lift(this);
 				this.lifting = true;
@@ -142,7 +145,10 @@ public class PlayerCharacter implements Entity {
 
 	public void unToggleLift() {
 		if (!this.collideList.contains("LiftableBlock")) {
-			this.collideList.add("LiftableBlock");
+//			this.collideList.add("LiftableBlock");
+			for (PlayerCharacter player : this.world.getPlayers()) {
+				player.collideList.add("LiftableBlock");
+			}
 		}
 		this.lifting = false;
 
