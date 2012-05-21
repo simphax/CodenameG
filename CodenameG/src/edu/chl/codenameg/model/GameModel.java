@@ -98,7 +98,6 @@ public class GameModel {
 		listOfPC.removeAll(listOfPC);
 		listOfPC.addAll(playerList);
 		this.setWorld(temp);
-		System.out.println("Select level " + i);
 	}
 
 	public int getSelectedLevel() {
