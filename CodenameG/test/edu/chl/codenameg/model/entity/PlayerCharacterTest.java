@@ -4,11 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.Direction;
 import edu.chl.codenameg.model.Hitbox;
 import edu.chl.codenameg.model.Position;
 import edu.chl.codenameg.model.World;
 
 public class PlayerCharacterTest {
+	/*
+	 * no Time to complete this test, due to constant updates to Playercharacter
+	 */
 
 	@Test
 	public void testToggleCrouch() {
@@ -34,64 +38,47 @@ public class PlayerCharacterTest {
 		assertTrue(h2 > h1 && p2 < p1);
 	}
 
-	@Test
-	public void testToggleLift() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUnToggleLift() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testStopJump() {
-		fail("Not yet implemented");
+		World w = new World();
+		PlayerCharacter pc = new PlayerCharacter(new World());
+		w.add(pc);
+		pc.jump();
+		pc.update(10);
+		boolean case1 = pc.isJumping();
+		pc.stopJump();
+		pc.update(10);
+		boolean case2 = pc.isJumping();
+		assertTrue(case1 && !case2);
 	}
-
-	@Test
-	public void testMove() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMoveDirection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStopMove() {
-		fail("Not yet implemented");
-	}
-
+/*
 	@Test
 	public void testCollide() {
 		fail("Not yet implemented");
-	}
+	}*/
 
-	@Test
-	public void testDie() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testWinGame() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddVector2D() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		// the main thing to test here is if update resets the booleans properly
+		World w = new World();
+		PlayerCharacter pc = new PlayerCharacter(w);
+		w.add(pc);
+		w.update(10);
+		boolean case1 = pc.isOnGround();
+		
+		pc.move(Direction.LEFT);
+		w.update(10);
+		boolean case2 = pc.getVector2D().getX() !=0;
+		
+		boolean case3 = pc.isColliding();
+		boolean case4 = pc.isInWater();
+		
+		assertTrue(!case1 && case2 && !case3 && !case4);
+		
 	}
 
-	@Test
-	public void testUpdateInt() {
-		fail("Not yet implemented");
-	}
 
 }
