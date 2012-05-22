@@ -32,6 +32,6 @@ public class GameController extends StateBasedGame {
 	public void preRenderState(GameContainer gc, Graphics g)
 			throws SlickException {
 		g.translate(20,20);
-		g.setClip(20, 20, 500, 500);
+		g.setWorldClip(0, 0, 500, 500);
 	}
 }
