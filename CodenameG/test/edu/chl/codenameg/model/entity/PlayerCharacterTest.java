@@ -4,31 +4,34 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.chl.codenameg.model.Hitbox;
+import edu.chl.codenameg.model.Position;
+import edu.chl.codenameg.model.World;
+
 public class PlayerCharacterTest {
 
 	@Test
-	public void testPlayerCharacterWorld() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPlayerCharacterPositionWorld() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testJump() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testToggleCrouch() {
-		fail("Not yet implemented");
+		PlayerCharacter pc = new PlayerCharacter(new World());
+		pc.toggleCrouch();
+		assertTrue(pc.isCrouching()
+				&& pc.getHitbox().equals(new Hitbox(pc.getHitbox().getWidth(), pc.getHitbox().getHeight() - 25))
+				&& pc.getPosition().equals(new Position(pc.getPosition().getX(),pc.getPosition().getY()+25)));
+
 	}
 
 	@Test
 	public void testUnToggleCrouch() {
-		fail("Not yet implemented");
+		PlayerCharacter hulk = new PlayerCharacter(new World());
+		hulk.toggleCrouch();
+		hulk.update();
+		float h1 = hulk.getHitbox().getHeight();
+		float p1 = hulk.getPosition().getY();
+		hulk.unToggleCrouch();
+		hulk.update();
+		float h2 = hulk.getHitbox().getHeight();
+		float p2 = hulk.getPosition().getY();
+		assertTrue(h2 > h1 && p2 < p1);
 	}
 
 	@Test
@@ -38,21 +41,6 @@ public class PlayerCharacterTest {
 
 	@Test
 	public void testUnToggleLift() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsLifting() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsMoving() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsCrouching() {
 		fail("Not yet implemented");
 	}
 
@@ -72,17 +60,7 @@ public class PlayerCharacterTest {
 	}
 
 	@Test
-	public void testSetDirection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testStopMove() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetDirection() {
 		fail("Not yet implemented");
 	}
 
@@ -102,82 +80,7 @@ public class PlayerCharacterTest {
 	}
 
 	@Test
-	public void testSetPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetStartPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetStartPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetPosition() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetHitbox() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetVector2D() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testAddVector2D() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetVector2D() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsColliding() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testHasWonGame() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsAlive() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsOnGround() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsInWater() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsJumping() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCollideTypes() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetType() {
 		fail("Not yet implemented");
 	}
 
