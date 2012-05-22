@@ -15,13 +15,14 @@ import edu.chl.codenameg.model.levels.LevelFactory;
  */
 public class GameModel {
 	private boolean 				running;
+	private boolean 				gameEnded;
 	private int 					selectedLevel;
 	private World 					world;
 	private List<PlayerCharacter> 	listOfPC;
 
 	public GameModel() {
 		listOfPC = new ArrayList<PlayerCharacter>();
-
+		this.gameEnded = false;
 		this.selectLevel(1);
 	}
 
@@ -38,6 +39,7 @@ public class GameModel {
 	 */
 	public void startGame() {
 		this.running = true;
+		this.gameEnded = false;
 	}
 
 	/**
@@ -67,8 +69,13 @@ public class GameModel {
 	public void endGame() {
 		if (world != null && running) {
 			this.running = false;
-			this.world = null;
+//			this.world = null;
+			this.gameEnded = true;
 		}
+	}
+	
+	public boolean gameEnded() {
+	    return this.gameEnded;
 	}
 
 	public Level getLevel(int i) {
@@ -234,9 +241,11 @@ public class GameModel {
 		}
 		if (world.isGameOver()) {
 			if (world.isGameWon()) {
-				System.out.println("Congratulations!");
+			    this.endGame();
+			} else {
+			    this.restartGame();
 			}
-			this.restartGame();
+			
 		}
 	}
 	

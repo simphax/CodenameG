@@ -77,6 +77,9 @@ public class LevelState extends BasicGameState {
 		}
 		
 		this.model.update(elapsedTime);
+		if(this.model.gameEnded()) {
+		    game.enterState(2);
+		}
 	}
 
 	/**

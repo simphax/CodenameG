@@ -372,7 +372,6 @@ public class PlayerCharacter implements Entity {
 
 		if (this.waitingToUncrouch) {
 			this.unToggleCrouch();
-			System.out.println("hejhopp");
 		}
 
 		if (this.direction.equals(Direction.RIGHT) && this.moving) {
